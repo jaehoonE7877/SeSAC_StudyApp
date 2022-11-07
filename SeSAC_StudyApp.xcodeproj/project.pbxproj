@@ -36,6 +36,11 @@
 		25F7FE452919682700E0C486 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE442919682700E0C486 /* FirstViewController.swift */; };
 		25F7FE472919695E00E0C486 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE462919695E00E0C486 /* SecondViewController.swift */; };
 		25F7FE492919698600E0C486 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE482919698600E0C486 /* ThirdViewController.swift */; };
+		25F7FE4D291974F000E0C486 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE4C291974F000E0C486 /* PhoneView.swift */; };
+		25F7FE502919752B00E0C486 /* PhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE4F2919752B00E0C486 /* PhoneViewController.swift */; };
+		25F7FE532919753F00E0C486 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE522919753F00E0C486 /* PhoneViewModel.swift */; };
+		25F7FE55291976CA00E0C486 /* UITextField+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE54291976CA00E0C486 /* UITextField+AttributedString.swift */; };
+		25F7FE572919792000E0C486 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE562919792000E0C486 /* UITextField+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +69,11 @@
 		25F7FE442919682700E0C486 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		25F7FE462919695E00E0C486 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		25F7FE482919698600E0C486 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		25F7FE4C291974F000E0C486 /* PhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
+		25F7FE4F2919752B00E0C486 /* PhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewController.swift; sourceTree = "<group>"; };
+		25F7FE522919753F00E0C486 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
+		25F7FE54291976CA00E0C486 /* UITextField+AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+AttributedString.swift"; sourceTree = "<group>"; };
+		25F7FE562919792000E0C486 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +182,7 @@
 			children = (
 				25F7FE0329193B6600E0C486 /* Common */,
 				25F7FDFE29193A9400E0C486 /* Onboarding */,
-				25F7FE4A2919705F00E0C486 /* Login */,
+				25F7FE4A2919705F00E0C486 /* LoginScene */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -224,6 +234,7 @@
 		25F7FE0A29193C9300E0C486 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				25F7FE582919819F00E0C486 /* Protocol */,
 				25F7FE242919402B00E0C486 /* Extension */,
 				25F7FE0429193B7500E0C486 /* BaseViewController.swift */,
 			);
@@ -242,7 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				25F7FE1C29193E7600E0C486 /* ViewModelType.swift */,
-				25F7FE1F29193EC400E0C486 /* Alertable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -280,15 +290,52 @@
 				25F7FE3A291946E900E0C486 /* UIColor+CustomColor.swift */,
 				25F7FE402919566700E0C486 /* ButtonStatus.swift */,
 				25F7FE42291957FB00E0C486 /* UILabel+AttributedString.swift */,
+				25F7FE54291976CA00E0C486 /* UITextField+AttributedString.swift */,
+				25F7FE562919792000E0C486 /* UITextField+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		25F7FE4A2919705F00E0C486 /* Login */ = {
+		25F7FE4A2919705F00E0C486 /* LoginScene */ = {
 			isa = PBXGroup;
 			children = (
+				25F7FE4B2919737A00E0C486 /* Phone */,
 			);
-			path = Login;
+			path = LoginScene;
+			sourceTree = "<group>";
+		};
+		25F7FE4B2919737A00E0C486 /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				25F7FE512919753200E0C486 /* ViewModel */,
+				25F7FE4E291974F500E0C486 /* View */,
+			);
+			path = Phone;
+			sourceTree = "<group>";
+		};
+		25F7FE4E291974F500E0C486 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25F7FE4C291974F000E0C486 /* PhoneView.swift */,
+				25F7FE4F2919752B00E0C486 /* PhoneViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25F7FE512919753200E0C486 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				25F7FE522919753F00E0C486 /* PhoneViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		25F7FE582919819F00E0C486 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				25F7FE1F29193EC400E0C486 /* Alertable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,19 +430,24 @@
 				25F7FE472919695E00E0C486 /* SecondViewController.swift in Sources */,
 				25F7FE452919682700E0C486 /* FirstViewController.swift in Sources */,
 				25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */,
+				25F7FE502919752B00E0C486 /* PhoneViewController.swift in Sources */,
 				25F7FE3D291950AD00E0C486 /* PageView.swift in Sources */,
 				25F7FE2029193EC400E0C486 /* Alertable.swift in Sources */,
 				25F7FE0529193B7500E0C486 /* BaseViewController.swift in Sources */,
+				25F7FE532919753F00E0C486 /* PhoneViewModel.swift in Sources */,
 				25F7FE1D29193E7600E0C486 /* ViewModelType.swift in Sources */,
+				25F7FE55291976CA00E0C486 /* UITextField+AttributedString.swift in Sources */,
 				25F7FE0129193B3400E0C486 /* OnboardingViewController.swift in Sources */,
 				25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */,
 				25F7FE392919465500E0C486 /* UIFont+CustomFont.swift in Sources */,
 				25F7FE3B291946E900E0C486 /* UIColor+CustomColor.swift in Sources */,
+				25F7FE4D291974F000E0C486 /* PhoneView.swift in Sources */,
 				25F7FE43291957FB00E0C486 /* UILabel+AttributedString.swift in Sources */,
 				25F7FE0929193C6300E0C486 /* APIKey.swift in Sources */,
 				25F7FE2329193F0A00E0C486 /* BaseView.swift in Sources */,
 				25F7FE262919403C00E0C486 /* BaseViewController+.swift in Sources */,
 				25F7FE412919566700E0C486 /* ButtonStatus.swift in Sources */,
+				25F7FE572919792000E0C486 /* UITextField+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

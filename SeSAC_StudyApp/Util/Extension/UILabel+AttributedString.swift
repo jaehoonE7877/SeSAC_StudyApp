@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UILabel {
+public extension UILabel {
     func asColor(targetString: String, color: UIColor){
         let fullText = text ?? ""
         let attributedString = NSMutableAttributedString(string: fullText)

@@ -60,7 +60,7 @@ final class OnboardingViewController: BaseViewController{
             
             UserDefaults.standard.set(true, forKey: "onboarding")
             
-            transitionViewController(viewController: BaseViewController(), transitionStyle: .presentFullNavigation)
+            transitionViewController(viewController: PhoneViewController(), transitionStyle: .presentFullNavigation)
         }
         
     }
