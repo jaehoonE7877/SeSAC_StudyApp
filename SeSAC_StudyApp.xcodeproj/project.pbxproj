@@ -172,6 +172,7 @@
 			children = (
 				25F7FE0329193B6600E0C486 /* Common */,
 				25F7FDFE29193A9400E0C486 /* Onboarding */,
+				25F7FE4A2919705F00E0C486 /* Login */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -281,6 +282,13 @@
 				25F7FE42291957FB00E0C486 /* UILabel+AttributedString.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		25F7FE4A2919705F00E0C486 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

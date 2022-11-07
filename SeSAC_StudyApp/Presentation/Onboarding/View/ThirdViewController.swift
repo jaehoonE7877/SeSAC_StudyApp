@@ -25,5 +25,14 @@ final class ThirdViewController: BaseViewController {
         mainView.onboardingLabel.text = "SeSAC Study"
     }
     
+    override func setConstraint() {
+        mainView.onboardingLabel.snp.updateConstraints { make in
+            make.top.equalTo(90)
+        }
+        mainView.onboardingImage.snp.updateConstraints { make in
+            make.top.equalTo(mainView.onboardingLabel.snp.bottom).offset(74)
+        }
+    }
+    
     
 }
