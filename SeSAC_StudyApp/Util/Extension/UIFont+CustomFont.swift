@@ -9,18 +9,11 @@ import UIKit
 
 extension UIFont {
     enum Family: String {
-        case medium, regular
+        case Medium, Regular
     }
 
-    static func notoSans(size: CGFloat = 10, family: Family = .regular) -> UIFont {
+    static func notoSans(size: CGFloat = 14, family: Family = .Regular) -> UIFont {
         return UIFont(name: "NotoSansKR-\(family)", size: size) ?? UIFont.systemFont(ofSize: size)
     }
     
-    static func notoSansBoldItalic(size: CGFloat = 10) -> UIFont {
-        return UIFont(name: "NotoSans-boldItalic", size: size) ?? UIFont.systemFont(ofSize: size)
-    }
-    
-    static func racingSansOne(size: CGFloat) -> UIFont {
-        return UIFont(name: "RacingSansOne-Regular", size: size) ?? UIFont.systemFont(ofSize: size)
-    }
 }

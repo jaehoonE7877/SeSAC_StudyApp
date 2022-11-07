@@ -48,7 +48,7 @@
     </scenes>
     <resources>
         <image name="splash_logo" width="220" height="264"/>
-        <image name="splash_text" width="261" height="43"/>
+        <image name="splash_text" width="260" height="42"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

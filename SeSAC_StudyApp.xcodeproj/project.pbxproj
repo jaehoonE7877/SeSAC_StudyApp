@@ -30,6 +30,12 @@
 		25F7FE362919416500E0C486 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 25F7FE2F2919416500E0C486 /* NotoSansKR-Regular.otf */; };
 		25F7FE392919465500E0C486 /* UIFont+CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE382919465500E0C486 /* UIFont+CustomFont.swift */; };
 		25F7FE3B291946E900E0C486 /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE3A291946E900E0C486 /* UIColor+CustomColor.swift */; };
+		25F7FE3D291950AD00E0C486 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE3C291950AD00E0C486 /* PageView.swift */; };
+		25F7FE412919566700E0C486 /* ButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE402919566700E0C486 /* ButtonStatus.swift */; };
+		25F7FE43291957FB00E0C486 /* UILabel+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE42291957FB00E0C486 /* UILabel+AttributedString.swift */; };
+		25F7FE452919682700E0C486 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE442919682700E0C486 /* FirstViewController.swift */; };
+		25F7FE472919695E00E0C486 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE462919695E00E0C486 /* SecondViewController.swift */; };
+		25F7FE492919698600E0C486 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE482919698600E0C486 /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +58,12 @@
 		25F7FE2F2919416500E0C486 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		25F7FE382919465500E0C486 /* UIFont+CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFont.swift"; sourceTree = "<group>"; };
 		25F7FE3A291946E900E0C486 /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
+		25F7FE3C291950AD00E0C486 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		25F7FE402919566700E0C486 /* ButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStatus.swift; sourceTree = "<group>"; };
+		25F7FE42291957FB00E0C486 /* UILabel+AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+AttributedString.swift"; sourceTree = "<group>"; };
+		25F7FE442919682700E0C486 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		25F7FE462919695E00E0C486 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		25F7FE482919698600E0C486 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +193,6 @@
 		25F7FDFE29193A9400E0C486 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				25F7FE0229193B3A00E0C486 /* ViewModel */,
 				25F7FDFF29193A9F00E0C486 /* View */,
 			);
 			path = Onboarding;
@@ -191,15 +202,12 @@
 			isa = PBXGroup;
 			children = (
 				25F7FE0029193B3400E0C486 /* OnboardingViewController.swift */,
+				25F7FE442919682700E0C486 /* FirstViewController.swift */,
+				25F7FE462919695E00E0C486 /* SecondViewController.swift */,
+				25F7FE482919698600E0C486 /* ThirdViewController.swift */,
+				25F7FE3C291950AD00E0C486 /* PageView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		25F7FE0229193B3A00E0C486 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		25F7FE0329193B6600E0C486 /* Common */ = {
@@ -269,6 +277,8 @@
 			children = (
 				25F7FE382919465500E0C486 /* UIFont+CustomFont.swift */,
 				25F7FE3A291946E900E0C486 /* UIColor+CustomColor.swift */,
+				25F7FE402919566700E0C486 /* ButtonStatus.swift */,
+				25F7FE42291957FB00E0C486 /* UILabel+AttributedString.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -361,7 +371,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25F7FE492919698600E0C486 /* ThirdViewController.swift in Sources */,
+				25F7FE472919695E00E0C486 /* SecondViewController.swift in Sources */,
+				25F7FE452919682700E0C486 /* FirstViewController.swift in Sources */,
 				25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */,
+				25F7FE3D291950AD00E0C486 /* PageView.swift in Sources */,
 				25F7FE2029193EC400E0C486 /* Alertable.swift in Sources */,
 				25F7FE0529193B7500E0C486 /* BaseViewController.swift in Sources */,
 				25F7FE1D29193E7600E0C486 /* ViewModelType.swift in Sources */,
@@ -369,9 +383,11 @@
 				25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */,
 				25F7FE392919465500E0C486 /* UIFont+CustomFont.swift in Sources */,
 				25F7FE3B291946E900E0C486 /* UIColor+CustomColor.swift in Sources */,
+				25F7FE43291957FB00E0C486 /* UILabel+AttributedString.swift in Sources */,
 				25F7FE0929193C6300E0C486 /* APIKey.swift in Sources */,
 				25F7FE2329193F0A00E0C486 /* BaseView.swift in Sources */,
 				25F7FE262919403C00E0C486 /* BaseViewController+.swift in Sources */,
+				25F7FE412919566700E0C486 /* ButtonStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,7 +464,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -503,7 +519,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

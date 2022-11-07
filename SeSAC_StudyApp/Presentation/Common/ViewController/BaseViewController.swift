@@ -18,14 +18,6 @@ class BaseViewController: UIViewController {
         configure()
         setConstraint()
         setNavigationController()
-        
-        UIFont.familyNames.sorted().forEach { familyName in
-            print("*** \(familyName) ***")
-            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
-                print("\(fontName)")
-            }
-            print("---------------------")
-        }
     }
     
     
