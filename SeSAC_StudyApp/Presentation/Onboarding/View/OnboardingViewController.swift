@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class OnboardingViewController {
+final class OnboardingViewController: BaseViewController {
     
     
     
