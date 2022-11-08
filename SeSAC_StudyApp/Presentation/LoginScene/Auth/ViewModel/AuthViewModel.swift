@@ -38,11 +38,11 @@ final class AuthViewModel: ViewModelType{
             }
             .asDriver(onErrorJustReturn: false)
 
-        let timerText = input.timerText
-            .map {
-                Int($0)
-            }
-            .asDriver(onErrorJustReturn: 10)
+//        let timerText = input.timerText
+//            .map {
+//                Int($0)
+//            }
+//            .asDriver(onErrorJustReturn: 10)
 
         return Output(verifyTextValid: textValid, textFieldBeginEdit: input.textFieldBeginEdit, textFieldEndEdit: input.textFieldEndEdit, resendButtonTap: input.resendButtonTap, verifyButtonTap: input.verifyButtonTap)
    }

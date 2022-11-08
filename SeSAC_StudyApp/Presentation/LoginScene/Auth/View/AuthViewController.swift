@@ -26,6 +26,16 @@ final class AuthViewController: BaseViewController {
         mainView.mainButton.addTarget(self, action: #selector(login), for: .touchUpInside)
     }
     
+    override func setNavigationController() {
+        let backButton = UIBarButtonItem(image: UIImage(named: "arrow"), style: .plain, target: self, action: #selector(backButtonTapped))
+        backButton.tintColor = .black
+        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc private func backButtonTapped(){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @objc func login(){
         guard let text = mainView.authTextField.text else { return }
         textLogin(verificationCode: text)
