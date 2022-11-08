@@ -22,16 +22,29 @@ final class PhoneView: LoginView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        
     }
     
     override func configure() {
-        [phoneTextField, lineView].forEach { self.addSubview($0) }
+        [mainLabel, mainButton, phoneTextField, lineView].forEach { self.addSubview($0) }
     }
     
     override func setConstraints() {
+        
+        mainButton.snp.makeConstraints { make in
+            make.centerY.equalTo(self.safeAreaLayoutGuide).multipliedBy(1.08)
+            make.width.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.92)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(48)
+        }
+        
+        mainLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.48)
+            make.centerX.equalToSuperview()
+        }
+        
         phoneTextField.snp.makeConstraints { make in
-            make.top.equalTo(self.mainLabel.snp.bottom).offset(68)
+            make.centerY.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.8)
             make.centerX.equalToSuperview()
             make.width.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.92)
             make.height.equalTo(40)
@@ -39,7 +52,7 @@ final class PhoneView: LoginView {
         
         lineView.snp.makeConstraints { make in
             make.top.equalTo(phoneTextField.snp.bottom)
-            make.width.equalTo(phoneTextField.snp.width)
+            make.width.equalTo(phoneTextField)
             make.centerX.equalToSuperview()
             make.height.equalTo(1)
         }

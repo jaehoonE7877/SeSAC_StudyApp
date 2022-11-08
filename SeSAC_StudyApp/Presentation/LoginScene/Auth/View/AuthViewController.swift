@@ -12,6 +12,12 @@ import RxCocoa
 
 final class AuthViewController: BaseViewController {
     
+    private let mainView = AuthView()
+    
+    override func loadView() {
+        self.view = mainView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
