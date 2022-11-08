@@ -23,19 +23,17 @@ final class PhoneView: BaseView {
         $0.keyboardType = .numberPad
     }
     
-    lazy var lineView = UIView().then {
+    let lineView = UIView().then {
         $0.backgroundColor = .gray3
     }
     
-    lazy var mainButton = UIButton().then {
-        $0.backgroundColor = .gray6
-        $0.titleLabel?.textColor = .gray3
-        $0.layer.cornerRadius = 8
-        $0.setTitle("인증 문자 받기", for: .normal)
+    let mainButton = NextButton(title: "인증 문자 받기", status: .disable).then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .white
     }
     
     override func configure() {
@@ -68,6 +66,6 @@ final class PhoneView: BaseView {
             make.centerX.equalToSuperview()
             make.height.equalTo(48)
         }
-        
     }
+    
 }

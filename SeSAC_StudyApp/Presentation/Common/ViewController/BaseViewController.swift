@@ -18,12 +18,13 @@ class BaseViewController: UIViewController {
         configure()
         setConstraint()
         setNavigationController()
+        setBinding()
     }
     
     
-    func configure() {}
+    func configure() { }
     
-    func setConstraint() {}
+    func setConstraint() { }
     
     func setNavigationController() {
         let appearance = UINavigationBarAppearance()
@@ -31,14 +32,8 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
-    func showAlertMessage(title: String, message: String? ,button: String, cancel: String, completion: @escaping (UIAlertAction) -> Void) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: button, style: .destructive, handler: completion)
-        let cancel = UIAlertAction(title: cancel, style: .cancel)
-        alert.addAction(cancel)
-        alert.addAction(ok)
-        
-        present(alert, animated: true)
-    }
+    func setBinding() { }
+    
+    
     
 }

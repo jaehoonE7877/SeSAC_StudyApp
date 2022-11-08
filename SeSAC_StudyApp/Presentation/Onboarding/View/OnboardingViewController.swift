@@ -14,9 +14,12 @@ final class OnboardingViewController: BaseViewController{
         $0.currentPageIndicatorTintColor = .black
     }
     
-    private let nextButton = ButtonStatus.createNextButton(title: "시작하기", status: .fill).then {
+    private let nextButton = NextButton(title: "시작하기", status: .fill).then{
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    
+    
     
     private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal).then {
         $0.delegate = self
