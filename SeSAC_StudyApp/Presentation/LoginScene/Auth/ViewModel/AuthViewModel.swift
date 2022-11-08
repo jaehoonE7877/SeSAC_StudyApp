@@ -14,18 +14,20 @@ final class AuthViewModel: ViewModelType{
     
     struct Input {
         let verifyText: ControlProperty<String>
-        let timerText: ControlProperty<String>
+        //let timerText: ControlProperty<String>
+        let textFieldBeginEdit: ControlEvent<Void>
+        let textFieldEndEdit: ControlEvent<Void>
         let resendButtonTap: ControlEvent<Void>
         let verifyButtonTap: ControlEvent<Void>
     }
     
     struct Output {
-        let verifyTextValid: Driver<Bool>
-        let timerText: Observable<String>
-        let textFieldBeginEdit: ControlEvent<Void>
-        let textFieldEndEdit: ControlEvent<Void>
-        let resendButtonTap: ControlEvent<Void>
-        let verifyButtonTap: ControlEvent<Void>
+        let verifyTextValid: Driver<Bool> // 버튼 스타일 바꿀 때
+        //let timerText: Driver<Bool> // 타이머
+        let textFieldBeginEdit: ControlEvent<Void> //라인
+        let textFieldEndEdit: ControlEvent<Void> //라인
+        let resendButtonTap: ControlEvent<Void> //재전송 요청
+        let verifyButtonTap: ControlEvent<Void> // 파베 가입
     }
     
     func transform(input: Input) -> Output {
@@ -37,7 +39,11 @@ final class AuthViewModel: ViewModelType{
             .asDriver(onErrorJustReturn: false)
 
         let timerText = input.timerText
+            .map {
+                Int($0)
+            }
+            .asDriver(onErrorJustReturn: 10)
 
-        return Output(verifyTextValid: textValid, timerText: <#T##Observable<String>#>, textFieldBeginEdit: <#T##ControlEvent<Void>#>, textFieldEndEdit: <#T##ControlEvent<Void>#>, resendButtonTap: <#T##ControlEvent<Void>#>, verifyButtonTap: <#T##ControlEvent<Void>#>)
+        return Output(verifyTextValid: textValid, textFieldBeginEdit: input.textFieldBeginEdit, textFieldEndEdit: input.textFieldEndEdit, resendButtonTap: input.resendButtonTap, verifyButtonTap: input.verifyButtonTap)
    }
 }
