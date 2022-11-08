@@ -23,14 +23,15 @@ final class PhoneViewController: BaseViewController, Alertable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tapGesture()
     }
     
     override func setBinding() {
         
         let input = PhoneViewModel.Input(phoneNumberText: mainView.phoneTextField.rx.text.orEmpty,
                                          sendButtonTapped: mainView.mainButton.rx.tap,
-                                         textFieldEditing: mainView.phoneTextField.rx.controlEvent([.editingDidBegin]))
+                                         textFieldBeginEdit: mainView.phoneTextField.rx.controlEvent(.editingDidBegin),
+                                         textFieldEndEdit: mainView.phoneTextField.rx.controlEvent(.editingDidEnd))
         let output = viewModel.transform(input: input)
         
         output.phoneNumberText
@@ -40,10 +41,17 @@ final class PhoneViewController: BaseViewController, Alertable {
             }
             .disposed(by: disposeBag)
         
-        output.textFieldEditing
+        output.textFieldBeginEdit
             .withUnretained(self)
             .bind { vc, _ in
                 vc.mainView.lineView.backgroundColor = .black 
+            }
+            .disposed(by: disposeBag)
+        
+        output.textFieldEndEdit
+            .withUnretained(self)
+            .bind { vc, _ in
+                vc.mainView.lineView.backgroundColor = .gray3
             }
             .disposed(by: disposeBag)
         
@@ -58,10 +66,17 @@ final class PhoneViewController: BaseViewController, Alertable {
         output.sendButtonTapped
             .withUnretained(self)
             .bind { vc, _ in
-                vc.showAlert(title: "확인", button: "확인")
+                vc.transitionViewController(viewController: AuthViewController(), transitionStyle: .push)
             }
             .disposed(by: disposeBag)
-        
-        
+    }
+    
+    private func tapGesture(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapEndEditing))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func tapEndEditing(){
+        view.endEditing(true)
     }
 }

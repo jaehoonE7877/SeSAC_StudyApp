@@ -17,14 +17,16 @@ final class PhoneViewModel: ViewModelType {
     struct Input{
         let phoneNumberText: ControlProperty<String>
         let sendButtonTapped: ControlEvent<Void>
-        let textFieldEditing: ControlEvent<Void>
+        let textFieldBeginEdit: ControlEvent<Void>
+        let textFieldEndEdit: ControlEvent<Void>
     }
     
     struct Output {
         let phoneNumberValid: Driver<Bool>
         let phoneNumberText: Observable<String>
         let sendButtonTapped: ControlEvent<Void>
-        let textFieldEditing: ControlEvent<Void>
+        let textFieldBeginEdit: ControlEvent<Void>
+        let textFieldEndEdit: ControlEvent<Void>
     }
     
     func transform(input: Input) -> Output {
@@ -47,7 +49,7 @@ final class PhoneViewModel: ViewModelType {
             }
             .asDriver(onErrorJustReturn: false)
 
-        return Output(phoneNumberValid: phoneValid, phoneNumberText: phoneText, sendButtonTapped: input.sendButtonTapped, textFieldEditing: input.textFieldEditing)
+        return Output(phoneNumberValid: phoneValid, phoneNumberText: phoneText, sendButtonTapped: input.sendButtonTapped, textFieldBeginEdit: input.textFieldBeginEdit, textFieldEndEdit: input.textFieldEndEdit)
     }
     
     private func isValidPhone(phone: String) -> Bool {

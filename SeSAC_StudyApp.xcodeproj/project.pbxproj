@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		254627D2291A2EFF004D4B72 /* String+PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254627D1291A2EFF004D4B72 /* String+PhoneNumber.swift */; };
+		254627D7291A3B97004D4B72 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254627D6291A3B97004D4B72 /* AuthView.swift */; };
+		254627D9291A3BA7004D4B72 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254627D8291A3BA7004D4B72 /* AuthViewController.swift */; };
+		254627DB291A3BB3004D4B72 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254627DA291A3BB3004D4B72 /* AuthViewModel.swift */; };
+		254627DE291A3C1A004D4B72 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254627DD291A3C1A004D4B72 /* LoginView.swift */; };
 		25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE1291931E100E0C486 /* AppDelegate.swift */; };
 		25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE3291931E100E0C486 /* SceneDelegate.swift */; };
 		25F7FDE9291931E100E0C486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F7FDE7291931E100E0C486 /* Main.storyboard */; };
@@ -47,6 +51,10 @@
 
 /* Begin PBXFileReference section */
 		254627D1291A2EFF004D4B72 /* String+PhoneNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PhoneNumber.swift"; sourceTree = "<group>"; };
+		254627D6291A3B97004D4B72 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		254627D8291A3BA7004D4B72 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		254627DA291A3BB3004D4B72 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		254627DD291A3C1A004D4B72 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_StudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7FDE1291931E100E0C486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F7FDE3291931E100E0C486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +105,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		254627D3291A39BB004D4B72 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				254627D5291A39CC004D4B72 /* ViewModel */,
+				254627D4291A39C7004D4B72 /* View */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		254627D4291A39C7004D4B72 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				254627D6291A3B97004D4B72 /* AuthView.swift */,
+				254627D8291A3BA7004D4B72 /* AuthViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		254627D5291A39CC004D4B72 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				254627DA291A3BB3004D4B72 /* AuthViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		254627DC291A3C05004D4B72 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				25F7FE59291985DB00E0C486 /* NextButton.swift */,
+				254627DD291A3C1A004D4B72 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		25F7FDD5291931E100E0C486 = {
 			isa = PBXGroup;
 			children = (
@@ -264,8 +307,8 @@
 		25F7FE2129193EF800E0C486 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				254627DC291A3C05004D4B72 /* Login */,
 				25F7FE2229193F0A00E0C486 /* BaseView.swift */,
-				25F7FE59291985DB00E0C486 /* NextButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -306,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				25F7FE4B2919737A00E0C486 /* Phone */,
+				254627D3291A39BB004D4B72 /* Auth */,
 			);
 			path = LoginScene;
 			sourceTree = "<group>";
@@ -440,6 +484,7 @@
 				25F7FE5A291985DB00E0C486 /* NextButton.swift in Sources */,
 				25F7FE502919752B00E0C486 /* PhoneViewController.swift in Sources */,
 				25F7FE3D291950AD00E0C486 /* PageView.swift in Sources */,
+				254627D9291A3BA7004D4B72 /* AuthViewController.swift in Sources */,
 				25F7FE2029193EC400E0C486 /* Alertable.swift in Sources */,
 				25F7FE0529193B7500E0C486 /* BaseViewController.swift in Sources */,
 				25F7FE532919753F00E0C486 /* PhoneViewModel.swift in Sources */,
@@ -448,9 +493,12 @@
 				25F7FE0129193B3400E0C486 /* OnboardingViewController.swift in Sources */,
 				25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */,
 				25F7FE392919465500E0C486 /* UIFont+CustomFont.swift in Sources */,
+				254627DB291A3BB3004D4B72 /* AuthViewModel.swift in Sources */,
+				254627D7291A3B97004D4B72 /* AuthView.swift in Sources */,
 				25F7FE3B291946E900E0C486 /* UIColor+CustomColor.swift in Sources */,
 				25F7FE4D291974F000E0C486 /* PhoneView.swift in Sources */,
 				25F7FE43291957FB00E0C486 /* UILabel+AttributedString.swift in Sources */,
+				254627DE291A3C1A004D4B72 /* LoginView.swift in Sources */,
 				25F7FE0929193C6300E0C486 /* APIKey.swift in Sources */,
 				25F7FE2329193F0A00E0C486 /* BaseView.swift in Sources */,
 				25F7FE262919403C00E0C486 /* BaseViewController+.swift in Sources */,
