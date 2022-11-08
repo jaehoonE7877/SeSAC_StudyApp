@@ -45,7 +45,7 @@ final class PhoneViewController: BaseViewController, Alertable {
         output.textFieldBeginEdit
             .withUnretained(self)
             .bind { vc, _ in
-                vc.mainView.lineView.backgroundColor = .black 
+                vc.mainView.lineView.backgroundColor = .textColor
             }
             .disposed(by: disposeBag)
         

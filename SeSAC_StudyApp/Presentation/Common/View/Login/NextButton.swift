@@ -33,7 +33,7 @@ final class NextButton: UIButton {
             self.backgroundColor = .white
             self.layer.borderWidth = 1
             self.layer.borderColor = UIColor.gray4.cgColor
-            self.titleLabel?.textColor = .black
+            self.titleLabel?.textColor = .textColor
         case .fill:
             self.backgroundColor = .ssGreen
             self.titleLabel?.textColor = .white
@@ -44,7 +44,7 @@ final class NextButton: UIButton {
             self.titleLabel?.textColor = .ssGreen
         case .cancel:
             self.backgroundColor = .gray2
-            self.titleLabel?.textColor = .black
+            self.titleLabel?.textColor = .textColor
         case .disable:
             self.backgroundColor = .gray6
             self.titleLabel?.textColor = .gray3
@@ -58,7 +58,7 @@ final class NextButton: UIButton {
                 self.backgroundColor = .white
                 self.layer.borderWidth = 1
                 self.layer.borderColor = UIColor.gray4.cgColor
-                self.titleLabel?.textColor = .black
+                self.titleLabel?.textColor = .textColor
             case .fill:
                 self.backgroundColor = .ssGreen
                 self.titleLabel?.textColor = .white
@@ -69,7 +69,7 @@ final class NextButton: UIButton {
                 self.titleLabel?.textColor = .ssGreen
             case .cancel:
                 self.backgroundColor = .gray2
-                self.titleLabel?.textColor = .black
+                self.titleLabel?.textColor = .textColor
             case .disable:
                 self.backgroundColor = .gray6
                 self.titleLabel?.textColor = .gray3

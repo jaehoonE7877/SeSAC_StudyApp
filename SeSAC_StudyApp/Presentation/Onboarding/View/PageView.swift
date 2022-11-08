@@ -11,6 +11,7 @@ final class PageView: BaseView {
     
     lazy var onboardingLabel = UILabel().then {
         $0.numberOfLines = 2
+        $0.textColor = .textColor
         $0.text =
             """
             위치 기반으로 빠르게

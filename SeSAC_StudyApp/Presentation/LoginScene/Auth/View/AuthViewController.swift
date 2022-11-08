@@ -28,7 +28,7 @@ final class AuthViewController: BaseViewController {
     
     override func setNavigationController() {
         let backButton = UIBarButtonItem(image: UIImage(named: "arrow"), style: .plain, target: self, action: #selector(backButtonTapped))
-        backButton.tintColor = .black
+        backButton.tintColor = .textColor
         self.navigationItem.leftBarButtonItem = backButton
     }
     
@@ -61,7 +61,7 @@ final class AuthViewController: BaseViewController {
         output.textFieldBeginEdit
             .withUnretained(self)
             .bind { vc, _ in
-                vc.mainView.lineView.backgroundColor = .black
+                vc.mainView.lineView.backgroundColor = .textColor
             }
             .disposed(by: disposeBag)
         

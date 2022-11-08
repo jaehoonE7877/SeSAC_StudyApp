@@ -11,7 +11,7 @@ final class OnboardingViewController: BaseViewController{
     
     private let pageControl = UIPageControl().then {
         $0.pageIndicatorTintColor = .gray5
-        $0.currentPageIndicatorTintColor = .black
+        $0.currentPageIndicatorTintColor = .textColor
     }
     
     private let nextButton = NextButton(title: "시작하기", status: .fill).then{
@@ -27,7 +27,7 @@ final class OnboardingViewController: BaseViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        
         createPageViewController()
         configurePageViewController()
         
