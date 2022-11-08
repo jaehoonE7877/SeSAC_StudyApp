@@ -9,6 +9,7 @@ import UIKit
 
 import RxCocoa
 import RxSwift
+import Toast
 
 final class PhoneViewController: BaseViewController, Alertable {
     
@@ -23,7 +24,7 @@ final class PhoneViewController: BaseViewController, Alertable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tapGesture()
+        
     }
     
     override func setBinding() {
@@ -58,7 +59,6 @@ final class PhoneViewController: BaseViewController, Alertable {
         output.phoneNumberValid
             .drive { [weak self] valid in
                 guard let self = self else { return }
-                self.mainView.mainButton.isEnabled = valid
                 self.mainView.mainButton.status = valid ? .fill : .disable
             }
             .disposed(by: disposeBag)
@@ -66,17 +66,30 @@ final class PhoneViewController: BaseViewController, Alertable {
         output.sendButtonTapped
             .withUnretained(self)
             .bind { vc, _ in
-                vc.transitionViewController(viewController: AuthViewController(), transitionStyle: .push)
+                
+                if vc.mainView.mainButton.backgroundColor == .ssGreen {
+                    vc.mainView.makeToast("전화 번호 인증 시작", duration: 1, position: .center)
+                    vc.viewModel.requestToken(phoneNumber: vc.formattingNumber()) { result in
+                        switch result {
+                        case .success(_):
+                            vc.transitionViewController(viewController: AuthViewController(), transitionStyle: .push)
+                        case .failure(let error):
+                            vc.mainView.makeToast(error.localizedDescription, position: .center)
+                        }
+                    }
+                } else {
+                    vc.mainView.makeToast("잘못된 전화번호 형식입니다.", duration: 1, position: .center)
+                }
             }
             .disposed(by: disposeBag)
     }
     
-    private func tapGesture(){
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapEndEditing))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc private func tapEndEditing(){
-        view.endEditing(true)
-    }
+    private func formattingNumber() -> String {
+        guard var text = mainView.phoneTextField.text else { return ""}
+            text.remove(at: text.startIndex)
+            
+            let formater = "+82 " + text
+            
+            return formater
+        }
 }

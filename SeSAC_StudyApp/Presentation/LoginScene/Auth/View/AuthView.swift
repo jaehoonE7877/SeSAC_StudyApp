@@ -13,7 +13,7 @@ final class AuthView: LoginView {
     lazy var authTextField = UITextField().then {
         $0.setPlaceholder(text: "인증번호 입력", color: .gray7)
         $0.addLeftPadding()
-        $0.keyboardType = .numberPad
+        $0.textContentType = .oneTimeCode
     }
     
     lazy var lineView = UIView().then {
@@ -21,7 +21,7 @@ final class AuthView: LoginView {
     }
     
     lazy var timeLabel = UILabel().then {
-        $0.text = "05:00"
+        $0.text = "01:00"
         $0.font = UIFont.notoSans(size: 14, family: .Medium)
         $0.textColor = .ssGreen
     }

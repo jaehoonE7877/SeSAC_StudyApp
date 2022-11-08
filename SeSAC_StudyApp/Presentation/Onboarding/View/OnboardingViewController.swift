@@ -17,10 +17,7 @@ final class OnboardingViewController: BaseViewController{
     private let nextButton = NextButton(title: "시작하기", status: .fill).then{
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    
-    
-    
-    
+
     private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal).then {
         $0.delegate = self
         $0.dataSource = self
@@ -94,7 +91,7 @@ final class OnboardingViewController: BaseViewController{
 }
 
 extension OnboardingViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-   
+       
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         guard let viewControllerIndex = pageViewControllerList.firstIndex(of: viewController) else { return nil }

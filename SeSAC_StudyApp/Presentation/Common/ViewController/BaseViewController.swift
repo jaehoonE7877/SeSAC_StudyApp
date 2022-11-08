@@ -19,6 +19,7 @@ class BaseViewController: UIViewController {
         setConstraint()
         setNavigationController()
         setBinding()
+        tapGesture()
     }
     
     
@@ -34,6 +35,13 @@ class BaseViewController: UIViewController {
     
     func setBinding() { }
     
+    private func tapGesture(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapEndEditing))
+        view.addGestureRecognizer(tap)
+    }
     
+    @objc private func tapEndEditing(){
+        view.endEditing(true)
+    }
     
 }

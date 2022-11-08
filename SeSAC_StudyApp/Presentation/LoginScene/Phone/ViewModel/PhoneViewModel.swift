@@ -12,8 +12,9 @@ import RxSwift
 
 final class PhoneViewModel: ViewModelType {
     
-    let disposeBag = DisposeBag()
-    //textField, button tap
+    private let disposeBag = DisposeBag()
+    private let firebaseApiService = FirebaseAPIService.shared
+        
     struct Input{
         let phoneNumberText: ControlProperty<String>
         let sendButtonTapped: ControlEvent<Void>
@@ -56,6 +57,23 @@ final class PhoneViewModel: ViewModelType {
         let phoneReg = "^01(0)-?([0-9]{3,4})-?([0-9]{4})$"
         let pred = NSPredicate(format: "SELF MATCHES %@", phoneReg)
         return pred.evaluate(with: phone)
+    }
+    
+}
+
+extension PhoneViewModel {
+    
+    func requestToken(phoneNumber: String, completion: @escaping ((Result<String, FirebaseError>) -> Void) ) {
+        firebaseApiService.createAuth(phoneNumber: phoneNumber) { result in
+            
+            switch result {
+            case .success(let verificationID):
+                UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                completion(.success(verificationID))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
 }
