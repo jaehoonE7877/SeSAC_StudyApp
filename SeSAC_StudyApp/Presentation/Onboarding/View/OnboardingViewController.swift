@@ -80,7 +80,7 @@ final class OnboardingViewController: BaseViewController{
             pageViewController.setViewControllers([nextPage], direction: .forward, animated: true)
         } else {
             
-            UserDefaults.standard.set(true, forKey: "onboarding")
+            UserManager.onboarding = true
             
             transitionViewController(viewController: PhoneViewController(), transitionStyle: .presentFullNavigation)
         }
@@ -136,12 +136,6 @@ extension OnboardingViewController: UIPageViewControllerDelegate, UIPageViewCont
         guard let firstView = pageViewController.viewControllers?.first, let index = pageViewControllerList.firstIndex(of: firstView) else { return }
         
         pageControl.currentPage = index
-        
-//        if pageControl.currentPage == 2 {
-//            continueButton.setTitle("시작하기", for: .normal)
-//        } else {
-//            continueButton.setTitle("계속하기", for: .normal)
-//        }
         
     }
 }

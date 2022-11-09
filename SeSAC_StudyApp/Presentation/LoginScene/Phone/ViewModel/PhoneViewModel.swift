@@ -69,7 +69,7 @@ extension PhoneViewModel {
             
             switch result {
             case .success(let verificationID):
-                UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                UserManager.authVerificationID = verificationID
                 completion(.success(verificationID))
             case .failure(let error):
                 completion(.failure(error))

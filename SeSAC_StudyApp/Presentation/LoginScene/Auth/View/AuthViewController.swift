@@ -25,7 +25,7 @@ final class AuthViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.makeToast(LoginMessage.sentMessage, duration: 1, position: .center)
     }
     
     override func setNavigationController() {
@@ -41,7 +41,7 @@ final class AuthViewController: BaseViewController {
     override func setBinding() {
         
         let input = AuthViewModel.Input(verifyText: mainView.authTextField.rx.text.orEmpty,
-                                        textFieldBeginEdit: mainView.authTextField.rx.controlEvent(.editingDidBegin),
+                                        textFieldBeginEdit: mainView.authTextField.rx.controlEvent([.editingDidBegin]),
                                         textFieldEndEdit: mainView.authTextField.rx.controlEvent(.editingDidEnd),
                                         resendButtonTap: mainView.resendButton.rx.tap,
                                         verifyButtonTap: mainView.mainButton.rx.tap)
@@ -74,8 +74,8 @@ final class AuthViewController: BaseViewController {
             .withUnretained(self)
             .throttle(.seconds(5), scheduler: MainScheduler.instance)
             .bind { weakSelf, _ in
-                weakSelf.mainView.makeToast("인증번호를 재전송했습니다", duration: 1, position: .center)
-                weakSelf.viewModel.requestAuth(phoneNumber: UserDefaults.standard.string(forKey: "phone")!) { result in
+                weakSelf.mainView.makeToast(LoginMessage.resendMessage, duration: 1, position: .center)
+                weakSelf.viewModel.requestAuth(phoneNumber: UserManager.phone) { result in
                     switch result {
                     case .success(_):
                         break
@@ -83,6 +83,7 @@ final class AuthViewController: BaseViewController {
                         weakSelf.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
                     }
                 }
+                weakSelf.mainView.authTextField.text = nil
                 weakSelf.startTimer(time: output.timer)
             }
             .disposed(by: disposeBag)
@@ -101,8 +102,7 @@ final class AuthViewController: BaseViewController {
                                 print(errorCode)
                             }
                             guard let token = token else { return }
-                            print(token)
-                            UserDefaults.standard.set(token, forKey: "token")
+                            UserManager.token = token
                             weakSelf.viewModel.login { result in
                                 switch result {
                                 case .success(_):
@@ -136,7 +136,7 @@ final class AuthViewController: BaseViewController {
                     weakSelf.timerDisposable?.dispose()
                 }
             }, onDisposed: {
-                UserDefaults.standard.set("", forKey: "authVerificationID")
+                UserManager.authVerificationID = ""
             })
     }
 }

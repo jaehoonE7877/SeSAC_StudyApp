@@ -26,6 +26,16 @@ final class NicknameViewController: BaseViewController {
         
     }
     
+    override func setNavigationController() {
+        let backButton = UIBarButtonItem(image: UIImage(named: "arrow"), style: .plain, target: self, action: #selector(backButtonTapped))
+        backButton.tintColor = .textColor
+        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc private func backButtonTapped() {
+        
+    }
+    
     override func setBinding() {
         
         let input = NicknameViewModel.Input(nicknameText: mainView.nicknameTextField.rx.text.orEmpty,
@@ -58,8 +68,13 @@ final class NicknameViewController: BaseViewController {
         output.nextButtonTapped
             .withUnretained(self)
             .bind { weakSelf, _ in
-                // UserDefault에 저장
-                weakSelf.mainView.makeToast("\(weakSelf.mainView.nicknameTextField.text)저장!")
+                if weakSelf.mainView.mainButton.backgroundColor == .ssGreen {
+                    guard let nickname = weakSelf.mainView.nicknameTextField.text else { return }
+                    UserManager.nickname = nickname
+                    weakSelf.transitionViewController(viewController: BirthViewController(), transitionStyle: .push)
+                } else {
+                    weakSelf.mainView.makeToast(SignupMessage.nicknameLength, duration: 1, position: .center)
+                }
             }
             .disposed(by: disposeBag)
     }

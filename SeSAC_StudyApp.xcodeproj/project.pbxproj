@@ -30,6 +30,14 @@
 		255A37AF291BF5E900737C3A /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37AE291BF5E900737C3A /* BaseURL.swift */; };
 		255A37B2291C1B3800737C3A /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37B1291C1B3800737C3A /* NicknameViewModel.swift */; };
 		255A37B4291C1B4700737C3A /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37B3291C1B4700737C3A /* NicknameViewController.swift */; };
+		255A37B6291C21CD00737C3A /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37B5291C21CD00737C3A /* ToastMessage.swift */; };
+		255A37B9291C28EC00737C3A /* PropertyWapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37B8291C28EC00737C3A /* PropertyWapper.swift */; };
+		255A37BD291C31CC00737C3A /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37BC291C31CC00737C3A /* EmailView.swift */; };
+		255A37BF291C31DE00737C3A /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37BE291C31DE00737C3A /* EmailViewController.swift */; };
+		255A37C1291C31E700737C3A /* EmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C0291C31E700737C3A /* EmailViewModel.swift */; };
+		255A37C5291C32BC00737C3A /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C4291C32BC00737C3A /* BirthView.swift */; };
+		255A37C7291C32CC00737C3A /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C6291C32CC00737C3A /* BirthViewController.swift */; };
+		255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C8291C330500737C3A /* BirthViewModel.swift */; };
 		25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE1291931E100E0C486 /* AppDelegate.swift */; };
 		25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE3291931E100E0C486 /* SceneDelegate.swift */; };
 		25F7FDE9291931E100E0C486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F7FDE7291931E100E0C486 /* Main.storyboard */; };
@@ -87,6 +95,14 @@
 		255A37AE291BF5E900737C3A /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		255A37B1291C1B3800737C3A /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		255A37B3291C1B4700737C3A /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
+		255A37B5291C21CD00737C3A /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
+		255A37B8291C28EC00737C3A /* PropertyWapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWapper.swift; sourceTree = "<group>"; };
+		255A37BC291C31CC00737C3A /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
+		255A37BE291C31DE00737C3A /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		255A37C0291C31E700737C3A /* EmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewModel.swift; sourceTree = "<group>"; };
+		255A37C4291C32BC00737C3A /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
+		255A37C6291C32CC00737C3A /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
+		255A37C8291C330500737C3A /* BirthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewModel.swift; sourceTree = "<group>"; };
 		25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_StudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7FDE1291931E100E0C486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F7FDE3291931E100E0C486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,8 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				255A379E291BAFD100737C3A /* Nickname */,
-				255A37A0291BAFF300737C3A /* Email */,
 				255A379F291BAFEB00737C3A /* Birth */,
+				255A37A0291BAFF300737C3A /* Email */,
 			);
 			path = SignupScene;
 			sourceTree = "<group>";
@@ -226,6 +242,8 @@
 		255A379F291BAFEB00737C3A /* Birth */ = {
 			isa = PBXGroup;
 			children = (
+				255A37C3291C32A600737C3A /* ViewModel */,
+				255A37C2291C32A300737C3A /* View */,
 			);
 			path = Birth;
 			sourceTree = "<group>";
@@ -233,6 +251,8 @@
 		255A37A0291BAFF300737C3A /* Email */ = {
 			isa = PBXGroup;
 			children = (
+				255A37BB291C31B800737C3A /* ViewModel */,
+				255A37BA291C31B200737C3A /* View */,
 			);
 			path = Email;
 			sourceTree = "<group>";
@@ -250,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				255A37AE291BF5E900737C3A /* BaseURL.swift */,
+				255A37B5291C21CD00737C3A /* ToastMessage.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -266,6 +287,48 @@
 			isa = PBXGroup;
 			children = (
 				255A37B1291C1B3800737C3A /* NicknameViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		255A37B7291C28DA00737C3A /* PropertyWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				255A37B8291C28EC00737C3A /* PropertyWapper.swift */,
+			);
+			path = PropertyWrapper;
+			sourceTree = "<group>";
+		};
+		255A37BA291C31B200737C3A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				255A37BC291C31CC00737C3A /* EmailView.swift */,
+				255A37BE291C31DE00737C3A /* EmailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		255A37BB291C31B800737C3A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				255A37C0291C31E700737C3A /* EmailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		255A37C2291C32A300737C3A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				255A37C4291C32BC00737C3A /* BirthView.swift */,
+				255A37C6291C32CC00737C3A /* BirthViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		255A37C3291C32A600737C3A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				255A37C8291C330500737C3A /* BirthViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -346,6 +409,7 @@
 			children = (
 				255A37A8291BF3B200737C3A /* Constant */,
 				25F7FE372919463600E0C486 /* Extension */,
+				255A37B7291C28DA00737C3A /* PropertyWrapper */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -629,9 +693,11 @@
 				25F7FE452919682700E0C486 /* FirstViewController.swift in Sources */,
 				25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */,
 				25F7FE5A291985DB00E0C486 /* NextButton.swift in Sources */,
+				255A37BD291C31CC00737C3A /* EmailView.swift in Sources */,
 				25F7FE502919752B00E0C486 /* PhoneViewController.swift in Sources */,
 				25F7FE3D291950AD00E0C486 /* PageView.swift in Sources */,
 				254627D9291A3BA7004D4B72 /* AuthViewController.swift in Sources */,
+				255A37C5291C32BC00737C3A /* BirthView.swift in Sources */,
 				255A3791291AB52F00737C3A /* FirebaseError.swift in Sources */,
 				255A37A3291BB01400737C3A /* NicknameView.swift in Sources */,
 				25F7FE2029193EC400E0C486 /* Alertable.swift in Sources */,
@@ -642,6 +708,7 @@
 				25F7FE1D29193E7600E0C486 /* ViewModelType.swift in Sources */,
 				255A37A5291BE27000737C3A /* SeSACError.swift in Sources */,
 				25F7FE55291976CA00E0C486 /* UITextField+AttributedString.swift in Sources */,
+				255A37B9291C28EC00737C3A /* PropertyWapper.swift in Sources */,
 				255A378E291AB47300737C3A /* DefaultFirebaseAPIService.swift in Sources */,
 				25F7FE0129193B3400E0C486 /* OnboardingViewController.swift in Sources */,
 				25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */,
@@ -652,16 +719,21 @@
 				25F7FE3B291946E900E0C486 /* UIColor+CustomColor.swift in Sources */,
 				255A379D291BAEF500737C3A /* SeSACAPIService.swift in Sources */,
 				25F7FE4D291974F000E0C486 /* PhoneView.swift in Sources */,
+				255A37C1291C31E700737C3A /* EmailViewModel.swift in Sources */,
+				255A37BF291C31DE00737C3A /* EmailViewController.swift in Sources */,
 				25F7FE43291957FB00E0C486 /* UILabel+AttributedString.swift in Sources */,
 				255A37AF291BF5E900737C3A /* BaseURL.swift in Sources */,
+				255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */,
 				254627DE291A3C1A004D4B72 /* LoginView.swift in Sources */,
 				25F7FE0929193C6300E0C486 /* APIKey.swift in Sources */,
 				25F7FE2329193F0A00E0C486 /* BaseView.swift in Sources */,
 				25F7FE262919403C00E0C486 /* BaseViewController+.swift in Sources */,
 				25F7FE412919566700E0C486 /* NextButtonStatus.swift in Sources */,
 				255A37B4291C1B4700737C3A /* NicknameViewController.swift in Sources */,
+				255A37B6291C21CD00737C3A /* ToastMessage.swift in Sources */,
 				25F7FE572919792000E0C486 /* UITextField+.swift in Sources */,
 				255A379B291BAE5300737C3A /* FirebaseAPIService.swift in Sources */,
+				255A37C7291C32CC00737C3A /* BirthViewController.swift in Sources */,
 				255A37B2291C1B3800737C3A /* NicknameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

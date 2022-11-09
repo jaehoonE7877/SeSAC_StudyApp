@@ -40,7 +40,7 @@ final class AuthViewModel: ViewModelType{
                 text.count == 6
             }
             .asDriver(onErrorJustReturn: false)
-
+        
         let timer = Observable<Int>
             .timer(.seconds(1), period: .seconds(1), scheduler: MainScheduler.instance)
 
@@ -54,9 +54,9 @@ extension AuthViewModel {
     func requestAuth(phoneNumber: String, completion: @escaping ((Result<String, FirebaseError>) -> Void)) {
         firebaseApiService.createAuth(phoneNumber: phoneNumber) { result in
             switch result {
-            case .success(let verificationID):
-                UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                completion(.success(verificationID))
+            case .success(let authVerificationID):
+                UserManager.authVerificationID = authVerificationID
+                completion(.success(authVerificationID))
             case .failure(let error):
                 completion(.failure(error))
             }

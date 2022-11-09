@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import Toast
 
-final class PhoneViewController: BaseViewController, Alertable {
+final class PhoneViewController: BaseViewController {
     
     private let mainView = PhoneView()
     
@@ -66,20 +66,19 @@ final class PhoneViewController: BaseViewController, Alertable {
         output.sendButtonTapped
             .withUnretained(self)
             .bind { weakSelf, _ in
-                
                 if weakSelf.mainView.mainButton.backgroundColor == .ssGreen {
-                    weakSelf.mainView.makeToast("전화 번호 인증 시작", duration: 1, position: .center)
+                    weakSelf.mainView.makeToast(LoginMessage.phoneValidOk, duration: 1, position: .center)
                     weakSelf.viewModel.requestAuth(phoneNumber: weakSelf.formattingNumber()) { result in
                         switch result {
                         case .success(_):
-                            UserDefaults.standard.set(weakSelf.formattingNumber(), forKey: "phone")
+                            UserManager.phone = weakSelf.formattingNumber()
                             weakSelf.transitionViewController(viewController: AuthViewController(), transitionStyle: .push)
                         case .failure(let error):
                             weakSelf.mainView.makeToast(error.localizedDescription, position: .center)
                         }
                     }
                 } else {
-                    weakSelf.mainView.makeToast("잘못된 전화번호 형식입니다.", duration: 1, position: .center)
+                    weakSelf.mainView.makeToast(LoginMessage.phoneValidError, duration: 1, position: .center)
                 }
             }
             .disposed(by: disposeBag)
@@ -87,10 +86,8 @@ final class PhoneViewController: BaseViewController, Alertable {
     
     private func formattingNumber() -> String {
         guard var text = mainView.phoneTextField.text else { return ""}
-            text.remove(at: text.startIndex)
-            
-            let formater = "+82 " + text
-            
-            return formater
-        }
+        text.remove(at: text.startIndex)
+        let formater = "+82 " + text
+        return formater
+    }
 }

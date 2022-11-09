@@ -13,6 +13,7 @@ final class NicknameView: LoginView {
     lazy var nicknameTextField = UITextField().then {
         $0.setPlaceholder(text: "10자 이내로 입력", color: .gray7)
         $0.addLeftPadding()
+        $0.becomeFirstResponder()
     }
     
     lazy var lineView = UIView().then {
