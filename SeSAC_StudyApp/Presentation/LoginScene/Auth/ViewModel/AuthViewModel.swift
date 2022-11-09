@@ -13,7 +13,8 @@ import RxCocoa
 
 final class AuthViewModel: ViewModelType{
     
-    let firebaseApiService = DefaultFirebaseAPIService.shared
+    private let firebaseApiService = DefaultFirebaseAPIService.shared
+    private let sesacAPIService = DefaultSeSACAPIService.shared
     
     struct Input {
         let verifyText: ControlProperty<String>
@@ -72,4 +73,16 @@ extension AuthViewModel {
             }
         }
     }
+    
+    func login(completion: @escaping (Result<UserData,SeSACError>) -> Void) {
+        sesacAPIService.request(type: UserData.self, router: .login) { result in
+            switch result {
+            case .success(let success):
+                completion(.success(success))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }

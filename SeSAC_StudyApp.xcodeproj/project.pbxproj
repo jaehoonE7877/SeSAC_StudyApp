@@ -26,6 +26,8 @@
 		255A37A5291BE27000737C3A /* SeSACError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37A4291BE27000737C3A /* SeSACError.swift */; };
 		255A37A7291BE54100737C3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 255A37A6291BE54100737C3A /* GoogleService-Info.plist */; };
 		255A37AA291BF41100737C3A /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37A9291BF41100737C3A /* UserData.swift */; };
+		255A37AD291BF5BD00737C3A /* SeSACAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37AC291BF5BD00737C3A /* SeSACAPIRouter.swift */; };
+		255A37AF291BF5E900737C3A /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37AE291BF5E900737C3A /* BaseURL.swift */; };
 		25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE1291931E100E0C486 /* AppDelegate.swift */; };
 		25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE3291931E100E0C486 /* SceneDelegate.swift */; };
 		25F7FDE9291931E100E0C486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F7FDE7291931E100E0C486 /* Main.storyboard */; };
@@ -79,6 +81,8 @@
 		255A37A4291BE27000737C3A /* SeSACError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACError.swift; sourceTree = "<group>"; };
 		255A37A6291BE54100737C3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		255A37A9291BF41100737C3A /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		255A37AC291BF5BD00737C3A /* SeSACAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACAPIRouter.swift; sourceTree = "<group>"; };
+		255A37AE291BF5E900737C3A /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_StudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7FDE1291931E100E0C486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F7FDE3291931E100E0C486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -239,8 +243,17 @@
 		255A37A8291BF3B200737C3A /* Constant */ = {
 			isa = PBXGroup;
 			children = (
+				255A37AE291BF5E900737C3A /* BaseURL.swift */,
 			);
 			path = Constant;
+			sourceTree = "<group>";
+		};
+		255A37AB291BF5AD00737C3A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				255A37AC291BF5BD00737C3A /* SeSACAPIRouter.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		25F7FDD5291931E100E0C486 = {
@@ -326,6 +339,7 @@
 		25F7FDFA29193A0500E0C486 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				255A37AB291BF5AD00737C3A /* Network */,
 				255A3794291BAC3900737C3A /* Model */,
 			);
 			path = Domain;
@@ -619,11 +633,13 @@
 				25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */,
 				25F7FE392919465500E0C486 /* UIFont+CustomFont.swift in Sources */,
 				254627DB291A3BB3004D4B72 /* AuthViewModel.swift in Sources */,
+				255A37AD291BF5BD00737C3A /* SeSACAPIRouter.swift in Sources */,
 				254627D7291A3B97004D4B72 /* AuthView.swift in Sources */,
 				25F7FE3B291946E900E0C486 /* UIColor+CustomColor.swift in Sources */,
 				255A379D291BAEF500737C3A /* SeSACAPIService.swift in Sources */,
 				25F7FE4D291974F000E0C486 /* PhoneView.swift in Sources */,
 				25F7FE43291957FB00E0C486 /* UILabel+AttributedString.swift in Sources */,
+				255A37AF291BF5E900737C3A /* BaseURL.swift in Sources */,
 				254627DE291A3C1A004D4B72 /* LoginView.swift in Sources */,
 				25F7FE0929193C6300E0C486 /* APIKey.swift in Sources */,
 				25F7FE2329193F0A00E0C486 /* BaseView.swift in Sources */,

@@ -9,7 +9,7 @@ import Foundation
 
 import FirebaseAuth
 
-class DefaultFirebaseAPIService: FirebaseAPIService {
+final class DefaultFirebaseAPIService: FirebaseAPIService {
     
     static let shared = DefaultFirebaseAPIService()
     
