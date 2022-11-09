@@ -17,13 +17,15 @@ final class AuthViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     private let viewModel = AuthViewModel()
     
+    var timerDisposable: Disposable?
+    
     override func loadView() {
         self.view = mainView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.mainButton.addTarget(self, action: #selector(login), for: .touchUpInside)
+        //mainView.mainButton.addTarget(self, action: #selector(login), for: .touchUpInside)
     }
     
     override func setNavigationController() {
@@ -36,7 +38,7 @@ final class AuthViewController: BaseViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func login(){
+    func login(){
         guard let text = mainView.authTextField.text else { return }
         textLogin(verificationCode: text)
     }
@@ -76,7 +78,8 @@ final class AuthViewController: BaseViewController {
             .withUnretained(self)
             .bind { vc, _ in
                 //타이머 재 시작 로직
-                vc.mainView.timeLabel.text = "1:00"
+                vc.startTimer()
+                //vc.mainView.timeLabel.text = "1:00"
             }
             .disposed(by: disposeBag)
             
@@ -84,28 +87,60 @@ final class AuthViewController: BaseViewController {
             .withUnretained(self)
             .bind { vc, _ in
                 //네트워크 통신, 값이 있으면 mapview 없으면 회원가입으로 가는 로직
+                vc.login()
                 //vc.transitionViewController(viewController: <#T##T#>, transitionStyle: <#T##TransitionStyle#>)
             }
             .disposed(by: disposeBag)
         
+        startTimer()
+        
     }
+    
+    func showTimer(value: Int) -> String{
+        if value < 10 {
+            return "0:0\(15 - value)"
+        } else {
+            return "0:\(15-value)"
+        }
+    }
+    
+    private func startTimer() {
+        timerDisposable?.dispose()
+        timerDisposable = Observable<Int>
+            .timer(.seconds(1), period: .seconds(1), scheduler: MainScheduler.instance)
+            .withUnretained(self)
+            .subscribe(onNext: { vc, value in
+                if value <= 15 {
+                    vc.mainView.timeLabel.text = vc.showTimer(value: value)
+                } else {
+                    vc.timerDisposable?.dispose()
+                }
+            })
+    }
+    
     
     // ViewModel
     func textLogin(verificationCode: String) {
         let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") ?? ""
-        print(verificationID)
-        print(verificationCode)
+//        print(verificationID)
+//        print(verificationCode)
         
         let credential = PhoneAuthProvider.provider().credential(
             withVerificationID:verificationID,
             verificationCode:verificationCode
         )
         
-        Auth.auth().signIn(with: credential) { authResult, error in
+        Auth.auth().signIn(with: credential) { idToken, error in
+            
             if let error = error {
                 print(error.localizedDescription)
                 print("LogIn Failed...")
             }
+            
+            print("Success!!!!")
+            print(idToken)
+            guard let idToken = idToken else { return }
+//            idToken.additionalUserInfo.
         }
     }
 }

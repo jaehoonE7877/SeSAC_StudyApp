@@ -26,7 +26,8 @@ final class PhoneView: LoginView {
     }
     
     override func configure() {
-        [mainLabel, mainButton, phoneTextField, lineView].forEach { self.addSubview($0) }
+        super.configure()
+        [phoneTextField, lineView].forEach { self.addSubview($0) }
     }
     
     override func setConstraints() {

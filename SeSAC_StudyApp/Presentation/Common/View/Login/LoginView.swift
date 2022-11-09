@@ -23,7 +23,10 @@ class LoginView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        
     }
     
+    override func configure() {
+        [mainLabel, mainButton].forEach { self.addSubview($0) }
+    }
 }

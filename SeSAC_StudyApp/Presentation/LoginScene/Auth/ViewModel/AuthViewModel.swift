@@ -23,7 +23,7 @@ final class AuthViewModel: ViewModelType{
     
     struct Output {
         let verifyTextValid: Driver<Bool> // 버튼 스타일 바꿀 때
-        //let timerText: Driver<Bool> // 타이머
+        let timerText: Observable<Int> // 타이머
         let textFieldBeginEdit: ControlEvent<Void> //라인
         let textFieldEndEdit: ControlEvent<Void> //라인
         let resendButtonTap: ControlEvent<Void> //재전송 요청
@@ -38,12 +38,9 @@ final class AuthViewModel: ViewModelType{
             }
             .asDriver(onErrorJustReturn: false)
 
-//        let timerText = input.timerText
-//            .map {
-//                Int($0)
-//            }
-//            .asDriver(onErrorJustReturn: 10)
+        let timerText = Observable<Int>
+            .timer(.seconds(1), period: .seconds(1), scheduler: MainScheduler.instance)
 
-        return Output(verifyTextValid: textValid, textFieldBeginEdit: input.textFieldBeginEdit, textFieldEndEdit: input.textFieldEndEdit, resendButtonTap: input.resendButtonTap, verifyButtonTap: input.verifyButtonTap)
+        return Output(verifyTextValid: textValid, timerText: timerText, textFieldBeginEdit: input.textFieldBeginEdit, textFieldEndEdit: input.textFieldEndEdit, resendButtonTap: input.resendButtonTap, verifyButtonTap: input.verifyButtonTap)
    }
 }

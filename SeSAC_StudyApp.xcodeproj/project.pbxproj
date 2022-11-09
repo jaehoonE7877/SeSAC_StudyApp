@@ -344,8 +344,8 @@
 		25F7FE2129193EF800E0C486 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				254627DC291A3C05004D4B72 /* Login */,
 				25F7FE2229193F0A00E0C486 /* BaseView.swift */,
+				254627DC291A3C05004D4B72 /* Login */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -7,7 +7,12 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 final class OnboardingViewController: BaseViewController{
+    
+    private let disposeBag = DisposeBag()
     
     private let pageControl = UIPageControl().then {
         $0.pageIndicatorTintColor = .gray5
@@ -34,6 +39,23 @@ final class OnboardingViewController: BaseViewController{
         pageControl.numberOfPages = pageViewControllerList.count
         
         nextButton.addTarget(self, action: #selector(continueButtonClicked), for: .touchUpInside)
+        pageControlTapped()
+    }
+    
+    private func pageControlTapped() {
+        
+        pageControl.rx.controlEvent(.valueChanged)
+            .withUnretained(self)
+            .bind { vc, _ in
+                let currentPage = vc.pageControl.currentPage
+                guard let firstView = vc.pageViewController.viewControllers?.first, let index = vc.pageViewControllerList.firstIndex(of: firstView) else { return }
+                if currentPage > index {
+                    vc.pageViewController.setViewControllers([self.pageViewControllerList[currentPage]], direction: .forward, animated: true)
+                } else {
+                    vc.pageViewController.setViewControllers([self.pageViewControllerList[currentPage]], direction: .reverse, animated: true)
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     //배열에 뷰컨트롤러를 추가
@@ -122,7 +144,4 @@ extension OnboardingViewController: UIPageViewControllerDelegate, UIPageViewCont
 //        }
         
     }
-    
-    
 }
-

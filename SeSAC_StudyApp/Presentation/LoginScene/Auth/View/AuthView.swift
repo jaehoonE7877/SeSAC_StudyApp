@@ -13,6 +13,7 @@ final class AuthView: LoginView {
     lazy var authTextField = UITextField().then {
         $0.setPlaceholder(text: "인증번호 입력", color: .gray7)
         $0.addLeftPadding()
+        $0.keyboardType = .numberPad
         $0.textContentType = .oneTimeCode
     }
     
