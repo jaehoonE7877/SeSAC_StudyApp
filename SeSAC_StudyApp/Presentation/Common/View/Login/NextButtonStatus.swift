@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ButtonStatus {
+enum NextButtonStatus {
     case inactive
     case fill
     case outline

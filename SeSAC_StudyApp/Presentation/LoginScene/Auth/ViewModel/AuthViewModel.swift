@@ -7,14 +7,16 @@
 
 import Foundation
 
+import FirebaseAuth
 import RxSwift
 import RxCocoa
 
 final class AuthViewModel: ViewModelType{
     
+    let firebaseApiService = DefaultFirebaseAPIService.shared
+    
     struct Input {
         let verifyText: ControlProperty<String>
-        //let timerText: ControlProperty<String>
         let textFieldBeginEdit: ControlEvent<Void>
         let textFieldEndEdit: ControlEvent<Void>
         let resendButtonTap: ControlEvent<Void>
@@ -22,12 +24,12 @@ final class AuthViewModel: ViewModelType{
     }
     
     struct Output {
-        let verifyTextValid: Driver<Bool> // 버튼 스타일 바꿀 때
-        let timerText: Observable<Int> // 타이머
-        let textFieldBeginEdit: ControlEvent<Void> //라인
-        let textFieldEndEdit: ControlEvent<Void> //라인
-        let resendButtonTap: ControlEvent<Void> //재전송 요청
-        let verifyButtonTap: ControlEvent<Void> // 파베 가입
+        let verifyTextValid: Driver<Bool>
+        let timer: Observable<Int>
+        let textFieldBeginEdit: ControlEvent<Void>
+        let textFieldEndEdit: ControlEvent<Void>
+        let resendButtonTap: ControlEvent<Void>
+        let verifyButtonTap: ControlEvent<Void>
     }
     
     func transform(input: Input) -> Output {
@@ -38,9 +40,36 @@ final class AuthViewModel: ViewModelType{
             }
             .asDriver(onErrorJustReturn: false)
 
-        let timerText = Observable<Int>
+        let timer = Observable<Int>
             .timer(.seconds(1), period: .seconds(1), scheduler: MainScheduler.instance)
 
-        return Output(verifyTextValid: textValid, timerText: timerText, textFieldBeginEdit: input.textFieldBeginEdit, textFieldEndEdit: input.textFieldEndEdit, resendButtonTap: input.resendButtonTap, verifyButtonTap: input.verifyButtonTap)
+        return Output(verifyTextValid: textValid, timer: timer, textFieldBeginEdit: input.textFieldBeginEdit, textFieldEndEdit: input.textFieldEndEdit, resendButtonTap: input.resendButtonTap, verifyButtonTap: input.verifyButtonTap)
    }
+    
+}
+
+extension AuthViewModel {
+    
+    func requestAuth(phoneNumber: String, completion: @escaping ((Result<String, FirebaseError>) -> Void)) {
+        firebaseApiService.createAuth(phoneNumber: phoneNumber) { result in
+            switch result {
+            case .success(let verificationID):
+                UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                completion(.success(verificationID))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func requestLogin(verificationCode: String, completion: @escaping ((Result<AuthDataResult,FirebaseError>) -> Void)) {
+        firebaseApiService.requestLogin(verificationCode: verificationCode) { result in
+            switch result{
+            case .success(let idToken):
+                completion(.success(idToken))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

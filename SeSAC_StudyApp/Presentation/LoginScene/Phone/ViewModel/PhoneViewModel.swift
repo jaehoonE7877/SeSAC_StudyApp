@@ -13,7 +13,7 @@ import RxSwift
 final class PhoneViewModel: ViewModelType {
     
     private let disposeBag = DisposeBag()
-    private let firebaseApiService = FirebaseAPIService.shared
+    private let firebaseApiService = DefaultFirebaseAPIService.shared
         
     struct Input{
         let phoneNumberText: ControlProperty<String>
@@ -63,7 +63,8 @@ final class PhoneViewModel: ViewModelType {
 
 extension PhoneViewModel {
     
-    func requestToken(phoneNumber: String, completion: @escaping ((Result<String, FirebaseError>) -> Void) ) {
+    func requestAuth(phoneNumber: String, completion: @escaping ((Result<String, FirebaseError>) -> Void) ) {
+        print(phoneNumber)
         firebaseApiService.createAuth(phoneNumber: phoneNumber) { result in
             
             switch result {

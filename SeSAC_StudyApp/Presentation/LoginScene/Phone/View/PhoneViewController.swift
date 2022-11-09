@@ -69,9 +69,10 @@ final class PhoneViewController: BaseViewController, Alertable {
                 
                 if vc.mainView.mainButton.backgroundColor == .ssGreen {
                     vc.mainView.makeToast("전화 번호 인증 시작", duration: 1, position: .center)
-                    vc.viewModel.requestToken(phoneNumber: vc.formattingNumber()) { result in
+                    vc.viewModel.requestAuth(phoneNumber: vc.formattingNumber()) { result in
                         switch result {
                         case .success(_):
+                            UserDefaults.standard.set(vc.formattingNumber(), forKey: "phone")
                             vc.transitionViewController(viewController: AuthViewController(), transitionStyle: .push)
                         case .failure(let error):
                             vc.mainView.makeToast(error.localizedDescription, position: .center)

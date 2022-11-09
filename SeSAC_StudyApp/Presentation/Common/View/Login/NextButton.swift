@@ -21,7 +21,7 @@ final class NextButton: UIButton {
         super.init(frame: .zero)
     }
     
-    convenience init(title: String, status: ButtonStatus) {
+    convenience init(title: String, status: NextButtonStatus) {
         self.init()
         
         self.setTitle(title, for: .normal)
@@ -51,7 +51,7 @@ final class NextButton: UIButton {
         }
     }
     
-    var status: ButtonStatus = .inactive {
+    var status: NextButtonStatus = .inactive {
         didSet {
             switch status {
             case .inactive:
