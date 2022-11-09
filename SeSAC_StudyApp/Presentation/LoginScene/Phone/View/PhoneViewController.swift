@@ -37,22 +37,22 @@ final class PhoneViewController: BaseViewController, Alertable {
         
         output.phoneNumberText
             .withUnretained(self)
-            .bind { vc, text in
-                vc.mainView.phoneTextField.text = text
+            .bind { weakSelf, text in
+                weakSelf.mainView.phoneTextField.text = text
             }
             .disposed(by: disposeBag)
         
         output.textFieldBeginEdit
             .withUnretained(self)
-            .bind { vc, _ in
-                vc.mainView.lineView.backgroundColor = .textColor
+            .bind { weakSelf, _ in
+                weakSelf.mainView.lineView.backgroundColor = .textColor
             }
             .disposed(by: disposeBag)
         
         output.textFieldEndEdit
             .withUnretained(self)
-            .bind { vc, _ in
-                vc.mainView.lineView.backgroundColor = .gray3
+            .bind { weakSelf, _ in
+                weakSelf.mainView.lineView.backgroundColor = .gray3
             }
             .disposed(by: disposeBag)
         
@@ -65,21 +65,21 @@ final class PhoneViewController: BaseViewController, Alertable {
         
         output.sendButtonTapped
             .withUnretained(self)
-            .bind { vc, _ in
+            .bind { weakSelf, _ in
                 
-                if vc.mainView.mainButton.backgroundColor == .ssGreen {
-                    vc.mainView.makeToast("전화 번호 인증 시작", duration: 1, position: .center)
-                    vc.viewModel.requestAuth(phoneNumber: vc.formattingNumber()) { result in
+                if weakSelf.mainView.mainButton.backgroundColor == .ssGreen {
+                    weakSelf.mainView.makeToast("전화 번호 인증 시작", duration: 1, position: .center)
+                    weakSelf.viewModel.requestAuth(phoneNumber: weakSelf.formattingNumber()) { result in
                         switch result {
                         case .success(_):
-                            UserDefaults.standard.set(vc.formattingNumber(), forKey: "phone")
-                            vc.transitionViewController(viewController: AuthViewController(), transitionStyle: .push)
+                            UserDefaults.standard.set(weakSelf.formattingNumber(), forKey: "phone")
+                            weakSelf.transitionViewController(viewController: AuthViewController(), transitionStyle: .push)
                         case .failure(let error):
-                            vc.mainView.makeToast(error.localizedDescription, position: .center)
+                            weakSelf.mainView.makeToast(error.localizedDescription, position: .center)
                         }
                     }
                 } else {
-                    vc.mainView.makeToast("잘못된 전화번호 형식입니다.", duration: 1, position: .center)
+                    weakSelf.mainView.makeToast("잘못된 전화번호 형식입니다.", duration: 1, position: .center)
                 }
             }
             .disposed(by: disposeBag)

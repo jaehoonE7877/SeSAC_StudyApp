@@ -28,6 +28,8 @@
 		255A37AA291BF41100737C3A /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37A9291BF41100737C3A /* UserData.swift */; };
 		255A37AD291BF5BD00737C3A /* SeSACAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37AC291BF5BD00737C3A /* SeSACAPIRouter.swift */; };
 		255A37AF291BF5E900737C3A /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37AE291BF5E900737C3A /* BaseURL.swift */; };
+		255A37B2291C1B3800737C3A /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37B1291C1B3800737C3A /* NicknameViewModel.swift */; };
+		255A37B4291C1B4700737C3A /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37B3291C1B4700737C3A /* NicknameViewController.swift */; };
 		25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE1291931E100E0C486 /* AppDelegate.swift */; };
 		25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE3291931E100E0C486 /* SceneDelegate.swift */; };
 		25F7FDE9291931E100E0C486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F7FDE7291931E100E0C486 /* Main.storyboard */; };
@@ -83,6 +85,8 @@
 		255A37A9291BF41100737C3A /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		255A37AC291BF5BD00737C3A /* SeSACAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACAPIRouter.swift; sourceTree = "<group>"; };
 		255A37AE291BF5E900737C3A /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
+		255A37B1291C1B3800737C3A /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
+		255A37B3291C1B4700737C3A /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_StudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7FDE1291931E100E0C486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F7FDE3291931E100E0C486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 		255A379E291BAFD100737C3A /* Nickname */ = {
 			isa = PBXGroup;
 			children = (
+				255A37B0291C1B2500737C3A /* ViewModel */,
 				255A37A1291BAFFA00737C3A /* View */,
 			);
 			path = Nickname;
@@ -236,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				255A37A2291BB01400737C3A /* NicknameView.swift */,
+				255A37B3291C1B4700737C3A /* NicknameViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -254,6 +260,14 @@
 				255A37AC291BF5BD00737C3A /* SeSACAPIRouter.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		255A37B0291C1B2500737C3A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				255A37B1291C1B3800737C3A /* NicknameViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		25F7FDD5291931E100E0C486 = {
@@ -645,8 +659,10 @@
 				25F7FE2329193F0A00E0C486 /* BaseView.swift in Sources */,
 				25F7FE262919403C00E0C486 /* BaseViewController+.swift in Sources */,
 				25F7FE412919566700E0C486 /* NextButtonStatus.swift in Sources */,
+				255A37B4291C1B4700737C3A /* NicknameViewController.swift in Sources */,
 				25F7FE572919792000E0C486 /* UITextField+.swift in Sources */,
 				255A379B291BAE5300737C3A /* FirebaseAPIService.swift in Sources */,
+				255A37B2291C1B3800737C3A /* NicknameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,10 +23,11 @@ extension SeSACAPIRouter {
     }
     
     var headers: HTTPHeaders {
+        guard let idtoken = UserDefaults.standard.string(forKey: "token") else { return ["":""]}
         switch self {
         case .login:
             return [
-                "idtoken": "\(String(describing: UserDefaults.standard.string(forKey: "token")))",
+                "idtoken": "\(idtoken)",
                 "Content-Type": "application/x-www-form-urlencoded",
                 "accept": "application/json"
             ]

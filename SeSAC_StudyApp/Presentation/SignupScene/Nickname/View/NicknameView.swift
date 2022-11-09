@@ -33,7 +33,24 @@ final class NicknameView: LoginView {
     override func setConstraints() {
         super.setConstraints()
         
+        mainLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.48)
+            make.centerX.equalToSuperview()
+        }
         
+        nicknameTextField.snp.makeConstraints { make in
+            make.centerY.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.8)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.92)
+            make.height.equalTo(40)
+        }
+        
+        lineView.snp.makeConstraints { make in
+            make.top.equalTo(nicknameTextField.snp.bottom)
+            make.width.equalTo(nicknameTextField)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(1)
+        }
         
     }
     

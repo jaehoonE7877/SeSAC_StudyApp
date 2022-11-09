@@ -58,41 +58,41 @@ final class AuthViewController: BaseViewController {
         
         output.textFieldBeginEdit
             .withUnretained(self)
-            .bind { vc, _ in
-                vc.mainView.lineView.backgroundColor = .textColor
+            .bind { weakSelf, _ in
+                weakSelf.mainView.lineView.backgroundColor = .textColor
             }
             .disposed(by: disposeBag)
         
         output.textFieldEndEdit
             .withUnretained(self)
-            .bind { vc, _ in
-                vc.mainView.lineView.backgroundColor = .gray3
+            .bind { weakSelf, _ in
+                weakSelf.mainView.lineView.backgroundColor = .gray3
             }
             .disposed(by: disposeBag)
         
         output.resendButtonTap
             .withUnretained(self)
             .throttle(.seconds(5), scheduler: MainScheduler.instance)
-            .bind { vc, _ in
-                vc.mainView.makeToast("인증번호를 재전송했습니다", duration: 1, position: .center)
-                vc.viewModel.requestAuth(phoneNumber: UserDefaults.standard.string(forKey: "phone")!) { result in
+            .bind { weakSelf, _ in
+                weakSelf.mainView.makeToast("인증번호를 재전송했습니다", duration: 1, position: .center)
+                weakSelf.viewModel.requestAuth(phoneNumber: UserDefaults.standard.string(forKey: "phone")!) { result in
                     switch result {
                     case .success(_):
                         break
                     case .failure(let error):
-                        vc.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
+                        weakSelf.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
                     }
                 }
-                vc.startTimer(time: output.timer)
+                weakSelf.startTimer(time: output.timer)
             }
             .disposed(by: disposeBag)
             
         output.verifyButtonTap
             .withUnretained(self)
-            .bind { vc, _ in
+            .bind { weakSelf, _ in
                 //네트워크 통신, 값이 있으면 mapview 없으면 회원가입으로 가는 로직
-                guard let text = vc.mainView.authTextField.text else { return }
-                vc.viewModel.requestLogin(verificationCode: text) { result in
+                guard let text = weakSelf.mainView.authTextField.text else { return }
+                weakSelf.viewModel.requestLogin(verificationCode: text) { result in
                     switch result {
                     case .success(let idToken):
                         idToken.user.getIDTokenForcingRefresh(true) { token, error in
@@ -101,22 +101,23 @@ final class AuthViewController: BaseViewController {
                                 print(errorCode)
                             }
                             guard let token = token else { return }
+                            print(token)
                             UserDefaults.standard.set(token, forKey: "token")
-                            vc.viewModel.login { result in
+                            weakSelf.viewModel.login { result in
                                 switch result {
                                 case .success(_):
                                     print("로그인 성공 -> 홈 화면으로 이동")
                                 case .failure(let error):
                                     if error.rawValue == 406 {
-                                        print("미가입 유저!")
+                                        weakSelf.transitionViewController(viewController: NicknameViewController(), transitionStyle: .push)
                                     } else {
-                                        vc.mainView.makeToast("\(error.localizedDescription)", duration: 1, position: .center)
+                                        weakSelf.mainView.makeToast("\(error.localizedDescription)", duration: 1, position: .center)
                                     }
                                 }
                             }
                         }
                     case .failure(let error):
-                        vc.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
+                        weakSelf.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
                     }
                 }
             }
@@ -128,11 +129,11 @@ final class AuthViewController: BaseViewController {
         timerDisposable?.dispose()
         timerDisposable = time
             .withUnretained(self)
-            .subscribe(onNext: { vc, value in
+            .subscribe(onNext: { weakSelf, value in
                 if value <= 60 {
-                    vc.mainView.timeLabel.text = "0:\(String(format: "%02d", 60-value))"
+                    weakSelf.mainView.timeLabel.text = "0:\(String(format: "%02d", 60-value))"
                 } else {
-                    vc.timerDisposable?.dispose()
+                    weakSelf.timerDisposable?.dispose()
                 }
             }, onDisposed: {
                 UserDefaults.standard.set("", forKey: "authVerificationID")
