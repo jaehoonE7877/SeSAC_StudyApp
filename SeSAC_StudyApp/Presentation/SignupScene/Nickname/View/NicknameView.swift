@@ -27,7 +27,7 @@ final class NicknameView: LoginView {
     override func configure() {
         super.configure()
         mainButton.setTitle("다음", for: .normal)
-        mainLabel.text = "닉네임을 입력해주세요"
+        mainLabel.text = "닉네임을 입력해 주세요"
         [nicknameTextField, lineView].forEach { self.addSubview($0) }
     }
     

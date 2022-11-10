@@ -12,8 +12,6 @@ import RxCocoa
 
 final class NicknameViewModel: ViewModelType {
     
-    private let disposeBag = DisposeBag()
-    
     struct Input {
         let nicknameText: ControlProperty<String>
         let nextButtonTapped: ControlEvent<Void>
