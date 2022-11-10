@@ -90,7 +90,7 @@ final class PhoneViewController: BaseViewController {
     private func formattingNumber() -> String {
         guard var text = mainView.phoneTextField.text else { return ""}
         text.remove(at: text.startIndex)
-        let formater = "+82 " + text
-        return formater
+        let formatter = "+82 " + text
+        return formatter
     }
 }

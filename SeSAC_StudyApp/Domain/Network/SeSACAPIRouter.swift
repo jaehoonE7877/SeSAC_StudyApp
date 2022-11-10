@@ -9,27 +9,25 @@ import Foundation
 import Alamofire
 
 enum SeSACAPIRouter: URLRequestConvertible {
-
     case login
+    case signup
 }
 
 extension SeSACAPIRouter {
     
     var url: URL {
         switch self {
-        case .login:
+        case .login, .signup:
             return URL(string: "\(SeSACConfiguration.baseURL)/v1/user")!
         }
     }
     
     var headers: HTTPHeaders {
-        guard let idtoken = UserDefaults.standard.string(forKey: "token") else { return ["":""]}
         switch self {
-        case .login:
+        case .login, .signup:
             return [
-                "idtoken": "\(idtoken)",
+                "idtoken": "\(UserManager.token)",
                 "Content-Type": "application/x-www-form-urlencoded",
-                "accept": "application/json"
             ]
         }
     }
@@ -38,28 +36,47 @@ extension SeSACAPIRouter {
         switch self {
         case .login:
             return .get
+        case .signup:
+            return .post
         }
     }
     
     var parameters: [String: String] {
+        guard let gender = UserManager.gender else { return ["" : ""] }
+        
         switch self {
         case .login:
             return ["" : ""]
+        case .signup:
+            return [
+                "phoneNumber" : saveNumber(phoneNumber: UserManager.phone),
+                "FCMtoken" : UserManager.fcmToken,
+                "nick" : UserManager.nickname,
+                "birth" : UserManager.birth,
+                "email" : UserManager.email,
+                "gender" : String(gender)
+            ]
         }
     }
     
     func asURLRequest() throws -> URLRequest {
         
-        var request = try URLRequest(url: url)
+        var request = URLRequest(url: url)
         request.method = method
         request.headers = headers
         
         switch self {
         case .login:
-            request = try URLEncoding.default.encode(request, with: parameters)
+            return request
+        case .signup:
+            return try URLEncoding.default.encode(request, with: parameters)
         }
         
-        return request
+    }
+    
+    private func saveNumber(phoneNumber: String) -> String {
+        let saveText = phoneNumber.components(separatedBy: [" ","-"]).joined()
+        return saveText
     }
         
 }
