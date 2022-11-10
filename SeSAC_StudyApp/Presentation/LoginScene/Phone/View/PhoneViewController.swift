@@ -24,7 +24,10 @@ final class PhoneViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if UserManager.authDone == 406 {
+            let vc = NicknameViewController()
+            self.transitionViewController(viewController: vc, transitionStyle: .pushWithoutAni)
+        }
     }
     
     override func setBinding() {

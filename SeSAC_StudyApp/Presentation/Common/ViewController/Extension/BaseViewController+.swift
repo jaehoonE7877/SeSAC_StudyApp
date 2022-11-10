@@ -12,6 +12,7 @@ enum TransitionStyle {
     case presentNavigation
     case presentFullNavigation
     case push
+    case pushWithoutAni
 }
 
 extension BaseViewController {
@@ -29,6 +30,8 @@ extension BaseViewController {
             self.present(nav, animated: true)
         case .push:
             self.navigationController?.pushViewController(vc, animated: true)
+        case .pushWithoutAni:
+            self.navigationController?.pushViewController(vc, animated: false)
         }
     }
 }

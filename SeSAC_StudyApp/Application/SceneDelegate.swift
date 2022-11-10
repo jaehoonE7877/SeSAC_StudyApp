@@ -19,7 +19,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = OnboardingViewController()
+        
+        if UserManager.onboarding {
+            if UserManager.authDone == 200 {
+                print("홈탭")
+            } else {
+                let vc = UINavigationController(rootViewController: PhoneViewController())
+                window?.rootViewController = vc
+            }
+                 
+        } else {
+            let vc = OnboardingViewController()
+            window?.rootViewController = vc
+        }
+        
         window?.makeKeyAndVisible()
         
     }

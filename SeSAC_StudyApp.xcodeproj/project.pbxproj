@@ -38,6 +38,7 @@
 		255A37C5291C32BC00737C3A /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C4291C32BC00737C3A /* BirthView.swift */; };
 		255A37C7291C32CC00737C3A /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C6291C32CC00737C3A /* BirthViewController.swift */; };
 		255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C8291C330500737C3A /* BirthViewModel.swift */; };
+		25D8C391291CAB2F00FB52DF /* BirthItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C390291CAB2F00FB52DF /* BirthItemView.swift */; };
 		25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE1291931E100E0C486 /* AppDelegate.swift */; };
 		25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE3291931E100E0C486 /* SceneDelegate.swift */; };
 		25F7FDE9291931E100E0C486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F7FDE7291931E100E0C486 /* Main.storyboard */; };
@@ -103,6 +104,7 @@
 		255A37C4291C32BC00737C3A /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		255A37C6291C32CC00737C3A /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		255A37C8291C330500737C3A /* BirthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewModel.swift; sourceTree = "<group>"; };
+		25D8C390291CAB2F00FB52DF /* BirthItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthItemView.swift; sourceTree = "<group>"; };
 		25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_StudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7FDE1291931E100E0C486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F7FDE3291931E100E0C486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -333,6 +335,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		25D8C38F291CAB0B00FB52DF /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				25D8C390291CAB2F00FB52DF /* BirthItemView.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
 		25F7FDD5291931E100E0C486 = {
 			isa = PBXGroup;
 			children = (
@@ -513,6 +523,7 @@
 			children = (
 				25F7FE2229193F0A00E0C486 /* BaseView.swift */,
 				254627DC291A3C05004D4B72 /* Login */,
+				25D8C38F291CAB0B00FB52DF /* Signup */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -691,6 +702,7 @@
 				25F7FE492919698600E0C486 /* ThirdViewController.swift in Sources */,
 				25F7FE472919695E00E0C486 /* SecondViewController.swift in Sources */,
 				25F7FE452919682700E0C486 /* FirstViewController.swift in Sources */,
+				25D8C391291CAB2F00FB52DF /* BirthItemView.swift in Sources */,
 				25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */,
 				25F7FE5A291985DB00E0C486 /* NextButton.swift in Sources */,
 				255A37BD291C31CC00737C3A /* EmailView.swift in Sources */,

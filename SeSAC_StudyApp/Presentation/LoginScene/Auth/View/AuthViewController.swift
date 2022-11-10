@@ -109,6 +109,7 @@ final class AuthViewController: BaseViewController {
                                     print("로그인 성공 -> 홈 화면으로 이동")
                                 case .failure(let error):
                                     if error.rawValue == 406 {
+                                        UserManager.authDone = 406
                                         weakSelf.transitionViewController(viewController: NicknameViewController(), transitionStyle: .push)
                                     } else {
                                         weakSelf.mainView.makeToast("\(error.localizedDescription)", duration: 1, position: .center)

@@ -43,4 +43,6 @@ class UserManager {
     @UserDefault(key: "nickname", defaultValue: "")
     static var nickname: String
     
+    @UserDefault(key: "authDone", defaultValue: 0)
+    static var authDone: Int
 }
