@@ -27,7 +27,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let vc = UINavigationController(rootViewController: PhoneViewController())
                 window?.rootViewController = vc
             }
-                 
         } else {
             let vc = OnboardingViewController()
             window?.rootViewController = vc
