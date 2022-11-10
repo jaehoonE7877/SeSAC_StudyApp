@@ -39,6 +39,7 @@
 		255A37C7291C32CC00737C3A /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C6291C32CC00737C3A /* BirthViewController.swift */; };
 		255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C8291C330500737C3A /* BirthViewModel.swift */; };
 		25D8C391291CAB2F00FB52DF /* BirthItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C390291CAB2F00FB52DF /* BirthItemView.swift */; };
+		25D8C394291D263E00FB52DF /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C393291D263E00FB52DF /* Date+Formatter.swift */; };
 		25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE1291931E100E0C486 /* AppDelegate.swift */; };
 		25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE3291931E100E0C486 /* SceneDelegate.swift */; };
 		25F7FDE9291931E100E0C486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F7FDE7291931E100E0C486 /* Main.storyboard */; };
@@ -105,6 +106,7 @@
 		255A37C6291C32CC00737C3A /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		255A37C8291C330500737C3A /* BirthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewModel.swift; sourceTree = "<group>"; };
 		25D8C390291CAB2F00FB52DF /* BirthItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthItemView.swift; sourceTree = "<group>"; };
+		25D8C393291D263E00FB52DF /* Date+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatter.swift"; sourceTree = "<group>"; };
 		25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_StudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7FDE1291931E100E0C486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F7FDE3291931E100E0C486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -555,6 +557,7 @@
 				25F7FE54291976CA00E0C486 /* UITextField+AttributedString.swift */,
 				25F7FE562919792000E0C486 /* UITextField+.swift */,
 				254627D1291A2EFF004D4B72 /* String+PhoneNumber.swift */,
+				25D8C393291D263E00FB52DF /* Date+Formatter.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				254627DB291A3BB3004D4B72 /* AuthViewModel.swift in Sources */,
 				255A37AD291BF5BD00737C3A /* SeSACAPIRouter.swift in Sources */,
 				254627D7291A3B97004D4B72 /* AuthView.swift in Sources */,
+				25D8C394291D263E00FB52DF /* Date+Formatter.swift in Sources */,
 				25F7FE3B291946E900E0C486 /* UIColor+CustomColor.swift in Sources */,
 				255A379D291BAEF500737C3A /* SeSACAPIService.swift in Sources */,
 				25F7FE4D291974F000E0C486 /* PhoneView.swift in Sources */,
