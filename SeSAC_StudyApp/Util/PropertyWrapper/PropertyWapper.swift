@@ -48,4 +48,7 @@ class UserManager {
     
     @UserDefault(key: "birth", defaultValue: "")
     static var birth: String
+    
+    @UserDefault(key: "email", defaultValue: "")
+    static var email: String
 }
