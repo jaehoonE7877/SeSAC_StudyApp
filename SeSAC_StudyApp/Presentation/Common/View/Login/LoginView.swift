@@ -32,7 +32,7 @@ class LoginView: BaseView {
     
     override func setConstraints() {
         mainButton.snp.makeConstraints { make in
-            make.centerY.equalTo(self.safeAreaLayoutGuide).multipliedBy(1.08)
+            make.centerY.equalTo(self.safeAreaLayoutGuide).multipliedBy(1.04)
             make.width.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.92)
             make.centerX.equalToSuperview()
             make.height.equalTo(48)

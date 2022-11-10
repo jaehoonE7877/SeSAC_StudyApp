@@ -10,17 +10,28 @@ import UIKit
 final class BirthView: LoginView {
     
     //MARK: Property
-    lazy var yearView = BirthItemView().then {
+    lazy var datePicker = UIDatePicker().then {
+        $0.maximumDate = Date()
+        $0.datePickerMode = .date
+        $0.locale = Locale(identifier: "ko_KR")
+        $0.preferredDatePickerStyle = .wheels
+        $0.backgroundColor = .gray3
+    }
+    
+    let yearView = BirthItemView().then {
+        $0.dateTextField.isEnabled = false
         $0.dateTextField.setPlaceholder(text: "1990", color: .gray7)
         $0.dateLabel.text = "년"
     }
     
-    lazy var monthView = BirthItemView().then {
+    let monthView = BirthItemView().then {
+        $0.dateTextField.isEnabled = false
         $0.dateTextField.setPlaceholder(text: "1", color: .gray7)
         $0.dateLabel.text = "월"
     }
     
-    lazy var dayView = BirthItemView().then {
+    let dayView = BirthItemView().then {
+        $0.dateTextField.isEnabled = false
         $0.dateTextField.setPlaceholder(text: "1", color: .gray7)
         $0.dateLabel.text = "일"
     }
@@ -30,7 +41,7 @@ final class BirthView: LoginView {
         $0.axis = .horizontal
         $0.spacing = 20
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -40,7 +51,7 @@ final class BirthView: LoginView {
         super.configure()
         mainLabel.text = "생년월일을 알려주세요"
         mainButton.setTitle("다음", for: .normal)
-        self.addSubview(horizontalStackView)
+        [horizontalStackView, datePicker].forEach{ self.addSubview($0) }
     }
     
     override func setConstraints() {
@@ -51,10 +62,15 @@ final class BirthView: LoginView {
         }
         
         horizontalStackView.snp.makeConstraints { make in
-            make.leading.equalTo(mainButton)
+            //make.leading.equalTo(mainButton)
             make.trailing.equalTo(mainButton).offset(-12)
             make.centerY.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.8)
             make.centerX.equalToSuperview()
+        }
+        
+        datePicker.snp.makeConstraints { make in
+            make.horizontalEdges.bottom.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.32)
         }
     }
 }

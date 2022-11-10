@@ -12,6 +12,7 @@ final class BirthItemView: BaseView {
     //MARK: Property
     lazy var dateTextField = UITextField().then {
         $0.addLeftPadding()
+        $0.tintColor = .clear
     }
     
     lazy var lineView = UIView().then {
