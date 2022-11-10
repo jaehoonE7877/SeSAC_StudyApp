@@ -17,12 +17,14 @@ final class GenderView: LoginView {
         $0.font = UIFont.notoSans(size: 16, family: .Regular)
     }
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init()).then {
-        $0.backgroundColor = .clear
-        $0.contentInset = .zero
-        $0.showsHorizontalScrollIndicator = false
-        $0.isScrollEnabled = false
-        $0.translatesAutoresizingMaskIntoConstraints = false
+    lazy var manView = GenderItemView().then {
+        $0.imageView.image = UIImage(named: "man")!
+        $0.titleLabel.text = "남자"
+    }
+    
+    lazy var womanView = GenderItemView().then {
+        $0.imageView.image = UIImage(named: "woman")!
+        $0.titleLabel.text = "여자"
     }
     
     lazy var verticalStackView = UIStackView(arrangedSubviews: [mainLabel, subLabel]).then {
@@ -30,7 +32,13 @@ final class GenderView: LoginView {
         $0.axis = .vertical
         $0.spacing = 8
     }
-
+    
+    lazy var horizontalStackView = UIStackView(arrangedSubviews: [manView, womanView]).then {
+        $0.distribution = .fillEqually
+        $0.axis = .horizontal
+        $0.spacing = 16
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -40,7 +48,7 @@ final class GenderView: LoginView {
         mainButton.setTitle("다음", for: .normal)
         mainLabel.text = "성별을 선택해 주세요"
         mainButton.isEnabled = false
-        [verticalStackView, collectionView].forEach { self.addSubview($0)}
+        [verticalStackView, horizontalStackView].forEach { self.addSubview($0)}
     }
     
     override func setConstraints() {
@@ -51,11 +59,11 @@ final class GenderView: LoginView {
             make.centerX.equalToSuperview()
         }
         
-        collectionView.snp.makeConstraints { make in
+        horizontalStackView.snp.makeConstraints { make in
             make.width.equalTo(mainButton)
             make.centerX.equalToSuperview()
             make.centerY.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.8)
-            make.height.equalTo(collectionView.snp.width).multipliedBy(0.35)
+            make.height.equalTo(horizontalStackView.snp.width).multipliedBy(0.35)
         }
     }
 }

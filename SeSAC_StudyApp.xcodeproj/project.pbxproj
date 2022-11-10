@@ -43,7 +43,7 @@
 		25D8C399291D2B5600FB52DF /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C398291D2B5600FB52DF /* GenderView.swift */; };
 		25D8C39B291D2B6200FB52DF /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C39A291D2B6200FB52DF /* GenderViewController.swift */; };
 		25D8C39D291D2B8800FB52DF /* GenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C39C291D2B8800FB52DF /* GenderViewModel.swift */; };
-		25D8C3A0291D36E100FB52DF /* GenderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C39F291D36E100FB52DF /* GenderCollectionViewCell.swift */; };
+		25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C39F291D36E100FB52DF /* GenderItemView.swift */; };
 		25D8C3A3291D4C6F00FB52DF /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 25D8C3A2291D4C6F00FB52DF /* RxDataSources */; };
 		25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE1291931E100E0C486 /* AppDelegate.swift */; };
 		25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE3291931E100E0C486 /* SceneDelegate.swift */; };
@@ -115,7 +115,7 @@
 		25D8C398291D2B5600FB52DF /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
 		25D8C39A291D2B6200FB52DF /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
 		25D8C39C291D2B8800FB52DF /* GenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewModel.swift; sourceTree = "<group>"; };
-		25D8C39F291D36E100FB52DF /* GenderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCollectionViewCell.swift; sourceTree = "<group>"; };
+		25D8C39F291D36E100FB52DF /* GenderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderItemView.swift; sourceTree = "<group>"; };
 		25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_StudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7FDE1291931E100E0C486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F7FDE3291931E100E0C486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -386,7 +386,7 @@
 		25D8C39E291D365E00FB52DF /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				25D8C39F291D36E100FB52DF /* GenderCollectionViewCell.swift */,
+				25D8C39F291D36E100FB52DF /* GenderItemView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -790,7 +790,7 @@
 				25F7FE43291957FB00E0C486 /* UILabel+AttributedString.swift in Sources */,
 				255A37AF291BF5E900737C3A /* BaseURL.swift in Sources */,
 				255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */,
-				25D8C3A0291D36E100FB52DF /* GenderCollectionViewCell.swift in Sources */,
+				25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */,
 				254627DE291A3C1A004D4B72 /* LoginView.swift in Sources */,
 				25F7FE0929193C6300E0C486 /* APIKey.swift in Sources */,
 				25F7FE2329193F0A00E0C486 /* BaseView.swift in Sources */,
