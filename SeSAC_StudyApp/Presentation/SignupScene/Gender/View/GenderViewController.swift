@@ -49,7 +49,6 @@ final class GenderViewController: BaseViewController {
                 weakSelf.mainView.womanView.backgroundColor = .ssWhiteGreen
                 weakSelf.mainView.manView.backgroundColor = .clear
                 weakSelf.mainView.mainButton.status = .fill
-                weakSelf.mainView.mainButton.isEnabled = true
             }
             .disposed(by: disposeBag)
         
@@ -64,7 +63,6 @@ final class GenderViewController: BaseViewController {
                             dump(success)
                         case .failure(let error):
                             if error.rawValue == SeSACError.forbiddenNick.rawValue {
-                                weakSelf.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
                                 weakSelf.popToNickVC()
                             } else {
                                 weakSelf.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
@@ -84,17 +82,14 @@ final class GenderViewController: BaseViewController {
 extension GenderViewController {
     
     private func popToNickVC() {
-        guard let self = self.presentingViewController as? UINavigationController else { return }
-        let viewControllerStack = self.viewControllers
+        guard let viewControllerStack = self.navigationController?.viewControllers else { return }
         
-        self.dismiss(animated: true) {
-            for stack in viewControllerStack {
-                if let vc = stack as? NicknameViewController {
-                    self.popToViewController(vc, animated: true)
-                }
+        for viewController in viewControllerStack {
+            if let nicknameView = viewController as? NicknameViewController {
+                self.navigationController?.popToViewController(nicknameView, animated: true)
+                nicknameView.view.makeToast(SeSACError.forbiddenNick.localizedDescription, duration: 1, position: .center)
             }
         }
     }
-    
 }
 
