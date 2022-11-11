@@ -28,9 +28,18 @@ class BaseViewController: UIViewController {
     func setConstraint() { }
     
     func setNavigationController() {
+        
         let appearance = UINavigationBarAppearance()
-        self.navigationController?.navigationBar.standardAppearance = appearance
-        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        let backButton = UIBarButtonItem(image: UIImage(named: "arrow"), style: .plain, target: self, action: #selector(backButtonTapped))
+        backButton.tintColor = .textColor
+        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc private func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setBinding() { }

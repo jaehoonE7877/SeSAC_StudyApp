@@ -9,7 +9,7 @@ import UIKit
 
 enum TransitionStyle {
     case present
-    case presentNavigation
+    case presentFullWithoutAni
     case presentFullNavigation
     case push
     case pushWithoutAni
@@ -23,8 +23,9 @@ extension BaseViewController {
         switch transitionStyle {
         case .present:
             self.present(vc, animated: true)
-        case .presentNavigation:
-            self.present(nav, animated: true)
+        case .presentFullWithoutAni:
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: false)
         case .presentFullNavigation:
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true)

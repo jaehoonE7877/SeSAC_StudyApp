@@ -47,6 +47,7 @@ final class GenderView: LoginView {
         super.configure()
         mainButton.setTitle("다음", for: .normal)
         mainLabel.text = "성별을 선택해 주세요"
+        mainButton.isEnabled = false
         [verticalStackView, horizontalStackView].forEach { self.addSubview($0)}
     }
     

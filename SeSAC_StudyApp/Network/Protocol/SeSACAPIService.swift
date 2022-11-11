@@ -8,5 +8,6 @@
 import Foundation
 
 protocol SeSACAPIService {
-    func request() 
+    func request()
+    //func request<T: Decodable>(type: T.Type = T.self, router: SeSACAPIRouter, completion: (Result<T, SeSACError>) -> Void)
 }

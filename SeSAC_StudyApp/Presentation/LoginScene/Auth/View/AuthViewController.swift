@@ -28,16 +28,6 @@ final class AuthViewController: BaseViewController {
         view.makeToast(LoginMessage.sentMessage, duration: 1, position: .center)
     }
     
-    override func setNavigationController() {
-        let backButton = UIBarButtonItem(image: UIImage(named: "arrow"), style: .plain, target: self, action: #selector(backButtonTapped))
-        backButton.tintColor = .textColor
-        self.navigationItem.leftBarButtonItem = backButton
-    }
-    
-    @objc private func backButtonTapped(){
-        self.navigationController?.popViewController(animated: true)
-    }
-    
     override func setBinding() {
         
         let input = AuthViewModel.Input(verifyText: mainView.authTextField.rx.text.orEmpty,
@@ -99,14 +89,14 @@ final class AuthViewController: BaseViewController {
                         idToken.user.getIDTokenForcingRefresh(true) { token, error in
                             if let error = error {
                                 let errorCode = (error as NSError)
-                                print(errorCode)
+                                weakSelf.mainView.makeToast("\(error.localizedDescription)", duration: 1, position: .center)
                             }
                             guard let token = token else { return }
                             UserManager.token = token
                             weakSelf.viewModel.login { result in
                                 switch result {
                                 case .success(_):
-                                    print("로그인 성공 -> 홈 화면으로 이동")
+                                    weakSelf.transitionViewController(viewController: HomeViewController(), transitionStyle: .presentFullNavigation)
                                 case .failure(let error):
                                     if error.rawValue == 406 {
                                         UserManager.authDone = 406

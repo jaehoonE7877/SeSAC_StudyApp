@@ -46,6 +46,8 @@
 		25D8C39D291D2B8800FB52DF /* GenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C39C291D2B8800FB52DF /* GenderViewModel.swift */; };
 		25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C39F291D36E100FB52DF /* GenderItemView.swift */; };
 		25D8C3A3291D4C6F00FB52DF /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 25D8C3A2291D4C6F00FB52DF /* RxDataSources */; };
+		25F11E8F291DEFDF004AC54A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F11E8E291DEFDF004AC54A /* SplashViewController.swift */; };
+		25F11E92291E43A6004AC54A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F11E91291E43A6004AC54A /* HomeViewController.swift */; };
 		25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE1291931E100E0C486 /* AppDelegate.swift */; };
 		25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE3291931E100E0C486 /* SceneDelegate.swift */; };
 		25F7FDE9291931E100E0C486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F7FDE7291931E100E0C486 /* Main.storyboard */; };
@@ -118,6 +120,8 @@
 		25D8C39A291D2B6200FB52DF /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
 		25D8C39C291D2B8800FB52DF /* GenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewModel.swift; sourceTree = "<group>"; };
 		25D8C39F291D36E100FB52DF /* GenderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderItemView.swift; sourceTree = "<group>"; };
+		25F11E8E291DEFDF004AC54A /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		25F11E91291E43A6004AC54A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_StudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7FDE1291931E100E0C486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F7FDE3291931E100E0C486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -354,6 +358,7 @@
 		25D8C38F291CAB0B00FB52DF /* Signup */ = {
 			isa = PBXGroup;
 			children = (
+				25D8C39F291D36E100FB52DF /* GenderItemView.swift */,
 				25D8C390291CAB2F00FB52DF /* BirthItemView.swift */,
 			);
 			path = Signup;
@@ -362,7 +367,6 @@
 		25D8C395291D2B2E00FB52DF /* Gender */ = {
 			isa = PBXGroup;
 			children = (
-				25D8C39E291D365E00FB52DF /* Cell */,
 				25D8C396291D2B4500FB52DF /* ViewModel */,
 				25D8C397291D2B4A00FB52DF /* View */,
 			);
@@ -386,12 +390,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		25D8C39E291D365E00FB52DF /* Cell */ = {
+		25F11E8D291DEFA8004AC54A /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				25D8C39F291D36E100FB52DF /* GenderItemView.swift */,
+				25F11E8E291DEFDF004AC54A /* SplashViewController.swift */,
 			);
-			path = Cell;
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		25F11E90291E3F37004AC54A /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				25F11E91291E43A6004AC54A /* HomeViewController.swift */,
+			);
+			path = HomeScene;
 			sourceTree = "<group>";
 		};
 		25F7FDD5291931E100E0C486 = {
@@ -488,9 +500,11 @@
 			isa = PBXGroup;
 			children = (
 				25F7FE0329193B6600E0C486 /* Common */,
+				25F11E8D291DEFA8004AC54A /* Splash */,
 				25F7FDFE29193A9400E0C486 /* Onboarding */,
 				25F7FE4A2919705F00E0C486 /* LoginScene */,
 				255A3793291BAA8300737C3A /* SignupScene */,
+				25F11E90291E3F37004AC54A /* HomeScene */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -754,6 +768,7 @@
 			files = (
 				25D8C399291D2B5600FB52DF /* GenderView.swift in Sources */,
 				2515966B291D722200F48DB5 /* Gender.swift in Sources */,
+				25F11E92291E43A6004AC54A /* HomeViewController.swift in Sources */,
 				254627D2291A2EFF004D4B72 /* String+PhoneNumber.swift in Sources */,
 				25F7FE492919698600E0C486 /* ThirdViewController.swift in Sources */,
 				25F7FE472919695E00E0C486 /* SecondViewController.swift in Sources */,
@@ -799,6 +814,7 @@
 				25F7FE0929193C6300E0C486 /* APIKey.swift in Sources */,
 				25F7FE2329193F0A00E0C486 /* BaseView.swift in Sources */,
 				25F7FE262919403C00E0C486 /* BaseViewController+.swift in Sources */,
+				25F11E8F291DEFDF004AC54A /* SplashViewController.swift in Sources */,
 				25F7FE412919566700E0C486 /* NextButtonStatus.swift in Sources */,
 				25D8C39D291D2B8800FB52DF /* GenderViewModel.swift in Sources */,
 				255A37B4291C1B4700737C3A /* NicknameViewController.swift in Sources */,

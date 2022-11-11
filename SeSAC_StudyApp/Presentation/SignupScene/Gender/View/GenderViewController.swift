@@ -39,6 +39,7 @@ final class GenderViewController: BaseViewController {
                 weakSelf.mainView.manView.backgroundColor = .ssWhiteGreen
                 weakSelf.mainView.womanView.backgroundColor = .clear
                 weakSelf.mainView.mainButton.status = .fill
+                weakSelf.mainView.mainButton.isEnabled = true
             }
             .disposed(by: disposeBag)
         
@@ -48,6 +49,7 @@ final class GenderViewController: BaseViewController {
                 weakSelf.mainView.womanView.backgroundColor = .ssWhiteGreen
                 weakSelf.mainView.manView.backgroundColor = .clear
                 weakSelf.mainView.mainButton.status = .fill
+                weakSelf.mainView.mainButton.isEnabled = true
             }
             .disposed(by: disposeBag)
         
@@ -61,7 +63,12 @@ final class GenderViewController: BaseViewController {
                         case .success(let success):
                             dump(success)
                         case .failure(let error):
-                            weakSelf.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
+                            if error.rawValue == SeSACError.forbiddenNick.rawValue {
+                                weakSelf.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
+                                weakSelf.popToNickVC()
+                            } else {
+                                weakSelf.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
+                            }
                         }
                     }
                 } else if weakSelf.mainView.womanView.backgroundColor == .ssWhiteGreen {
@@ -74,13 +81,20 @@ final class GenderViewController: BaseViewController {
 
     }
 }
-
 extension GenderViewController {
     
-    
-    private func checkUnvalidNick(nick: String) -> Bool {
+    private func popToNickVC() {
+        guard let self = self.presentingViewController as? UINavigationController else { return }
+        let viewControllerStack = self.viewControllers
         
-        return true
+        self.dismiss(animated: true) {
+            for stack in viewControllerStack {
+                if let vc = stack as? NicknameViewController {
+                    self.popToViewController(vc, animated: true)
+                }
+            }
+        }
     }
+    
 }
 

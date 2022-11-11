@@ -23,17 +23,7 @@ final class NicknameViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
-    
-    override func setNavigationController() {
-        let backButton = UIBarButtonItem(image: UIImage(named: "arrow"), style: .plain, target: self, action: #selector(backButtonTapped))
-        backButton.tintColor = .textColor
-        self.navigationItem.leftBarButtonItem = backButton
-    }
-    
-    @objc private func backButtonTapped() {
-        
+
     }
     
     override func setBinding() {
