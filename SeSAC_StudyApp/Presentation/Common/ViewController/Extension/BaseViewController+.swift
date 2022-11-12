@@ -15,7 +15,7 @@ enum TransitionStyle {
     case pushWithoutAni
 }
 
-extension BaseViewController {
+extension UIViewController {
     
     func transitionViewController<T: UIViewController>(viewController vc: T, transitionStyle: TransitionStyle){
         let nav = UINavigationController(rootViewController: vc)

@@ -60,36 +60,57 @@ final class GenderViewController: BaseViewController {
                     weakSelf.viewModel.signup { result in
                         switch result {
                         case .success(let success):
+                            UserManager.nickError = false
                             dump(success)
                         case .failure(let error):
-                            if error.rawValue == SeSACError.forbiddenNick.rawValue {
-                                weakSelf.popToNickVC()
-                            } else {
+                            switch error {
+                            case .alreadySignedup:
+                                weakSelf.popToVC(viewController: PhoneViewController(), errorMessage: SeSACError.alreadySignedup.localizedDescription)
+                            case .forbiddenNick:
+                                UserManager.nickError = true
+                                weakSelf.popToVC(viewController: NicknameViewController(), errorMessage: SeSACError.forbiddenNick.localizedDescription)
+                            default:
+                                UserManager.nickError = false
                                 weakSelf.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
                             }
                         }
                     }
                 } else if weakSelf.mainView.womanView.backgroundColor == .ssWhiteGreen {
                     UserManager.gender = Gender.woman.rawValue
+                    weakSelf.viewModel.signup { result in
+                        switch result {
+                        case .success(_):
+                            UserManager.nickError = false
+                        case .failure(let error):
+                            switch error {
+                            case .alreadySignedup:
+                                weakSelf.popToVC(viewController: PhoneViewController(), errorMessage: SeSACError.alreadySignedup.localizedDescription)
+                            case .forbiddenNick:
+                                UserManager.nickError = true
+                                weakSelf.popToVC(viewController: NicknameViewController(), errorMessage: SeSACError.forbiddenNick.localizedDescription)
+                            default:
+                                UserManager.nickError = false
+                                weakSelf.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
+                            }
+                        }
+                    }
                 } else {
                     weakSelf.mainView.makeToast("성별을 선택해주세요", duration: 1, position: .center)
                 }
             }
             .disposed(by: disposeBag)
-
     }
 }
 extension GenderViewController {
     
-    private func popToNickVC() {
+    private func popToVC<T: BaseViewController>(viewController: T, errorMessage: String){
         guard let viewControllerStack = self.navigationController?.viewControllers else { return }
         
         for viewController in viewControllerStack {
-            if let nicknameView = viewController as? NicknameViewController {
-                self.navigationController?.popToViewController(nicknameView, animated: true)
-                nicknameView.view.makeToast(SeSACError.forbiddenNick.localizedDescription, duration: 1, position: .center)
+            if let viewController = viewController as? T {
+                self.navigationController?.popToViewController(viewController, animated: true)
+                viewController.view.makeToast(errorMessage, duration: 1, position: .center)
             }
         }
     }
 }
-

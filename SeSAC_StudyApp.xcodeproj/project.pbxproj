@@ -48,6 +48,7 @@
 		25D8C3A3291D4C6F00FB52DF /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 25D8C3A2291D4C6F00FB52DF /* RxDataSources */; };
 		25F11E8F291DEFDF004AC54A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F11E8E291DEFDF004AC54A /* SplashViewController.swift */; };
 		25F11E92291E43A6004AC54A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F11E91291E43A6004AC54A /* HomeViewController.swift */; };
+		25F11E95291F80AE004AC54A /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F11E94291F80AE004AC54A /* NetworkCheck.swift */; };
 		25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE1291931E100E0C486 /* AppDelegate.swift */; };
 		25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE3291931E100E0C486 /* SceneDelegate.swift */; };
 		25F7FDE9291931E100E0C486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F7FDE7291931E100E0C486 /* Main.storyboard */; };
@@ -122,6 +123,7 @@
 		25D8C39F291D36E100FB52DF /* GenderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderItemView.swift; sourceTree = "<group>"; };
 		25F11E8E291DEFDF004AC54A /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		25F11E91291E43A6004AC54A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		25F11E94291F80AE004AC54A /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
 		25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_StudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7FDE1291931E100E0C486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F7FDE3291931E100E0C486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -406,6 +408,14 @@
 			path = HomeScene;
 			sourceTree = "<group>";
 		};
+		25F11E93291F8085004AC54A /* NetworkCheck */ = {
+			isa = PBXGroup;
+			children = (
+				25F11E94291F80AE004AC54A /* NetworkCheck.swift */,
+			);
+			path = NetworkCheck;
+			sourceTree = "<group>";
+		};
 		25F7FDD5291931E100E0C486 = {
 			isa = PBXGroup;
 			children = (
@@ -519,6 +529,7 @@
 		25F7FDFD29193A3500E0C486 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				25F11E93291F8085004AC54A /* NetworkCheck */,
 				255A378F291AB52000737C3A /* Error */,
 				255A3799291BADF300737C3A /* Protocol */,
 				255A378D291AB47300737C3A /* DefaultFirebaseAPIService.swift */,
@@ -821,6 +832,7 @@
 				255A37B6291C21CD00737C3A /* ToastMessage.swift in Sources */,
 				25F7FE572919792000E0C486 /* UITextField+.swift in Sources */,
 				255A379B291BAE5300737C3A /* FirebaseAPIService.swift in Sources */,
+				25F11E95291F80AE004AC54A /* NetworkCheck.swift in Sources */,
 				255A37C7291C32CC00737C3A /* BirthViewController.swift in Sources */,
 				255A37B2291C1B3800737C3A /* NicknameViewModel.swift in Sources */,
 			);
