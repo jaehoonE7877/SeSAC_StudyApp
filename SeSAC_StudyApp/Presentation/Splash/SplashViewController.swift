@@ -79,9 +79,8 @@ extension SplashViewController {
                 switch result {
                 case .success(_):
                     // ⭐️로그인 성공! => 이미 가입한 유저 + 토큰 만료 안됨 (나중에 홈탭바 뷰컨으로 수정)
-                    let vc = HomeViewController()
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
+                    let vc = TabViewController()
+                    self.transitionViewController(viewController: vc, transitionStyle: .presentFull)
                 case .failure(let error):
                     switch error {
                     case .firebaseTokenError:
@@ -98,8 +97,7 @@ extension SplashViewController {
             }
         } else {
             let vc = OnboardingViewController()
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: false)
+            self.transitionViewController(viewController: vc, transitionStyle: .presentFull)
         }
     }
     
@@ -126,9 +124,8 @@ extension SplashViewController {
             self.tryLogin { result in
                 switch result {
                 case .success(_):
-                    let vc = HomeViewController()
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
+                    let vc = TabViewController()
+                    self.transitionViewController(viewController: vc, transitionStyle: .presentFull)
                 case .failure(let error):
                     switch error{
                     case .unknownUser:

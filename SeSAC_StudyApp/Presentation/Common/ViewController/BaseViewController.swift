@@ -17,7 +17,6 @@ class BaseViewController: UIViewController {
         
         configure()
         setConstraint()
-        setNavigationController()
         setBinding()
         tapGesture()
     }
@@ -28,18 +27,14 @@ class BaseViewController: UIViewController {
     func setConstraint() { }
     
     func setNavigationController() {
+        navigationItem.backButtonTitle = ""
+        navigationController?.navigationBar.tintColor = .textColor
         
         let appearance = UINavigationBarAppearance()
+        appearance.setBackIndicatorImage(UIImage(named: "arrow"), transitionMaskImage: UIImage(named: "arrow"))
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
-        let backButton = UIBarButtonItem(image: UIImage(named: "arrow"), style: .plain, target: self, action: #selector(backButtonTapped))
-        backButton.tintColor = .textColor
-        self.navigationItem.leftBarButtonItem = backButton
-    }
-    
-    @objc private func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
     }
     
     func setBinding() { }

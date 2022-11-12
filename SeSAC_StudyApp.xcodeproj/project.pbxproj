@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2515966B291D722200F48DB5 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2515966A291D722200F48DB5 /* Gender.swift */; };
+		25230AF9291FB01900525531 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230AF8291FB01900525531 /* HomeViewController.swift */; };
+		25230AFC291FB0CD00525531 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230AFB291FB0CD00525531 /* ShopViewController.swift */; };
+		25230AFF291FB10100525531 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230AFE291FB10100525531 /* FriendViewController.swift */; };
+		25230B02291FB17100525531 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230B01291FB17100525531 /* InfoViewController.swift */; };
 		254627D2291A2EFF004D4B72 /* String+PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254627D1291A2EFF004D4B72 /* String+PhoneNumber.swift */; };
 		254627D7291A3B97004D4B72 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254627D6291A3B97004D4B72 /* AuthView.swift */; };
 		254627D9291A3BA7004D4B72 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254627D8291A3BA7004D4B72 /* AuthViewController.swift */; };
@@ -47,7 +51,7 @@
 		25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C39F291D36E100FB52DF /* GenderItemView.swift */; };
 		25D8C3A3291D4C6F00FB52DF /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 25D8C3A2291D4C6F00FB52DF /* RxDataSources */; };
 		25F11E8F291DEFDF004AC54A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F11E8E291DEFDF004AC54A /* SplashViewController.swift */; };
-		25F11E92291E43A6004AC54A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F11E91291E43A6004AC54A /* HomeViewController.swift */; };
+		25F11E92291E43A6004AC54A /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F11E91291E43A6004AC54A /* TabViewController.swift */; };
 		25F11E95291F80AE004AC54A /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F11E94291F80AE004AC54A /* NetworkCheck.swift */; };
 		25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE1291931E100E0C486 /* AppDelegate.swift */; };
 		25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FDE3291931E100E0C486 /* SceneDelegate.swift */; };
@@ -88,6 +92,10 @@
 
 /* Begin PBXFileReference section */
 		2515966A291D722200F48DB5 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		25230AF8291FB01900525531 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		25230AFB291FB0CD00525531 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		25230AFE291FB10100525531 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
+		25230B01291FB17100525531 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		254627D1291A2EFF004D4B72 /* String+PhoneNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PhoneNumber.swift"; sourceTree = "<group>"; };
 		254627D6291A3B97004D4B72 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		254627D8291A3BA7004D4B72 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +130,7 @@
 		25D8C39C291D2B8800FB52DF /* GenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewModel.swift; sourceTree = "<group>"; };
 		25D8C39F291D36E100FB52DF /* GenderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderItemView.swift; sourceTree = "<group>"; };
 		25F11E8E291DEFDF004AC54A /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		25F11E91291E43A6004AC54A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		25F11E91291E43A6004AC54A /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		25F11E94291F80AE004AC54A /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
 		25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_StudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7FDE1291931E100E0C486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +188,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25230AF7291FAFF100525531 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				25230AF8291FB01900525531 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		25230AFA291FB0A400525531 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				25230AFB291FB0CD00525531 /* ShopViewController.swift */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		25230AFD291FB0DC00525531 /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				25230AFE291FB10100525531 /* FriendViewController.swift */,
+			);
+			path = Friend;
+			sourceTree = "<group>";
+		};
+		25230B00291FB16100525531 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				25230B01291FB17100525531 /* InfoViewController.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
 		254627D3291A39BB004D4B72 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,12 +440,16 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
-		25F11E90291E3F37004AC54A /* HomeScene */ = {
+		25F11E90291E3F37004AC54A /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
-				25F11E91291E43A6004AC54A /* HomeViewController.swift */,
+				25230AF7291FAFF100525531 /* Home */,
+				25230AFA291FB0A400525531 /* Shop */,
+				25230AFD291FB0DC00525531 /* Friend */,
+				25230B00291FB16100525531 /* Info */,
+				25F11E91291E43A6004AC54A /* TabViewController.swift */,
 			);
-			path = HomeScene;
+			path = MainScene;
 			sourceTree = "<group>";
 		};
 		25F11E93291F8085004AC54A /* NetworkCheck */ = {
@@ -514,7 +558,7 @@
 				25F7FDFE29193A9400E0C486 /* Onboarding */,
 				25F7FE4A2919705F00E0C486 /* LoginScene */,
 				255A3793291BAA8300737C3A /* SignupScene */,
-				25F11E90291E3F37004AC54A /* HomeScene */,
+				25F11E90291E3F37004AC54A /* MainScene */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -779,7 +823,7 @@
 			files = (
 				25D8C399291D2B5600FB52DF /* GenderView.swift in Sources */,
 				2515966B291D722200F48DB5 /* Gender.swift in Sources */,
-				25F11E92291E43A6004AC54A /* HomeViewController.swift in Sources */,
+				25F11E92291E43A6004AC54A /* TabViewController.swift in Sources */,
 				254627D2291A2EFF004D4B72 /* String+PhoneNumber.swift in Sources */,
 				25F7FE492919698600E0C486 /* ThirdViewController.swift in Sources */,
 				25F7FE472919695E00E0C486 /* SecondViewController.swift in Sources */,
@@ -791,6 +835,7 @@
 				25F7FE502919752B00E0C486 /* PhoneViewController.swift in Sources */,
 				25F7FE3D291950AD00E0C486 /* PageView.swift in Sources */,
 				254627D9291A3BA7004D4B72 /* AuthViewController.swift in Sources */,
+				25230AFF291FB10100525531 /* FriendViewController.swift in Sources */,
 				255A37C5291C32BC00737C3A /* BirthView.swift in Sources */,
 				255A3791291AB52F00737C3A /* FirebaseError.swift in Sources */,
 				255A37A3291BB01400737C3A /* NicknameView.swift in Sources */,
@@ -809,8 +854,10 @@
 				25F7FE392919465500E0C486 /* UIFont+CustomFont.swift in Sources */,
 				254627DB291A3BB3004D4B72 /* AuthViewModel.swift in Sources */,
 				25D8C39B291D2B6200FB52DF /* GenderViewController.swift in Sources */,
+				25230AFC291FB0CD00525531 /* ShopViewController.swift in Sources */,
 				255A37AD291BF5BD00737C3A /* SeSACAPIRouter.swift in Sources */,
 				254627D7291A3B97004D4B72 /* AuthView.swift in Sources */,
+				25230B02291FB17100525531 /* InfoViewController.swift in Sources */,
 				25D8C394291D263E00FB52DF /* Date+Formatter.swift in Sources */,
 				25F7FE3B291946E900E0C486 /* UIColor+CustomColor.swift in Sources */,
 				255A379D291BAEF500737C3A /* SeSACAPIService.swift in Sources */,
@@ -832,6 +879,7 @@
 				255A37B6291C21CD00737C3A /* ToastMessage.swift in Sources */,
 				25F7FE572919792000E0C486 /* UITextField+.swift in Sources */,
 				255A379B291BAE5300737C3A /* FirebaseAPIService.swift in Sources */,
+				25230AF9291FB01900525531 /* HomeViewController.swift in Sources */,
 				25F11E95291F80AE004AC54A /* NetworkCheck.swift in Sources */,
 				255A37C7291C32CC00737C3A /* BirthViewController.swift in Sources */,
 				255A37B2291C1B3800737C3A /* NicknameViewModel.swift in Sources */,

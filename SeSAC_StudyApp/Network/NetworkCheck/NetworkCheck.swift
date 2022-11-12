@@ -27,11 +27,11 @@ final class NetworkCheck {
         monitor.pathUpdateHandler = { [weak self] path in
             
             self?.isConnected = path.status == .satisfied
-            
+            // 최상위 뷰컨 확인해서 false 일때 alert 띄워줘야됨
             if self?.isConnected == true {
-                print("연결됨")
+                
             } else {
-                //showNetworkVCOnRoot()
+               
             }
         }
     }

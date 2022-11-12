@@ -9,6 +9,7 @@ import UIKit
 
 enum TransitionStyle {
     case present
+    case presentFull
     case presentFullWithoutAni
     case presentFullNavigation
     case push
@@ -23,6 +24,9 @@ extension UIViewController {
         switch transitionStyle {
         case .present:
             self.present(vc, animated: true)
+        case .presentFull:
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
         case .presentFullWithoutAni:
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: false)
@@ -35,4 +39,39 @@ extension UIViewController {
             self.navigationController?.pushViewController(vc, animated: false)
         }
     }
+}
+
+extension UIViewController {
+    
+    var topViewController: UIViewController {
+        return self.topViewController(currentViewController: self)
+    }
+    
+    // 최상위 뷰컨트롤러를 판단해주는 메서드
+    // 1. 탭바
+    // 2. 네비게이션
+    // 3. 둘 다 없을 때
+    func topViewController(currentViewController: UIViewController) -> UIViewController {
+        
+        if let tabBarController = currentViewController as? UITabBarController,
+           let selectedViewController = tabBarController.selectedViewController {
+            
+            return self.topViewController(currentViewController: selectedViewController)
+            
+        } else if let navigationController = currentViewController as? UINavigationController,
+                  let visibleViewController = navigationController.visibleViewController {
+            
+            return self.topViewController(currentViewController: visibleViewController)
+            
+        } else if let presentedViewController = currentViewController.presentedViewController {
+            
+            return self.topViewController(currentViewController: presentedViewController)
+            
+        } else {
+            return currentViewController
+        }
+        
+
+    }
+    
 }
