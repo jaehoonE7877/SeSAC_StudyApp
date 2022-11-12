@@ -14,5 +14,6 @@ final class FriendViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationController()
     }
 }

@@ -71,6 +71,8 @@ extension SplashViewController {
     }
     
     private func splash() {
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
         
         if UserManager.onboarding {
             // ⭐️네트워크 상태 확인
@@ -80,7 +82,7 @@ extension SplashViewController {
                 case .success(_):
                     // ⭐️로그인 성공! => 이미 가입한 유저 + 토큰 만료 안됨 (나중에 홈탭바 뷰컨으로 수정)
                     let vc = TabViewController()
-                    self.transitionViewController(viewController: vc, transitionStyle: .presentFull)
+                    sceneDelegate?.window?.rootViewController = vc
                 case .failure(let error):
                     switch error {
                     case .firebaseTokenError:
@@ -88,17 +90,19 @@ extension SplashViewController {
                     case .unknownUser:
                         UserManager.authDone = error.rawValue
                         let vc = PhoneViewController()
-                        self.transitionViewController(viewController: vc, transitionStyle: .presentFullNavigation)
+                        sceneDelegate?.window?.rootViewController = vc
                     default:
                         let vc = PhoneViewController()
-                        self.transitionViewController(viewController: vc, transitionStyle: .presentFullNavigation)
+                        sceneDelegate?.window?.rootViewController = vc
                     }
                 }
             }
         } else {
             let vc = OnboardingViewController()
-            self.transitionViewController(viewController: vc, transitionStyle: .presentFull)
+            sceneDelegate?.window?.rootViewController = vc
         }
+        
+        sceneDelegate?.window?.makeKeyAndVisible()
     }
     
     private func tryLogin(completion: @escaping (Result<UserData,SeSACError>) -> Void) {
@@ -113,6 +117,9 @@ extension SplashViewController {
     }
     
     private func refreshRequest() {
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+        
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { [weak self] idToken, error in
             guard let self = self else { return }
@@ -125,18 +132,19 @@ extension SplashViewController {
                 switch result {
                 case .success(_):
                     let vc = TabViewController()
-                    self.transitionViewController(viewController: vc, transitionStyle: .presentFull)
+                    sceneDelegate?.window?.rootViewController = vc
                 case .failure(let error):
                     switch error{
                     case .unknownUser:
                         UserManager.authDone = error.rawValue
                         let vc = PhoneViewController()
-                        self.transitionViewController(viewController: vc, transitionStyle: .presentFullNavigation)
+                        sceneDelegate?.window?.rootViewController = vc
                     default :
                         let vc = PhoneViewController()
-                        self.transitionViewController(viewController: vc, transitionStyle: .presentFullNavigation)
+                        sceneDelegate?.window?.rootViewController = vc
                     }
                 }
+                sceneDelegate?.window?.makeKeyAndVisible()
             }
         }
     }

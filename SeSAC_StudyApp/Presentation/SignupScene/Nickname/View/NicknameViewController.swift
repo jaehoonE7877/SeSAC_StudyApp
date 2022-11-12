@@ -23,6 +23,7 @@ final class NicknameViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationController()
     }
     
     override func viewWillAppear(_ animated: Bool) {

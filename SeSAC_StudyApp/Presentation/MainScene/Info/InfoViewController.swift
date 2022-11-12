@@ -14,5 +14,6 @@ final class InfoViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationController()
     }
 }
