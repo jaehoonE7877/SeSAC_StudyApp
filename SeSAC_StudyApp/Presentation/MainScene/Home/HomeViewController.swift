@@ -23,8 +23,6 @@ final class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     override func configure() {
@@ -39,19 +37,24 @@ final class HomeViewController: BaseViewController {
     }
     
     private func myRegionAndAnnotation(_ title: String, _ meters: Double ,_ center: CLLocationCoordinate2D) {
-        
+
         let region = MKCoordinateRegion(center: center, latitudinalMeters: meters, longitudinalMeters: meters)
         mapView.setRegion(region, animated: true)
         
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = center
-        annotation.title = title
+        addCustomPin(title: title, coordinate: center)
+    }
+    
+    private func addCustomPin(title: String, coordinate: CLLocationCoordinate2D) {
+        let pin = MKPointAnnotation()
+        pin.coordinate = coordinate
+        pin.title = title
+        mapView.addAnnotation(pin)
         
-        mapView.addAnnotation(annotation)
     }
 }
 
 extension HomeViewController: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let coordinate = locations.last?.coordinate {
@@ -76,6 +79,27 @@ extension HomeViewController: CLLocationManagerDelegate {
 }
 
 extension HomeViewController : MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "myPin")
+        
+        if annotationView == nil {
+            // create a view
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
+            annotationView?.canShowCallout = true
+            
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        annotationView?.image = UIImage(named: "map_marker")
+        
+        return annotationView
+    }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         locationManager.stopUpdatingLocation()
