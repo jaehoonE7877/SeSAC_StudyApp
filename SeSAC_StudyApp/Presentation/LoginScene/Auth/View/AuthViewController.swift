@@ -25,7 +25,6 @@ final class AuthViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.makeToast(LoginMessage.sentMessage, duration: 1, position: .center)
     }
     
     override func setBinding() {
@@ -88,7 +87,6 @@ final class AuthViewController: BaseViewController {
                     case .success(let idToken):
                         idToken.user.getIDTokenForcingRefresh(true) { token, error in
                             if let error = error {
-                                let errorCode = (error as NSError)
                                 weakSelf.mainView.makeToast("\(error.localizedDescription)", duration: 1, position: .center)
                             }
                             guard let token = token else { return }
@@ -96,6 +94,7 @@ final class AuthViewController: BaseViewController {
                             weakSelf.viewModel.login { result in
                                 switch result {
                                 case .success(_):
+                                    UserManager.nickError = false
                                     weakSelf.transitionViewController(viewController: HomeViewController(), transitionStyle: .presentFullNavigation)
                                 case .failure(let error):
                                     if error.rawValue == 406 {

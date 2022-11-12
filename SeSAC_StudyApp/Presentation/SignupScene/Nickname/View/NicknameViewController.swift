@@ -23,7 +23,13 @@ final class NicknameViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if mainView.nicknameTextField.text == "" {
+            UserManager.nickError = false
+        }
     }
     
     override func setBinding() {

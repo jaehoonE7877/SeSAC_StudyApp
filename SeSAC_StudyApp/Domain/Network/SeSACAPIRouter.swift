@@ -42,7 +42,10 @@ extension SeSACAPIRouter {
     }
     
     var parameters: [String: String] {
-        guard let gender = UserManager.gender else { return ["" : ""] }
+        
+        guard let birth = UserManager.birth,
+              let email = UserManager.email,
+              let gender = UserManager.gender else { return ["" : ""] }
         
         switch self {
         case .login:
@@ -52,8 +55,8 @@ extension SeSACAPIRouter {
                 "phoneNumber" : saveNumber(phoneNumber: UserManager.phone),
                 "FCMtoken" : UserManager.fcmToken,
                 "nick" : UserManager.nickname,
-                "birth" : UserManager.birth,
-                "email" : UserManager.email,
+                "birth" : "\(birth.yyyyMMddTHHmmssSSZ)",
+                "email" : email,
                 "gender" : String(gender)
             ]
         }

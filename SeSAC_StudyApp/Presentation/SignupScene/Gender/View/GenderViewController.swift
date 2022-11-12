@@ -20,10 +20,24 @@ final class GenderViewController: BaseViewController {
     override func loadView() {
         self.view = mainView
     }
-    
+    //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if UserManager.nickError {
+            mainView.mainButton.status = .fill
+            switch UserManager.gender {
+            case Gender.man.rawValue:
+                mainView.manView.backgroundColor = .ssWhiteGreen
+            case Gender.woman.rawValue:
+                mainView.womanView.backgroundColor = .ssWhiteGreen
+            default:
+                break
+            }
+        }
     }
     
     override func setBinding() {
@@ -39,7 +53,7 @@ final class GenderViewController: BaseViewController {
                 weakSelf.mainView.manView.backgroundColor = .ssWhiteGreen
                 weakSelf.mainView.womanView.backgroundColor = .clear
                 weakSelf.mainView.mainButton.status = .fill
-                weakSelf.mainView.mainButton.isEnabled = true
+                
             }
             .disposed(by: disposeBag)
         

@@ -46,11 +46,11 @@ class UserManager {
     @UserDefault(key: "authDone", defaultValue: 0)
     static var authDone: Int
     
-    @UserDefault(key: "birth", defaultValue: "")
-    static var birth: String
+    @UserDefault(key: "birth", defaultValue: nil)
+    static var birth: Date?
     
-    @UserDefault(key: "email", defaultValue: "")
-    static var email: String
+    @UserDefault(key: "email", defaultValue: nil)
+    static var email: String?
     
     @UserDefault(key: "gender", defaultValue: nil)
     static var gender: Int?

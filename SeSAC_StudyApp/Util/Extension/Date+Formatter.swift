@@ -45,5 +45,24 @@ extension Date {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         return formatter.string(from: self)
     }
-    
 }
+
+extension String {
+    
+    func stringToDate() -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter.date(from: self)
+    }
+    
+    func fetchBirthWithFormat(format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        formatter.locale = Locale(identifier: "ko_KR")
+        guard let date = formatter.date(from: self) else { return ""}
+        return formatter.string(from: date)
+    }
+}
+
+

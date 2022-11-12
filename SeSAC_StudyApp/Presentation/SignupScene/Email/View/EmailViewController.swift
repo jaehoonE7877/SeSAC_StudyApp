@@ -20,13 +20,16 @@ final class EmailViewController: BaseViewController {
     override func loadView() {
         self.view = mainView
     }
-    
+    //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
+        if UserManager.nickError {
+            mainView.emailTextField.text = UserManager.email
+        }
     }
     
     override func setBinding() {

@@ -21,9 +21,21 @@ final class BirthViewController: BaseViewController {
         self.view = mainView
     }
     
+    //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        if UserManager.nickError {
+            guard let birth = UserManager.birth else { return }
+            mainView.datePicker.date = birth
+            mainView.yearView.dateTextField.text = "\(birth.year)"
+            mainView.monthView.dateTextField.text = "\(birth.month)"
+            mainView.dayView.dateTextField.text = "\(birth.day)"
+        }
     }
     
     override func setBinding() {
@@ -48,14 +60,13 @@ final class BirthViewController: BaseViewController {
             .withUnretained(self)
             .bind { weakSelf, _ in
                 if weakSelf.viewModel.ageValidation(age: weakSelf.mainView.datePicker.date) {
-                    UserManager.birth = weakSelf.mainView.datePicker.date.yyyyMMddTHHmmssSSZ
+                    UserManager.birth = weakSelf.mainView.datePicker.date
                     weakSelf.transitionViewController(viewController: EmailViewController(), transitionStyle: .push)
                 } else {
                     weakSelf.mainView.makeToast(SignupMessage.ageTooYoung, duration: 1, position: .center)
                 }
             }
             .disposed(by: disposeBag)
-        
     }
     
 }
