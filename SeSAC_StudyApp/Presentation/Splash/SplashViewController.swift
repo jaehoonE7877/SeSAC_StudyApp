@@ -62,8 +62,10 @@ extension SplashViewController {
         labelImageView.alpha = 0
         
         UIView.animate(withDuration: 1.0, delay: 1.5, options: .curveEaseOut, animations: {
-            self.imageView.alpha = 1
-            self.labelImageView.alpha = 1
+            DispatchQueue.main.async {
+                self.imageView.alpha = 1
+                self.labelImageView.alpha = 1
+            }
         }) { [weak self] _ in
             guard let self = self else { return }
             self.splash()

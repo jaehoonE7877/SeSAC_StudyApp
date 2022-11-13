@@ -43,6 +43,9 @@
 		255A37C5291C32BC00737C3A /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C4291C32BC00737C3A /* BirthView.swift */; };
 		255A37C7291C32CC00737C3A /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C6291C32CC00737C3A /* BirthViewController.swift */; };
 		255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C8291C330500737C3A /* BirthViewModel.swift */; };
+		258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0729210BEE00C78A67 /* InfoModel.swift */; };
+		258B1E0B29210CBF00C78A67 /* ReuseableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */; };
+		258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */; };
 		25D8C391291CAB2F00FB52DF /* BirthItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C390291CAB2F00FB52DF /* BirthItemView.swift */; };
 		25D8C394291D263E00FB52DF /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C393291D263E00FB52DF /* Date+Formatter.swift */; };
 		25D8C399291D2B5600FB52DF /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C398291D2B5600FB52DF /* GenderView.swift */; };
@@ -123,6 +126,9 @@
 		255A37C4291C32BC00737C3A /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		255A37C6291C32CC00737C3A /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		255A37C8291C330500737C3A /* BirthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewModel.swift; sourceTree = "<group>"; };
+		258B1E0729210BEE00C78A67 /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
+		258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableViewProtocol.swift; sourceTree = "<group>"; };
+		258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		25D8C390291CAB2F00FB52DF /* BirthItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthItemView.swift; sourceTree = "<group>"; };
 		25D8C393291D263E00FB52DF /* Date+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatter.swift"; sourceTree = "<group>"; };
 		25D8C398291D2B5600FB52DF /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
@@ -215,7 +221,8 @@
 		25230B00291FB16100525531 /* Info */ = {
 			isa = PBXGroup;
 			children = (
-				25230B01291FB17100525531 /* InfoViewController.swift */,
+				258B1E0629210B0E00C78A67 /* View */,
+				258B1E0529210B0000C78A67 /* Cell */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -335,6 +342,7 @@
 				255A37AE291BF5E900737C3A /* BaseURL.swift */,
 				255A37B5291C21CD00737C3A /* ToastMessage.swift */,
 				2515966A291D722200F48DB5 /* Gender.swift */,
+				258B1E0729210BEE00C78A67 /* InfoModel.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -397,6 +405,30 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		258B1E0529210B0000C78A67 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		258B1E0629210B0E00C78A67 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25230B01291FB17100525531 /* InfoViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		258B1E0929210CA300C78A67 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		25D8C38F291CAB0B00FB52DF /* Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,11 +475,11 @@
 		25F11E90291E3F37004AC54A /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
+				25F11E91291E43A6004AC54A /* TabViewController.swift */,
 				25230AF7291FAFF100525531 /* Home */,
 				25230AFA291FB0A400525531 /* Shop */,
 				25230AFD291FB0DC00525531 /* Friend */,
 				25230B00291FB16100525531 /* Info */,
-				25F11E91291E43A6004AC54A /* TabViewController.swift */,
 			);
 			path = MainScene;
 			sourceTree = "<group>";
@@ -641,6 +673,7 @@
 		25F7FE2129193EF800E0C486 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				258B1E0929210CA300C78A67 /* Protocol */,
 				25F7FE2229193F0A00E0C486 /* BaseView.swift */,
 				254627DC291A3C05004D4B72 /* Login */,
 				25D8C38F291CAB0B00FB52DF /* Signup */,
@@ -847,6 +880,7 @@
 				25F7FE1D29193E7600E0C486 /* ViewModelType.swift in Sources */,
 				255A37A5291BE27000737C3A /* SeSACError.swift in Sources */,
 				25F7FE55291976CA00E0C486 /* UITextField+AttributedString.swift in Sources */,
+				258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */,
 				255A37B9291C28EC00737C3A /* PropertyWapper.swift in Sources */,
 				255A378E291AB47300737C3A /* DefaultFirebaseAPIService.swift in Sources */,
 				25F7FE0129193B3400E0C486 /* OnboardingViewController.swift in Sources */,
@@ -869,6 +903,7 @@
 				255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */,
 				25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */,
 				254627DE291A3C1A004D4B72 /* LoginView.swift in Sources */,
+				258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */,
 				25F7FE0929193C6300E0C486 /* APIKey.swift in Sources */,
 				25F7FE2329193F0A00E0C486 /* BaseView.swift in Sources */,
 				25F7FE262919403C00E0C486 /* BaseViewController+.swift in Sources */,
@@ -879,6 +914,7 @@
 				255A37B6291C21CD00737C3A /* ToastMessage.swift in Sources */,
 				25F7FE572919792000E0C486 /* UITextField+.swift in Sources */,
 				255A379B291BAE5300737C3A /* FirebaseAPIService.swift in Sources */,
+				258B1E0B29210CBF00C78A67 /* ReuseableViewProtocol.swift in Sources */,
 				25230AF9291FB01900525531 /* HomeViewController.swift in Sources */,
 				25F11E95291F80AE004AC54A /* NetworkCheck.swift in Sources */,
 				255A37C7291C32CC00737C3A /* BirthViewController.swift in Sources */,
