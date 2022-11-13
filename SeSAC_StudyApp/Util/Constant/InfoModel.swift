@@ -20,7 +20,7 @@ enum Info : Int {
     var title: String {
         switch self {
         case .personal:
-            return "김새싹"
+            return "\(UserManager.nickname)"
         case .notice:
             return "공지사항"
         case .faq:

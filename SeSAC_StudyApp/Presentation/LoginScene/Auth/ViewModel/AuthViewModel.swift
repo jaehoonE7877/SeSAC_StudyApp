@@ -74,8 +74,8 @@ extension AuthViewModel {
         }
     }
     
-    func login(completion: @escaping (Result<UserData,SeSACError>) -> Void) {
-        sesacAPIService.request(type: UserData.self, router: .login) { result in
+    func login(completion: @escaping (Result<UserDataDTO,SeSACError>) -> Void) {
+        sesacAPIService.request(type: UserDataDTO.self, router: .login) { result in
             switch result {
             case .success(let success):
                 completion(.success(success))

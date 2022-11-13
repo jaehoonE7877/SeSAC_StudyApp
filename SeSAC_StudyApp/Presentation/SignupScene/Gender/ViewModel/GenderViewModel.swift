@@ -35,8 +35,8 @@ final class GenderViewModel: ViewModelType {
 
 extension GenderViewModel {
     
-    func signup(completion: @escaping (Result<UserData,SeSACError>) -> Void) {
-        sesacAPIService.request(type: UserData.self, router: .signup) { result in
+    func signup(completion: @escaping (Result<UserDataDTO,SeSACError>) -> Void) {
+        sesacAPIService.request(type: UserDataDTO.self, router: .signup) { result in
             switch result {
             case .success(let success):
                 completion(.success(success))

@@ -30,7 +30,7 @@
 		255A37A3291BB01400737C3A /* NicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37A2291BB01400737C3A /* NicknameView.swift */; };
 		255A37A5291BE27000737C3A /* SeSACError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37A4291BE27000737C3A /* SeSACError.swift */; };
 		255A37A7291BE54100737C3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 255A37A6291BE54100737C3A /* GoogleService-Info.plist */; };
-		255A37AA291BF41100737C3A /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37A9291BF41100737C3A /* UserData.swift */; };
+		255A37AA291BF41100737C3A /* UserDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37A9291BF41100737C3A /* UserDataDTO.swift */; };
 		255A37AD291BF5BD00737C3A /* SeSACAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37AC291BF5BD00737C3A /* SeSACAPIRouter.swift */; };
 		255A37AF291BF5E900737C3A /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37AE291BF5E900737C3A /* BaseURL.swift */; };
 		255A37B2291C1B3800737C3A /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37B1291C1B3800737C3A /* NicknameViewModel.swift */; };
@@ -113,7 +113,7 @@
 		255A37A2291BB01400737C3A /* NicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameView.swift; sourceTree = "<group>"; };
 		255A37A4291BE27000737C3A /* SeSACError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACError.swift; sourceTree = "<group>"; };
 		255A37A6291BE54100737C3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		255A37A9291BF41100737C3A /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		255A37A9291BF41100737C3A /* UserDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataDTO.swift; sourceTree = "<group>"; };
 		255A37AC291BF5BD00737C3A /* SeSACAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACAPIRouter.swift; sourceTree = "<group>"; };
 		255A37AE291BF5E900737C3A /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		255A37B1291C1B3800737C3A /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
@@ -283,12 +283,12 @@
 			path = SignupScene;
 			sourceTree = "<group>";
 		};
-		255A3794291BAC3900737C3A /* Model */ = {
+		255A3794291BAC3900737C3A /* DataMapping */ = {
 			isa = PBXGroup;
 			children = (
-				255A37A9291BF41100737C3A /* UserData.swift */,
+				255A37A9291BF41100737C3A /* UserDataDTO.swift */,
 			);
-			path = Model;
+			path = DataMapping;
 			sourceTree = "<group>";
 		};
 		255A3799291BADF300737C3A /* Protocol */ = {
@@ -427,6 +427,21 @@
 				258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		258B1E102921318500C78A67 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				258B1E112921318F00C78A67 /* DataMapping */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		258B1E112921318F00C78A67 /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataMapping;
 			sourceTree = "<group>";
 		};
 		25D8C38F291CAB0B00FB52DF /* Signup */ = {
@@ -577,7 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				255A37AB291BF5AD00737C3A /* Network */,
-				255A3794291BAC3900737C3A /* Model */,
+				255A3794291BAC3900737C3A /* DataMapping */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -598,6 +613,7 @@
 		25F7FDFC29193A2400E0C486 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				258B1E102921318500C78A67 /* Network */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -874,7 +890,7 @@
 				255A37A3291BB01400737C3A /* NicknameView.swift in Sources */,
 				25F7FE2029193EC400E0C486 /* Alertable.swift in Sources */,
 				25F7FE0529193B7500E0C486 /* BaseViewController.swift in Sources */,
-				255A37AA291BF41100737C3A /* UserData.swift in Sources */,
+				255A37AA291BF41100737C3A /* UserDataDTO.swift in Sources */,
 				255A3797291BACAF00737C3A /* DefaultSeSACAPIService.swift in Sources */,
 				25F7FE532919753F00E0C486 /* PhoneViewModel.swift in Sources */,
 				25F7FE1D29193E7600E0C486 /* ViewModelType.swift in Sources */,

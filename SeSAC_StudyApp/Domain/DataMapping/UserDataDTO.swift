@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserData: Codable {
+struct UserDataDTO: Codable {
     let id: String
     let v: Int
     let uid, phoneNumber, email, fcMtoken: String
