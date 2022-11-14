@@ -43,6 +43,7 @@ final class DetailInfoViewController: BaseViewController {
     
     override func configure() {
         title = "정보 관리"
+        view.backgroundColor = .systemBackground
         view.addSubview(tableView)
     }
     
@@ -56,4 +57,10 @@ final class DetailInfoViewController: BaseViewController {
     override func setBinding() {
         
     }
+}
+
+extension DetailInfoViewController: UITableViewDelegate {
+    
+    
+    
 }

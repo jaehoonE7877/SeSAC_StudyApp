@@ -26,6 +26,7 @@ final class InfoViewController: BaseViewController {
                 make.size.equalTo(48)
             }
             cell.mainLabel.font = UIFont.notoSans(size: 16, family: .Medium)
+            cell.selectionStyle = .none
         }
 
         cell.mainImageView.image = item.mainImage
@@ -71,16 +72,16 @@ final class InfoViewController: BaseViewController {
           .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
-            .withUnretained(self)
-            .bind { weakSelf, indexPath in
-                if indexPath.row == 0 {
-                    weakSelf.transitionViewController(viewController: DetailInfoViewController(), transitionStyle: .push)
-                }
-            }
+            .subscribe(onNext: { indexPath in
+                //guard let self = self else { return }
+                self.transitionViewController(viewController: DetailInfoViewController(), transitionStyle: .push)
+            })
             .disposed(by: disposeBag)
         
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
+        
+        
         
     }
     
