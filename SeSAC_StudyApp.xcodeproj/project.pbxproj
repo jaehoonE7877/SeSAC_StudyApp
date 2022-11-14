@@ -47,12 +47,16 @@
 		258B1E0B29210CBF00C78A67 /* ReuseableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */; };
 		258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */; };
 		25D1EDE629227F2D0015C444 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDE529227F2D0015C444 /* DetailInfoViewController.swift */; };
-		25D1EDE829227FE70015C444 /* DetailinfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDE729227FE70015C444 /* DetailinfoView.swift */; };
 		25D1EDEA292286280015C444 /* SesacImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDE9292286280015C444 /* SesacImageTableViewCell.swift */; };
 		25D1EDEC29228D0A0015C444 /* SesacDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */; };
-		25D1EDEE29228ECC0015C444 /* GenderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDED29228ECC0015C444 /* GenderTableViewCell.swift */; };
+		25D1EDEE29228ECC0015C444 /* GenderCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDED29228ECC0015C444 /* GenderCustomView.swift */; };
 		25D1EDF129228F730015C444 /* GenderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDF029228F730015C444 /* GenderButton.swift */; };
 		25D1EDF329228FB50015C444 /* GenderButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDF229228FB50015C444 /* GenderButtonStatus.swift */; };
+		25D1EDF52922925A0015C444 /* StudyInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDF42922925A0015C444 /* StudyInputView.swift */; };
+		25D1EDF7292294A40015C444 /* PhoneSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDF6292294A40015C444 /* PhoneSearchView.swift */; };
+		25D1EDF92922960F0015C444 /* FriendAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDF82922960F0015C444 /* FriendAgeView.swift */; };
+		25D1EDFB2922983C0015C444 /* WithdrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDFA2922983C0015C444 /* WithdrawView.swift */; };
+		25D1EDFE29229BB70015C444 /* InfoDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDFD29229BB60015C444 /* InfoDetailTableViewCell.swift */; };
 		25D8C391291CAB2F00FB52DF /* BirthItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C390291CAB2F00FB52DF /* BirthItemView.swift */; };
 		25D8C394291D263E00FB52DF /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C393291D263E00FB52DF /* Date+Formatter.swift */; };
 		25D8C399291D2B5600FB52DF /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C398291D2B5600FB52DF /* GenderView.swift */; };
@@ -137,12 +141,16 @@
 		258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableViewProtocol.swift; sourceTree = "<group>"; };
 		258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		25D1EDE529227F2D0015C444 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
-		25D1EDE729227FE70015C444 /* DetailinfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailinfoView.swift; sourceTree = "<group>"; };
 		25D1EDE9292286280015C444 /* SesacImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacImageTableViewCell.swift; sourceTree = "<group>"; };
 		25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacDetailTableViewCell.swift; sourceTree = "<group>"; };
-		25D1EDED29228ECC0015C444 /* GenderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderTableViewCell.swift; sourceTree = "<group>"; };
+		25D1EDED29228ECC0015C444 /* GenderCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCustomView.swift; sourceTree = "<group>"; };
 		25D1EDF029228F730015C444 /* GenderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderButton.swift; sourceTree = "<group>"; };
 		25D1EDF229228FB50015C444 /* GenderButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderButtonStatus.swift; sourceTree = "<group>"; };
+		25D1EDF42922925A0015C444 /* StudyInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyInputView.swift; sourceTree = "<group>"; };
+		25D1EDF6292294A40015C444 /* PhoneSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSearchView.swift; sourceTree = "<group>"; };
+		25D1EDF82922960F0015C444 /* FriendAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAgeView.swift; sourceTree = "<group>"; };
+		25D1EDFA2922983C0015C444 /* WithdrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawView.swift; sourceTree = "<group>"; };
+		25D1EDFD29229BB60015C444 /* InfoDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailTableViewCell.swift; sourceTree = "<group>"; };
 		25D8C390291CAB2F00FB52DF /* BirthItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthItemView.swift; sourceTree = "<group>"; };
 		25D8C393291D263E00FB52DF /* Date+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatter.swift"; sourceTree = "<group>"; };
 		25D8C398291D2B5600FB52DF /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
@@ -235,6 +243,7 @@
 		25230B00291FB16100525531 /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				25D1EDFC29229B6C0015C444 /* CustomView */,
 				258B1E0629210B0E00C78A67 /* View */,
 				258B1E0529210B0000C78A67 /* Cell */,
 			);
@@ -425,7 +434,7 @@
 				258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */,
 				25D1EDE9292286280015C444 /* SesacImageTableViewCell.swift */,
 				25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */,
-				25D1EDED29228ECC0015C444 /* GenderTableViewCell.swift */,
+				25D1EDFD29229BB60015C444 /* InfoDetailTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -435,7 +444,6 @@
 			children = (
 				25230B01291FB17100525531 /* InfoViewController.swift */,
 				25D1EDE529227F2D0015C444 /* DetailInfoViewController.swift */,
-				25D1EDE729227FE70015C444 /* DetailinfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -470,6 +478,18 @@
 				25D1EDF229228FB50015C444 /* GenderButtonStatus.swift */,
 			);
 			path = Info;
+			sourceTree = "<group>";
+		};
+		25D1EDFC29229B6C0015C444 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				25D1EDED29228ECC0015C444 /* GenderCustomView.swift */,
+				25D1EDF42922925A0015C444 /* StudyInputView.swift */,
+				25D1EDF6292294A40015C444 /* PhoneSearchView.swift */,
+				25D1EDF82922960F0015C444 /* FriendAgeView.swift */,
+				25D1EDFA2922983C0015C444 /* WithdrawView.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		25D8C38F291CAB0B00FB52DF /* Signup */ = {
@@ -903,6 +923,7 @@
 				2515966B291D722200F48DB5 /* Gender.swift in Sources */,
 				25F11E92291E43A6004AC54A /* TabViewController.swift in Sources */,
 				254627D2291A2EFF004D4B72 /* String+PhoneNumber.swift in Sources */,
+				25D1EDFB2922983C0015C444 /* WithdrawView.swift in Sources */,
 				25F7FE492919698600E0C486 /* ThirdViewController.swift in Sources */,
 				25D1EDE629227F2D0015C444 /* DetailInfoViewController.swift in Sources */,
 				25F7FE472919695E00E0C486 /* SecondViewController.swift in Sources */,
@@ -936,6 +957,7 @@
 				25F7FE392919465500E0C486 /* UIFont+CustomFont.swift in Sources */,
 				254627DB291A3BB3004D4B72 /* AuthViewModel.swift in Sources */,
 				25D8C39B291D2B6200FB52DF /* GenderViewController.swift in Sources */,
+				25D1EDFE29229BB70015C444 /* InfoDetailTableViewCell.swift in Sources */,
 				25230AFC291FB0CD00525531 /* ShopViewController.swift in Sources */,
 				255A37AD291BF5BD00737C3A /* SeSACAPIRouter.swift in Sources */,
 				254627D7291A3B97004D4B72 /* AuthView.swift in Sources */,
@@ -947,6 +969,7 @@
 				255A37C1291C31E700737C3A /* EmailViewModel.swift in Sources */,
 				255A37BF291C31DE00737C3A /* EmailViewController.swift in Sources */,
 				25F7FE43291957FB00E0C486 /* UILabel+AttributedString.swift in Sources */,
+				25D1EDF7292294A40015C444 /* PhoneSearchView.swift in Sources */,
 				255A37AF291BF5E900737C3A /* BaseURL.swift in Sources */,
 				255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */,
 				25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */,
@@ -962,13 +985,14 @@
 				25D8C39D291D2B8800FB52DF /* GenderViewModel.swift in Sources */,
 				255A37B4291C1B4700737C3A /* NicknameViewController.swift in Sources */,
 				255A37B6291C21CD00737C3A /* ToastMessage.swift in Sources */,
-				25D1EDE829227FE70015C444 /* DetailinfoView.swift in Sources */,
-				25D1EDEE29228ECC0015C444 /* GenderTableViewCell.swift in Sources */,
+				25D1EDEE29228ECC0015C444 /* GenderCustomView.swift in Sources */,
 				25F7FE572919792000E0C486 /* UITextField+.swift in Sources */,
 				255A379B291BAE5300737C3A /* FirebaseAPIService.swift in Sources */,
 				258B1E0B29210CBF00C78A67 /* ReuseableViewProtocol.swift in Sources */,
 				25230AF9291FB01900525531 /* HomeViewController.swift in Sources */,
+				25D1EDF92922960F0015C444 /* FriendAgeView.swift in Sources */,
 				25F11E95291F80AE004AC54A /* NetworkCheck.swift in Sources */,
+				25D1EDF52922925A0015C444 /* StudyInputView.swift in Sources */,
 				255A37C7291C32CC00737C3A /* BirthViewController.swift in Sources */,
 				255A37B2291C1B3800737C3A /* NicknameViewModel.swift in Sources */,
 			);
