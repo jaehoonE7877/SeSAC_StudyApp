@@ -30,10 +30,10 @@ final class GenderButton: UIButton {
         
         switch status {
         case .inactive:
+            self.setTitleColor(.textColor, for: .normal)
             self.backgroundColor = .white
             self.layer.borderWidth = 1
             self.layer.borderColor = UIColor.gray4.cgColor
-            self.titleLabel?.textColor = .textColor
         case .active:
             self.backgroundColor = .ssGreen
             self.titleLabel?.textColor = .white
@@ -45,10 +45,10 @@ final class GenderButton: UIButton {
         didSet {
             switch status {
             case .inactive:
+                self.setTitleColor(.textColor, for: .normal)
                 self.backgroundColor = .white
                 self.layer.borderWidth = 1
                 self.layer.borderColor = UIColor.gray4.cgColor
-                self.titleLabel?.textColor = .textColor
             case .active:
                 self.backgroundColor = .ssGreen
                 self.titleLabel?.textColor = .white

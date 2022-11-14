@@ -13,6 +13,8 @@ final class SesacImageTableViewCell: UITableViewCell {
     
     //MARK: Porperty
     lazy var bgImageView = UIImageView().then {
+        $0.layer.cornerRadius = 8
+        $0.layer.masksToBounds = true
         $0.image = UIImage(named: "sesac_bg_01")
         $0.contentMode = .scaleAspectFill
     }
@@ -33,14 +35,13 @@ final class SesacImageTableViewCell: UITableViewCell {
     }
     
     private func configure() {
-        contentView.layer.cornerRadius = 8
-        contentView.layer.masksToBounds = false
         [bgImageView, sesacImageView].forEach { contentView.addSubview($0) }
     }
     
     private func setConstraint(){
         bgImageView.snp.makeConstraints { make in
-            make.edges.equalTo(contentView)
+            make.top.equalTo(contentView).offset(16)
+            make.horizontalEdges.bottom.equalToSuperview()
         }
         
         sesacImageView.snp.makeConstraints { make in

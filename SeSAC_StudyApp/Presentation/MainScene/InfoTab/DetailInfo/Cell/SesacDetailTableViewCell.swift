@@ -23,6 +23,14 @@ final class SesacDetailTableViewCell: UITableViewCell {
         $0.contentMode = .scaleAspectFill
     }
     
+    lazy var sesacTitleView = SesacTitleView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    lazy var sesacReviewView = SesacReviewView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
@@ -34,22 +42,31 @@ final class SesacDetailTableViewCell: UITableViewCell {
     }
     
     private func configure() {
-        contentView.layer.masksToBounds = false
-        contentView.layer.cornerRadius = 8
-        contentView.layer.borderColor = UIColor.gray2.cgColor
-        [nameLabel, chevornImageView].forEach { contentView.addSubview($0) }
+        [nameLabel, chevornImageView, sesacTitleView, sesacReviewView].forEach { contentView.addSubview($0) }
     }
     
     private func setConstraint() {
         nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentView).offset(16)
             make.leading.equalTo(contentView).offset(16)
-            make.centerY.equalTo(contentView)
         }
         
         chevornImageView.snp.makeConstraints { make in
             make.centerY.equalTo(nameLabel.snp.centerY)
             make.trailing.equalTo(contentView).offset(-16)
             make.size.equalTo(16)
+        }
+        
+        sesacTitleView.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(24)
+            make.horizontalEdges.equalTo(contentView).inset(16)
+            make.height.equalTo(146)
+        }
+        
+        sesacReviewView.snp.makeConstraints { make in
+            make.top.equalTo(sesacTitleView.snp.bottom).offset(24)
+            make.horizontalEdges.equalTo(contentView).inset(16)
+            //make.height.equalTo(146)
         }
     }
 }

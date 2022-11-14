@@ -64,6 +64,9 @@
 		25D8C39D291D2B8800FB52DF /* GenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C39C291D2B8800FB52DF /* GenderViewModel.swift */; };
 		25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8C39F291D36E100FB52DF /* GenderItemView.swift */; };
 		25D8C3A3291D4C6F00FB52DF /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 25D8C3A2291D4C6F00FB52DF /* RxDataSources */; };
+		25ED4A822922AA3D00C4A6EB /* DetailInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ED4A812922AA3D00C4A6EB /* DetailInfoModel.swift */; };
+		25ED4A842922BD7D00C4A6EB /* SesacTItleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ED4A832922BD7D00C4A6EB /* SesacTItleView.swift */; };
+		25ED4A882922CF8400C4A6EB /* SesacReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ED4A872922CF8400C4A6EB /* SesacReviewView.swift */; };
 		25F11E8F291DEFDF004AC54A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F11E8E291DEFDF004AC54A /* SplashViewController.swift */; };
 		25F11E92291E43A6004AC54A /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F11E91291E43A6004AC54A /* TabViewController.swift */; };
 		25F11E95291F80AE004AC54A /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F11E94291F80AE004AC54A /* NetworkCheck.swift */; };
@@ -157,6 +160,9 @@
 		25D8C39A291D2B6200FB52DF /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
 		25D8C39C291D2B8800FB52DF /* GenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewModel.swift; sourceTree = "<group>"; };
 		25D8C39F291D36E100FB52DF /* GenderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderItemView.swift; sourceTree = "<group>"; };
+		25ED4A812922AA3D00C4A6EB /* DetailInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoModel.swift; sourceTree = "<group>"; };
+		25ED4A832922BD7D00C4A6EB /* SesacTItleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacTItleView.swift; sourceTree = "<group>"; };
+		25ED4A872922CF8400C4A6EB /* SesacReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacReviewView.swift; sourceTree = "<group>"; };
 		25F11E8E291DEFDF004AC54A /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		25F11E91291E43A6004AC54A /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		25F11E94291F80AE004AC54A /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
@@ -365,6 +371,7 @@
 				255A37B5291C21CD00737C3A /* ToastMessage.swift */,
 				2515966A291D722200F48DB5 /* Gender.swift */,
 				258B1E0729210BEE00C78A67 /* InfoModel.swift */,
+				25ED4A812922AA3D00C4A6EB /* DetailInfoModel.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -485,6 +492,8 @@
 				25D1EDF6292294A40015C444 /* PhoneSearchView.swift */,
 				25D1EDF82922960F0015C444 /* FriendAgeView.swift */,
 				25D1EDFA2922983C0015C444 /* WithdrawView.swift */,
+				25ED4A832922BD7D00C4A6EB /* SesacTItleView.swift */,
+				25ED4A872922CF8400C4A6EB /* SesacReviewView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -974,6 +983,7 @@
 				25D1EDFB2922983C0015C444 /* WithdrawView.swift in Sources */,
 				25F7FE492919698600E0C486 /* ThirdViewController.swift in Sources */,
 				25D1EDE629227F2D0015C444 /* DetailInfoViewController.swift in Sources */,
+				25ED4A822922AA3D00C4A6EB /* DetailInfoModel.swift in Sources */,
 				25F7FE472919695E00E0C486 /* SecondViewController.swift in Sources */,
 				25F7FE452919682700E0C486 /* FirstViewController.swift in Sources */,
 				25D1EDF329228FB50015C444 /* GenderButtonStatus.swift in Sources */,
@@ -993,6 +1003,7 @@
 				25F7FE0529193B7500E0C486 /* BaseViewController.swift in Sources */,
 				255A37AA291BF41100737C3A /* UserDataDTO.swift in Sources */,
 				255A3797291BACAF00737C3A /* DefaultSeSACAPIService.swift in Sources */,
+				25ED4A842922BD7D00C4A6EB /* SesacTItleView.swift in Sources */,
 				25F7FE532919753F00E0C486 /* PhoneViewModel.swift in Sources */,
 				25F7FE1D29193E7600E0C486 /* ViewModelType.swift in Sources */,
 				255A37A5291BE27000737C3A /* SeSACError.swift in Sources */,
@@ -1000,6 +1011,7 @@
 				258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */,
 				255A37B9291C28EC00737C3A /* PropertyWapper.swift in Sources */,
 				255A378E291AB47300737C3A /* DefaultFirebaseAPIService.swift in Sources */,
+				25ED4A882922CF8400C4A6EB /* SesacReviewView.swift in Sources */,
 				25F7FE0129193B3400E0C486 /* OnboardingViewController.swift in Sources */,
 				25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */,
 				25F7FE392919465500E0C486 /* UIFont+CustomFont.swift in Sources */,

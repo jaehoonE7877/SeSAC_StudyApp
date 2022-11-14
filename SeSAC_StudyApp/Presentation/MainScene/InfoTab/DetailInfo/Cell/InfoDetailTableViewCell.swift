@@ -50,35 +50,35 @@ final class InfoDetailTableViewCell: UITableViewCell {
     private func setConstraint(){
         genderView.snp.makeConstraints { make in
             make.width.equalTo(contentView)
-            make.height.equalTo(80)
+            make.height.equalTo(76)
             make.centerX.equalTo(contentView)
             make.top.equalTo(contentView)
         }
         
         studyInputView.snp.makeConstraints { make in
             make.width.equalTo(contentView)
-            make.height.equalTo(80)
+            make.height.equalTo(76)
             make.centerX.equalTo(contentView)
             make.top.equalTo(genderView.snp.bottom)
         }
         
         phoneSearchView.snp.makeConstraints { make in
             make.width.equalTo(contentView)
-            make.height.equalTo(80)
+            make.height.equalTo(76)
             make.centerX.equalTo(contentView)
             make.top.equalTo(studyInputView.snp.bottom)
         }
         
         friendAgeView.snp.makeConstraints { make in
             make.width.equalTo(contentView)
-            make.height.equalTo(80)
+            make.height.equalTo(100)
             make.centerX.equalTo(contentView)
             make.top.equalTo(phoneSearchView.snp.bottom)
         }
         
         withdrawView.snp.makeConstraints { make in
             make.width.equalTo(contentView)
-            make.height.equalTo(80)
+            make.height.equalTo(76)
             make.centerX.equalTo(contentView)
             make.top.equalTo(friendAgeView.snp.bottom)
         }

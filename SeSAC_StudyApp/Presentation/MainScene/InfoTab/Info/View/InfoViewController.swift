@@ -72,17 +72,15 @@ final class InfoViewController: BaseViewController {
           .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
-            .subscribe(onNext: { indexPath in
-                //guard let self = self else { return }
-                self.transitionViewController(viewController: DetailInfoViewController(), transitionStyle: .push)
+            .withUnretained(self)
+            .subscribe(onNext: { weakSelf, indexPath in
+                weakSelf.transitionViewController(viewController: DetailInfoViewController(), transitionStyle: .push)
             })
             .disposed(by: disposeBag)
         
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
-        
-        
-        
+
     }
     
 }

@@ -38,7 +38,7 @@ final class FriendAgeView: BaseView {
     override func setConstraints() {
         friendLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.top.equalTo(self).offset(24)
         }
         
         ageLabel.snp.makeConstraints { make in
@@ -47,7 +47,7 @@ final class FriendAgeView: BaseView {
         }
         
         ageSlider.snp.makeConstraints { make in
-            make.top.equalTo(friendLabel.snp.bottom).offset(24)
+            make.top.equalTo(friendLabel.snp.bottom).offset(12)
             make.width.equalToSuperview().multipliedBy(0.92)
             make.centerX.equalToSuperview()
         }
