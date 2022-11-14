@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-final class DetailViewController: BaseViewController {
+final class DetailInfoViewController: BaseViewController {
     
     //MARK: Property
     private let tableView = UITableView(frame: .zero, style: .plain).then {
@@ -22,20 +22,18 @@ final class DetailViewController: BaseViewController {
     }
     
     private var dataSource = RxTableViewSectionedReloadDataSource<InfoSectionModel>(configureCell: { dataSource, tableView, indexPath, item in
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoTableViewCell.reuseIdentifier, for: indexPath) as? InfoTableViewCell else { return UITableViewCell() }
         
-        if indexPath.row == Info.personal.rawValue {
-            cell.mainImageView.snp.updateConstraints { make in
-                make.size.equalTo(48)
-            }
-            cell.mainLabel.font = UIFont.notoSans(size: 16, family: .Medium)
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SesacImageTableViewCell.reuseIdentifier, for: indexPath) as? SesacImageTableViewCell else { return UITableViewCell() }
+            return cell
+        } else if indexPath.section == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SesacDetailTableViewCell.reuseIdentifier, for: indexPath) as? SesacDetailTableViewCell else { return UITableViewCell() }
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoDetailTableViewCell.reuseIdentifier, for: indexPath) as? InfoDetailTableViewCell else { return UITableViewCell() }
+            return cell
         }
-
-        cell.mainImageView.image = item.mainImage
-        cell.mainLabel.text = item.title
-        cell.detailImage.image = item.detailImage
         
-        return cell
     })
     
     override func viewDidLoad() {
@@ -53,5 +51,9 @@ final class DetailViewController: BaseViewController {
             make.verticalEdges.equalToSuperview()
             make.horizontalEdges.equalToSuperview().inset(16)
         }
+    }
+    
+    override func setBinding() {
+        
     }
 }

@@ -70,6 +70,15 @@ final class InfoViewController: BaseViewController {
           .bind(to: tableView.rx.items(dataSource: dataSource))
           .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .withUnretained(self)
+            .bind { weakSelf, indexPath in
+                if indexPath.row == 0 {
+                    weakSelf.transitionViewController(viewController: DetailInfoViewController(), transitionStyle: .push)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
         

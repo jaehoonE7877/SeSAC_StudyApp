@@ -240,14 +240,13 @@
 			path = Friend;
 			sourceTree = "<group>";
 		};
-		25230B00291FB16100525531 /* Info */ = {
+		25230B00291FB16100525531 /* InfoTab */ = {
 			isa = PBXGroup;
 			children = (
-				25D1EDFC29229B6C0015C444 /* CustomView */,
-				258B1E0629210B0E00C78A67 /* View */,
-				258B1E0529210B0000C78A67 /* Cell */,
+				25D1EE052922A1030015C444 /* DetailInfo */,
+				25D1EE012922A0C60015C444 /* Info */,
 			);
-			path = Info;
+			path = InfoTab;
 			sourceTree = "<group>";
 		};
 		254627D3291A39BB004D4B72 /* Auth */ = {
@@ -431,7 +430,6 @@
 		258B1E0529210B0000C78A67 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */,
 				25D1EDE9292286280015C444 /* SesacImageTableViewCell.swift */,
 				25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */,
 				25D1EDFD29229BB60015C444 /* InfoDetailTableViewCell.swift */,
@@ -442,7 +440,6 @@
 		258B1E0629210B0E00C78A67 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				25230B01291FB17100525531 /* InfoViewController.swift */,
 				25D1EDE529227F2D0015C444 /* DetailInfoViewController.swift */,
 			);
 			path = View;
@@ -490,6 +487,57 @@
 				25D1EDFA2922983C0015C444 /* WithdrawView.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		25D1EE002922A0C00015C444 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		25D1EE012922A0C60015C444 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				25D1EE042922A0F60015C444 /* Cell */,
+				25D1EE032922A0EF0015C444 /* ViewModel */,
+				25D1EE022922A0E60015C444 /* View */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		25D1EE022922A0E60015C444 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25230B01291FB17100525531 /* InfoViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25D1EE032922A0EF0015C444 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		25D1EE042922A0F60015C444 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		25D1EE052922A1030015C444 /* DetailInfo */ = {
+			isa = PBXGroup;
+			children = (
+				258B1E0529210B0000C78A67 /* Cell */,
+				25D1EDFC29229B6C0015C444 /* CustomView */,
+				25D1EE002922A0C00015C444 /* ViewModel */,
+				258B1E0629210B0E00C78A67 /* View */,
+			);
+			path = DetailInfo;
 			sourceTree = "<group>";
 		};
 		25D8C38F291CAB0B00FB52DF /* Signup */ = {
@@ -542,7 +590,7 @@
 				25230AF7291FAFF100525531 /* Home */,
 				25230AFA291FB0A400525531 /* Shop */,
 				25230AFD291FB0DC00525531 /* Friend */,
-				25230B00291FB16100525531 /* Info */,
+				25230B00291FB16100525531 /* InfoTab */,
 			);
 			path = MainScene;
 			sourceTree = "<group>";
