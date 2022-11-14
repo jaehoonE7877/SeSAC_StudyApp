@@ -79,6 +79,7 @@ final class AuthViewController: BaseViewController {
             
         output.verifyButtonTap
             .withUnretained(self)
+            .throttle(.seconds(5), scheduler: MainScheduler.instance)
             .bind { weakSelf, _ in
                 //네트워크 통신, 값이 있으면 mapview 없으면 회원가입으로 가는 로직
                 guard let text = weakSelf.mainView.authTextField.text else { return }

@@ -95,9 +95,7 @@ extension HomeViewController : MKMapViewDelegate {
         } else {
             annotationView?.annotation = annotation
         }
-        
         annotationView?.image = UIImage(named: "map_marker")
-        
         return annotationView
     }
     

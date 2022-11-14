@@ -69,6 +69,7 @@ final class PhoneViewController: BaseViewController {
         
         output.sendButtonTapped
             .withUnretained(self)
+            .throttle(.seconds(5), scheduler: MainScheduler.instance)
             .bind { weakSelf, _ in
                 if weakSelf.mainView.mainButton.backgroundColor == .ssGreen {
                     weakSelf.mainView.makeToast(LoginMessage.phoneValidOk, duration: 1, position: .center)

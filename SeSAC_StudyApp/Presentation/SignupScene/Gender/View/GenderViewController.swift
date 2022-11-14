@@ -68,6 +68,7 @@ final class GenderViewController: BaseViewController {
         
         output.nextButtonTap
             .withUnretained(self)
+            .throttle(.seconds(5), scheduler: MainScheduler.instance)
             .bind { weakSelf, _ in
                 if weakSelf.mainView.manView.backgroundColor == .ssWhiteGreen {
                     UserManager.gender = Gender.man.rawValue
