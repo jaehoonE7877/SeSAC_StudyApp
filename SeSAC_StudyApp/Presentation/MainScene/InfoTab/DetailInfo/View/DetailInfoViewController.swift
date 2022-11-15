@@ -21,30 +21,8 @@ final class DetailInfoViewController: BaseViewController {
         $0.separatorStyle = .none
     }
     
-    private var dataSource = RxTableViewSectionedReloadDataSource<DetailInfoSectionModel>(configureCell: { dataSource, tableView, indexPath, item in
-        
-        if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SesacImageTableViewCell.reuseIdentifier, for: indexPath) as? SesacImageTableViewCell else { return UITableViewCell() }
-            cell.selectionStyle = .none
-            return cell
-        } else if indexPath.section == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SesacDetailTableViewCell.reuseIdentifier, for: indexPath) as? SesacDetailTableViewCell else { return UITableViewCell() }
-            cell.layer.borderWidth = 1
-            cell.layer.masksToBounds = true
-            cell.layer.cornerRadius = 8
-            cell.layer.borderColor = UIColor.gray2.cgColor
-            cell.selectionStyle = .none
-            cell.nameLabel.text = item.title
-            return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoDetailTableViewCell.reuseIdentifier, for: indexPath) as? InfoDetailTableViewCell else { return UITableViewCell() }
-            
-            return cell
-        }
-    })
-    
     private var foldValue: Bool = true
-    
+
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -67,6 +45,33 @@ final class DetailInfoViewController: BaseViewController {
     
     override func setBinding() {
         
+        let dataSource = RxTableViewSectionedReloadDataSource<DetailInfoSectionModel>(configureCell: { [weak self]  dataSource, tableView, indexPath, item in
+            guard let self = self else { return UITableViewCell()}
+            if indexPath.section == 0 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: SesacImageTableViewCell.reuseIdentifier, for: indexPath) as? SesacImageTableViewCell else { return UITableViewCell() }
+                cell.selectionStyle = .none
+                return cell
+            } else if indexPath.section == 1 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: SesacDetailTableViewCell.reuseIdentifier, for: indexPath) as? SesacDetailTableViewCell else { return UITableViewCell() }
+                cell.layer.borderWidth = 1
+                cell.layer.masksToBounds = true
+                cell.layer.cornerRadius = 8
+                cell.layer.borderColor = UIColor.gray2.cgColor
+                cell.selectionStyle = .none
+                cell.nameLabel.text = item.title
+                cell.chevornImageView.image = self.foldValue ? UIImage(named: "more_arrow_down") : UIImage(named: "more_arrow_up")
+                cell.sesacTitleView.isHidden = self.foldValue
+                cell.sesacReviewView.isHidden = self.foldValue
+                cell.layoutIfNeeded()
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoDetailTableViewCell.reuseIdentifier, for: indexPath) as? InfoDetailTableViewCell else { return UITableViewCell() }
+                
+                return cell
+            }
+        })
+        
+        
         let section = [
             DetailInfoSectionModel(items: [DetailInfoModel()]),
             DetailInfoSectionModel(items: [DetailInfoModel(title: UserManager.nickname)]),
@@ -87,6 +92,8 @@ final class DetailInfoViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        
+        
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
     }
@@ -94,27 +101,29 @@ final class DetailInfoViewController: BaseViewController {
 
 extension DetailInfoViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 194
-        } else if indexPath.section == 1 {
-            //⭐️Cell height
-            return UITableView.automaticDimension
-        } else {
-            return 404
-        }
-    }
-    
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: SesacDetailTableViewCell.reuseIdentifier) as? SesacDetailTableViewCell else { return 0 }
+//        if indexPath.section == 0 {
+//            return 194
+//        } else if indexPath.section == 1 {
+//            //⭐️Cell height
+//
+//            return foldValue ? 56 : 56 + 16 + cell.sesacReviewView.bounds.height + cell.sesacTitleView.bounds.height
+//        } else {
+//            return 404
+//        }
+//    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
         if indexPath.section == 0 {
             return 194
         } else if indexPath.section == 1 {
             //⭐️Cell height
-            return foldValue ? 56 : 316
+            return foldValue ? 56 : UITableView.automaticDimension
         } else {
             return 404
         }
     }
-    
 }
 

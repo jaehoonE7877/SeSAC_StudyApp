@@ -12,26 +12,15 @@ import Then
 final class InfoDetailTableViewCell: UITableViewCell {
     
     //MARK: Porperty
-    lazy var genderView = GenderCustomView().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
+    lazy var genderView = GenderCustomView()
     
-    lazy var studyInputView = StudyInputView().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
+    lazy var studyInputView = StudyInputView()
     
-    lazy var phoneSearchView = PhoneSearchView().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
+    lazy var phoneSearchView = PhoneSearchView()
     
-    lazy var friendAgeView = FriendAgeView().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
+    lazy var friendAgeView = FriendAgeView()
     
-    lazy var withdrawView = WithdrawView().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
+    lazy var withdrawView = WithdrawView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

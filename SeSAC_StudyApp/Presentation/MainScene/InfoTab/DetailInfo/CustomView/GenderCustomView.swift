@@ -28,17 +28,18 @@ final class GenderCustomView: BaseView {
     }
     
     lazy var horizontalStackView = UIStackView(arrangedSubviews: [manButton, womanButton]).then {
+        $0.alignment = .fill
         $0.distribution = .fillEqually
         $0.axis = .horizontal
         $0.spacing = 8
         
-        manButton.snp.makeConstraints { make in
-            make.width.equalTo(56)
-        }
-        
-        womanButton.snp.makeConstraints { make in
-            make.width.equalTo(56)
-        }
+//        manButton.snp.makeConstraints { make in
+//            make.width.equalTo(56)
+//        }
+//
+//        womanButton.snp.makeConstraints { make in
+//            make.width.equalTo(56)
+//        }
     }
     
     override init(frame: CGRect) {
@@ -59,6 +60,7 @@ final class GenderCustomView: BaseView {
         horizontalStackView.snp.makeConstraints { make in
             make.centerY.equalTo(genderLabel.snp.centerY)
             make.trailing.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.36)
             make.height.equalTo(48)
         }
     }

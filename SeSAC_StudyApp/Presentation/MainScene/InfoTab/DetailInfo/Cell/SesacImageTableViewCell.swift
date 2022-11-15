@@ -11,7 +11,7 @@ import Then
 
 final class SesacImageTableViewCell: UITableViewCell {
     
-    //MARK: Porperty
+    //MARK: Property
     lazy var bgImageView = UIImageView().then {
         $0.layer.cornerRadius = 8
         $0.layer.masksToBounds = true
