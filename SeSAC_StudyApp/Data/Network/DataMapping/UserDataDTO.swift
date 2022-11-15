@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserDataDTO: Codable {
+struct UserData: Codable {
     let id: String
     let v: Int
     let uid, phoneNumber, email, fcMtoken: String
@@ -36,4 +36,8 @@ struct UserDataDTO: Codable {
         case transactionID = "transactionId"
         case reviewedBefore, reportedNum, reportedUser, dodgepenalty, dodgeNum, ageMin, ageMax, searchable, createdAt
     }
+}
+
+extension UserData {
+    
 }

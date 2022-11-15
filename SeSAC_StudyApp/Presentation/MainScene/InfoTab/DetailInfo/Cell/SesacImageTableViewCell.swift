@@ -15,7 +15,7 @@ final class SesacImageTableViewCell: UITableViewCell {
     lazy var bgImageView = UIImageView().then {
         $0.layer.cornerRadius = 8
         $0.layer.masksToBounds = true
-        $0.image = UIImage(named: "sesac_bg_01")
+        $0.image = UIImage(named: "sesac_background_1")
         $0.contentMode = .scaleAspectFill
     }
     

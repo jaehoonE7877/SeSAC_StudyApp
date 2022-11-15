@@ -71,7 +71,6 @@ final class DetailInfoViewController: BaseViewController {
             }
         })
         
-        
         let section = [
             DetailInfoSectionModel(items: [DetailInfoModel()]),
             DetailInfoSectionModel(items: [DetailInfoModel(title: UserManager.nickname)]),
@@ -92,7 +91,7 @@ final class DetailInfoViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        
+        //input -> genderButtonTap, study TextField, phoneSearch switch, slider(age label에 보여주기), 회원탈퇴 버튼 tap
         
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
@@ -100,19 +99,6 @@ final class DetailInfoViewController: BaseViewController {
 }
 
 extension DetailInfoViewController: UITableViewDelegate {
-    
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: SesacDetailTableViewCell.reuseIdentifier) as? SesacDetailTableViewCell else { return 0 }
-//        if indexPath.section == 0 {
-//            return 194
-//        } else if indexPath.section == 1 {
-//            //⭐️Cell height
-//
-//            return foldValue ? 56 : 56 + 16 + cell.sesacReviewView.bounds.height + cell.sesacTitleView.bounds.height
-//        } else {
-//            return 404
-//        }
-//    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
@@ -120,7 +106,7 @@ extension DetailInfoViewController: UITableViewDelegate {
             return 194
         } else if indexPath.section == 1 {
             //⭐️Cell height
-            return foldValue ? 56 : UITableView.automaticDimension
+            return foldValue ? 60 : UITableView.automaticDimension
         } else {
             return 404
         }

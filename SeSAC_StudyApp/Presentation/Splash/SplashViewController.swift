@@ -107,8 +107,8 @@ extension SplashViewController {
         sceneDelegate?.window?.makeKeyAndVisible()
     }
     
-    private func tryLogin(completion: @escaping (Result<UserDataDTO,SeSACError>) -> Void) {
-        sesacAPIService.request(type: UserDataDTO.self, router: .login) { result in
+    private func tryLogin(completion: @escaping (Result<UserData,SeSACError>) -> Void) {
+        sesacAPIService.request(type: UserData.self, router: .login) { result in
             switch result {
             case .success(let success):
                 completion(.success(success))
