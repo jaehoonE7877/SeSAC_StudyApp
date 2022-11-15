@@ -77,6 +77,11 @@ final class DetailInfoViewController: BaseViewController {
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoDetailTableViewCell.reuseIdentifier, for: indexPath) as? InfoDetailTableViewCell else { return UITableViewCell() }
                 cell.setData(item: item)
+                cell.friendAgeView.slider.rx.controlEvent(.valueChanged)
+                    .bind { _ in
+                        cell.friendAgeView.ageLabel.text = "\(Int(cell.friendAgeView.slider.value[0])) - \(Int(cell.friendAgeView.slider.value[1]))"
+                    }
+                    .disposed(by: self.disposeBag)
                 return cell
             }
         })

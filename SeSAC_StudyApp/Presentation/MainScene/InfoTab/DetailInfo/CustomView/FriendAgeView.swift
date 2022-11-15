@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MultiSlider
 
 final class FriendAgeView: BaseView {
     
@@ -22,8 +23,14 @@ final class FriendAgeView: BaseView {
         $0.text = "18 - 35"
     }
     
-    lazy var ageSlider = UISlider().then {
-        $0.layer.masksToBounds = false
+    lazy var slider = MultiSlider().then {
+        $0.tintColor = .ssGreen
+        $0.thumbImage = UIImage(named: "filter_control")
+        $0.orientation = .horizontal
+        $0.outerTrackColor = .gray2
+        $0.thumbCount = 2
+        $0.minimumValue = 18
+        $0.maximumValue = 65
         $0.thumbTintColor = .ssGreen
     }
 
@@ -32,7 +39,7 @@ final class FriendAgeView: BaseView {
     }
     
     override func configure() {
-        [friendLabel, ageLabel, ageSlider].forEach { self.addSubview($0) }
+        [friendLabel, ageLabel, slider].forEach { self.addSubview($0) }
     }
     
     override func setConstraints() {
@@ -46,7 +53,7 @@ final class FriendAgeView: BaseView {
             make.trailing.equalToSuperview()
         }
         
-        ageSlider.snp.makeConstraints { make in
+        slider.snp.makeConstraints { make in
             make.top.equalTo(friendLabel.snp.bottom).offset(12)
             make.width.equalToSuperview().multipliedBy(0.92)
             make.centerX.equalToSuperview()

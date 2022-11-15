@@ -81,5 +81,15 @@ final class InfoDetailTableViewCell: UITableViewCell {
             genderView.womanButton.status = .inactive
             genderView.manButton.status = .active
         }
+        
+        if item.searchable == 0 {
+            phoneSearchView.phoneButton.isOn = false
+        } else {
+            phoneSearchView.phoneButton.isOn = true
+        }
+        
+        friendAgeView.ageLabel.text = "\(item.ageMin) - \(item.ageMax)"
+        friendAgeView.slider.value = [CGFloat(item.ageMin), CGFloat(item.ageMax)]
+        
     }
 }

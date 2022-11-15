@@ -45,6 +45,7 @@
 		255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C8291C330500737C3A /* BirthViewModel.swift */; };
 		257E263D2923AB2C0039B0A0 /* DetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263C2923AB2C0039B0A0 /* DetailInfoViewModel.swift */; };
 		257E26402923C9E50039B0A0 /* SeSACInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263F2923C9E50039B0A0 /* SeSACInfo.swift */; };
+		257E2643292401AF0039B0A0 /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 257E2642292401AF0039B0A0 /* MultiSlider */; };
 		258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0729210BEE00C78A67 /* InfoModel.swift */; };
 		258B1E0B29210CBF00C78A67 /* ReuseableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */; };
 		258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */; };
@@ -208,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				257E2643292401AF0039B0A0 /* MultiSlider in Frameworks */,
 				255A378B291AAF9A00737C3A /* Toast in Frameworks */,
 				25F7FE1329193DC100E0C486 /* RxRelay in Frameworks */,
 				25F7FE1B29193DDC00E0C486 /* Then in Frameworks */,
@@ -913,6 +915,7 @@
 				254627F0291A8E47004D4B72 /* FirebaseMessaging */,
 				255A378A291AAF9A00737C3A /* Toast */,
 				25D8C3A2291D4C6F00FB52DF /* RxDataSources */,
+				257E2642292401AF0039B0A0 /* MultiSlider */,
 			);
 			productName = SeSAC_StudyApp;
 			productReference = 25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */;
@@ -950,6 +953,7 @@
 				254627E9291A8E47004D4B72 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				255A3789291AAF9900737C3A /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				25D8C3A1291D4C6F00FB52DF /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				257E2641292401AF0039B0A0 /* XCRemoteSwiftPackageReference "MultiSlider" */,
 			);
 			productRefGroup = 25F7FDDF291931E100E0C486 /* Products */;
 			projectDirPath = "";
@@ -1310,6 +1314,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		257E2641292401AF0039B0A0 /* XCRemoteSwiftPackageReference "MultiSlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yonat/MultiSlider.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		25D8C3A1291D4C6F00FB52DF /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
@@ -1377,6 +1389,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 255A3789291AAF9900737C3A /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		257E2642292401AF0039B0A0 /* MultiSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 257E2641292401AF0039B0A0 /* XCRemoteSwiftPackageReference "MultiSlider" */;
+			productName = MultiSlider;
 		};
 		25D8C3A2291D4C6F00FB52DF /* RxDataSources */ = {
 			isa = XCSwiftPackageProductDependency;
