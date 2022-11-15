@@ -73,4 +73,8 @@ final class SesacDetailTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview().inset(16)
         }
     }
+    
+    func setData(item: SeSACInfo){
+        
+    }
 }

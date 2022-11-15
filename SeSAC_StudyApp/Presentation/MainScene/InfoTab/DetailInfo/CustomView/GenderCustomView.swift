@@ -19,11 +19,11 @@ final class GenderCustomView: BaseView {
         $0.textColor = .textColor
     }
     
-    lazy var manButton = GenderButton(title: "남자", status: .active).then {
+    lazy var manButton = InfoButton(title: "남자", status: .active).then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    lazy var womanButton = GenderButton(title: "여자", status: .inactive).then {
+    lazy var womanButton = InfoButton(title: "여자", status: .inactive).then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -32,14 +32,6 @@ final class GenderCustomView: BaseView {
         $0.distribution = .fillEqually
         $0.axis = .horizontal
         $0.spacing = 8
-        
-//        manButton.snp.makeConstraints { make in
-//            make.width.equalTo(56)
-//        }
-//
-//        womanButton.snp.makeConstraints { make in
-//            make.width.equalTo(56)
-//        }
     }
     
     override init(frame: CGRect) {
@@ -64,5 +56,4 @@ final class GenderCustomView: BaseView {
             make.height.equalTo(48)
         }
     }
-    
 }

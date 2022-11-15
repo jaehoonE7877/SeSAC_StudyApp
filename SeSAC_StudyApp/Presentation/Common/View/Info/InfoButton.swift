@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class GenderButton: UIButton {
+final class InfoButton: UIButton {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -21,7 +21,7 @@ final class GenderButton: UIButton {
         super.init(frame: .zero)
     }
     
-    convenience init(title: String, status: GenderButtonStatus) {
+    convenience init(title: String, status: InfoButtonStatus) {
         self.init()
         
         self.setTitle(title, for: .normal)
@@ -41,7 +41,7 @@ final class GenderButton: UIButton {
         
     }
     
-    var status: GenderButtonStatus = .inactive {
+    var status: InfoButtonStatus = .inactive {
         didSet {
             switch status {
             case .inactive:

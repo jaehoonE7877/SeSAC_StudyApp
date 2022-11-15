@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserData: Codable {
+struct UserDataDTO: Codable {
     let id: String
     let v: Int
     let uid, phoneNumber, email, fcMtoken: String
@@ -36,8 +36,18 @@ struct UserData: Codable {
         case transactionID = "transactionId"
         case reviewedBefore, reportedNum, reportedUser, dodgepenalty, dodgeNum, ageMin, ageMax, searchable, createdAt
     }
-}
-
-extension UserData {
     
+    func toDomain() -> SeSACInfo {
+        return SeSACInfo(
+            background: self.background,
+            sesac: self.sesac,
+            nick: self.nick,
+            reputation: self.reputation,
+            comment: self.comment,
+            gender: self.gender,
+            study: self.study,
+            searchable: self.searchable,
+            ageMin: self.ageMin,
+            ageMax: self.ageMax)
+    }
 }

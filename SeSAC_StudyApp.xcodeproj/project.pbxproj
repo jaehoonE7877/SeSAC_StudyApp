@@ -30,7 +30,7 @@
 		255A37A3291BB01400737C3A /* NicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37A2291BB01400737C3A /* NicknameView.swift */; };
 		255A37A5291BE27000737C3A /* SeSACError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37A4291BE27000737C3A /* SeSACError.swift */; };
 		255A37A7291BE54100737C3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 255A37A6291BE54100737C3A /* GoogleService-Info.plist */; };
-		255A37AA291BF41100737C3A /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37A9291BF41100737C3A /* UserData.swift */; };
+		255A37AA291BF41100737C3A /* UserDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37A9291BF41100737C3A /* UserDataDTO.swift */; };
 		255A37AD291BF5BD00737C3A /* SeSACAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37AC291BF5BD00737C3A /* SeSACAPIRouter.swift */; };
 		255A37AF291BF5E900737C3A /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37AE291BF5E900737C3A /* BaseURL.swift */; };
 		255A37B2291C1B3800737C3A /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37B1291C1B3800737C3A /* NicknameViewModel.swift */; };
@@ -44,7 +44,7 @@
 		255A37C7291C32CC00737C3A /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C6291C32CC00737C3A /* BirthViewController.swift */; };
 		255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C8291C330500737C3A /* BirthViewModel.swift */; };
 		257E263D2923AB2C0039B0A0 /* DetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263C2923AB2C0039B0A0 /* DetailInfoViewModel.swift */; };
-		257E26402923C9E50039B0A0 /* SeSACInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263F2923C9E50039B0A0 /* SeSACInfoDTO.swift */; };
+		257E26402923C9E50039B0A0 /* SeSACInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263F2923C9E50039B0A0 /* SeSACInfo.swift */; };
 		258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0729210BEE00C78A67 /* InfoModel.swift */; };
 		258B1E0B29210CBF00C78A67 /* ReuseableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */; };
 		258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */; };
@@ -52,8 +52,8 @@
 		25D1EDEA292286280015C444 /* SesacImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDE9292286280015C444 /* SesacImageTableViewCell.swift */; };
 		25D1EDEC29228D0A0015C444 /* SesacDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */; };
 		25D1EDEE29228ECC0015C444 /* GenderCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDED29228ECC0015C444 /* GenderCustomView.swift */; };
-		25D1EDF129228F730015C444 /* GenderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDF029228F730015C444 /* GenderButton.swift */; };
-		25D1EDF329228FB50015C444 /* GenderButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDF229228FB50015C444 /* GenderButtonStatus.swift */; };
+		25D1EDF129228F730015C444 /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDF029228F730015C444 /* InfoButton.swift */; };
+		25D1EDF329228FB50015C444 /* InfoButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDF229228FB50015C444 /* InfoButtonStatus.swift */; };
 		25D1EDF52922925A0015C444 /* StudyInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDF42922925A0015C444 /* StudyInputView.swift */; };
 		25D1EDF7292294A40015C444 /* PhoneSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDF6292294A40015C444 /* PhoneSearchView.swift */; };
 		25D1EDF92922960F0015C444 /* FriendAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDF82922960F0015C444 /* FriendAgeView.swift */; };
@@ -129,7 +129,7 @@
 		255A37A2291BB01400737C3A /* NicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameView.swift; sourceTree = "<group>"; };
 		255A37A4291BE27000737C3A /* SeSACError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACError.swift; sourceTree = "<group>"; };
 		255A37A6291BE54100737C3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		255A37A9291BF41100737C3A /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		255A37A9291BF41100737C3A /* UserDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataDTO.swift; sourceTree = "<group>"; };
 		255A37AC291BF5BD00737C3A /* SeSACAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACAPIRouter.swift; sourceTree = "<group>"; };
 		255A37AE291BF5E900737C3A /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		255A37B1291C1B3800737C3A /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 		255A37C6291C32CC00737C3A /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		255A37C8291C330500737C3A /* BirthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewModel.swift; sourceTree = "<group>"; };
 		257E263C2923AB2C0039B0A0 /* DetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewModel.swift; sourceTree = "<group>"; };
-		257E263F2923C9E50039B0A0 /* SeSACInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACInfoDTO.swift; sourceTree = "<group>"; };
+		257E263F2923C9E50039B0A0 /* SeSACInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACInfo.swift; sourceTree = "<group>"; };
 		258B1E0729210BEE00C78A67 /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
 		258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableViewProtocol.swift; sourceTree = "<group>"; };
 		258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -151,8 +151,8 @@
 		25D1EDE9292286280015C444 /* SesacImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacImageTableViewCell.swift; sourceTree = "<group>"; };
 		25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacDetailTableViewCell.swift; sourceTree = "<group>"; };
 		25D1EDED29228ECC0015C444 /* GenderCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCustomView.swift; sourceTree = "<group>"; };
-		25D1EDF029228F730015C444 /* GenderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderButton.swift; sourceTree = "<group>"; };
-		25D1EDF229228FB50015C444 /* GenderButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderButtonStatus.swift; sourceTree = "<group>"; };
+		25D1EDF029228F730015C444 /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
+		25D1EDF229228FB50015C444 /* InfoButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButtonStatus.swift; sourceTree = "<group>"; };
 		25D1EDF42922925A0015C444 /* StudyInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyInputView.swift; sourceTree = "<group>"; };
 		25D1EDF6292294A40015C444 /* PhoneSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSearchView.swift; sourceTree = "<group>"; };
 		25D1EDF82922960F0015C444 /* FriendAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAgeView.swift; sourceTree = "<group>"; };
@@ -315,12 +315,12 @@
 			path = SignupScene;
 			sourceTree = "<group>";
 		};
-		255A3794291BAC3900737C3A /* DataMapping */ = {
+		255A3794291BAC3900737C3A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				257E263F2923C9E50039B0A0 /* SeSACInfoDTO.swift */,
+				257E263F2923C9E50039B0A0 /* SeSACInfo.swift */,
 			);
-			path = DataMapping;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		255A3799291BADF300737C3A /* Protocol */ = {
@@ -467,24 +467,24 @@
 		258B1E102921318500C78A67 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				258B1E112921318F00C78A67 /* Model */,
+				258B1E112921318F00C78A67 /* DataMapping */,
 			);
 			path = Network;
 			sourceTree = "<group>";
 		};
-		258B1E112921318F00C78A67 /* Model */ = {
+		258B1E112921318F00C78A67 /* DataMapping */ = {
 			isa = PBXGroup;
 			children = (
-				255A37A9291BF41100737C3A /* UserData.swift */,
+				255A37A9291BF41100737C3A /* UserDataDTO.swift */,
 			);
-			path = Model;
+			path = DataMapping;
 			sourceTree = "<group>";
 		};
 		25D1EDEF29228F500015C444 /* Info */ = {
 			isa = PBXGroup;
 			children = (
-				25D1EDF029228F730015C444 /* GenderButton.swift */,
-				25D1EDF229228FB50015C444 /* GenderButtonStatus.swift */,
+				25D1EDF029228F730015C444 /* InfoButton.swift */,
+				25D1EDF229228FB50015C444 /* InfoButtonStatus.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -703,7 +703,7 @@
 			isa = PBXGroup;
 			children = (
 				255A37AB291BF5AD00737C3A /* Network */,
-				255A3794291BAC3900737C3A /* DataMapping */,
+				255A3794291BAC3900737C3A /* Model */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -992,7 +992,7 @@
 				25ED4A822922AA3D00C4A6EB /* DetailInfoModel.swift in Sources */,
 				25F7FE472919695E00E0C486 /* SecondViewController.swift in Sources */,
 				25F7FE452919682700E0C486 /* FirstViewController.swift in Sources */,
-				25D1EDF329228FB50015C444 /* GenderButtonStatus.swift in Sources */,
+				25D1EDF329228FB50015C444 /* InfoButtonStatus.swift in Sources */,
 				25D8C391291CAB2F00FB52DF /* BirthItemView.swift in Sources */,
 				25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */,
 				25F7FE5A291985DB00E0C486 /* NextButton.swift in Sources */,
@@ -1007,7 +1007,7 @@
 				255A37A3291BB01400737C3A /* NicknameView.swift in Sources */,
 				25F7FE2029193EC400E0C486 /* Alertable.swift in Sources */,
 				25F7FE0529193B7500E0C486 /* BaseViewController.swift in Sources */,
-				255A37AA291BF41100737C3A /* UserData.swift in Sources */,
+				255A37AA291BF41100737C3A /* UserDataDTO.swift in Sources */,
 				255A3797291BACAF00737C3A /* DefaultSeSACAPIService.swift in Sources */,
 				25ED4A842922BD7D00C4A6EB /* SesacTitleView.swift in Sources */,
 				25F7FE532919753F00E0C486 /* PhoneViewModel.swift in Sources */,
@@ -1041,7 +1041,7 @@
 				25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */,
 				254627DE291A3C1A004D4B72 /* LoginView.swift in Sources */,
 				258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */,
-				25D1EDF129228F730015C444 /* GenderButton.swift in Sources */,
+				25D1EDF129228F730015C444 /* InfoButton.swift in Sources */,
 				25F7FE0929193C6300E0C486 /* APIKey.swift in Sources */,
 				25F7FE2329193F0A00E0C486 /* BaseView.swift in Sources */,
 				25D1EDEA292286280015C444 /* SesacImageTableViewCell.swift in Sources */,
@@ -1054,7 +1054,7 @@
 				255A37B6291C21CD00737C3A /* ToastMessage.swift in Sources */,
 				25D1EDEE29228ECC0015C444 /* GenderCustomView.swift in Sources */,
 				25F7FE572919792000E0C486 /* UITextField+.swift in Sources */,
-				257E26402923C9E50039B0A0 /* SeSACInfoDTO.swift in Sources */,
+				257E26402923C9E50039B0A0 /* SeSACInfo.swift in Sources */,
 				255A379B291BAE5300737C3A /* FirebaseAPIService.swift in Sources */,
 				258B1E0B29210CBF00C78A67 /* ReuseableViewProtocol.swift in Sources */,
 				25230AF9291FB01900525531 /* HomeViewController.swift in Sources */,

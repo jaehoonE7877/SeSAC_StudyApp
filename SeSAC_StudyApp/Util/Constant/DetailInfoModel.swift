@@ -20,7 +20,7 @@ struct DetailInfoSectionModel {
 
 extension DetailInfoSectionModel: SectionModelType {
     
-    typealias Item = DetailInfoModel
+    typealias Item = SeSACInfo
     
     init(original: DetailInfoSectionModel, items: [Item]) {
         self = original

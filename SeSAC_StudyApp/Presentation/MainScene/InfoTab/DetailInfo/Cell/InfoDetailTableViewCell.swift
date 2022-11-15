@@ -72,4 +72,14 @@ final class InfoDetailTableViewCell: UITableViewCell {
             make.top.equalTo(friendAgeView.snp.bottom)
         }
     }
+    
+    func setData(item: SeSACInfo) {
+        if item.gender == 0 {
+            genderView.womanButton.status = .active
+            genderView.manButton.status = .inactive
+        } else {
+            genderView.womanButton.status = .inactive
+            genderView.manButton.status = .active
+        }
+    }
 }

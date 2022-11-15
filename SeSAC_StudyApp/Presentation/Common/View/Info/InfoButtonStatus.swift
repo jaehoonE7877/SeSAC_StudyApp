@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GenderButtonStatus {
+enum InfoButtonStatus {
     case inactive
     case active
 }
