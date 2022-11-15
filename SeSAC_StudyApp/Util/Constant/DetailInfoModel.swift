@@ -9,12 +9,8 @@ import Foundation
 import RxDataSources
 
 
-struct DetailInfoModel {
-    var title: String?
-    
-}
-
 struct DetailInfoSectionModel {
+    //var header: Item
     var items: [Item]
 }
 
