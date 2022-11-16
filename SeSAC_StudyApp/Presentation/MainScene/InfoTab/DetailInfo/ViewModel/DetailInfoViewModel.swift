@@ -18,22 +18,24 @@ final class DetailViewModel: ViewModelType {
 
     struct Input {
         let viewDidLoadEvent: Observable<Void>
+        let saveButtonTap: ControlEvent<Void>
     }
     
     struct Output {
         var userData = PublishSubject<SeSACInfo>()
         var isFailed = BehaviorRelay(value: false)
+        let saveButtonTap: ControlEvent<Void>
     }
     
     func transform(input: Input) -> Output {
-        let output = Output()
+        let output = Output(saveButtonTap: input.saveButtonTap)
         input.viewDidLoadEvent
             .withUnretained(self)
             .subscribe(onNext: { weakSelf, _ in
                 weakSelf.requestInfo(output: output)
             })
             .disposed(by: disposeBag)
-
+        
         return output
     }
 }
@@ -68,6 +70,18 @@ extension DetailViewModel {
             guard let token = idToken else { return }
             UserManager.token = token
             self.requestInfo(output: output)
+        }
+    }
+    
+    func updateInfo(updataData: SeSACInfo, completion: @escaping (Result<UserDataDTO,SeSACError>) -> Void ) {
+        
+        sesacAPIService.request(type: UserDataDTO.self, router: .mypage(updateData: updataData)) { result in
+            switch result {
+            case .success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
     

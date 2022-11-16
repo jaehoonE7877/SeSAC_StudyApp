@@ -11,6 +11,7 @@ import Alamofire
 enum SeSACAPIRouter: URLRequestConvertible {
     case login
     case signup
+    case mypage(updateData: SeSACInfo)
 }
 
 extension SeSACAPIRouter {
@@ -19,12 +20,14 @@ extension SeSACAPIRouter {
         switch self {
         case .login, .signup:
             return URL(string: "\(SeSACConfiguration.baseURL)/v1/user")!
+        case .mypage:
+            return URL(string: "\(SeSACConfiguration.baseURL)/v1/user/mypage")!
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .signup:
+        case .login, .signup, .mypage:
             return [
                 "idtoken": "\(UserManager.token)",
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -38,6 +41,8 @@ extension SeSACAPIRouter {
             return .get
         case .signup:
             return .post
+        case .mypage:
+            return .put
         }
     }
     
@@ -59,6 +64,14 @@ extension SeSACAPIRouter {
                 "email" : email,
                 "gender" : String(gender)
             ]
+        case .mypage(let data):
+            return [
+                "searchable" : String(data.searchable),
+                "ageMin" : String(data.ageMin),
+                "ageMax" : String(data.ageMax),
+                "gender" : String(data.gender),
+                "study" : data.study
+                ]
         }
     }
     
@@ -71,7 +84,7 @@ extension SeSACAPIRouter {
         switch self {
         case .login:
             return request
-        case .signup:
+        case .signup, .mypage:
             return try URLEncoding.default.encode(request, with: parameters)
         }
         

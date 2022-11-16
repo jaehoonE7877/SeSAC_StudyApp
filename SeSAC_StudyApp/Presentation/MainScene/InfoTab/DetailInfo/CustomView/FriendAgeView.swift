@@ -54,7 +54,7 @@ final class FriendAgeView: BaseView {
         }
         
         slider.snp.makeConstraints { make in
-            make.top.equalTo(friendLabel.snp.bottom).offset(12)
+            make.top.equalTo(friendLabel.snp.bottom)
             make.width.equalToSuperview().multipliedBy(0.92)
             make.centerX.equalToSuperview()
         }

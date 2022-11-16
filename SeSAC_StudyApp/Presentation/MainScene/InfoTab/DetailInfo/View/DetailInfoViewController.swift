@@ -15,7 +15,11 @@ import Toast
 final class DetailInfoViewController: BaseViewController {
     
     //MARK: Property
-    private let tableView = UITableView(frame: .zero, style: .grouped).then {
+    private let viewModel = DetailViewModel()
+    
+    private let disposeBag = DisposeBag()
+    
+    private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
         $0.contentInset = .init(top: 16, left: 0, bottom: 0, right: 0)
         $0.backgroundColor = .systemBackground
         $0.register(ProfileImageHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileImageHeaderView.reuseIdentifier)
@@ -24,21 +28,73 @@ final class DetailInfoViewController: BaseViewController {
         $0.separatorStyle = .none
     }
     
+    private var updateSesac: SeSACInfo?
+    
+    lazy var dataSource = RxTableViewSectionedReloadDataSource<DetailInfoSectionModel>(configureCell: { [weak self]  dataSource, tableView, indexPath, item in
+        guard let self = self else { return UITableViewCell()}
+        if indexPath.section == 0 {
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SesacDetailTableViewCell.reuseIdentifier, for: indexPath) as? SesacDetailTableViewCell else { return UITableViewCell() }
+            cell.selectionStyle = .none
+            cell.chevornImageView.image = self.foldValue ? UIImage(named: "more_arrow_down") : UIImage(named: "more_arrow_up")
+            cell.sesacTitleView.isHidden = self.foldValue
+            cell.sesacReviewView.isHidden = self.foldValue
+            cell.setData(item: item)
+            return cell
+        } else {
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoDetailTableViewCell.reuseIdentifier, for: indexPath) as? InfoDetailTableViewCell else { return UITableViewCell() }
+            cell.setData(item: item)
+            
+            cell.genderView.manButton.rx.tap
+                .bind { _ in
+                    cell.genderView.womanButton.status = .inactive
+                    cell.genderView.manButton.status = .active
+                }
+                .disposed(by: self.disposeBag)
+            
+            cell.genderView.womanButton.rx.tap
+                .bind { _ in
+                    cell.genderView.manButton.status = .inactive
+                    cell.genderView.womanButton.status = .active
+                }
+                .disposed(by: self.disposeBag)
+            
+            cell.studyInputView.studyTextField.rx.text.orEmpty
+                .
+                
+
+            
+            
+            cell.friendAgeView.slider.rx.controlEvent(.valueChanged)
+                .bind { _ in
+                    cell.friendAgeView.ageLabel.text = "\(Int(cell.friendAgeView.slider.value[0])) - \(Int(cell.friendAgeView.slider.value[1]))"
+                }
+                .disposed(by: self.disposeBag)
+            return cell
+        }
+    })
+    
+    private let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: DetailInfoViewController.self, action: nil)
+    
     var foldValue: Bool = true
-    
-    private let viewModel = DetailViewModel()
-    
-    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         setNavigationController()
         bindingViewModel()
-        
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+    }
+    
+    override func setNavigationController() {
+        title = "정보 관리"
+        navigationController?.navigationItem.rightBarButtonItem = saveButton
     }
     
     override func configure() {
-        title = "정보 관리"
+        
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
     }
@@ -52,36 +108,6 @@ final class DetailInfoViewController: BaseViewController {
     }
     
     private func bindingTableView(sesacInfo: SeSACInfo) {
-        
-        let dataSource = RxTableViewSectionedReloadDataSource<DetailInfoSectionModel>(configureCell: { [weak self]  dataSource, tableView, indexPath, item in
-            guard let self = self else { return UITableViewCell()}
-            
-            if indexPath.section == 0 {
-                guard let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileImageHeaderView.reuseIdentifier) as? ProfileImageHeaderView else { return UITableViewCell() }
-                headerCell.setData(item: item)
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: SesacDetailTableViewCell.reuseIdentifier, for: indexPath) as? SesacDetailTableViewCell else { return UITableViewCell() }
-                cell.selectionStyle = .none
-                
-                
-                cell.chevornImageView.image = self.foldValue ? UIImage(named: "more_arrow_down") : UIImage(named: "more_arrow_up")
-                cell.sesacTitleView.isHidden = self.foldValue
-                cell.sesacReviewView.isHidden = self.foldValue
-                cell.setData(item: item)
-                return cell
-                
-            } else {
-                
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoDetailTableViewCell.reuseIdentifier, for: indexPath) as? InfoDetailTableViewCell else { return UITableViewCell() }
-                cell.setData(item: item)
-                cell.friendAgeView.slider.rx.controlEvent(.valueChanged)
-                    .bind { _ in
-                        cell.friendAgeView.ageLabel.text = "\(Int(cell.friendAgeView.slider.value[0])) - \(Int(cell.friendAgeView.slider.value[1]))"
-                    }
-                    .disposed(by: self.disposeBag)
-                return cell
-            }
-        })
-        
         
         let section = [
             DetailInfoSectionModel(items: [SeSACInfo(background: sesacInfo.background, sesac: sesacInfo.sesac, nick: sesacInfo.nick, reputation: sesacInfo.reputation, comment: sesacInfo.comment)]),
@@ -104,15 +130,16 @@ final class DetailInfoViewController: BaseViewController {
         
         //input -> genderButtonTap, study TextField, phoneSearch switch, slider(age label에 보여주기), 회원탈퇴 버튼 tap
         
-        tableView.rx.setDelegate(self)
-            .disposed(by: disposeBag)
+        
     }
 
 }
 
 extension DetailInfoViewController {
     private func bindingViewModel() {
-        let input = DetailViewModel.Input(viewDidLoadEvent: Observable.just(()))
+        let input = DetailViewModel.Input(viewDidLoadEvent: Observable.just(()),
+                                          saveButtonTap: saveButton.rx.tap
+        )
         let output = viewModel.transform(input: input)
         
         output.isFailed
@@ -131,6 +158,7 @@ extension DetailInfoViewController {
                 weakSelf.bindingTableView(sesacInfo: sesacInfo)
             }
             .disposed(by: disposeBag)
+        
     }
     
     
@@ -138,11 +166,10 @@ extension DetailInfoViewController {
 }
 
 extension DetailInfoViewController: UITableViewDelegate {
-    
-        
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 194
+            return 200
         } else {
             return .leastNormalMagnitude
         }
@@ -151,7 +178,10 @@ extension DetailInfoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             guard let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileImageHeaderView.reuseIdentifier) as? ProfileImageHeaderView else { return nil }
-
+            guard let item = dataSource.sectionModels.first.value?.items[0] else { return nil }
+            headerCell.bgImageView.image = UIImage(named: "sesac_background_\(item.background)")
+            headerCell.sesacImageView.image = UIImage(named: "sesac_face_\(item.sesac)")
+            
             return headerCell
         } else {
             return UIView(frame: .zero)

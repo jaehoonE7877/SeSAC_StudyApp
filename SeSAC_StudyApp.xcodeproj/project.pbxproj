@@ -47,7 +47,6 @@
 		257E26402923C9E50039B0A0 /* SeSACInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263F2923C9E50039B0A0 /* SeSACInfo.swift */; };
 		257E2643292401AF0039B0A0 /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 257E2642292401AF0039B0A0 /* MultiSlider */; };
 		257E264529240EC00039B0A0 /* ProfileImageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E264429240EC00039B0A0 /* ProfileImageHeaderView.swift */; };
-		257E2647292411290039B0A0 /* FoldableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E2646292411290039B0A0 /* FoldableView.swift */; };
 		258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0729210BEE00C78A67 /* InfoModel.swift */; };
 		258B1E0B29210CBF00C78A67 /* ReuseableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */; };
 		258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */; };
@@ -147,7 +146,6 @@
 		257E263C2923AB2C0039B0A0 /* DetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewModel.swift; sourceTree = "<group>"; };
 		257E263F2923C9E50039B0A0 /* SeSACInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACInfo.swift; sourceTree = "<group>"; };
 		257E264429240EC00039B0A0 /* ProfileImageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageHeaderView.swift; sourceTree = "<group>"; };
-		257E2646292411290039B0A0 /* FoldableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldableView.swift; sourceTree = "<group>"; };
 		258B1E0729210BEE00C78A67 /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
 		258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableViewProtocol.swift; sourceTree = "<group>"; };
 		258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -445,7 +443,6 @@
 		257E26482924123F0039B0A0 /* Card */ = {
 			isa = PBXGroup;
 			children = (
-				257E2646292411290039B0A0 /* FoldableView.swift */,
 				25ED4A872922CF8400C4A6EB /* SesacReviewView.swift */,
 				25ED4A832922BD7D00C4A6EB /* SesacTitleView.swift */,
 			);
@@ -1055,7 +1052,6 @@
 				255A37AF291BF5E900737C3A /* BaseURL.swift in Sources */,
 				255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */,
 				25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */,
-				257E2647292411290039B0A0 /* FoldableView.swift in Sources */,
 				254627DE291A3C1A004D4B72 /* LoginView.swift in Sources */,
 				258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */,
 				25D1EDF129228F730015C444 /* InfoButton.swift in Sources */,

@@ -13,14 +13,6 @@ import Then
 final class SesacDetailTableViewCell: UITableViewCell {
     
     //MARK: Property
-//    lazy var foldableView = FoldableView().then {
-//        $0.layoutIfNeeded()
-//        $0.layer.borderWidth = 1
-//        $0.layer.masksToBounds = true
-//        $0.layer.cornerRadius = 8
-//        $0.layer.borderColor = UIColor.gray2.cgColor
-//    }
-    
     lazy var nameLabel = UILabel().then {
         $0.font = UIFont.notoSans(size: 16, family: .Medium)
         $0.textColor = .textColor
@@ -73,7 +65,6 @@ final class SesacDetailTableViewCell: UITableViewCell {
             make.leading.equalTo(contentView).offset(16)
             make.centerY.equalTo(chevornImageView.snp.centerY)
             make.height.equalTo(28)
-            
         }
 
         sesacTitleView.snp.makeConstraints { make in

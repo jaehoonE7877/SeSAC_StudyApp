@@ -9,16 +9,16 @@ import UIKit
 
 final class ProfileImageHeaderView: UITableViewHeaderFooterView {
     
-    private let bgImageView = UIImageView().then {
+    lazy var bgImageView = UIImageView().then {
         $0.isHidden = false
         $0.layer.cornerRadius = 8
         $0.layer.masksToBounds = true
-        $0.image = UIImage(named: "sesac_background_0")
+        //$0.image = UIImage(named: "sesac_background_8")
         $0.contentMode = .scaleAspectFill
     }
     
-    private let sesacImageView = UIImageView().then {
-        $0.image = UIImage(named: "sesac_face_0")
+    lazy var sesacImageView = UIImageView().then {
+        //$0.image = UIImage(named: "sesac_face_4")
         $0.contentMode = .scaleAspectFill
     }
     
