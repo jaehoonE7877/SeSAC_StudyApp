@@ -63,7 +63,7 @@ final class DetailInfoViewController: BaseViewController {
                 cell.selectionStyle = .none
                 
                 
-                cell.foldableView.chevornImageView.image = self.foldValue ? UIImage(named: "more_arrow_down") : UIImage(named: "more_arrow_up")
+                cell.chevornImageView.image = self.foldValue ? UIImage(named: "more_arrow_down") : UIImage(named: "more_arrow_up")
                 cell.sesacTitleView.isHidden = self.foldValue
                 cell.sesacReviewView.isHidden = self.foldValue
                 cell.setData(item: item)

@@ -13,13 +13,23 @@ import Then
 final class SesacDetailTableViewCell: UITableViewCell {
     
     //MARK: Property
-    lazy var foldableView = FoldableView().then {
+//    lazy var foldableView = FoldableView().then {
+//        $0.layoutIfNeeded()
+//        $0.layer.borderWidth = 1
+//        $0.layer.masksToBounds = true
+//        $0.layer.cornerRadius = 8
+//        $0.layer.borderColor = UIColor.gray2.cgColor
+//    }
+    
+    lazy var nameLabel = UILabel().then {
+        $0.font = UIFont.notoSans(size: 16, family: .Medium)
+        $0.textColor = .textColor
+    }
+    
+    lazy var chevornImageView = UIImageView().then {
         $0.layoutIfNeeded()
-        $0.layer.borderWidth = 1
-        $0.layer.masksToBounds = true
-        $0.layer.cornerRadius = 8
-        $0.layer.borderColor = UIColor.gray2.cgColor
-        
+        $0.image = UIImage(named: "more_arrow 1")
+        $0.contentMode = .scaleAspectFill
     }
     
     lazy var sesacTitleView = SesacTitleView().then {
@@ -34,6 +44,11 @@ final class SesacDetailTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.layoutIfNeeded()
+        contentView.layer.borderWidth = 1
+        contentView.layer.masksToBounds = true
+        contentView.layer.cornerRadius = 8
+        contentView.layer.borderColor = UIColor.gray2.cgColor
         configure()
         setConstraint()
     }
@@ -43,17 +58,26 @@ final class SesacDetailTableViewCell: UITableViewCell {
     }
     
     private func configure() {
-        [foldableView , sesacTitleView, sesacReviewView].forEach { contentView.addSubview($0) }
+        [nameLabel, chevornImageView, sesacTitleView, sesacReviewView].forEach { contentView.addSubview($0) }
     }
     
     private func setConstraint() {
         
-        foldableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        chevornImageView.snp.makeConstraints { make in
+            make.top.equalTo(contentView.snp.top).offset(21)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-16)
+            make.size.equalTo(16)
         }
         
+        nameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(contentView).offset(16)
+            make.centerY.equalTo(chevornImageView.snp.centerY)
+            make.height.equalTo(28)
+            
+        }
+
         sesacTitleView.snp.makeConstraints { make in
-            make.top.equalTo(foldableView.nameLabel.snp.bottom).offset(25)
+            make.top.equalTo(nameLabel.snp.bottom).offset(25)
             make.horizontalEdges.equalToSuperview().inset(16)
             make.height.equalTo(154)
         }
@@ -66,9 +90,8 @@ final class SesacDetailTableViewCell: UITableViewCell {
     }
     
     func setData(item: SeSACInfo){
-        
-        
-        foldableView.nameLabel.text = item.nick
+
+        nameLabel.text = item.nick
         [sesacTitleView.mannerButton, sesacTitleView.exactTimeButton,
          sesacTitleView.fastResponseButton, sesacTitleView.kindButton,
          sesacTitleView.skillfullButton, sesacTitleView.beneficialButton].forEach { self.configReputation(reputation: item.reputation, sender: $0)}
