@@ -24,6 +24,7 @@ final class BirthViewController: BaseViewController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backButtonTitle = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {

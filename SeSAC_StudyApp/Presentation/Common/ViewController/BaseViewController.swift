@@ -18,7 +18,6 @@ class BaseViewController: UIViewController {
         configure()
         setConstraint()
         setBinding()
-        //tapGesture()
     }
     
     
@@ -29,7 +28,7 @@ class BaseViewController: UIViewController {
     func setNavigationController() {
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .textColor
-        navigationItem.backBarButtonItem?.image?.withAlignmentRectInsets(UIEdgeInsets(top: 0.0, left: -20.0, bottom: 0.0, right: 0.0))
+        //navigationItem.backBarButtonItem?.image?.withAlignmentRectInsets(UIEdgeInsets(top: 0.0, left: -20.0, bottom: 0.0, right: 0.0))
         
         let appearance = UINavigationBarAppearance()
         appearance.setBackIndicatorImage(UIImage(named: "arrow"), transitionMaskImage: UIImage(named: "arrow"))

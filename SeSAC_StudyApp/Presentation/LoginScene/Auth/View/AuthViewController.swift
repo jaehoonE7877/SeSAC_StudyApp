@@ -25,9 +25,13 @@ final class AuthViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backButtonTitle = ""
     }
     
     override func setBinding() {
+        
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
         
         let input = AuthViewModel.Input(verifyText: mainView.authTextField.rx.text.orEmpty,
                                         textFieldBeginEdit: mainView.authTextField.rx.controlEvent([.editingDidBegin]),
@@ -96,7 +100,7 @@ final class AuthViewController: BaseViewController {
                                 switch result {
                                 case .success(_):
                                     UserManager.nickError = false
-                                    weakSelf.transitionViewController(viewController: HomeViewController(), transitionStyle: .presentFullNavigation)
+                                    sceneDelegate?.window?.rootViewController = TabViewController()
                                 case .failure(let error):
                                     if error.rawValue == 406 {
                                         UserManager.authDone = 406
@@ -105,6 +109,7 @@ final class AuthViewController: BaseViewController {
                                         weakSelf.mainView.makeToast("\(error.localizedDescription)", duration: 1, position: .center)
                                     }
                                 }
+                                sceneDelegate?.window?.makeKeyAndVisible()
                             }
                         }
                     case .failure(let error):

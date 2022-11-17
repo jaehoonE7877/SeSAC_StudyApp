@@ -13,8 +13,7 @@ import FirebaseMessaging
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         NetworkCheck.shared.startMonitoring()
@@ -39,14 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Messaging.messaging().delegate = self
         
-        Messaging.messaging().token { token, error in
-            if let error = error {
-                print("Error fetching FCM registration token: \(error)")
-            } else if let token = token {
-                UserManager.fcmToken = token
-                print("FCM registration token: \(token)")
-            }
-        }
+//        Messaging.messaging().token { token, error in
+//            if let error = error {
+//                print("Error fetching FCM registration token: \(error)")
+//            } else if let token = token {
+//                UserManager.fcmToken = token
+//                print("FCM registration token: \(token)")
+//            }
+//        }
         
         return true
     }
@@ -77,10 +76,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 extension AppDelegate: MessagingDelegate {
     // 토큰 갱신(Refresh Token)
-//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-//        let dataDictonary: [String: String] = ["token": fcmToken ?? ""]
-//        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDictonary)
-//    }
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        let dataDictonary: [String: String] = ["token": fcmToken ?? ""]
+        guard let fcmToken = fcmToken else { return }
+        UserManager.fcmToken =  fcmToken
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDictonary)
+    }
     
 }
 

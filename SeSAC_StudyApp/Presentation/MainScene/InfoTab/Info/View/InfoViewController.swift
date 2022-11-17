@@ -41,6 +41,10 @@ final class InfoViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationController()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
     

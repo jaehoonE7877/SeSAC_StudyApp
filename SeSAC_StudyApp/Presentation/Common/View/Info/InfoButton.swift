@@ -36,7 +36,7 @@ final class InfoButton: UIButton {
             self.layer.borderColor = UIColor.gray4.cgColor
         case .active:
             self.backgroundColor = .ssGreen
-            self.titleLabel?.textColor = .white
+            self.setTitleColor(.white, for: .normal)
         }
         
     }
@@ -51,7 +51,7 @@ final class InfoButton: UIButton {
                 self.layer.borderColor = UIColor.gray4.cgColor
             case .active:
                 self.backgroundColor = .ssGreen
-                self.titleLabel?.textColor = .white
+                self.setTitleColor(.white, for: .normal)
             }
         }
     }

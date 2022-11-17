@@ -82,6 +82,15 @@ final class DetailInfoViewController: BaseViewController {
                 }
                 .disposed(by: self.disposeBag)
             
+           
+            
+            cell.withdrawView.withdrawButton.rx.tap
+                .bind(onNext: { _ in
+                    let vc = WithdrawViewController()
+                    self.transitionViewController(viewController: vc, transitionStyle: .presentOverFull)
+                })
+                .disposed(by: self.disposeBag)
+            
             return cell
         }
     })
@@ -139,12 +148,7 @@ final class DetailInfoViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
-        
-        //input -> genderButtonTap, study TextField, phoneSearch switch, slider(age label에 보여주기), 회원탈퇴 버튼 tap
-        
-        
     }
-
 }
 
 extension DetailInfoViewController {

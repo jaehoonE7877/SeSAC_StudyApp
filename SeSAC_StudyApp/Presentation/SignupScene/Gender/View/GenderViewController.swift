@@ -42,6 +42,9 @@ final class GenderViewController: BaseViewController {
     
     override func setBinding() {
         
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+        
         let input = GenderViewModel.Input(nextButtonTap: mainView.mainButton.rx.tap,
                                           manButtonTap: mainView.manView.button.rx.tap,
                                           womanButtonTap: mainView.womanView.button.rx.tap)
@@ -74,9 +77,9 @@ final class GenderViewController: BaseViewController {
                     UserManager.gender = Gender.man.rawValue
                     weakSelf.viewModel.signup { result in
                         switch result {
-                        case .success(let success):
+                        case .success(_):
                             UserManager.nickError = false
-                            dump(success)
+                            sceneDelegate?.window?.rootViewController = TabViewController()
                         case .failure(let error):
                             switch error {
                             case .alreadySignedup:
@@ -85,7 +88,7 @@ final class GenderViewController: BaseViewController {
                                 UserManager.nickError = true
                                 weakSelf.popToVC(viewController: NicknameViewController(), errorMessage: SeSACError.forbiddenNick.localizedDescription)
                             default:
-                                UserManager.nickError = false
+                                UserManager.nickError = false //832444
                                 weakSelf.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
                             }
                         }
@@ -96,6 +99,7 @@ final class GenderViewController: BaseViewController {
                         switch result {
                         case .success(_):
                             UserManager.nickError = false
+                            sceneDelegate?.window?.rootViewController = TabViewController()
                         case .failure(let error):
                             switch error {
                             case .alreadySignedup:
@@ -112,6 +116,7 @@ final class GenderViewController: BaseViewController {
                 } else {
                     weakSelf.mainView.makeToast("성별을 선택해주세요", duration: 1, position: .center)
                 }
+                sceneDelegate?.window?.makeKeyAndVisible()
             }
             .disposed(by: disposeBag)
     }

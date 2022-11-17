@@ -14,6 +14,7 @@ enum TransitionStyle {
     case presentFullNavigation
     case push
     case pushWithoutAni
+    case presentOverFull
 }
 
 extension UIViewController {
@@ -24,6 +25,9 @@ extension UIViewController {
         switch transitionStyle {
         case .present:
             self.present(vc, animated: true)
+        case .presentOverFull:
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: false)
         case .presentFull:
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true)

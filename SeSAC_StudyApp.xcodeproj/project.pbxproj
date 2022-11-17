@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2515966B291D722200F48DB5 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2515966A291D722200F48DB5 /* Gender.swift */; };
+		251BC0AA2926308900246894 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251BC0A92926308900246894 /* WithdrawViewController.swift */; };
+		251BC0AC2926318000246894 /* WithdrawCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251BC0AB2926318000246894 /* WithdrawCheckView.swift */; };
 		25230AF9291FB01900525531 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230AF8291FB01900525531 /* HomeViewController.swift */; };
 		25230AFC291FB0CD00525531 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230AFB291FB0CD00525531 /* ShopViewController.swift */; };
 		25230AFF291FB10100525531 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230AFE291FB10100525531 /* FriendViewController.swift */; };
@@ -112,6 +114,8 @@
 
 /* Begin PBXFileReference section */
 		2515966A291D722200F48DB5 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		251BC0A92926308900246894 /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
+		251BC0AB2926318000246894 /* WithdrawCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawCheckView.swift; sourceTree = "<group>"; };
 		25230AF8291FB01900525531 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		25230AFB291FB0CD00525531 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		25230AFE291FB10100525531 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
@@ -231,7 +235,7 @@
 		25230AF7291FAFF100525531 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				25230AF8291FB01900525531 /* HomeViewController.swift */,
+				2566E11B29261F420006FBB4 /* Map */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -440,6 +444,42 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		2566E118292611D60006FBB4 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				25D1EDFA2922983C0015C444 /* WithdrawView.swift */,
+				25D1EDF82922960F0015C444 /* FriendAgeView.swift */,
+				25D1EDF6292294A40015C444 /* PhoneSearchView.swift */,
+				25D1EDF42922925A0015C444 /* StudyInputView.swift */,
+				25D1EDED29228ECC0015C444 /* GenderCustomView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		2566E11929261F060006FBB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25230AF8291FB01900525531 /* HomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2566E11A29261F0E0006FBB4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2566E11B29261F420006FBB4 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				2566E11A29261F0E0006FBB4 /* ViewModel */,
+				2566E11929261F060006FBB4 /* View */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		257E26482924123F0039B0A0 /* Card */ = {
 			isa = PBXGroup;
 			children = (
@@ -463,6 +503,8 @@
 			isa = PBXGroup;
 			children = (
 				25D1EDE529227F2D0015C444 /* DetailInfoViewController.swift */,
+				251BC0A92926308900246894 /* WithdrawViewController.swift */,
+				251BC0AB2926318000246894 /* WithdrawCheckView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -503,12 +545,8 @@
 		25D1EDFC29229B6C0015C444 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				2566E118292611D60006FBB4 /* CustomView */,
 				257E26482924123F0039B0A0 /* Card */,
-				25D1EDED29228ECC0015C444 /* GenderCustomView.swift */,
-				25D1EDF42922925A0015C444 /* StudyInputView.swift */,
-				25D1EDF6292294A40015C444 /* PhoneSearchView.swift */,
-				25D1EDF82922960F0015C444 /* FriendAgeView.swift */,
-				25D1EDFA2922983C0015C444 /* WithdrawView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -525,7 +563,6 @@
 			isa = PBXGroup;
 			children = (
 				25D1EE042922A0F60015C444 /* Cell */,
-				25D1EE032922A0EF0015C444 /* ViewModel */,
 				25D1EE022922A0E60015C444 /* View */,
 			);
 			path = Info;
@@ -537,13 +574,6 @@
 				25230B01291FB17100525531 /* InfoViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		25D1EE032922A0EF0015C444 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		25D1EE042922A0F60015C444 /* Cell */ = {
@@ -998,6 +1028,7 @@
 				2515966B291D722200F48DB5 /* Gender.swift in Sources */,
 				25F11E92291E43A6004AC54A /* TabViewController.swift in Sources */,
 				254627D2291A2EFF004D4B72 /* String+PhoneNumber.swift in Sources */,
+				251BC0AA2926308900246894 /* WithdrawViewController.swift in Sources */,
 				25D1EDFB2922983C0015C444 /* WithdrawView.swift in Sources */,
 				25F7FE492919698600E0C486 /* ThirdViewController.swift in Sources */,
 				25D1EDE629227F2D0015C444 /* DetailInfoViewController.swift in Sources */,
@@ -1029,6 +1060,7 @@
 				258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */,
 				255A37B9291C28EC00737C3A /* PropertyWapper.swift in Sources */,
 				255A378E291AB47300737C3A /* DefaultFirebaseAPIService.swift in Sources */,
+				251BC0AC2926318000246894 /* WithdrawCheckView.swift in Sources */,
 				25ED4A882922CF8400C4A6EB /* SesacReviewView.swift in Sources */,
 				257E264529240EC00039B0A0 /* ProfileImageHeaderView.swift in Sources */,
 				25F7FE0129193B3400E0C486 /* OnboardingViewController.swift in Sources */,

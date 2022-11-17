@@ -85,4 +85,15 @@ extension DetailViewModel {
         }
     }
     
+    func withdraw(completion: @escaping (Result<UserDataDTO,SeSACError>) -> Void) {
+        sesacAPIService.request(type: UserDataDTO.self, router: .withdraw) { result in
+            switch result {
+            case .success(let success):
+                completion(.success(success))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }

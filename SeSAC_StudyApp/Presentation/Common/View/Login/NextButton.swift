@@ -30,24 +30,24 @@ final class NextButton: UIButton {
 
         switch status {
         case .inactive:
+            self.setTitleColor(.textColor, for: .normal)
             self.backgroundColor = .white
             self.layer.borderWidth = 1
             self.layer.borderColor = UIColor.gray4.cgColor
-            self.titleLabel?.textColor = .textColor
         case .fill:
             self.backgroundColor = .ssGreen
-            self.titleLabel?.textColor = .white
+            self.setTitleColor(.white, for: .normal)
         case .outline:
             self.backgroundColor = .white
             self.layer.borderWidth = 1
             self.layer.borderColor = UIColor.gray4.cgColor
-            self.titleLabel?.textColor = .ssGreen
+            self.setTitleColor(.ssGreen, for: .normal)
         case .cancel:
             self.backgroundColor = .gray2
-            self.titleLabel?.textColor = .textColor
+            self.setTitleColor(.textColor, for: .normal)
         case .disable:
             self.backgroundColor = .gray6
-            self.titleLabel?.textColor = .gray3
+            self.setTitleColor(.gray3, for: .normal)
         }
     }
     
@@ -58,21 +58,21 @@ final class NextButton: UIButton {
                 self.backgroundColor = .white
                 self.layer.borderWidth = 1
                 self.layer.borderColor = UIColor.gray4.cgColor
-                self.titleLabel?.textColor = .textColor
+                self.setTitleColor(.textColor, for: .normal)
             case .fill:
                 self.backgroundColor = .ssGreen
-                self.titleLabel?.textColor = .white
+                self.setTitleColor(.white, for: .normal)
             case .outline:
                 self.backgroundColor = .white
                 self.layer.borderWidth = 1
                 self.layer.borderColor = UIColor.gray4.cgColor
-                self.titleLabel?.textColor = .ssGreen
+                self.setTitleColor(.ssGreen, for: .normal)
             case .cancel:
                 self.backgroundColor = .gray2
-                self.titleLabel?.textColor = .textColor
+                self.setTitleColor(.textColor, for: .normal)
             case .disable:
                 self.backgroundColor = .gray6
-                self.titleLabel?.textColor = .gray3
+                self.setTitleColor(.gray3, for: .normal)
             }
         }
     }

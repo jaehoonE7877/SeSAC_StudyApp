@@ -12,6 +12,7 @@ enum SeSACAPIRouter: URLRequestConvertible {
     case login
     case signup
     case mypage(updateData: SeSACInfo)
+    case withdraw
 }
 
 extension SeSACAPIRouter {
@@ -20,6 +21,8 @@ extension SeSACAPIRouter {
         switch self {
         case .login, .signup:
             return URL(string: "\(SeSACConfiguration.baseURL)/v1/user")!
+        case .withdraw:
+            return URL(string: "\(SeSACConfiguration.baseURL)/v1/user/withdraw")!
         case .mypage:
             return URL(string: "\(SeSACConfiguration.baseURL)/v1/user/mypage")!
         }
@@ -27,7 +30,7 @@ extension SeSACAPIRouter {
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .signup, .mypage:
+        case .login, .signup, .mypage, .withdraw:
             return [
                 "idtoken": "\(UserManager.token)",
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -39,7 +42,7 @@ extension SeSACAPIRouter {
         switch self {
         case .login:
             return .get
-        case .signup:
+        case .signup, .withdraw:
             return .post
         case .mypage:
             return .put
@@ -53,7 +56,7 @@ extension SeSACAPIRouter {
               let gender = UserManager.gender else { return ["" : ""] }
         
         switch self {
-        case .login:
+        case .login, .withdraw:
             return ["" : ""]
         case .signup:
             return [
@@ -82,7 +85,7 @@ extension SeSACAPIRouter {
         request.headers = headers
         
         switch self {
-        case .login:
+        case .login, .withdraw:
             return request
         case .signup, .mypage:
             return try URLEncoding.default.encode(request, with: parameters)

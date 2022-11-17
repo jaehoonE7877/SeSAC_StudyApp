@@ -15,7 +15,7 @@ import RxSwift
 
 //navigation은 이후 화면부터 생김
 
-final class HomeViewController: BaseViewController {
+final class MapViewController: BaseViewController {
     
     private lazy var mapView = MKMapView()
     
@@ -53,7 +53,7 @@ final class HomeViewController: BaseViewController {
     }
 }
 
-extension HomeViewController: CLLocationManagerDelegate {
+extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -78,7 +78,7 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
 }
 
-extension HomeViewController : MKMapViewDelegate {
+extension MapViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKUserLocation) else {
@@ -107,7 +107,7 @@ extension HomeViewController : MKMapViewDelegate {
 // 5. 위치서비스 활성화 여부, 사용자의 위치 권한 상태 확인
 // 활성화 여부에 따른 Alert표시 후 설정으로 이동하는 함수
 // 총 3가지 작성
-extension HomeViewController {
+extension MapViewController {
 
     // 5-1 사용자의 위치서비스 활성화 여부 물어보기
     // iOS 14 버전에 따른 분기 처리 밑, 위치 서비스 활성화 여부 확인

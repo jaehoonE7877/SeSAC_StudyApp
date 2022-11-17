@@ -27,6 +27,7 @@ final class EmailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.backButtonTitle = ""
         if UserManager.nickError {
             mainView.emailTextField.text = UserManager.email
         }
