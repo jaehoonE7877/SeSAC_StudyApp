@@ -8,6 +8,7 @@
 import Foundation
 
 enum SeSACError: Int, Error {
+    case success = 200
     case alreadySignedup = 201
     case forbiddenNick = 202
     case firebaseTokenError = 401
@@ -19,6 +20,8 @@ enum SeSACError: Int, Error {
 extension SeSACError: LocalizedError {
     var errorDescription: String? {
         switch self {
+        case .success:
+            return "성공"
         case .alreadySignedup:
             return "이미 가입한 유저입니다."
         case .forbiddenNick:

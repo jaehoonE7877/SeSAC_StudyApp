@@ -51,7 +51,6 @@ final class DetailInfoViewController: BaseViewController {
                     cell.genderView.womanButton.status = .inactive
                     cell.genderView.manButton.status = .active
                     self.updateSesac?.gender = 1
-                    print(self.updateSesac?.gender)
                 }
                 .disposed(by: self.disposeBag)
             
@@ -60,21 +59,18 @@ final class DetailInfoViewController: BaseViewController {
                     cell.genderView.manButton.status = .inactive
                     cell.genderView.womanButton.status = .active
                     self.updateSesac?.gender = 0
-                    print(self.updateSesac?.gender)
                 }
                 .disposed(by: self.disposeBag)
             
             cell.studyInputView.studyTextField.rx.text.orEmpty
                 .bind { text in
                     self.updateSesac?.study = text
-                    print(self.updateSesac?.study)
                 }
                 .disposed(by: self.disposeBag)
           
             cell.phoneSearchView.phoneButton.rx.isOn
                 .bind { value in
                     self.updateSesac?.searchable = value ? 1 : 0
-                    print(self.updateSesac?.searchable)
                 }
                 .disposed(by: self.disposeBag)
                 
@@ -83,7 +79,6 @@ final class DetailInfoViewController: BaseViewController {
                     cell.friendAgeView.ageLabel.text = "\(Int(cell.friendAgeView.slider.value[0])) - \(Int(cell.friendAgeView.slider.value[1]))"
                     self.updateSesac?.ageMin = Int(cell.friendAgeView.slider.value[0])
                     self.updateSesac?.ageMax = Int(cell.friendAgeView.slider.value[1])
-                    print(self.updateSesac?.ageMin)
                 }
                 .disposed(by: self.disposeBag)
             
@@ -91,7 +86,8 @@ final class DetailInfoViewController: BaseViewController {
         }
     })
     
-    private let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: DetailInfoViewController.self, action: nil)
+    
+    private lazy var saveButton = UIBarButtonItem(title: "저장", style: .plain, target: DetailInfoViewController.self, action: nil)
     
     var foldValue: Bool = true
     
@@ -106,7 +102,7 @@ final class DetailInfoViewController: BaseViewController {
     
     override func setNavigationController() {
         title = "정보 관리"
-        self.navigationController?.navigationItem.rightBarButtonItem = saveButton
+        navigationItem.rightBarButtonItem = saveButton
     }
     
     override func configure() {
@@ -171,7 +167,28 @@ extension DetailInfoViewController {
         output.userData
             .withUnretained(self)
             .subscribe { weakSelf, sesacInfo in
+                weakSelf.updateSesac = sesacInfo
                 weakSelf.bindingTableView(sesacInfo: sesacInfo)
+            }
+            .disposed(by: disposeBag)
+        
+        output.saveButtonTap
+            .withUnretained(self)
+            .subscribe { weakSelf, _ in
+                guard let updateSesac = weakSelf.updateSesac else { return }
+                weakSelf.viewModel.updateInfo(updataData: updateSesac) { result in
+                    switch result{
+                    case .success(let result):
+                        print(result)
+                    case .failure(let error):
+                        switch error {
+                        case .success:
+                            weakSelf.navigationController?.popViewController(animated: true)
+                        default:
+                            weakSelf.view.makeToast(error.errorDescription, duration: 1, position: .center)
+                        }
+                    }
+                }
             }
             .disposed(by: disposeBag)
     }
