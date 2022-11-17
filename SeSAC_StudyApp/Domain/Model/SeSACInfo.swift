@@ -8,16 +8,16 @@
 import Foundation
 
 struct SeSACInfo {
-    let background: Int
-    let sesac: Int
-    let nick: String
-    let reputation: [Int]
-    let comment: [String]
-    let gender: Int
-    let study: String
-    let searchable: Int
-    let ageMin: Int
-    let ageMax: Int
+    var background: Int
+    var sesac: Int
+    var nick: String
+    var reputation: [Int]
+    var comment: [String]
+    var gender: Int
+    var study: String
+    var searchable: Int
+    var ageMin: Int
+    var ageMax: Int
     
     init(
         background: Int = 0,

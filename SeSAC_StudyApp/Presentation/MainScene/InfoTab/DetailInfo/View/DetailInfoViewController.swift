@@ -50,6 +50,8 @@ final class DetailInfoViewController: BaseViewController {
                 .bind { _ in
                     cell.genderView.womanButton.status = .inactive
                     cell.genderView.manButton.status = .active
+                    self.updateSesac?.gender = 1
+                    print(self.updateSesac?.gender)
                 }
                 .disposed(by: self.disposeBag)
             
@@ -57,20 +59,34 @@ final class DetailInfoViewController: BaseViewController {
                 .bind { _ in
                     cell.genderView.manButton.status = .inactive
                     cell.genderView.womanButton.status = .active
+                    self.updateSesac?.gender = 0
+                    print(self.updateSesac?.gender)
                 }
                 .disposed(by: self.disposeBag)
             
             cell.studyInputView.studyTextField.rx.text.orEmpty
-                .
+                .bind { text in
+                    self.updateSesac?.study = text
+                    print(self.updateSesac?.study)
+                }
+                .disposed(by: self.disposeBag)
+          
+            cell.phoneSearchView.phoneButton.rx.isOn
+                .bind { value in
+                    self.updateSesac?.searchable = value ? 1 : 0
+                    print(self.updateSesac?.searchable)
+                }
+                .disposed(by: self.disposeBag)
                 
-
-            
-            
             cell.friendAgeView.slider.rx.controlEvent(.valueChanged)
                 .bind { _ in
                     cell.friendAgeView.ageLabel.text = "\(Int(cell.friendAgeView.slider.value[0])) - \(Int(cell.friendAgeView.slider.value[1]))"
+                    self.updateSesac?.ageMin = Int(cell.friendAgeView.slider.value[0])
+                    self.updateSesac?.ageMax = Int(cell.friendAgeView.slider.value[1])
+                    print(self.updateSesac?.ageMin)
                 }
                 .disposed(by: self.disposeBag)
+            
             return cell
         }
     })
@@ -90,7 +106,7 @@ final class DetailInfoViewController: BaseViewController {
     
     override func setNavigationController() {
         title = "정보 관리"
-        navigationController?.navigationItem.rightBarButtonItem = saveButton
+        self.navigationController?.navigationItem.rightBarButtonItem = saveButton
     }
     
     override func configure() {
@@ -158,11 +174,7 @@ extension DetailInfoViewController {
                 weakSelf.bindingTableView(sesacInfo: sesacInfo)
             }
             .disposed(by: disposeBag)
-        
     }
-    
-    
-    
 }
 
 extension DetailInfoViewController: UITableViewDelegate {
