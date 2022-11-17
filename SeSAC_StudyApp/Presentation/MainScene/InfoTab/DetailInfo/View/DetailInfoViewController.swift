@@ -87,7 +87,9 @@ final class DetailInfoViewController: BaseViewController {
             cell.withdrawView.withdrawButton.rx.tap
                 .bind(onNext: { _ in
                     let vc = WithdrawViewController()
-                    self.transitionViewController(viewController: vc, transitionStyle: .presentOverFull)
+                    vc.modalPresentationStyle = .overFullScreen
+                    self.present(vc, animated: false)
+                    //self.transitionViewController(viewController: vc, transitionStyle: .presentOverFull)
                 })
                 .disposed(by: self.disposeBag)
             

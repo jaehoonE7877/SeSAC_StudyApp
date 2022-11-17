@@ -17,7 +17,11 @@ import RxSwift
 
 final class MapViewController: BaseViewController {
     
-    private lazy var mapView = MKMapView()
+    private let mainView = MapView()
+    
+    override func loadView() {
+        self.view = mainView
+    }
     
     private let locationManager = CLLocationManager()
     
@@ -27,19 +31,12 @@ final class MapViewController: BaseViewController {
     
     override func configure() {
         locationManager.delegate = self
-        view.addSubview(mapView)
-    }
-    
-    override func setConstraint() {
-        mapView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
     }
     
     private func myRegionAndAnnotation(_ title: String, _ meters: Double ,_ center: CLLocationCoordinate2D) {
 
         let region = MKCoordinateRegion(center: center, latitudinalMeters: meters, longitudinalMeters: meters)
-        mapView.setRegion(region, animated: true)
+        mainView.mapView.setRegion(region, animated: true)
         
         addCustomPin(title: title, coordinate: center)
     }
@@ -48,9 +45,19 @@ final class MapViewController: BaseViewController {
         let pin = MKPointAnnotation()
         pin.coordinate = coordinate
         pin.title = title
-        mapView.addAnnotation(pin)
+        mainView.mapView.addAnnotation(pin)
+    }
+    
+    override func setBinding() {
+        
+        mainView.searchButton.rx.tap
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                weakSelf.transitionViewController(viewController: <#T##T#>, transitionStyle: .presentFullNavigation)
+            }
         
     }
+    
 }
 
 extension MapViewController: CLLocationManagerDelegate {
