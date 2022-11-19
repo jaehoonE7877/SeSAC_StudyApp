@@ -23,6 +23,8 @@ final class MapViewController: BaseViewController {
         self.view = mainView
     }
     
+    private let disposeBag = DisposeBag()
+    
     private let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -53,8 +55,9 @@ final class MapViewController: BaseViewController {
         mainView.searchButton.rx.tap
             .withUnretained(self)
             .bind { weakSelf, _ in
-                weakSelf.transitionViewController(viewController: <#T##T#>, transitionStyle: .presentFullNavigation)
+                weakSelf.transitionViewController(viewController: SearchViewController(), transitionStyle: .presentFullNavigation)
             }
+            .disposed(by: disposeBag)
         
     }
     

@@ -111,6 +111,7 @@
 		25F7FE55291976CA00E0C486 /* UITextField+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE54291976CA00E0C486 /* UITextField+AttributedString.swift */; };
 		25F7FE572919792000E0C486 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE562919792000E0C486 /* UITextField+.swift */; };
 		25F7FE5A291985DB00E0C486 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7FE59291985DB00E0C486 /* NextButton.swift */; };
+		25FA84C32928DB3C00667EB6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FA84C22928DB3C00667EB6 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -208,6 +209,7 @@
 		25F7FE54291976CA00E0C486 /* UITextField+AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+AttributedString.swift"; sourceTree = "<group>"; };
 		25F7FE562919792000E0C486 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		25F7FE59291985DB00E0C486 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
+		25FA84C22928DB3C00667EB6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,9 +236,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		251BC0AF2926520B00246894 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				25FA84C22928DB3C00667EB6 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		25230AF7291FAFF100525531 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				251BC0AF2926520B00246894 /* Search */,
 				2566E11B29261F420006FBB4 /* Map */,
 			);
 			path = Home;
@@ -1047,6 +1058,7 @@
 				25F7FE502919752B00E0C486 /* PhoneViewController.swift in Sources */,
 				25F7FE3D291950AD00E0C486 /* PageView.swift in Sources */,
 				254627D9291A3BA7004D4B72 /* AuthViewController.swift in Sources */,
+				25FA84C32928DB3C00667EB6 /* SearchViewController.swift in Sources */,
 				25230AFF291FB10100525531 /* FriendViewController.swift in Sources */,
 				255A37C5291C32BC00737C3A /* BirthView.swift in Sources */,
 				255A3791291AB52F00737C3A /* FirebaseError.swift in Sources */,
