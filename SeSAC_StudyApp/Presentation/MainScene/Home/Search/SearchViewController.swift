@@ -14,11 +14,13 @@ final class SearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setNavigationController()
     }
     
     override func setNavigationController() {
-        
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "띄어쓰기로 복수 입력이 가능해요"
+        navigationItem.titleView = searchBar
     }
     
 }

@@ -46,6 +46,7 @@
 		255A37C5291C32BC00737C3A /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C4291C32BC00737C3A /* BirthView.swift */; };
 		255A37C7291C32CC00737C3A /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C6291C32CC00737C3A /* BirthViewController.swift */; };
 		255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A37C8291C330500737C3A /* BirthViewModel.swift */; };
+		255B48E0292A74ED00D33052 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B48DF292A74ED00D33052 /* SearchView.swift */; };
 		257E263D2923AB2C0039B0A0 /* DetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263C2923AB2C0039B0A0 /* DetailInfoViewModel.swift */; };
 		257E26402923C9E50039B0A0 /* SeSACInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263F2923C9E50039B0A0 /* SeSACInfo.swift */; };
 		257E2643292401AF0039B0A0 /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 257E2642292401AF0039B0A0 /* MultiSlider */; };
@@ -150,6 +151,7 @@
 		255A37C4291C32BC00737C3A /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		255A37C6291C32CC00737C3A /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		255A37C8291C330500737C3A /* BirthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewModel.swift; sourceTree = "<group>"; };
+		255B48DF292A74ED00D33052 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		257E263C2923AB2C0039B0A0 /* DetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewModel.swift; sourceTree = "<group>"; };
 		257E263F2923C9E50039B0A0 /* SeSACInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACInfo.swift; sourceTree = "<group>"; };
 		257E264429240EC00039B0A0 /* ProfileImageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageHeaderView.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				25FA84C22928DB3C00667EB6 /* SearchViewController.swift */,
+				255B48DF292A74ED00D33052 /* SearchView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -247,8 +250,8 @@
 		25230AF7291FAFF100525531 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				251BC0AF2926520B00246894 /* Search */,
 				2566E11B29261F420006FBB4 /* Map */,
+				251BC0AF2926520B00246894 /* Search */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1052,6 +1055,7 @@
 				25D1EDF329228FB50015C444 /* InfoButtonStatus.swift in Sources */,
 				25D8C391291CAB2F00FB52DF /* BirthItemView.swift in Sources */,
 				25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */,
+				255B48E0292A74ED00D33052 /* SearchView.swift in Sources */,
 				25F7FE5A291985DB00E0C486 /* NextButton.swift in Sources */,
 				255A37BD291C31CC00737C3A /* EmailView.swift in Sources */,
 				25D1EDEC29228D0A0015C444 /* SesacDetailTableViewCell.swift in Sources */,

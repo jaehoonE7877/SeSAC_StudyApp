@@ -17,8 +17,9 @@ final class DefaultSeSACAPIService {
     
     func request<T: Decodable>(type: T.Type = T.self, router: SeSACAPIRouter, completion: @escaping (Result<T, SeSACError>) -> Void) {
         
-        AF.request(router).validate(statusCode: 200...299).responseDecodable(of: type) { response in
-            
+        AF.request(router).responseDecodable(of: type) { response in
+            print(response.response?.statusCode)
+            print(response.result)
             switch response.result {
 
             case .success(let data):
