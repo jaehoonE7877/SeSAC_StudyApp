@@ -48,6 +48,10 @@ extension UIColor {
         return UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1)
     }
     
+    static var ssRed: UIColor {
+        return UIColor(red: 0.913, green: 0.401, blue: 0.419, alpha: 1)
+    }
+    
     static let textColor = UIColor(named: "Text")
 }
 

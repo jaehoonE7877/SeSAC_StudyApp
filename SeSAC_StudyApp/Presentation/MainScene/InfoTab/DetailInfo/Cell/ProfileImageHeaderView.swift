@@ -13,12 +13,10 @@ final class ProfileImageHeaderView: UITableViewHeaderFooterView {
         $0.isHidden = false
         $0.layer.cornerRadius = 8
         $0.layer.masksToBounds = true
-        //$0.image = UIImage(named: "sesac_background_8")
         $0.contentMode = .scaleAspectFill
     }
     
     lazy var sesacImageView = UIImageView().then {
-        //$0.image = UIImage(named: "sesac_face_4")
         $0.contentMode = .scaleAspectFill
     }
     

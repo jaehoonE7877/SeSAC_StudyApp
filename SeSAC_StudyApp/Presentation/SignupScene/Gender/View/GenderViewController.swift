@@ -88,7 +88,7 @@ final class GenderViewController: BaseViewController {
                                 UserManager.nickError = true
                                 weakSelf.popToVC(viewController: NicknameViewController(), errorMessage: SeSACError.forbiddenNick.localizedDescription)
                             default:
-                                UserManager.nickError = false //832444
+                                UserManager.nickError = false
                                 weakSelf.mainView.makeToast(error.localizedDescription, duration: 1, position: .center)
                             }
                         }
