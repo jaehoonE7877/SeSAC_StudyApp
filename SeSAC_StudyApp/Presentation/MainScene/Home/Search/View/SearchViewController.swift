@@ -26,8 +26,8 @@ final class SearchViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     
     private var dataSource: DataSource!
-    private typealias DataSource = UICollectionViewDiffableDataSource<Int, String>
-    private typealias Snapshot = NSDiffableDataSourceSnapshot<Int, String>
+    private typealias DataSource = UICollectionViewDiffableDataSource<Int, StudyTag>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<Int, StudyTag>
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,17 +76,39 @@ final class SearchViewController: BaseViewController {
     override func setBinding() {
         
         let input = SearchViewModel.Input(viewDidLoadEvent: Observable.just(()),
-                                          searchText: searchBar.rx.searchButtonClicked)
+                                          searchTap: searchBar.rx.searchButtonClicked
+                                          )
         let output = viewModel.transform(input: input)
         
-        output.searchText
+        output.searchTap
             .withUnretained(self)
             .bind { weakSelf, text in
-                weakSelf.viewModel.searchList.append(weakSelf.searchBar.text ?? "")
-                weakSelf.updateSnapshot()
+                guard let text = weakSelf.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+                if text.count >= 1 && text.count <= 8 {
+                    weakSelf.viewModel.searchList.append(StudyTag(tag: weakSelf.searchBar.text ?? ""))
+                    weakSelf.updateSnapshot()
+                } else {
+                    weakSelf.view.makeToast("최소 한 자 이상, 최대 8글자까지 작성 가능합니다", duration: 1, position: .center)
+                }
             }
             .disposed(by: disposeBag)
             
+        collectionView.rx.itemSelected
+            .withUnretained(self)
+            .bind { weakSelf, indexPath in
+                if indexPath.section == 0 {
+                    weakSelf.viewModel.searchList.append(weakSelf.viewModel.baseList[indexPath.item])
+                    weakSelf.updateSnapshot()
+                } else if indexPath.section == 1 {
+                    weakSelf.viewModel.searchList.append(weakSelf.viewModel.friendList[indexPath.item])
+                    weakSelf.updateSnapshot()
+                } else {
+                    weakSelf.viewModel.searchList.remove(at: indexPath.item)
+                    weakSelf.updateSnapshot()
+                }
+            }
+            .disposed(by: disposeBag)
+        
     }
     
 
@@ -152,7 +174,7 @@ extension SearchViewController {
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             
-            let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegisteration, for: indexPath, item: itemIdentifier)
+            let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegisteration, for: indexPath, item: itemIdentifier.tag)
             
             return cell
         })
