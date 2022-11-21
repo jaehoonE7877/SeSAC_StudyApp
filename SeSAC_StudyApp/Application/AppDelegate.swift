@@ -38,14 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Messaging.messaging().delegate = self
         
-        Messaging.messaging().token { token, error in
-            if let error = error {
-                print("Error fetching FCM registration token: \(error)")
-            } else if let token = token {
-                UserManager.fcmToken = token
-                print("FCM registration token: \(token)")
-            }
-        }
+//        Messaging.messaging().token { token, error in
+//            if let error = error {
+//                print("Error fetching FCM registration token: \(error)")
+//            } else if let token = token {
+//                UserManager.fcmToken = token
+//                print("FCM registration token: \(token)")
+//            }
+//        }
         
         return true
     }
@@ -80,6 +80,7 @@ extension AppDelegate: MessagingDelegate {
         let dataDictonary: [String: String] = ["token": fcmToken ?? ""]
         guard let fcmToken = fcmToken else { return }
         UserManager.fcmToken =  fcmToken
+        print(UserManager.fcmToken)
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDictonary)
     }
     

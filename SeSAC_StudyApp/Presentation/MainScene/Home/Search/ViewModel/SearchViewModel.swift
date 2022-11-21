@@ -73,6 +73,7 @@ extension SearchViewModel {
                 output.searchInfo.onNext(success)
 
             case .failure(let error):
+                print(error.rawValue)
                 switch error {
                 case .firebaseTokenError:
                     self.refreshRequest(output: output)

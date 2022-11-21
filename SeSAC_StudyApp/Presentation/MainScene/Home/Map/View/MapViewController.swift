@@ -13,8 +13,6 @@ import CoreLocation
 import RxCocoa
 import RxSwift
 
-//navigation은 이후 화면부터 생김
-
 final class MapViewController: BaseViewController {
     
     private let mainView = MapView()
@@ -23,12 +21,14 @@ final class MapViewController: BaseViewController {
         self.view = mainView
     }
     
+    private let viewModel = MapViewModel()
     private let disposeBag = DisposeBag()
     
     private let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindViewModel()
     }
     
     override func configure() {
@@ -39,13 +39,8 @@ final class MapViewController: BaseViewController {
 
         let region = MKCoordinateRegion(center: center, latitudinalMeters: meters, longitudinalMeters: meters)
         mainView.mapView.setRegion(region, animated: true)
-        
-        addCustomPin(title: title, coordinate: center)
-    }
-    
-    private func addCustomPin(title: String, coordinate: CLLocationCoordinate2D) {
         let pin = MKPointAnnotation()
-        pin.coordinate = coordinate
+        pin.coordinate = center
         pin.title = title
         mainView.mapView.addAnnotation(pin)
     }
@@ -55,29 +50,92 @@ final class MapViewController: BaseViewController {
         mainView.searchButton.rx.tap
             .withUnretained(self)
             .bind { weakSelf, _ in
+                
                 weakSelf.transitionViewController(viewController: SearchViewController(), transitionStyle: .presentFullNavigation)
             }
             .disposed(by: disposeBag)
         
+        mainView.currentButton.rx.tap
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                guard let currentLocation = weakSelf.locationManager.location else {
+                    weakSelf.checkUserDeviceLocationServiceAuthorization()
+                    return
+                }
+                weakSelf.myRegionAndAnnotation("현재위치", 700, currentLocation.coordinate)
+            }
+            .disposed(by: disposeBag)
     }
     
+    private func bindViewModel() {
+        
+        let input = MapViewModel.Input(viewDidLoadEvent: self.rx.viewDidLoad)
+        
+        let output = viewModel.transform(input: input)
+        
+        output.isFailed
+            .asDriver(onErrorJustReturn: true)
+            .drive { [weak self] isFailed in
+                guard let self = self else { return }
+                if isFailed {
+                    self.view.makeToast("데이터 통신에 실패했습니다", duration: 1, position: .center)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        output.searchLocation
+            .withUnretained(self)
+            .bind { weakSelf, result in
+                //weakSelf.mainView.mapView.removeAnnotation(annotation)
+                result.fromQueueDB.forEach { result in
+                    weakSelf.addCustomPin(sesac_image: result.sesac,
+                                          coordinate: CLLocationCoordinate2D(latitude: result.lat, longitude: result.long))
+                }
+                result.fromQueueDBRequested.forEach { result in
+                    weakSelf.addCustomPin(sesac_image: result.sesac,
+                                          coordinate: CLLocationCoordinate2D(latitude: result.lat, longitude: result.long))
+                }
+            }
+            .disposed(by: disposeBag)
+        
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate {
     
+    private func checkUserDeviceLocationServiceAuthorization() {
+        
+        let authorizationStatus: CLAuthorizationStatus
+        authorizationStatus = locationManager.authorizationStatus
+
+        checkUserCurrentLocationAuthorization(authorizationStatus)
+    }
+    
+    func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
+        switch authorizationStatus {
+        case .notDetermined:
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        case .restricted, .denied:
+            let center = CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
+            myRegionAndAnnotation("청년취업사관학교 영등포 캠퍼스", 700, center)
+            showRequestLocationServiceAlert()
+        case .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+            
+        default:
+            print("DEFAULT")
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let coordinate = locations.last?.coordinate {
-            myRegionAndAnnotation("현재 위치", 600, coordinate)
+            viewModel.userCurrentLocation = coordinate
         }
         //⭐️ start updatingLocation을 하고나서 멈추기 필수!
         locationManager.stopUpdatingLocation()
-    }
-    
-    // 4-2
-    // 위치 가져오는 거 실패했을 때
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(#function)
     }
     
     // 사용자의 권한 상태가 바뀔 때 호출되는 메서드
@@ -91,21 +149,31 @@ extension MapViewController: CLLocationManagerDelegate {
 extension MapViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard !(annotation is MKUserLocation) else {
+        
+        guard let annotation = annotation as? CustomAnnotation else {
             return nil
         }
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "myPin")
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
         
         if annotationView == nil {
             // create a view
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
             annotationView?.canShowCallout = true
+            annotationView?.contentMode = .scaleAspectFit
             
         } else {
             annotationView?.annotation = annotation
         }
-        annotationView?.image = UIImage(named: "map_marker")
+        
+        let sesacImage = UIImage(named: "sesac_face_\(annotation.sesac_Image ?? 0)")
+        let size = CGSize(width: 85, height: 85)
+        UIGraphicsBeginImageContext(size)
+        
+        sesacImage?.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        annotationView?.image = resizedImage
+        
         return annotationView
     }
     
@@ -114,51 +182,17 @@ extension MapViewController : MKMapViewDelegate {
     }
 }
 
-// 5. 위치서비스 활성화 여부, 사용자의 위치 권한 상태 확인
-// 활성화 여부에 따른 Alert표시 후 설정으로 이동하는 함수
-// 총 3가지 작성
 extension MapViewController {
-
-    // 5-1 사용자의 위치서비스 활성화 여부 물어보기
-    // iOS 14 버전에 따른 분기 처리 밑, 위치 서비스 활성화 여부 확인
-    private func checkUserDeviceLocationServiceAuthorization() {
-        
-        // 서비스 활성 상태
-        let authorizationStatus: CLAuthorizationStatus
-        authorizationStatus = locationManager.authorizationStatus
-        // 위치 서비스 활성화 상태 여부 확인
-        checkUserCurrentLocationAuthorization(authorizationStatus)
     
+    private func addCustomPin(sesac_image: Int, coordinate: CLLocationCoordinate2D){
+        let pin = CustomAnnotation(sesac_Image: sesac_image, coordinate: coordinate)
+        mainView.mapView.addAnnotation(pin)
     }
-    // 5-2 사용자의 위치 권한 상태 확인
-    // inPut으로 현재 서비스 활성화 상태가 들어가야 됨
-    // notDetermined -> 처음 앱 실행, 버튼을 눌러서 설정하도록 권유
-    // restricted, denied -> 위치 서비스가 꺼져있어 서비스 제공 x 위치 서비스 활성화 하도록 권유
-    // authorizedWhenInUse ->
-    func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
-        switch authorizationStatus {
-        case .notDetermined:
-            print("NOT DETERMINED")
-            
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-            //앱을 사용하는 동안에 위치 권한 요청 + plist에 privacy(location when in use 등록 필수)
-           
-            // 제한이 됐다는 것이기 때문에 Alert page로 이동!
-        case .restricted, .denied:
-            print("RESTRICTED")
-            let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
-            myRegionAndAnnotation("청년취업사관학교 영등포 캠퍼스", 600, center)
-            
-        case .authorizedWhenInUse:
-            print("WHEN IN USE")
-            // startUpdatingLocation이 있다면 stopUpdatingLocation도 구현해줘야 함
-            // 아래 메서드가 실행하면 4-1의 메서드가 실행된다. 따라서 stop은 4-1에서 구현
-            locationManager.startUpdatingLocation()
-            
-        default:
-            print("DEFAULT")
-        }
+
+
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(#function)
     }
     
     private func showRequestLocationServiceAlert() {

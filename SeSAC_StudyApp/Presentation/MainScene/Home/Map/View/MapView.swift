@@ -11,7 +11,9 @@ import MapKit
 
 final class MapView: BaseView {
     
-    lazy var mapView = MKMapView()
+    lazy var mapView = MKMapView().then {
+        $0.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: CustomAnnotationView.identifier)
+    }
     
     let pinImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill

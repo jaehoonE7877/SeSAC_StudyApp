@@ -182,6 +182,7 @@ extension SearchViewController {
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(32))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 group.interItemSpacing = .fixed(8)
+                
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 8
                 section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)

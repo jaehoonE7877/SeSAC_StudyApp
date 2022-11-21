@@ -19,4 +19,13 @@ struct FromQueueDB: Codable {
     let reputation: [Int]
     let studylist, reviews: [String]
     let gender, type, sesac, background: Int
+    
+    func toDomain() -> SeSACSearchModel {
+        return SeSACSearchModel(
+            lat: self.lat,
+            long: self.long,
+            gender: self.gender,
+            type: self.type,
+            background: self.background)
+    }
 }
