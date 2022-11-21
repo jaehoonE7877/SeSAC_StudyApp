@@ -28,8 +28,6 @@ final class SplashViewController: UIViewController {
         super.viewDidLoad()
         configure()
         setConstraint()
-        print(UserManager.token)
-        print(UserManager.fcmToken)
         animation()
         
     }
@@ -80,7 +78,6 @@ extension SplashViewController {
         if UserManager.onboarding {
             // ⭐️네트워크 상태 확인
             tryLogin { [weak self] result in
-                print(result)
                 guard let self = self else { return }
                 switch result {
                 case .success(_):

@@ -76,9 +76,7 @@ final class PhoneViewController: BaseViewController {
                     weakSelf.viewModel.requestAuth(phoneNumber: weakSelf.formattingNumber()) { result in
                         switch result {
                         case .success(_):
-                            print(UserManager.phone)
                             UserManager.phone = weakSelf.formattingNumber()
-                            print(UserManager.phone)
                             weakSelf.transitionViewController(viewController: AuthViewController(), transitionStyle: .push)
                         case .failure(let error):
                             weakSelf.mainView.makeToast(error.localizedDescription, position: .center)

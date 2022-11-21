@@ -13,9 +13,11 @@ import RxSwift
 final class SearchViewController: BaseViewController {
     
     //MARK: Property
-    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init()).then {
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init()).then {
         $0.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.reuseIdentifier)
     }
+    
+    private lazy var searchButton = NextButton(title: "새싹 찾기", status: .fill)
     
     private var dataSource: DataSource!
     private typealias DataSource = UICollectionViewDiffableDataSource<Int, String>
@@ -31,11 +33,18 @@ final class SearchViewController: BaseViewController {
     override func configure() {
         view.backgroundColor = .systemBackground
         view.addSubview(collectionView)
+        view.addSubview(searchButton)
     }
     
     override func setConstraint() {
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        searchButton.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview().inset(16)
+            make.height.equalTo(48)
+            make.bottom.equalToSuperview().offset(-50)
         }
     }
     
