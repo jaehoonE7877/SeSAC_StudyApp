@@ -245,6 +245,7 @@
 		251BC0AF2926520B00246894 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				255B48E9292B55F600D33052 /* ViewModel */,
 				255B48E2292B1C3700D33052 /* Cell */,
 				255B48E1292B1C2800D33052 /* View */,
 			);
@@ -480,6 +481,13 @@
 				255B48E7292B4B4E00D33052 /* SearchButton.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		255B48E9292B55F600D33052 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		2566E118292611D60006FBB4 /* CustomView */ = {
