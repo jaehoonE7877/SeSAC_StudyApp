@@ -13,6 +13,7 @@ enum SeSACAPIRouter: URLRequestConvertible {
     case signup
     case mypage(updateData: SeSACInfo)
     case withdraw
+    case search
 }
 
 extension SeSACAPIRouter {
@@ -25,12 +26,14 @@ extension SeSACAPIRouter {
             return URL(string: "\(SeSACConfiguration.baseURL)/v1/user/withdraw")!
         case .mypage:
             return URL(string: "\(SeSACConfiguration.baseURL)/v1/user/mypage")!
+        case .search:
+            return URL(string: "\(SeSACConfiguration.baseURL)/v1/queue/search")!
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .signup, .mypage, .withdraw:
+        case .login, .signup, .mypage, .withdraw, .search:
             return [
                 "idtoken": "\(UserManager.token)",
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -46,6 +49,8 @@ extension SeSACAPIRouter {
             return .post
         case .mypage:
             return .put
+        case .search:
+            return .post
         }
     }
     
@@ -75,6 +80,10 @@ extension SeSACAPIRouter {
                 "gender" : String(data.gender),
                 "study" : data.study
                 ]
+        case .search:
+            return ["lat": String(1234),
+                    "long": String(4567)
+                    ]
         }
     }
     
@@ -87,7 +96,7 @@ extension SeSACAPIRouter {
         switch self {
         case .login, .withdraw:
             return request
-        case .signup, .mypage:
+        case .signup, .mypage, .search:
             return try URLEncoding.default.encode(request, with: parameters)
         }
         

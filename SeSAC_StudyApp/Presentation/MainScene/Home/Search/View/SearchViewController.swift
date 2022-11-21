@@ -22,23 +22,19 @@ final class SearchViewController: BaseViewController {
     
     private lazy var searchButton = NextButton(title: "새싹 찾기", status: .fill)
     
-    var searchList = ["아무거나", "SeSAC", "sasdasdasdadadadddasdas","asdassdasdasdasdasda"]
+    private let viewModel = SearchViewModel()
+    private let disposeBag = DisposeBag()
     
     private var dataSource: DataSource!
     private typealias DataSource = UICollectionViewDiffableDataSource<Int, String>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Int, String>
-    
-    private let disposeBag = DisposeBag()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationController()
         collectionView.collectionViewLayout = configureCellLayout()
         configureDataSource()
-        var snapshot = Snapshot()
-        snapshot.appendSections([0])
-        snapshot.appendItems(searchList)
-        dataSource.apply(snapshot)
+        
     }
     
     override func configure() {
@@ -72,19 +68,22 @@ final class SearchViewController: BaseViewController {
         backButton.rx.tap
             .withUnretained(self)
             .bind { weakSelf, _ in
-                weakSelf.navigationController?.popViewController(animated: true)
+                weakSelf.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
     }
     
     override func setBinding() {
         
-        searchBar.rx.text.orEmpty
-            .debounce(.seconds(1), scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
+        let input = SearchViewModel.Input(viewDidLoadEvent: Observable.just(()),
+                                          searchText: searchBar.rx.searchButtonClicked)
+        let output = viewModel.transform(input: input)
+        
+        output.searchText
             .withUnretained(self)
             .bind { weakSelf, text in
-                weakSelf.searchList.append(text)
+                weakSelf.viewModel.searchList.append(weakSelf.searchBar.text ?? "")
+                weakSelf.updateSnapshot()
             }
             .disposed(by: disposeBag)
             
@@ -98,33 +97,25 @@ extension SearchViewController {
     private func configureCellLayout() -> UICollectionViewLayout {
         
         let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            
             if sectionIndex == 1 {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(60), heightDimension: .absolute(32))
-                
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(32))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 group.interItemSpacing = .fixed(8)
-                
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 8
                 section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
                 return section
             } else {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(60), heightDimension: .absolute(32))
-                
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(32))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 group.interItemSpacing = .fixed(8)
-                
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 8
                 section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
-                
                 section.boundarySupplementaryItems = [NSCollectionLayoutBoundarySupplementaryItem(layoutSize:
                                                                                                     NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40)),
                                                                                                   elementKind: UICollectionView.elementKindSectionHeader,
@@ -132,18 +123,23 @@ extension SearchViewController {
                 return section
             }
         }
-        
         let layout = UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
-        
         return layout
     }
     
     private func configureDataSource() {
         
         let cellRegisteration = UICollectionView.CellRegistration<SearchCollectionViewCell,String>(handler: { cell, indexPath, itemIdentifier in
-            
-            cell.searchButton.text = itemIdentifier
-            
+            if indexPath.section == 0 {
+                cell.searchButton.status = .redOutline
+                cell.searchButton.text = itemIdentifier
+            } else if indexPath.section == 1{
+                cell.searchButton.status = .inactive
+                cell.searchButton.text = itemIdentifier
+            } else {
+                cell.searchButton.status = .outline
+                cell.searchButton.text = "\(itemIdentifier) X"
+            }
         })
         
         let headerRegisteration = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(elementKind: UICollectionView.elementKindSectionHeader) { headerView, elementKind, indexPath in
@@ -154,7 +150,6 @@ extension SearchViewController {
             headerView.contentConfiguration = configuration
         }
         
-        //collectionView.dataSource = self와 같은 맥락 => numberOfItemsInSection, cellForItemAt 메서드를 대신함
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegisteration, for: indexPath, item: itemIdentifier)
@@ -166,6 +161,16 @@ extension SearchViewController {
             return self?.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegisteration, for: indexPath)
         }
         
+        updateSnapshot()
+    }
+    
+    private func updateSnapshot() {
+        var snapshot = Snapshot()
+        snapshot.appendSections([0, 1, 2])
+        snapshot.appendItems(viewModel.baseList, toSection: 0)
+        snapshot.appendItems(viewModel.friendList, toSection: 1)
+        snapshot.appendItems(viewModel.searchList, toSection: 2)
+        dataSource.apply(snapshot)
     }
     
 }

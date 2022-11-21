@@ -49,6 +49,8 @@
 		255B48E4292B49F900D33052 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B48E3292B49F900D33052 /* SearchCollectionViewCell.swift */; };
 		255B48E6292B4A8100D33052 /* SearchButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B48E5292B4A8100D33052 /* SearchButtonStatus.swift */; };
 		255B48E8292B4B4E00D33052 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B48E7292B4B4E00D33052 /* SearchButton.swift */; };
+		255B48EB292B6D8000D33052 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B48EA292B6D8000D33052 /* SearchViewModel.swift */; };
+		255B48ED292B899500D33052 /* SeSACUserDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B48EC292B899500D33052 /* SeSACUserDataDTO.swift */; };
 		257E263D2923AB2C0039B0A0 /* DetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263C2923AB2C0039B0A0 /* DetailInfoViewModel.swift */; };
 		257E26402923C9E50039B0A0 /* SeSACInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263F2923C9E50039B0A0 /* SeSACInfo.swift */; };
 		257E2643292401AF0039B0A0 /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 257E2642292401AF0039B0A0 /* MultiSlider */; };
@@ -156,6 +158,8 @@
 		255B48E3292B49F900D33052 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		255B48E5292B4A8100D33052 /* SearchButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButtonStatus.swift; sourceTree = "<group>"; };
 		255B48E7292B4B4E00D33052 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
+		255B48EA292B6D8000D33052 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		255B48EC292B899500D33052 /* SeSACUserDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACUserDataDTO.swift; sourceTree = "<group>"; };
 		257E263C2923AB2C0039B0A0 /* DetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewModel.swift; sourceTree = "<group>"; };
 		257E263F2923C9E50039B0A0 /* SeSACInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACInfo.swift; sourceTree = "<group>"; };
 		257E264429240EC00039B0A0 /* ProfileImageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageHeaderView.swift; sourceTree = "<group>"; };
@@ -486,6 +490,7 @@
 		255B48E9292B55F600D33052 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				255B48EA292B6D8000D33052 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -576,6 +581,7 @@
 			isa = PBXGroup;
 			children = (
 				255A37A9291BF41100737C3A /* UserDataDTO.swift */,
+				255B48EC292B899500D33052 /* SeSACUserDataDTO.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -1085,6 +1091,7 @@
 				25F7FE452919682700E0C486 /* FirstViewController.swift in Sources */,
 				25D1EDF329228FB50015C444 /* InfoButtonStatus.swift in Sources */,
 				25D8C391291CAB2F00FB52DF /* BirthItemView.swift in Sources */,
+				255B48ED292B899500D33052 /* SeSACUserDataDTO.swift in Sources */,
 				25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */,
 				25F7FE5A291985DB00E0C486 /* NextButton.swift in Sources */,
 				255A37BD291C31CC00737C3A /* EmailView.swift in Sources */,
@@ -1103,6 +1110,7 @@
 				255A3797291BACAF00737C3A /* DefaultSeSACAPIService.swift in Sources */,
 				25ED4A842922BD7D00C4A6EB /* SesacTitleView.swift in Sources */,
 				25F7FE532919753F00E0C486 /* PhoneViewModel.swift in Sources */,
+				255B48EB292B6D8000D33052 /* SearchViewModel.swift in Sources */,
 				25F7FE1D29193E7600E0C486 /* ViewModelType.swift in Sources */,
 				255A37A5291BE27000737C3A /* SeSACError.swift in Sources */,
 				25F7FE55291976CA00E0C486 /* UITextField+AttributedString.swift in Sources */,
