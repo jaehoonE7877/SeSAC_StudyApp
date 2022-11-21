@@ -17,11 +17,19 @@ final class SesacReviewView: BaseView {
     }
     
     lazy var reviewLabel = UILabel().then {
-        $0.layoutIfNeeded()
+        $0.lineBreakMode = .byWordWrapping
         $0.numberOfLines = 0
+        $0.layoutIfNeeded()
         $0.font = UIFont.notoSans(size: 14, family: .Regular)
         $0.textColor = .gray6
         $0.text = "첫 리뷰를 기다리는 중이에요!"
+    }
+    
+    lazy var reviewImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFill
+        $0.isHidden = true
+        $0.tintColor = .gray7
+        $0.image = UIImage(named: "more_arrow")
     }
     
     override init(frame: CGRect) {
@@ -29,7 +37,7 @@ final class SesacReviewView: BaseView {
     }
     
     override func configure() {
-        [reviewTitleLabel, reviewLabel].forEach { self.addSubview($0) }
+        [reviewTitleLabel, reviewImageView, reviewLabel].forEach { self.addSubview($0) }
     }
     
     override func setConstraints() {
@@ -38,9 +46,14 @@ final class SesacReviewView: BaseView {
             make.leading.equalToSuperview()
         }
         
+        reviewImageView.snp.makeConstraints { make in
+            make.top.trailing.equalToSuperview()
+            make.size.equalTo(16)
+        }
+        
         reviewLabel.snp.makeConstraints { make in
             make.top.equalTo(reviewTitleLabel.snp.bottom).offset(16)
-            make.leading.equalTo(reviewTitleLabel)
+            make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview()
         }
     }

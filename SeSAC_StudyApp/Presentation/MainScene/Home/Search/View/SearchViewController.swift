@@ -33,8 +33,9 @@ final class SearchViewController: BaseViewController {
         super.viewDidLoad()
         setNavigationController()
         collectionView.collectionViewLayout = configureCellLayout()
+        viewModelBinding()
         configureDataSource()
-        
+
     }
     
     override func configure() {
@@ -73,11 +74,10 @@ final class SearchViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    override func setBinding() {
+    private func viewModelBinding() {
         
         let input = SearchViewModel.Input(viewDidLoadEvent: Observable.just(()),
-                                          searchTap: searchBar.rx.searchButtonClicked
-                                          )
+                                          searchTap: searchBar.rx.searchButtonClicked)
         let output = viewModel.transform(input: input)
         
         output.searchTap
@@ -93,6 +93,23 @@ final class SearchViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
             
+        output.searchInfo
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                weakSelf.updateSnapshot()
+            }
+            .disposed(by: disposeBag)
+        
+        output.isFailed
+            .asDriver(onErrorJustReturn: true)
+            .drive { [weak self] isFailed in
+                guard let self = self else { return }
+                if isFailed {
+                    self.view.makeToast("데이터 통신에 실패했습니다", duration: 1, position: .center)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         collectionView.rx.itemSelected
             .withUnretained(self)
             .bind { weakSelf, indexPath in
@@ -109,6 +126,7 @@ final class SearchViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+       
     }
     
 

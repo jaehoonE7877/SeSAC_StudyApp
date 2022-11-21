@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import CoreLocation
+
 import Alamofire
 
 enum SeSACAPIRouter: URLRequestConvertible {
@@ -13,7 +15,7 @@ enum SeSACAPIRouter: URLRequestConvertible {
     case signup
     case mypage(updateData: SeSACInfo)
     case withdraw
-    case search
+    case search(location: CLLocationCoordinate2D)
 }
 
 extension SeSACAPIRouter {
@@ -80,9 +82,9 @@ extension SeSACAPIRouter {
                 "gender" : String(data.gender),
                 "study" : data.study
                 ]
-        case .search:
-            return ["lat": String(1234),
-                    "long": String(4567)
+        case .search(let location):
+            return ["lat": String(location.latitude),
+                    "long": String(location.longitude)
                     ]
         }
     }

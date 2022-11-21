@@ -87,11 +87,12 @@ final class SesacDetailTableViewCell: UITableViewCell {
          sesacTitleView.fastResponseButton, sesacTitleView.kindButton,
          sesacTitleView.skillfullButton, sesacTitleView.beneficialButton].forEach { self.configReputation(reputation: item.reputation, sender: $0)}
         if item.comment.first != nil {
+            sesacReviewView.reviewImageView.isHidden = false
+            sesacReviewView.reviewLabel.textColor = .textColor
             sesacReviewView.reviewLabel.text = item.comment.first
         } else {
             sesacReviewView.reviewLabel.text = "첫 리뷰를 기다리는 중이에요!"
         }
-        
     }
     
     private func configReputation(reputation: [Int], sender: InfoButton)  {

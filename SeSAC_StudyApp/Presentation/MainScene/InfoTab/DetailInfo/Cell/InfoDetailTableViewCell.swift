@@ -88,6 +88,8 @@ final class InfoDetailTableViewCell: UITableViewCell {
             phoneSearchView.phoneButton.isOn = true
         }
         
+        studyInputView.studyTextField.text = item.study
+        
         friendAgeView.ageLabel.text = "\(item.ageMin) - \(item.ageMax)"
         friendAgeView.slider.value = [CGFloat(item.ageMin), CGFloat(item.ageMax)]
         
