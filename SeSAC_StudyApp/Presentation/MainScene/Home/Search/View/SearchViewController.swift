@@ -83,12 +83,22 @@ final class SearchViewController: BaseViewController {
         output.searchTap
             .withUnretained(self)
             .bind { weakSelf, text in
-                guard let text = weakSelf.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
-                if text.count >= 1 && text.count <= 8 {
-                    weakSelf.viewModel.searchList.append(StudyTag(tag: weakSelf.searchBar.text ?? ""))
-                    weakSelf.updateSnapshot()
-                } else {
+                guard let text = weakSelf.searchBar.text else {return}
+                let separatedText = text.components(separatedBy: " ").filter {$0 != ""}
+                let resultText = separatedText.map({StudyTag(tag: $0)})
+                let study = weakSelf.viewModel.searchList.map { $0.tag }
+                
+                if separatedText.filter({ $0.count > 8}).count != 0 {
                     weakSelf.view.makeToast("최소 한 자 이상, 최대 8글자까지 작성 가능합니다", duration: 1, position: .center)
+                } else if separatedText.filter({ study.contains($0)}).count != 0 || separatedText.count != Set(separatedText).count {
+                    weakSelf.view.makeToast("스터디를 중복해서 추가할 수 없습니다", duration: 1, position: .center)
+                } else {
+                    if weakSelf.viewModel.searchList.count >= 8 {
+                        weakSelf.view.makeToast("8개 이상 스터디를 등록할 수 없습니다", duration: 1, position: .center)
+                    } else {
+                        weakSelf.viewModel.searchList.append(contentsOf: resultText)
+                        weakSelf.updateSnapshot()
+                    }
                 }
             }
             .disposed(by: disposeBag)
