@@ -64,7 +64,6 @@ final class PhoneViewModel: ViewModelType {
 extension PhoneViewModel {
     
     func requestAuth(phoneNumber: String, completion: @escaping ((Result<String, FirebaseError>) -> Void) ) {
-        print(phoneNumber)
         firebaseApiService.createAuth(phoneNumber: phoneNumber) { result in
             
             switch result {

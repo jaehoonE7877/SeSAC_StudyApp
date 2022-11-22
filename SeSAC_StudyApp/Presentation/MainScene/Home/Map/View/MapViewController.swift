@@ -26,22 +26,26 @@ final class MapViewController: BaseViewController {
     private let viewModel = MapViewModel()
     private let disposeBag = DisposeBag()
     
+    var cameraMove: Bool = false
     private let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.mapView.delegate = self
         locationManager.delegate = self
+        mainView.mapView.delegate = self
         bindViewModel()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.location = locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
+    }
+    
     private func bindViewModel() {
-        
-        let input = MapViewModel.Input(viewDidLoadEvent: Observable.just(()),
+        let input = MapViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear,
                                        currentButtonTap: mainView.currentButton.rx.tap,
-                                       searchButtonTap: mainView.searchButton.rx.tap
-                                       )
-        
+                                       searchButtonTap: mainView.searchButton.rx.tap)
         let output = viewModel.transform(input: input)
         
         output.searchLocation
@@ -52,7 +56,7 @@ final class MapViewController: BaseViewController {
                 result.fromQueueDBRequested.forEach { weakSelf.sesacSearch.append(SeSACSearchModel(lat: $0.lat, long: $0.long, gender: $0.gender, sesac: $0.sesac, background: $0.background))
                 }
                 let location = self.mainView.mapView.centerCoordinate
-                self.setRegionAnnotation(location, itmes: weakSelf.sesacSearch)
+                self.setRegionAnnotation(location, items: weakSelf.sesacSearch)
             }
             .disposed(by: disposeBag)
         
@@ -62,6 +66,15 @@ final class MapViewController: BaseViewController {
                 guard let self = self else { return }
                 if isFailed {
                     self.view.makeToast("데이터 통신에 실패했습니다", duration: 1, position: .center)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.isTokenRefreshFailed
+            .withUnretained(self)
+            .bind { weakSelf, value in
+                if value {
+                    weakSelf.view.makeToast("토큰 갱신에 실패했습니다. 잠시 후 다시 시도해주세요", duration: 1, position: .center)
                 }
             }
             .disposed(by: disposeBag)
@@ -82,7 +95,7 @@ final class MapViewController: BaseViewController {
                     weakSelf.checkUserDeviceLocationServiceAuthorization()
                     return
                 }
-                weakSelf.setRegionAnnotation(currentLocation.coordinate, itmes: weakSelf.sesacSearch)
+                weakSelf.setRegionAnnotation(currentLocation.coordinate, items: weakSelf.sesacSearch)
             }
             .disposed(by: disposeBag)
         
@@ -91,7 +104,7 @@ final class MapViewController: BaseViewController {
 
 extension MapViewController: CLLocationManagerDelegate {
     
-    private func setRegionAnnotation(_ center: CLLocationCoordinate2D, itmes: [SeSACSearchModel]) {
+    private func setRegionAnnotation(_ center: CLLocationCoordinate2D, items: [SeSACSearchModel]) {
 
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 700, longitudinalMeters: 700)
         mainView.mapView.removeAnnotations(mainView.mapView.annotations)
@@ -99,7 +112,7 @@ extension MapViewController: CLLocationManagerDelegate {
         
         var annotations: [CustomAnnotation] = []
         
-        for item in itmes {
+        for item in items {
             let point = CustomAnnotation(sesac_Image: item.sesac, coordinate: CLLocationCoordinate2D(latitude: item.lat, longitude: item.long))
             annotations.append(point)
         }
@@ -119,11 +132,12 @@ extension MapViewController: CLLocationManagerDelegate {
         case .notDetermined:
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
+            
         case .restricted, .denied:
             let center = CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
-            setRegionAnnotation(center, itmes: sesacSearch)
+            setRegionAnnotation(center, items: sesacSearch)
             showRequestLocationServiceAlert()
+            
         case .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
             
@@ -136,6 +150,7 @@ extension MapViewController: CLLocationManagerDelegate {
         
         if let coordinate = locations.last?.coordinate {
             viewModel.location = coordinate
+            setRegionAnnotation(coordinate, items: self.sesacSearch)
         }
         //⭐️ start updatingLocation을 하고나서 멈추기 필수!
         locationManager.stopUpdatingLocation()
@@ -150,26 +165,20 @@ extension MapViewController: CLLocationManagerDelegate {
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
         guard let annotation = annotation as? CustomAnnotation else {
             return nil
         }
-        
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
-        
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
             annotationView?.canShowCallout = true
             annotationView?.contentMode = .scaleAspectFit
-            
         } else {
             annotationView?.annotation = annotation
         }
-        
         let sesacImage = UIImage(named: "sesac_face_\(annotation.sesac_Image ?? 0)")
         let size = CGSize(width: 85, height: 85)
         UIGraphicsBeginImageContext(size)
-        
         sesacImage?.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
         annotationView?.image = resizedImage
@@ -178,7 +187,32 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        locationManager.stopUpdatingLocation()
+        
+        let location = mapView.centerCoordinate
+        
+        if animated == false {
+            DispatchQueue.global().async { [weak self] in
+                guard let self = self else { return }
+                usleep(800000)
+                if location == mapView.centerCoordinate {
+                    self.viewModel.location = location
+                    self.viewModel.requestSesacUser(userCurrentLocation: location) { result in
+                        switch result{
+                        case .success(let result):
+                            print(result)
+                            result.fromQueueDB.forEach { self.sesacSearch.append(SeSACSearchModel(lat: $0.lat, long: $0.long, gender: $0.gender, sesac: $0.sesac, background: $0.background))
+                            }
+                            result.fromQueueDBRequested.forEach { self.sesacSearch.append(SeSACSearchModel(lat: $0.lat, long: $0.long, gender: $0.gender, sesac: $0.sesac, background: $0.background))
+                            }
+                            let location = self.mainView.mapView.centerCoordinate
+                            self.setRegionAnnotation(location, items: self.sesacSearch)
+                        case .failure(let error):
+                            self.view.makeToast(error.errorDescription, duration: 1, position: .center)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -195,7 +229,6 @@ extension MapViewController {
           if let appSetting = URL(string: UIApplication.openSettingsURLString) {
               UIApplication.shared.open(appSetting)
           }
-          
       }
       let cancel = UIAlertAction(title: "취소", style: .default)
       requestLocationServiceAlert.addAction(cancel)

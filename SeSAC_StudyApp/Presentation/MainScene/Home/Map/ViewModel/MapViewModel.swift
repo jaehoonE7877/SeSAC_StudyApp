@@ -17,11 +17,13 @@ final class MapViewModel: ViewModelType {
     private let sesacAPIService = DefaultSeSACAPIService.shared
     private let disposeBag = DisposeBag()
     
-    var location: CLLocationCoordinate2D = .init(latitude: 37.517819364682694, longitude: 126.88647317074734)
+    var location: CLLocationCoordinate2D = .init()
+        
+    //var userLocation = PublishRelay<CLLocationCoordinate2D>()
+    var isTokenRefreshFailed = BehaviorRelay(value: false)
     
     struct Input {
-        let viewDidLoadEvent: Observable<Void>
-        //let userCurrentLocation: Observable<CLLocationCoordinate2D>
+        let viewWillAppearEvent: ControlEvent<Bool>
         let currentButtonTap: ControlEvent<Void>
         let searchButtonTap: ControlEvent<Void>
     }
@@ -34,26 +36,32 @@ final class MapViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
+
         let output = Output(currentButtonTap: input.currentButtonTap, searchButtonTap: input.searchButtonTap)
         //화면 처음 실행
-        input.viewDidLoadEvent
+        input.viewWillAppearEvent
             .withUnretained(self)
-            .subscribe(onNext: { weakSelf, _ in
-                weakSelf.requestSesacUser(userCurrentLocation: weakSelf.location, output: output)
+            .subscribe(onNext: { weakSelf, appear in
+                if appear{
+                    weakSelf.requestSesacUser(userCurrentLocation: weakSelf.location, output: output)
+                }
+                
             })
             .disposed(by: disposeBag)
-        
 
         return output
+        
     }
-    
-    
 }
 
 extension MapViewModel {
     
-    private func requestSesacUser(userCurrentLocation: CLLocationCoordinate2D, output: Output) {
-        sesacAPIService.request(type: SeSACUserDataDTO.self, router: .search(location: userCurrentLocation)) { [weak self] result in
+    func requestMatch() {
+        
+    }
+    
+    func requestSesacUser(userCurrentLocation: CLLocationCoordinate2D, output: Output) {
+        sesacAPIService.requestSearch(type: SeSACUserDataDTO.self, router: .search(location: userCurrentLocation)) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let result):
@@ -69,8 +77,23 @@ extension MapViewModel {
         }
     }
     
+    func requestSesacUser(userCurrentLocation: CLLocationCoordinate2D, completion: @escaping ((Result<SeSACUserDataDTO, SeSACSearchError>) -> Void)) {
+        sesacAPIService.requestSearch(type: SeSACUserDataDTO.self, router: .search(location: userCurrentLocation)) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                if error == .firebaseTokenError {
+                    self.refreshRequest()
+                } else {
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+    
     private func refreshRequest(output: Output) {
-        
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { [weak self] idToken, error in
             guard let self = self else { return }
@@ -80,6 +103,18 @@ extension MapViewModel {
             guard let token = idToken else { return }
             UserManager.token = token
             self.requestSesacUser(userCurrentLocation: self.location, output: output)
+        }
+    }
+    
+    private func refreshRequest() {
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDTokenForcingRefresh(true) { [weak self] idToken, error in
+            guard let self = self else { return }
+            if let _ = error {
+                self.isTokenRefreshFailed.accept(true)
+            }
+            guard let token = idToken else { return }
+            UserManager.token = token
         }
     }
 }

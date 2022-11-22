@@ -82,7 +82,6 @@ extension SeSACAPIRouter {
                 "study" : data.study
                 ]
         case .search(let location):
-            print(location)
             return ["lat": "\(location.latitude)",
                     "long": "\(location.longitude)"
                     ]

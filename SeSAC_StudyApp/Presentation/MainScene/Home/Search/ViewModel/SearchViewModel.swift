@@ -59,7 +59,7 @@ final class SearchViewModel: ViewModelType {
 extension SearchViewModel {
     
     private func request(location: CLLocationCoordinate2D, output: Output) {
-        sesacAPIService.request(type: SeSACUserDataDTO.self, router: .search(location: location)) { [weak self] result in
+        sesacAPIService.requestSearch(type: SeSACUserDataDTO.self, router: .search(location: location)) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let success):
@@ -72,7 +72,6 @@ extension SearchViewModel {
                 output.searchInfo.onNext(success)
 
             case .failure(let error):
-                print(error.rawValue)
                 switch error {
                 case .firebaseTokenError:
                     self.refreshRequest(output: output)

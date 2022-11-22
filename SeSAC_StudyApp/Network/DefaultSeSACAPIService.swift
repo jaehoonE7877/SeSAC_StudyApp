@@ -31,4 +31,21 @@ final class DefaultSeSACAPIService {
             }
         }
     }
+    
+    func requestSearch<T: Decodable>(type: T.Type = T.self, router: SeSACAPIRouter, completion: @escaping (Result<T, SeSACSearchError>) -> Void) {
+        
+        AF.request(router).responseDecodable(of: type) { response in
+            switch response.result {
+
+            case .success(let data):
+                completion(.success(data)) //탈출클로저, result타입, 열거형, 연관값,
+            case .failure(_):
+
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let error = SeSACSearchError(rawValue: statusCode) else { return }
+
+                completion(.failure(error))
+            }
+        }
+    }
 }
