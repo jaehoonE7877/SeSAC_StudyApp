@@ -79,6 +79,33 @@ final class MapViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.matchFailed
+            .withUnretained(self)
+            .bind { weakSelf, error in
+                weakSelf.view.makeToast(error, duration: 1, position: .center)
+            }
+            .disposed(by: disposeBag)
+        
+        output.normalStatus
+            .withUnretained(self)
+            .bind { weakSelf, value in
+                if value {
+                    weakSelf.mainView.searchButton.setImage(UIImage(named: "map_default"), for: .normal)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        output.resultMatch
+            .withUnretained(self)
+            .bind { weakSelf, result in
+                if result.matched == 0 {
+                    weakSelf.mainView.searchButton.setImage(UIImage(named: "map_matching"), for: .normal)
+                } else if result.matched == 1 {
+                    weakSelf.mainView.searchButton.setImage(UIImage(named: "map_matched"), for: .normal)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         output.searchButtonTap
             .withUnretained(self)
             .bind { weakSelf, _ in
@@ -199,7 +226,6 @@ extension MapViewController: MKMapViewDelegate {
                     self.viewModel.requestSesacUser(userCurrentLocation: location) { result in
                         switch result{
                         case .success(let result):
-                            print(result)
                             result.fromQueueDB.forEach { self.sesacSearch.append(SeSACSearchModel(lat: $0.lat, long: $0.long, gender: $0.gender, sesac: $0.sesac, background: $0.background))
                             }
                             result.fromQueueDBRequested.forEach { self.sesacSearch.append(SeSACSearchModel(lat: $0.lat, long: $0.long, gender: $0.gender, sesac: $0.sesac, background: $0.background))

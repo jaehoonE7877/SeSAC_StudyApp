@@ -7,6 +7,16 @@
 
 import Foundation
 
+enum SesacBasicError: Int, Error {
+    case success = 200
+    case normalStatus = 201
+    case firebaseTokenError = 401
+    case unknownUser = 406
+    case serverError = 500
+    case clientError = 501
+}
+
+
 enum SeSACSearchError: Int, Error {
     case success = 200
     case reported = 201

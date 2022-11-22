@@ -32,7 +32,7 @@ final class DefaultSeSACAPIService {
         }
     }
     
-    func requestSearch<T: Decodable>(type: T.Type = T.self, router: SeSACAPIRouter, completion: @escaping (Result<T, SeSACSearchError>) -> Void) {
+    func requestQueue<T: Decodable>(type: T.Type = T.self, router: SeSACAPIRouter, completion: @escaping (Result<T, SeSACSearchError>) -> Void) {
         
         AF.request(router).responseDecodable(of: type) { response in
             switch response.result {
@@ -48,4 +48,14 @@ final class DefaultSeSACAPIService {
             }
         }
     }
+    
+    func requestSeSACAPI(router: SeSACAPIRouter, completion: @escaping (Int) -> Void){
+        AF.request(router).responseString { response in
+            
+            guard let statusCode = response.response?.statusCode else { return }
+            
+            completion(statusCode)
+        }
+    }
+    
 }

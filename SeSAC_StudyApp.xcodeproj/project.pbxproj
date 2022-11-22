@@ -14,6 +14,7 @@
 		251F51A7292CC68300D538FC /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 251F51A6292CC68300D538FC /* RxGesture */; };
 		251F51A9292CDF3800D538FC /* Reactive+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F51A8292CDF3800D538FC /* Reactive+MKMapView.swift */; };
 		251F51AB292D20C800D538FC /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F51AA292D20C800D538FC /* CLLocationCoordinate2D+.swift */; };
+		251F51AD292D373000D538FC /* MatchDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F51AC292D373000D538FC /* MatchDataDTO.swift */; };
 		25230AF9291FB01900525531 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230AF8291FB01900525531 /* MapViewController.swift */; };
 		25230AFC291FB0CD00525531 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230AFB291FB0CD00525531 /* ShopViewController.swift */; };
 		25230AFF291FB10100525531 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230AFE291FB10100525531 /* FriendViewController.swift */; };
@@ -134,6 +135,7 @@
 		251BC0AD29264B1500246894 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		251F51A8292CDF3800D538FC /* Reactive+MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+MKMapView.swift"; sourceTree = "<group>"; };
 		251F51AA292D20C800D538FC /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
+		251F51AC292D373000D538FC /* MatchDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDataDTO.swift; sourceTree = "<group>"; };
 		25230AF8291FB01900525531 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		25230AFB291FB0CD00525531 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		25230AFE291FB10100525531 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
@@ -602,6 +604,7 @@
 			children = (
 				255A37A9291BF41100737C3A /* UserDataDTO.swift */,
 				255B48EC292B899500D33052 /* SeSACUserDataDTO.swift */,
+				251F51AC292D373000D538FC /* MatchDataDTO.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -1185,6 +1188,7 @@
 				255B48E6292B4A8100D33052 /* SearchButtonStatus.swift in Sources */,
 				25F11E8F291DEFDF004AC54A /* SplashViewController.swift in Sources */,
 				25F7FE412919566700E0C486 /* NextButtonStatus.swift in Sources */,
+				251F51AD292D373000D538FC /* MatchDataDTO.swift in Sources */,
 				25D8C39D291D2B8800FB52DF /* GenderViewModel.swift in Sources */,
 				255A37B4291C1B4700737C3A /* NicknameViewController.swift in Sources */,
 				255A37B6291C21CD00737C3A /* ToastMessage.swift in Sources */,

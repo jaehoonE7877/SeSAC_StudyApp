@@ -33,6 +33,9 @@ final class MapViewModel: ViewModelType {
         var isFailed = BehaviorRelay(value: false)
         let currentButtonTap: ControlEvent<Void>
         let searchButtonTap: ControlEvent<Void>
+        var normalStatus = BehaviorRelay(value: false)
+        var resultMatch = PublishSubject<MatchDataDTO>()
+        var matchFailed = PublishRelay<String>()
     }
     
     func transform(input: Input) -> Output {
@@ -43,6 +46,7 @@ final class MapViewModel: ViewModelType {
             .withUnretained(self)
             .subscribe(onNext: { weakSelf, appear in
                 if appear{
+                    weakSelf.requestMatch(output: output)
                     weakSelf.requestSesacUser(userCurrentLocation: weakSelf.location, output: output)
                 }
                 
@@ -56,12 +60,23 @@ final class MapViewModel: ViewModelType {
 
 extension MapViewModel {
     
-    func requestMatch() {
-        
+    func requestMatch(output: Output) {
+        sesacAPIService.requestQueue(type: MatchDataDTO.self, router: .match) { result in
+            switch result{
+            case .success(let result):
+                output.resultMatch.onNext(result)
+            case .failure(let error):
+                if error.rawValue == 201 {
+                    output.normalStatus.accept(true)
+                } else {
+                    output.matchFailed.accept(error.localizedDescription)
+                }
+            }
+        }
     }
     
     func requestSesacUser(userCurrentLocation: CLLocationCoordinate2D, output: Output) {
-        sesacAPIService.requestSearch(type: SeSACUserDataDTO.self, router: .search(location: userCurrentLocation)) { [weak self] result in
+        sesacAPIService.requestQueue(type: SeSACUserDataDTO.self, router: .search(location: userCurrentLocation)) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let result):
@@ -78,7 +93,7 @@ extension MapViewModel {
     }
     
     func requestSesacUser(userCurrentLocation: CLLocationCoordinate2D, completion: @escaping ((Result<SeSACUserDataDTO, SeSACSearchError>) -> Void)) {
-        sesacAPIService.requestSearch(type: SeSACUserDataDTO.self, router: .search(location: userCurrentLocation)) { [weak self] result in
+        sesacAPIService.requestQueue(type: SeSACUserDataDTO.self, router: .search(location: userCurrentLocation)) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let result):

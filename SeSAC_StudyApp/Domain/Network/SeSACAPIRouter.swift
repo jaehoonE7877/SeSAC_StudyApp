@@ -16,6 +16,7 @@ enum SeSACAPIRouter: URLRequestConvertible {
     case mypage(updateData: SeSACInfo)
     case withdraw
     case search(location: CLLocationCoordinate2D)
+    case match
 }
 
 extension SeSACAPIRouter {
@@ -30,12 +31,14 @@ extension SeSACAPIRouter {
             return URL(string: "\(SeSACConfiguration.baseURL)/v1/user/mypage")!
         case .search:
             return URL(string: "\(SeSACConfiguration.baseURL)/v1/queue/search")!
+        case .match:
+            return URL(string: "\(SeSACConfiguration.baseURL)/v1/queue/myQueueState")!
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .signup, .mypage, .withdraw, .search:
+        case .login, .signup, .mypage, .withdraw, .search, .match:
             return [
                 "idtoken": "\(UserManager.token)",
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -53,13 +56,15 @@ extension SeSACAPIRouter {
             return .put
         case .search:
             return .post
+        case .match:
+            return .get
         }
     }
     
     var parameters: [String: String] {
         
         switch self {
-        case .login, .withdraw:
+        case .login, .withdraw, .match:
             return ["" : ""]
         case .signup:
             guard let birth = UserManager.birth,
@@ -95,7 +100,7 @@ extension SeSACAPIRouter {
         request.headers = headers
         
         switch self {
-        case .login, .withdraw:
+        case .login, .withdraw, .match:
             return request
         case .signup, .mypage, .search:
             return try URLEncoding.default.encode(request, with: parameters)

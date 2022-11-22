@@ -59,7 +59,7 @@ final class SearchViewModel: ViewModelType {
 extension SearchViewModel {
     
     private func request(location: CLLocationCoordinate2D, output: Output) {
-        sesacAPIService.requestSearch(type: SeSACUserDataDTO.self, router: .search(location: location)) { [weak self] result in
+        sesacAPIService.requestQueue(type: SeSACUserDataDTO.self, router: .search(location: location)) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let success):
