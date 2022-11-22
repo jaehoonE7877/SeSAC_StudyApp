@@ -157,6 +157,22 @@ final class SearchViewController: BaseViewController{
             }
             .disposed(by: disposeBag)
         
+        output.searchSuccess
+            .withUnretained(self)
+            .bind { weakSelf, value in
+                if value {
+                    print("성공!")
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        output.searchFailed
+            .withUnretained(self)
+            .bind { weakSelf, error in
+                weakSelf.view.makeToast(error, duration: 1, position: .center)
+            }
+            .disposed(by: disposeBag)
+        
         searchBar.rx.searchButtonClicked
             .withUnretained(self)
             .bind { weakSelf, _ in

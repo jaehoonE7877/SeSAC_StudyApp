@@ -66,7 +66,7 @@ extension SeSACAPIRouter {
         }
     }
     
-    var parameters: [String: String] {
+    var parameters: Parameters {
         
         switch self {
         case .login, .withdraw, .match:
@@ -98,7 +98,7 @@ extension SeSACAPIRouter {
         case .queuePost(let location, let studylist):
             return ["lat": "\(location.latitude)",
                     "long": "\(location.longitude)",
-                    "studylist": "\(studylist)"
+                    "studylist": studylist
                     ]
         }
     }
@@ -113,7 +113,7 @@ extension SeSACAPIRouter {
         case .login, .withdraw, .match:
             return request
         case .signup, .mypage, .search, .queuePost:
-            return try URLEncoding.default.encode(request, with: parameters)
+            return try URLEncoding(arrayEncoding: .noBrackets).encode(request, with: parameters)
         }
         
     }

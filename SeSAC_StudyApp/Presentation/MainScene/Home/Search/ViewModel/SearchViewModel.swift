@@ -41,7 +41,7 @@ final class SearchViewModel: ViewModelType {
     
     struct Output {
         let searchTap: ControlEvent<Void>
-        let findTap: ControlEvent<Void>
+        //let findTap: ControlEvent<Void>
         let isFailed = BehaviorRelay(value: false)
         let searchInfo = PublishSubject<SeSACUserDataDTO>()
         let searchSuccess = BehaviorRelay(value: false)
@@ -49,7 +49,7 @@ final class SearchViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        let output = Output(searchTap: input.searchTap, findTap: input.findTap)
+        let output = Output(searchTap: input.searchTap)
         input.viewDidLoadEvent
             .withUnretained(self)
             .subscribe { weakSelf, _ in
@@ -75,6 +75,7 @@ extension SearchViewModel {
     private func requestFriend(location: CLLocationCoordinate2D, studylist: [String], output: Output) {
         sesacAPIService.requestSeSACAPI(router: .queuePost(location: location, studylist: studylist)) { [weak self] statusCode in
             guard let self = self else { return }
+            print(statusCode)
             switch SeSACSearchError(rawValue: statusCode){
             case .success:
                 output.searchSuccess.accept(true)
