@@ -78,7 +78,8 @@ final class SearchViewController: BaseViewController{
     private func viewModelBinding() {
         
         let input = SearchViewModel.Input(viewDidLoadEvent: Observable.just(()),
-                                          searchTap: searchBar.rx.searchButtonClicked)
+                                          searchTap: searchBar.rx.searchButtonClicked,
+                                          findTap: searchButton.rx.tap)
         let output = viewModel.transform(input: input)
         
         output.searchTap
