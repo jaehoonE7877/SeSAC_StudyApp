@@ -9,11 +9,13 @@ import UIKit
 
 import RxCocoa
 import RxSwift
+import RxKeyboard
 
-final class SearchViewController: BaseViewController {
+final class SearchViewController: BaseViewController{
     
     //MARK: Property
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init()).then {
+        $0.keyboardDismissMode = .onDrag
         $0.showsVerticalScrollIndicator = false
         $0.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.reuseIdentifier)
     }
@@ -35,7 +37,6 @@ final class SearchViewController: BaseViewController {
         collectionView.collectionViewLayout = configureCellLayout()
         viewModelBinding()
         configureDataSource()
-
     }
     
     override func configure() {
@@ -155,10 +156,39 @@ final class SearchViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-       
+        searchBar.rx.searchButtonClicked
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                weakSelf.searchBar.text = nil
+                weakSelf.searchBar.endEditing(true)
+            }
+            .disposed(by: disposeBag)
+        
+        RxKeyboard.instance.visibleHeight
+            .skip(1)
+            .drive { [weak self] keyboardHeight in
+                guard let self = self else { return }
+                
+                UIView.animate(withDuration: 0) {
+                    if keyboardHeight == 0 {
+                        self.searchButton.snp.updateConstraints { make in
+                            make.horizontalEdges.equalToSuperview().inset(16)
+                            make.bottom.equalToSuperview().offset(-50)
+                        }
+                        self.searchButton.layer.cornerRadius = 8
+                    } else {
+                        let totalHeight = keyboardHeight - self.view.safeAreaInsets.bottom
+                        self.searchButton.snp.updateConstraints { make in
+                            make.horizontalEdges.equalToSuperview()
+                            make.bottom.equalToSuperview().offset(-totalHeight - 34)
+                        }
+                        self.searchButton.layer.cornerRadius = 0
+                    }
+                    self.view.layoutIfNeeded()
+                }
+            }
+            .disposed(by: disposeBag)
     }
-    
-
 }
 
 extension SearchViewController {

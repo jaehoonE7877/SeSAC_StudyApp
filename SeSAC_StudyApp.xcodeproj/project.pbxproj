@@ -15,6 +15,7 @@
 		251F51A9292CDF3800D538FC /* Reactive+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F51A8292CDF3800D538FC /* Reactive+MKMapView.swift */; };
 		251F51AB292D20C800D538FC /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F51AA292D20C800D538FC /* CLLocationCoordinate2D+.swift */; };
 		251F51AD292D373000D538FC /* MatchDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F51AC292D373000D538FC /* MatchDataDTO.swift */; };
+		251F51B0292D44C200D538FC /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 251F51AF292D44C200D538FC /* RxKeyboard */; };
 		25230AF9291FB01900525531 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230AF8291FB01900525531 /* MapViewController.swift */; };
 		25230AFC291FB0CD00525531 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230AFB291FB0CD00525531 /* ShopViewController.swift */; };
 		25230AFF291FB10100525531 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25230AFE291FB10100525531 /* FriendViewController.swift */; };
@@ -248,6 +249,7 @@
 				255A378B291AAF9A00737C3A /* Toast in Frameworks */,
 				25F7FE1329193DC100E0C486 /* RxRelay in Frameworks */,
 				25F7FE1B29193DDC00E0C486 /* Then in Frameworks */,
+				251F51B0292D44C200D538FC /* RxKeyboard in Frameworks */,
 				254627F1291A8E47004D4B72 /* FirebaseMessaging in Frameworks */,
 				25F7FE1129193DC100E0C486 /* RxCocoa in Frameworks */,
 				251F51A7292CC68300D538FC /* RxGesture in Frameworks */,
@@ -1034,6 +1036,7 @@
 				25D8C3A2291D4C6F00FB52DF /* RxDataSources */,
 				257E2642292401AF0039B0A0 /* MultiSlider */,
 				251F51A6292CC68300D538FC /* RxGesture */,
+				251F51AF292D44C200D538FC /* RxKeyboard */,
 			);
 			productName = SeSAC_StudyApp;
 			productReference = 25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */;
@@ -1073,6 +1076,7 @@
 				25D8C3A1291D4C6F00FB52DF /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				257E2641292401AF0039B0A0 /* XCRemoteSwiftPackageReference "MultiSlider" */,
 				251F51A5292CC68300D538FC /* XCRemoteSwiftPackageReference "RxGesture" */,
+				251F51AE292D44C100D538FC /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 			);
 			productRefGroup = 25F7FDDF291931E100E0C486 /* Products */;
 			projectDirPath = "";
@@ -1442,6 +1446,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		251F51AE292D44C100D538FC /* XCRemoteSwiftPackageReference "RxKeyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxKeyboard.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		254627E9291A8E47004D4B72 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1513,6 +1525,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 251F51A5292CC68300D538FC /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
+		};
+		251F51AF292D44C200D538FC /* RxKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 251F51AE292D44C100D538FC /* XCRemoteSwiftPackageReference "RxKeyboard" */;
+			productName = RxKeyboard;
 		};
 		254627EA291A8E47004D4B72 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
 			isa = XCSwiftPackageProductDependency;
