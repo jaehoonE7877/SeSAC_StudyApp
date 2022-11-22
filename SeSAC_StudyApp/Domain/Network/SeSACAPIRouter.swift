@@ -58,14 +58,13 @@ extension SeSACAPIRouter {
     
     var parameters: [String: String] {
         
-        guard let birth = UserManager.birth,
-              let email = UserManager.email,
-              let gender = UserManager.gender else { return ["" : ""] }
-        
         switch self {
         case .login, .withdraw:
             return ["" : ""]
         case .signup:
+            guard let birth = UserManager.birth,
+                  let email = UserManager.email,
+                  let gender = UserManager.gender else { return ["" : ""] }
             return [
                 "phoneNumber" : saveNumber(phoneNumber: UserManager.phone),
                 "FCMtoken" : UserManager.fcmToken,
@@ -83,8 +82,9 @@ extension SeSACAPIRouter {
                 "study" : data.study
                 ]
         case .search(let location):
-            return ["lat": String(location.latitude),
-                    "long": String(location.longitude)
+            print(location)
+            return ["lat": "\(location.latitude)",
+                    "long": "\(location.longitude)"
                     ]
         }
     }

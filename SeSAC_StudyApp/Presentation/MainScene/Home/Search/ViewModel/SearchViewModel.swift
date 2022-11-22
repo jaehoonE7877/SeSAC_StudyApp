@@ -23,7 +23,7 @@ final class SearchViewModel: ViewModelType {
     
     private let sesacAPIService = DefaultSeSACAPIService.shared
     
-    private let location: CLLocationCoordinate2D = .init(latitude: 37.517819364682694, longitude: 126.88647317074734)
+    var location: CLLocationCoordinate2D?
     
     var baseList = [StudyTag]()
     var friendList = [StudyTag]()
@@ -47,10 +47,9 @@ final class SearchViewModel: ViewModelType {
         input.viewDidLoadEvent
             .withUnretained(self)
             .subscribe { weakSelf, _ in
-                weakSelf.request(location: weakSelf.location, output: output)
+                weakSelf.request(location: weakSelf.location ?? CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734), output: output)
             }
             .disposed(by: disposeBag)
-
         
         return output
     }
@@ -94,7 +93,7 @@ extension SearchViewModel {
             }
             guard let token = idToken else { return }
             UserManager.token = token
-            self.request(location: self.location, output: output)
+            self.request(location: self.location ?? CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734), output: output)
         }
     }
     

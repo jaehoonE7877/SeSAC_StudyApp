@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreLocation
-
+import MapKit
 import FirebaseAuth
 import RxSwift
 import RxCocoa
@@ -17,26 +17,33 @@ final class MapViewModel: ViewModelType {
     private let sesacAPIService = DefaultSeSACAPIService.shared
     private let disposeBag = DisposeBag()
     
-    var userCurrentLocation: CLLocationCoordinate2D = .init(latitude: 37.517819364682694, longitude: 126.88647317074734)
+    var location: CLLocationCoordinate2D = .init(latitude: 37.517819364682694, longitude: 126.88647317074734)
     
     struct Input {
-        let viewDidLoadEvent: ControlEvent<Void>
+        let viewDidLoadEvent: Observable<Void>
+        //let userCurrentLocation: Observable<CLLocationCoordinate2D>
+        let currentButtonTap: ControlEvent<Void>
+        let searchButtonTap: ControlEvent<Void>
     }
     
     struct Output {
         var searchLocation = PublishSubject<SeSACUserDataDTO>()
         var isFailed = BehaviorRelay(value: false)
+        let currentButtonTap: ControlEvent<Void>
+        let searchButtonTap: ControlEvent<Void>
     }
     
     func transform(input: Input) -> Output {
-        let output = Output()
+        let output = Output(currentButtonTap: input.currentButtonTap, searchButtonTap: input.searchButtonTap)
+        //화면 처음 실행
         input.viewDidLoadEvent
             .withUnretained(self)
             .subscribe(onNext: { weakSelf, _ in
-                weakSelf.requestSesacUser(userCurrentLocation: weakSelf.userCurrentLocation, output: output)
+                weakSelf.requestSesacUser(userCurrentLocation: weakSelf.location, output: output)
             })
             .disposed(by: disposeBag)
         
+
         return output
     }
     
@@ -72,7 +79,7 @@ extension MapViewModel {
             }
             guard let token = idToken else { return }
             UserManager.token = token
-            self.requestSesacUser(userCurrentLocation: self.userCurrentLocation, output: output)
+            self.requestSesacUser(userCurrentLocation: self.location, output: output)
         }
     }
 }

@@ -25,7 +25,7 @@ struct FromQueueDB: Codable {
             lat: self.lat,
             long: self.long,
             gender: self.gender,
-            type: self.type,
+            sesac: self.sesac,
             background: self.background)
     }
 }

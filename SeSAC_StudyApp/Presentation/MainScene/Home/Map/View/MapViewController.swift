@@ -17,6 +17,8 @@ final class MapViewController: BaseViewController {
     
     private let mainView = MapView()
     
+    private var sesacSearch: [SeSACSearchModel] = []
+    
     override func loadView() {
         self.view = mainView
     }
@@ -28,50 +30,31 @@ final class MapViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindViewModel()
-    }
-    
-    override func configure() {
+        mainView.mapView.delegate = self
         locationManager.delegate = self
-    }
-    
-    private func myRegionAndAnnotation(_ title: String, _ meters: Double ,_ center: CLLocationCoordinate2D) {
-
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: meters, longitudinalMeters: meters)
-        mainView.mapView.setRegion(region, animated: true)
-        let pin = MKPointAnnotation()
-        pin.coordinate = center
-        pin.title = title
-        mainView.mapView.addAnnotation(pin)
-    }
-    
-    override func setBinding() {
-        
-        mainView.searchButton.rx.tap
-            .withUnretained(self)
-            .bind { weakSelf, _ in
-                
-                weakSelf.transitionViewController(viewController: SearchViewController(), transitionStyle: .presentFullNavigation)
-            }
-            .disposed(by: disposeBag)
-        
-        mainView.currentButton.rx.tap
-            .withUnretained(self)
-            .bind { weakSelf, _ in
-                guard let currentLocation = weakSelf.locationManager.location else {
-                    weakSelf.checkUserDeviceLocationServiceAuthorization()
-                    return
-                }
-                weakSelf.myRegionAndAnnotation("현재위치", 700, currentLocation.coordinate)
-            }
-            .disposed(by: disposeBag)
+        bindViewModel()
     }
     
     private func bindViewModel() {
         
-        let input = MapViewModel.Input(viewDidLoadEvent: self.rx.viewDidLoad)
+        let input = MapViewModel.Input(viewDidLoadEvent: Observable.just(()),
+                                       currentButtonTap: mainView.currentButton.rx.tap,
+                                       searchButtonTap: mainView.searchButton.rx.tap
+                                       )
         
         let output = viewModel.transform(input: input)
+        
+        output.searchLocation
+            .withUnretained(self)
+            .bind { weakSelf, result in
+                result.fromQueueDB.forEach { weakSelf.sesacSearch.append(SeSACSearchModel(lat: $0.lat, long: $0.long, gender: $0.gender, sesac: $0.sesac, background: $0.background))
+                }
+                result.fromQueueDBRequested.forEach { weakSelf.sesacSearch.append(SeSACSearchModel(lat: $0.lat, long: $0.long, gender: $0.gender, sesac: $0.sesac, background: $0.background))
+                }
+                let location = self.mainView.mapView.centerCoordinate
+                self.setRegionAnnotation(location, itmes: weakSelf.sesacSearch)
+            }
+            .disposed(by: disposeBag)
         
         output.isFailed
             .asDriver(onErrorJustReturn: true)
@@ -83,18 +66,23 @@ final class MapViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output.searchLocation
+        output.searchButtonTap
             .withUnretained(self)
-            .bind { weakSelf, result in
-                //weakSelf.mainView.mapView.removeAnnotation(annotation)
-                result.fromQueueDB.forEach { result in
-                    weakSelf.addCustomPin(sesac_image: result.sesac,
-                                          coordinate: CLLocationCoordinate2D(latitude: result.lat, longitude: result.long))
+            .bind { weakSelf, _ in
+                let searchViewModel = SearchViewModel()
+                searchViewModel.location = weakSelf.viewModel.location
+                weakSelf.transitionViewController(viewController: SearchViewController(), transitionStyle: .presentFullNavigation)
+            }
+            .disposed(by: disposeBag)
+        
+        output.currentButtonTap
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                guard let currentLocation = weakSelf.locationManager.location else {
+                    weakSelf.checkUserDeviceLocationServiceAuthorization()
+                    return
                 }
-                result.fromQueueDBRequested.forEach { result in
-                    weakSelf.addCustomPin(sesac_image: result.sesac,
-                                          coordinate: CLLocationCoordinate2D(latitude: result.lat, longitude: result.long))
-                }
+                weakSelf.setRegionAnnotation(currentLocation.coordinate, itmes: weakSelf.sesacSearch)
             }
             .disposed(by: disposeBag)
         
@@ -102,6 +90,21 @@ final class MapViewController: BaseViewController {
 }
 
 extension MapViewController: CLLocationManagerDelegate {
+    
+    private func setRegionAnnotation(_ center: CLLocationCoordinate2D, itmes: [SeSACSearchModel]) {
+
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 700, longitudinalMeters: 700)
+        mainView.mapView.removeAnnotations(mainView.mapView.annotations)
+        mainView.mapView.setRegion(region, animated: false)
+        
+        var annotations: [CustomAnnotation] = []
+        
+        for item in itmes {
+            let point = CustomAnnotation(sesac_Image: item.sesac, coordinate: CLLocationCoordinate2D(latitude: item.lat, longitude: item.long))
+            annotations.append(point)
+        }
+        mainView.mapView.addAnnotations(annotations)
+    }
     
     private func checkUserDeviceLocationServiceAuthorization() {
         
@@ -119,7 +122,7 @@ extension MapViewController: CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         case .restricted, .denied:
             let center = CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
-            myRegionAndAnnotation("청년취업사관학교 영등포 캠퍼스", 700, center)
+            setRegionAnnotation(center, itmes: sesacSearch)
             showRequestLocationServiceAlert()
         case .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
@@ -132,21 +135,19 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let coordinate = locations.last?.coordinate {
-            viewModel.userCurrentLocation = coordinate
+            viewModel.location = coordinate
         }
         //⭐️ start updatingLocation을 하고나서 멈추기 필수!
         locationManager.stopUpdatingLocation()
     }
     
-    // 사용자의 권한 상태가 바뀔 때 호출되는 메서드
-    // 앱이 처음 실행됐을 때도 실행된다.-> CllocationManager() 인스턴스를 생성
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         print(#function)
         checkUserDeviceLocationServiceAuthorization()
     }
 }
 
-extension MapViewController : MKMapViewDelegate {
+extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -157,7 +158,6 @@ extension MapViewController : MKMapViewDelegate {
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
         
         if annotationView == nil {
-            // create a view
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
             annotationView?.canShowCallout = true
             annotationView?.contentMode = .scaleAspectFit
@@ -183,14 +183,7 @@ extension MapViewController : MKMapViewDelegate {
 }
 
 extension MapViewController {
-    
-    private func addCustomPin(sesac_image: Int, coordinate: CLLocationCoordinate2D){
-        let pin = CustomAnnotation(sesac_Image: sesac_image, coordinate: coordinate)
-        mainView.mapView.addAnnotation(pin)
-    }
 
-
-    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(#function)
     }
