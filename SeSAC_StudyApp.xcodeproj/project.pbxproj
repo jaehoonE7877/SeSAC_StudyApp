@@ -70,6 +70,12 @@
 		258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0729210BEE00C78A67 /* InfoModel.swift */; };
 		258B1E0B29210CBF00C78A67 /* ReuseableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */; };
 		258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */; };
+		25D1939E292E09CF00C47AD4 /* ReceivedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */; };
+		25D193A0292E0A2900C47AD4 /* SeSACTabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */; };
+		25D193A2292E1A2000C47AD4 /* SeSACSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193A1292E1A2000C47AD4 /* SeSACSearchView.swift */; };
+		25D193A6292E1E7E00C47AD4 /* SeSACCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193A5292E1E7E00C47AD4 /* SeSACCardModel.swift */; };
+		25D193A8292E204500C47AD4 /* SeSACCardSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193A7292E204500C47AD4 /* SeSACCardSectionModel.swift */; };
+		25D193AA292E217300C47AD4 /* SeSACSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193A9292E217300C47AD4 /* SeSACSearchViewModel.swift */; };
 		25D1EDE629227F2D0015C444 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDE529227F2D0015C444 /* DetailInfoViewController.swift */; };
 		25D1EDEC29228D0A0015C444 /* SesacDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */; };
 		25D1EDEE29228ECC0015C444 /* GenderCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDED29228ECC0015C444 /* GenderCustomView.swift */; };
@@ -187,6 +193,12 @@
 		258B1E0729210BEE00C78A67 /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
 		258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableViewProtocol.swift; sourceTree = "<group>"; };
 		258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedViewController.swift; sourceTree = "<group>"; };
+		25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACTabManViewController.swift; sourceTree = "<group>"; };
+		25D193A1292E1A2000C47AD4 /* SeSACSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACSearchView.swift; sourceTree = "<group>"; };
+		25D193A5292E1E7E00C47AD4 /* SeSACCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACCardModel.swift; sourceTree = "<group>"; };
+		25D193A7292E204500C47AD4 /* SeSACCardSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACCardSectionModel.swift; sourceTree = "<group>"; };
+		25D193A9292E217300C47AD4 /* SeSACSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACSearchViewModel.swift; sourceTree = "<group>"; };
 		25D1EDE529227F2D0015C444 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacDetailTableViewCell.swift; sourceTree = "<group>"; };
 		25D1EDED29228ECC0015C444 /* GenderCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCustomView.swift; sourceTree = "<group>"; };
@@ -292,7 +304,10 @@
 		251F51B2292D5BFD00D538FC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */,
 				251F51B4292D5C1900D538FC /* SeSACSearchViewController.swift */,
+				25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */,
+				25D193A1292E1A2000C47AD4 /* SeSACSearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -300,6 +315,7 @@
 		251F51B3292D5C0200D538FC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				25D193A9292E217300C47AD4 /* SeSACSearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -401,6 +417,7 @@
 			children = (
 				257E263F2923C9E50039B0A0 /* SeSACInfo.swift */,
 				255B48EE292B9DF400D33052 /* SeSACSearchModel.swift */,
+				25D193A5292E1E7E00C47AD4 /* SeSACCardModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -458,6 +475,7 @@
 				2515966A291D722200F48DB5 /* Gender.swift */,
 				258B1E0729210BEE00C78A67 /* InfoModel.swift */,
 				25ED4A812922AA3D00C4A6EB /* DetailInfoModel.swift */,
+				25D193A7292E204500C47AD4 /* SeSACCardSectionModel.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -585,20 +603,9 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
-		257E26482924123F0039B0A0 /* Card */ = {
-			isa = PBXGroup;
-			children = (
-				25ED4A872922CF8400C4A6EB /* SesacReviewView.swift */,
-				25ED4A832922BD7D00C4A6EB /* SesacTitleView.swift */,
-			);
-			path = Card;
-			sourceTree = "<group>";
-		};
 		258B1E0529210B0000C78A67 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				257E264429240EC00039B0A0 /* ProfileImageHeaderView.swift */,
-				25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */,
 				25D1EDFD29229BB60015C444 /* InfoDetailTableViewCell.swift */,
 			);
 			path = Cell;
@@ -640,6 +647,25 @@
 			path = DataMapping;
 			sourceTree = "<group>";
 		};
+		25D193A3292E1AA900C47AD4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */,
+				257E264429240EC00039B0A0 /* ProfileImageHeaderView.swift */,
+				25D193A4292E1AD900C47AD4 /* CustomView */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		25D193A4292E1AD900C47AD4 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				25ED4A832922BD7D00C4A6EB /* SesacTitleView.swift */,
+				25ED4A872922CF8400C4A6EB /* SesacReviewView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		25D1EDEF29228F500015C444 /* Info */ = {
 			isa = PBXGroup;
 			children = (
@@ -653,7 +679,6 @@
 			isa = PBXGroup;
 			children = (
 				2566E118292611D60006FBB4 /* CustomView */,
-				257E26482924123F0039B0A0 /* Card */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -947,6 +972,7 @@
 		25F7FE2129193EF800E0C486 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25D193A3292E1AA900C47AD4 /* Cell */,
 				258B1E0929210CA300C78A67 /* Protocol */,
 				25F7FE2229193F0A00E0C486 /* BaseView.swift */,
 				254627DC291A3C05004D4B72 /* Login */,
@@ -1160,6 +1186,7 @@
 				255B48ED292B899500D33052 /* SeSACUserDataDTO.swift in Sources */,
 				25F7FDE2291931E100E0C486 /* AppDelegate.swift in Sources */,
 				25F7FE5A291985DB00E0C486 /* NextButton.swift in Sources */,
+				25D193A6292E1E7E00C47AD4 /* SeSACCardModel.swift in Sources */,
 				255A37BD291C31CC00737C3A /* EmailView.swift in Sources */,
 				25D1EDEC29228D0A0015C444 /* SesacDetailTableViewCell.swift in Sources */,
 				25F7FE502919752B00E0C486 /* PhoneViewController.swift in Sources */,
@@ -1173,6 +1200,8 @@
 				25F7FE2029193EC400E0C486 /* Alertable.swift in Sources */,
 				25F7FE0529193B7500E0C486 /* BaseViewController.swift in Sources */,
 				255A37AA291BF41100737C3A /* UserDataDTO.swift in Sources */,
+				25D1939E292E09CF00C47AD4 /* ReceivedViewController.swift in Sources */,
+				25D193A2292E1A2000C47AD4 /* SeSACSearchView.swift in Sources */,
 				255A3797291BACAF00737C3A /* DefaultSeSACAPIService.swift in Sources */,
 				251F51A9292CDF3800D538FC /* Reactive+MKMapView.swift in Sources */,
 				25ED4A842922BD7D00C4A6EB /* SesacTitleView.swift in Sources */,
@@ -1210,6 +1239,7 @@
 				25D1EDF7292294A40015C444 /* PhoneSearchView.swift in Sources */,
 				251F51AB292D20C800D538FC /* CLLocationCoordinate2D+.swift in Sources */,
 				255A37AF291BF5E900737C3A /* BaseURL.swift in Sources */,
+				25D193A0292E0A2900C47AD4 /* SeSACTabManViewController.swift in Sources */,
 				255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */,
 				25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */,
 				254627DE291A3C1A004D4B72 /* LoginView.swift in Sources */,
@@ -1237,6 +1267,8 @@
 				25D1EDF92922960F0015C444 /* FriendAgeView.swift in Sources */,
 				25F11E95291F80AE004AC54A /* NetworkCheck.swift in Sources */,
 				25D1EDF52922925A0015C444 /* StudyInputView.swift in Sources */,
+				25D193AA292E217300C47AD4 /* SeSACSearchViewModel.swift in Sources */,
+				25D193A8292E204500C47AD4 /* SeSACCardSectionModel.swift in Sources */,
 				255A37C7291C32CC00737C3A /* BirthViewController.swift in Sources */,
 				255A37B2291C1B3800737C3A /* NicknameViewModel.swift in Sources */,
 			);

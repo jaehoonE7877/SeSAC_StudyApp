@@ -24,7 +24,7 @@ final class SearchViewController: BaseViewController{
     
     private lazy var searchButton = NextButton(title: "새싹 찾기", status: .fill)
     
-    private let viewModel = SearchViewModel()
+    let viewModel = SearchViewModel()
     private let disposeBag = DisposeBag()
     
     private var dataSource: DataSource!
@@ -161,7 +161,9 @@ final class SearchViewController: BaseViewController{
             .withUnretained(self)
             .bind { weakSelf, value in
                 if value {
-                    print("성공!")
+                    let vc = SeSACTabManViewController()
+                    vc.firstVC.viewModel.location = weakSelf.viewModel.location
+                    self.transitionViewController(viewController: vc, transitionStyle: .push)
                 }
             }
             .disposed(by: disposeBag)

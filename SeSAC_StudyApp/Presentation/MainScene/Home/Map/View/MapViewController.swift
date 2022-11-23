@@ -109,9 +109,10 @@ final class MapViewController: BaseViewController {
         output.searchButtonTap
             .withUnretained(self)
             .bind { weakSelf, _ in
-                let searchViewModel = SearchViewModel()
-                searchViewModel.location = weakSelf.mainView.mapView.centerCoordinate
-                weakSelf.transitionViewController(viewController: SearchViewController(), transitionStyle: .presentFullNavigation)
+                let vc = SearchViewController()
+                //print(weakSelf.mainView.mapView.centerCoordinate)
+                vc.viewModel.location = weakSelf.mainView.mapView.centerCoordinate
+                weakSelf.transitionViewController(viewController: vc, transitionStyle: .presentFullNavigation)
             }
             .disposed(by: disposeBag)
         

@@ -24,7 +24,7 @@ final class SearchViewModel: ViewModelType {
     private let sesacAPIService = DefaultSeSACAPIService.shared
     
     var location: CLLocationCoordinate2D?
-    
+ 
     private let campusLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
     
     var baseList = [StudyTag]()
@@ -45,23 +45,26 @@ final class SearchViewModel: ViewModelType {
         let isFailed = BehaviorRelay(value: false)
         let searchInfo = PublishSubject<SeSACUserDataDTO>()
         let searchSuccess = BehaviorRelay(value: false)
-        let searchFailed = BehaviorRelay(value: "")
+        let searchFailed = PublishRelay<String>()
     }
     
     func transform(input: Input) -> Output {
+        
         let output = Output(searchTap: input.searchTap)
         input.viewDidLoadEvent
             .withUnretained(self)
             .subscribe { weakSelf, _ in
-                weakSelf.request(location: weakSelf.location ?? weakSelf.campusLocation, output: output)
+                guard let location = weakSelf.location else { return }
+                weakSelf.request(location: location, output: output)
             }
             .disposed(by: disposeBag)
         
         input.findTap
             .withUnretained(self)
             .subscribe { weakSelf, _ in
+                guard let location = weakSelf.location else { return }
                 let studylist = self.fetchStudyList(list: self.searchList)
-                weakSelf.requestFriend(location: weakSelf.location ?? weakSelf.campusLocation, studylist: studylist, output: output)
+                weakSelf.requestFriend(location: location, studylist: studylist, output: output)
             }
             .disposed(by: disposeBag)
         
@@ -93,11 +96,13 @@ extension SearchViewModel {
             switch result {
             case .success(let success):
                 success.fromRecommend.forEach { self.baseList.append(StudyTag(tag: $0))}
+
                 success.fromQueueDB.forEach { self.total.append(contentsOf: $0.studylist)}
+
                 success.fromQueueDBRequested.forEach { self.total.append(contentsOf: $0.studylist)}
+
                 let erasedTotal = self.eraseSameStudy(total: self.total)
                 erasedTotal.forEach { self.friendList.append(StudyTag(tag: $0))}
-                
                 output.searchInfo.onNext(success)
 
             case .failure(let error):

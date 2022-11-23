@@ -53,4 +53,9 @@ final class ProfileImageHeaderView: UITableViewHeaderFooterView {
         bgImageView.image = UIImage(named: "sesac_background_\(item.background)")
         sesacImageView.image = UIImage(named: "sesac_face_\(item.sesac)")
     }
+    
+    func setHeaderData(item: SeSACCardModel){
+        bgImageView.image = UIImage(named: "sesac_background_\(item.background)")
+        sesacImageView.image = UIImage(named: "sesac_face_\(item.sesac)")
+    }
 }
