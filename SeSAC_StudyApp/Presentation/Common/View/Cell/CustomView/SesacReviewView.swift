@@ -32,12 +32,14 @@ final class SesacReviewView: BaseView {
         $0.image = UIImage(named: "more_arrow")
     }
     
+    lazy var reviewButton = UIButton()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
     override func configure() {
-        [reviewTitleLabel, reviewImageView, reviewLabel].forEach { self.addSubview($0) }
+        [reviewTitleLabel, reviewImageView, reviewLabel, reviewButton].forEach { self.addSubview($0) }
     }
     
     override func setConstraints() {
@@ -55,6 +57,12 @@ final class SesacReviewView: BaseView {
             make.top.equalTo(reviewTitleLabel.snp.bottom).offset(16)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview()
+        }
+        
+        reviewButton.snp.makeConstraints { make in
+            make.top.trailing.equalTo(reviewImageView)
+            make.bottom.equalTo(reviewLabel.snp.top)
+            make.width.equalTo(reviewButton.snp.height)
         }
     }
     

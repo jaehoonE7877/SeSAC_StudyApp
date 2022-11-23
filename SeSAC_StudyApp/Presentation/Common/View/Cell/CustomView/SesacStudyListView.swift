@@ -17,6 +17,7 @@ final class SesacStudyListView: BaseView {
     }
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init()).then {
+        $0.layoutIfNeeded()
         $0.isScrollEnabled = false
         $0.showsVerticalScrollIndicator = false
         $0.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.reuseIdentifier)
@@ -29,7 +30,6 @@ final class SesacStudyListView: BaseView {
     
     override func configure() {
         [studyLabel, collectionView].forEach { self.addSubview($0) }
-        
     }
     
     override func setConstraints() {
@@ -40,8 +40,8 @@ final class SesacStudyListView: BaseView {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(studyLabel.snp.bottom).offset(16)
-            make.bottom.equalToSuperview().offset(1)
             make.horizontalEdges.equalToSuperview()
+            make.height.greaterThanOrEqualTo(36)
         }
     }
 }

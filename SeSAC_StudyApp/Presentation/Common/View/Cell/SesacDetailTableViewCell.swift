@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class SesacDetailTableViewCell: UITableViewCell {
+class SesacDetailTableViewCell: UITableViewCell {
     
     //MARK: Property
     lazy var nameLabel = UILabel().then {
@@ -49,16 +49,16 @@ final class SesacDetailTableViewCell: UITableViewCell {
         configure()
         setConstraint()
     }
-    
+    @available(*,unavailable)
     required init?(coder: NSCoder) {
         fatalError()
     }
     
-    private func configure() {
+    func configure() {
         [nameLabel, chevornImageView, sesacTitleView, sesacStudyListView, sesacReviewView].forEach { contentView.addSubview($0) }
     }
     
-    private func setConstraint() {
+    func setConstraint() {
         
         chevornImageView.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top).offset(21)
@@ -111,8 +111,10 @@ final class SesacDetailTableViewCell: UITableViewCell {
             sesacReviewView.reviewImageView.isHidden = false
             sesacReviewView.reviewLabel.textColor = .textColor
             sesacReviewView.reviewLabel.text = item.reviews.last
+            sesacReviewView.reviewButton.isEnabled = true
         } else {
             sesacReviewView.reviewImageView.isHidden = true
+            sesacReviewView.reviewButton.isEnabled = false
             sesacReviewView.reviewLabel.textColor = .gray6
             sesacReviewView.reviewLabel.text = "첫 리뷰를 기다리는 중이에요!"
         }

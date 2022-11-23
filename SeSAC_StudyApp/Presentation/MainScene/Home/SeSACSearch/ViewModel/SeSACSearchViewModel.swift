@@ -79,6 +79,11 @@ extension SeSACSearchViewModel {
         }
     }
     
+    
+}
+
+extension SeSACSearchViewModel {
+    
     func requireMatch(completion: @escaping (Int) -> Void){
         guard let uid = self.uid else { return }
         sesacAPIService.requestSeSACAPI(router: .require(otheruid: uid)) { [weak self] statusCode in
@@ -106,4 +111,5 @@ extension SeSACSearchViewModel {
             UserManager.token = token
         }
     }
+    
 }

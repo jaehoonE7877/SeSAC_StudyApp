@@ -81,6 +81,9 @@
 		25D193B4292E431000C47AD4 /* RequireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B3292E431000C47AD4 /* RequireView.swift */; };
 		25D193B6292E48F100C47AD4 /* SeSACStudyMatchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B5292E48F100C47AD4 /* SeSACStudyMatchError.swift */; };
 		25D193B8292E58D000C47AD4 /* SesacStudyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B7292E58D000C47AD4 /* SesacStudyListView.swift */; };
+		25D193BC292E69CA00C47AD4 /* CardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193BB292E69CA00C47AD4 /* CardViewCell.swift */; };
+		25D193BF292E8BEF00C47AD4 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193BE292E8BEF00C47AD4 /* ReviewViewController.swift */; };
+		25D193C2292E947700C47AD4 /* FriendEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193C1292E947700C47AD4 /* FriendEmptyView.swift */; };
 		25D1EDE629227F2D0015C444 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDE529227F2D0015C444 /* DetailInfoViewController.swift */; };
 		25D1EDEC29228D0A0015C444 /* SesacDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */; };
 		25D1EDEE29228ECC0015C444 /* GenderCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDED29228ECC0015C444 /* GenderCustomView.swift */; };
@@ -209,6 +212,9 @@
 		25D193B3292E431000C47AD4 /* RequireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequireView.swift; sourceTree = "<group>"; };
 		25D193B5292E48F100C47AD4 /* SeSACStudyMatchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACStudyMatchError.swift; sourceTree = "<group>"; };
 		25D193B7292E58D000C47AD4 /* SesacStudyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacStudyListView.swift; sourceTree = "<group>"; };
+		25D193BB292E69CA00C47AD4 /* CardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewCell.swift; sourceTree = "<group>"; };
+		25D193BE292E8BEF00C47AD4 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		25D193C1292E947700C47AD4 /* FriendEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendEmptyView.swift; sourceTree = "<group>"; };
 		25D1EDE529227F2D0015C444 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacDetailTableViewCell.swift; sourceTree = "<group>"; };
 		25D1EDED29228ECC0015C444 /* GenderCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCustomView.swift; sourceTree = "<group>"; };
@@ -305,6 +311,7 @@
 		251F51B1292D5BC700D538FC /* SeSACSearch */ = {
 			isa = PBXGroup;
 			children = (
+				25D193C0292E940D00C47AD4 /* Cell */,
 				251F51B3292D5C0200D538FC /* ViewModel */,
 				251F51B2292D5BFD00D538FC /* View */,
 			);
@@ -314,11 +321,13 @@
 		251F51B2292D5BFD00D538FC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				25D193AE292E423400C47AD4 /* MatchView */,
 				25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */,
 				251F51B4292D5C1900D538FC /* SeSACSearchViewController.swift */,
 				25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */,
 				25D193A1292E1A2000C47AD4 /* SeSACSearchView.swift */,
+				25D193C1292E947700C47AD4 /* FriendEmptyView.swift */,
+				25D193AE292E423400C47AD4 /* MatchView */,
+				25D193BD292E8BD200C47AD4 /* ReviewView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -673,8 +682,8 @@
 			isa = PBXGroup;
 			children = (
 				25ED4A832922BD7D00C4A6EB /* SesacTitleView.swift */,
-				25ED4A872922CF8400C4A6EB /* SesacReviewView.swift */,
 				25D193B7292E58D000C47AD4 /* SesacStudyListView.swift */,
+				25ED4A872922CF8400C4A6EB /* SesacReviewView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -710,6 +719,22 @@
 			children = (
 			);
 			path = Accecpt;
+			sourceTree = "<group>";
+		};
+		25D193BD292E8BD200C47AD4 /* ReviewView */ = {
+			isa = PBXGroup;
+			children = (
+				25D193BE292E8BEF00C47AD4 /* ReviewViewController.swift */,
+			);
+			path = ReviewView;
+			sourceTree = "<group>";
+		};
+		25D193C0292E940D00C47AD4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				25D193BB292E69CA00C47AD4 /* CardViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		25D1EDEF29228F500015C444 /* Info */ = {
@@ -1246,6 +1271,7 @@
 				255A37A3291BB01400737C3A /* NicknameView.swift in Sources */,
 				25F7FE2029193EC400E0C486 /* Alertable.swift in Sources */,
 				25F7FE0529193B7500E0C486 /* BaseViewController.swift in Sources */,
+				25D193BC292E69CA00C47AD4 /* CardViewCell.swift in Sources */,
 				255A37AA291BF41100737C3A /* UserDataDTO.swift in Sources */,
 				25D1939E292E09CF00C47AD4 /* ReceivedViewController.swift in Sources */,
 				25D193A2292E1A2000C47AD4 /* SeSACSearchView.swift in Sources */,
@@ -1269,6 +1295,7 @@
 				25F7FE0129193B3400E0C486 /* OnboardingViewController.swift in Sources */,
 				25F7FDE4291931E100E0C486 /* SceneDelegate.swift in Sources */,
 				25F7FE392919465500E0C486 /* UIFont+CustomFont.swift in Sources */,
+				25D193C2292E947700C47AD4 /* FriendEmptyView.swift in Sources */,
 				254627DB291A3BB3004D4B72 /* AuthViewModel.swift in Sources */,
 				25D8C39B291D2B6200FB52DF /* GenderViewController.swift in Sources */,
 				25D1EDFE29229BB70015C444 /* InfoDetailTableViewCell.swift in Sources */,
@@ -1298,6 +1325,7 @@
 				25F7FE0929193C6300E0C486 /* APIKey.swift in Sources */,
 				25D193B0292E426700C47AD4 /* RequireViewController.swift in Sources */,
 				255B48F9292BFF9800D33052 /* Reactive+BaseViewController.swift in Sources */,
+				25D193BF292E8BEF00C47AD4 /* ReviewViewController.swift in Sources */,
 				25F7FE2329193F0A00E0C486 /* BaseView.swift in Sources */,
 				257E263D2923AB2C0039B0A0 /* DetailInfoViewModel.swift in Sources */,
 				25F7FE262919403C00E0C486 /* BaseViewController+.swift in Sources */,

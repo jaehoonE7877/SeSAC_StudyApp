@@ -9,14 +9,16 @@ import UIKit
 
 final class SeSACSearchView: BaseView {
     
-    //데이터가 없을 때 hidden처리한 뷰 보여주고 tableview hidden시켜주기
+    lazy var friendEmptyView = FriendEmptyView(title: "아쉽게도 주변에 새싹이 없어요ㅠ").then {
+        $0.isHidden = true
+    }
     
     lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
         $0.showsVerticalScrollIndicator = false
         $0.contentInset = .init(top: 16, left: 0, bottom: 0, right: 0)
         $0.backgroundColor = .systemBackground
         $0.register(ProfileImageHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileImageHeaderView.reuseIdentifier)
-        $0.register(SesacDetailTableViewCell.self, forCellReuseIdentifier: SesacDetailTableViewCell.reuseIdentifier)
+        $0.register(CardViewCell.self, forCellReuseIdentifier: CardViewCell.reuseIdentifier)
         $0.separatorStyle = .none
     }
     
@@ -26,6 +28,7 @@ final class SeSACSearchView: BaseView {
     
     override func configure() {
         self.addSubview(tableView)
+        self.addSubview(friendEmptyView)
     }
     
     override func setConstraints() {
@@ -33,6 +36,10 @@ final class SeSACSearchView: BaseView {
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
             make.horizontalEdges.equalToSuperview().inset(16)
+        }
+        
+        friendEmptyView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }

@@ -29,5 +29,4 @@ final class SearchCollectionViewCell: UICollectionViewCell {
             make.edges.equalToSuperview()
         }
     }
-    
 }
