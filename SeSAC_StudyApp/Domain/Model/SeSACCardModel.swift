@@ -14,6 +14,7 @@ struct SeSACCardModel {
     var reputation: [Int]
     var reviews: [String]
     var studylist: [String]
+    var uid: String
     
     init(
         background: Int = 0,
@@ -21,7 +22,8 @@ struct SeSACCardModel {
         nick: String = "",
         reputation: [Int] = [],
         reviews: [String] = [],
-        studylist: [String] = []
+        studylist: [String] = [],
+        uid: String = ""
     ){
         self.background = background
         self.sesac = sesac
@@ -29,5 +31,6 @@ struct SeSACCardModel {
         self.reputation = reputation
         self.reviews = reviews
         self.studylist = studylist
+        self.uid = uid
     }
 }

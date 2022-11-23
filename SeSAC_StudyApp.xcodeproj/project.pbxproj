@@ -76,6 +76,11 @@
 		25D193A6292E1E7E00C47AD4 /* SeSACCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193A5292E1E7E00C47AD4 /* SeSACCardModel.swift */; };
 		25D193A8292E204500C47AD4 /* SeSACCardSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193A7292E204500C47AD4 /* SeSACCardSectionModel.swift */; };
 		25D193AA292E217300C47AD4 /* SeSACSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193A9292E217300C47AD4 /* SeSACSearchViewModel.swift */; };
+		25D193AD292E3F7900C47AD4 /* MatchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193AC292E3F7900C47AD4 /* MatchButton.swift */; };
+		25D193B0292E426700C47AD4 /* RequireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193AF292E426700C47AD4 /* RequireViewController.swift */; };
+		25D193B4292E431000C47AD4 /* RequireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B3292E431000C47AD4 /* RequireView.swift */; };
+		25D193B6292E48F100C47AD4 /* SeSACStudyMatchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B5292E48F100C47AD4 /* SeSACStudyMatchError.swift */; };
+		25D193B8292E58D000C47AD4 /* SesacStudyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B7292E58D000C47AD4 /* SesacStudyListView.swift */; };
 		25D1EDE629227F2D0015C444 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDE529227F2D0015C444 /* DetailInfoViewController.swift */; };
 		25D1EDEC29228D0A0015C444 /* SesacDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */; };
 		25D1EDEE29228ECC0015C444 /* GenderCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1EDED29228ECC0015C444 /* GenderCustomView.swift */; };
@@ -199,6 +204,11 @@
 		25D193A5292E1E7E00C47AD4 /* SeSACCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACCardModel.swift; sourceTree = "<group>"; };
 		25D193A7292E204500C47AD4 /* SeSACCardSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACCardSectionModel.swift; sourceTree = "<group>"; };
 		25D193A9292E217300C47AD4 /* SeSACSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACSearchViewModel.swift; sourceTree = "<group>"; };
+		25D193AC292E3F7900C47AD4 /* MatchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchButton.swift; sourceTree = "<group>"; };
+		25D193AF292E426700C47AD4 /* RequireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequireViewController.swift; sourceTree = "<group>"; };
+		25D193B3292E431000C47AD4 /* RequireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequireView.swift; sourceTree = "<group>"; };
+		25D193B5292E48F100C47AD4 /* SeSACStudyMatchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACStudyMatchError.swift; sourceTree = "<group>"; };
+		25D193B7292E58D000C47AD4 /* SesacStudyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacStudyListView.swift; sourceTree = "<group>"; };
 		25D1EDE529227F2D0015C444 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		25D1EDEB29228D0A0015C444 /* SesacDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacDetailTableViewCell.swift; sourceTree = "<group>"; };
 		25D1EDED29228ECC0015C444 /* GenderCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCustomView.swift; sourceTree = "<group>"; };
@@ -304,6 +314,7 @@
 		251F51B2292D5BFD00D538FC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25D193AE292E423400C47AD4 /* MatchView */,
 				25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */,
 				251F51B4292D5C1900D538FC /* SeSACSearchViewController.swift */,
 				25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */,
@@ -397,6 +408,7 @@
 				255A3790291AB52F00737C3A /* FirebaseError.swift */,
 				255A37A4291BE27000737C3A /* SeSACError.swift */,
 				255B48F0292BA87000D33052 /* SeSACSearchError.swift */,
+				25D193B5292E48F100C47AD4 /* SeSACStudyMatchError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -662,8 +674,42 @@
 			children = (
 				25ED4A832922BD7D00C4A6EB /* SesacTitleView.swift */,
 				25ED4A872922CF8400C4A6EB /* SesacReviewView.swift */,
+				25D193B7292E58D000C47AD4 /* SesacStudyListView.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		25D193AB292E3F5A00C47AD4 /* SeSACSearch */ = {
+			isa = PBXGroup;
+			children = (
+				25D193AC292E3F7900C47AD4 /* MatchButton.swift */,
+			);
+			path = SeSACSearch;
+			sourceTree = "<group>";
+		};
+		25D193AE292E423400C47AD4 /* MatchView */ = {
+			isa = PBXGroup;
+			children = (
+				25D193B2292E429100C47AD4 /* Accecpt */,
+				25D193B1292E428900C47AD4 /* Require */,
+			);
+			path = MatchView;
+			sourceTree = "<group>";
+		};
+		25D193B1292E428900C47AD4 /* Require */ = {
+			isa = PBXGroup;
+			children = (
+				25D193AF292E426700C47AD4 /* RequireViewController.swift */,
+				25D193B3292E431000C47AD4 /* RequireView.swift */,
+			);
+			path = Require;
+			sourceTree = "<group>";
+		};
+		25D193B2292E429100C47AD4 /* Accecpt */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Accecpt;
 			sourceTree = "<group>";
 		};
 		25D1EDEF29228F500015C444 /* Info */ = {
@@ -978,6 +1024,7 @@
 				254627DC291A3C05004D4B72 /* Login */,
 				25D8C38F291CAB0B00FB52DF /* Signup */,
 				25D1EDEF29228F500015C444 /* Info */,
+				25D193AB292E3F5A00C47AD4 /* SeSACSearch */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1205,6 +1252,7 @@
 				255A3797291BACAF00737C3A /* DefaultSeSACAPIService.swift in Sources */,
 				251F51A9292CDF3800D538FC /* Reactive+MKMapView.swift in Sources */,
 				25ED4A842922BD7D00C4A6EB /* SesacTitleView.swift in Sources */,
+				25D193AD292E3F7900C47AD4 /* MatchButton.swift in Sources */,
 				25F7FE532919753F00E0C486 /* PhoneViewModel.swift in Sources */,
 				255B48EB292B6D8000D33052 /* SearchViewModel.swift in Sources */,
 				25F7FE1D29193E7600E0C486 /* ViewModelType.swift in Sources */,
@@ -1213,6 +1261,7 @@
 				258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */,
 				255A37B9291C28EC00737C3A /* PropertyWapper.swift in Sources */,
 				255B48E4292B49F900D33052 /* SearchCollectionViewCell.swift in Sources */,
+				25D193B4292E431000C47AD4 /* RequireView.swift in Sources */,
 				255A378E291AB47300737C3A /* DefaultFirebaseAPIService.swift in Sources */,
 				251BC0AC2926318000246894 /* WithdrawCheckView.swift in Sources */,
 				25ED4A882922CF8400C4A6EB /* SesacReviewView.swift in Sources */,
@@ -1242,10 +1291,12 @@
 				25D193A0292E0A2900C47AD4 /* SeSACTabManViewController.swift in Sources */,
 				255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */,
 				25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */,
+				25D193B8292E58D000C47AD4 /* SesacStudyListView.swift in Sources */,
 				254627DE291A3C1A004D4B72 /* LoginView.swift in Sources */,
 				258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */,
 				25D1EDF129228F730015C444 /* InfoButton.swift in Sources */,
 				25F7FE0929193C6300E0C486 /* APIKey.swift in Sources */,
+				25D193B0292E426700C47AD4 /* RequireViewController.swift in Sources */,
 				255B48F9292BFF9800D33052 /* Reactive+BaseViewController.swift in Sources */,
 				25F7FE2329193F0A00E0C486 /* BaseView.swift in Sources */,
 				257E263D2923AB2C0039B0A0 /* DetailInfoViewModel.swift in Sources */,
@@ -1256,6 +1307,7 @@
 				25F7FE412919566700E0C486 /* NextButtonStatus.swift in Sources */,
 				251F51AD292D373000D538FC /* MatchDataDTO.swift in Sources */,
 				25D8C39D291D2B8800FB52DF /* GenderViewModel.swift in Sources */,
+				25D193B6292E48F100C47AD4 /* SeSACStudyMatchError.swift in Sources */,
 				255A37B4291C1B4700737C3A /* NicknameViewController.swift in Sources */,
 				255A37B6291C21CD00737C3A /* ToastMessage.swift in Sources */,
 				25D1EDEE29228ECC0015C444 /* GenderCustomView.swift in Sources */,

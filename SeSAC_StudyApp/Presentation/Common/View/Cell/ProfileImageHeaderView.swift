@@ -20,6 +20,14 @@ final class ProfileImageHeaderView: UITableViewHeaderFooterView {
         $0.contentMode = .scaleAspectFill
     }
     
+    lazy var requireButton = MatchButton(status: .require).then {
+        $0.isHidden = true
+    }
+    
+    lazy var accecptButton = MatchButton(status: .accecpt).then {
+        $0.isHidden = true
+    }
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         configure()
@@ -32,7 +40,7 @@ final class ProfileImageHeaderView: UITableViewHeaderFooterView {
     }
     
     private func configure() {
-        [bgImageView, sesacImageView].forEach { self.addSubview($0)}
+        [bgImageView, sesacImageView, requireButton, accecptButton].forEach { self.addSubview($0)}
     }
     
     private func setConstraints() {
@@ -47,15 +55,17 @@ final class ProfileImageHeaderView: UITableViewHeaderFooterView {
             make.height.equalTo(bgImageView.snp.height).multipliedBy(0.98)
             make.width.equalTo(sesacImageView.snp.height)
         }
-    }
-    
-    func setData(item: SeSACInfo) {
-        bgImageView.image = UIImage(named: "sesac_background_\(item.background)")
-        sesacImageView.image = UIImage(named: "sesac_face_\(item.sesac)")
-    }
-    
-    func setHeaderData(item: SeSACCardModel){
-        bgImageView.image = UIImage(named: "sesac_background_\(item.background)")
-        sesacImageView.image = UIImage(named: "sesac_face_\(item.sesac)")
+        
+        requireButton.snp.makeConstraints { make in
+            make.width.equalTo(80)
+            make.height.equalTo(40)
+            make.top.trailing.equalTo(bgImageView).inset(12)
+        }
+        
+        accecptButton.snp.makeConstraints { make in
+            make.width.equalTo(80)
+            make.height.equalTo(40)
+            make.top.trailing.equalTo(bgImageView).inset(12)
+        }
     }
 }

@@ -78,7 +78,6 @@ extension SearchViewModel {
     private func requestFriend(location: CLLocationCoordinate2D, studylist: [String], output: Output) {
         sesacAPIService.requestSeSACAPI(router: .queuePost(location: location, studylist: studylist)) { [weak self] statusCode in
             guard let self = self else { return }
-            print(statusCode)
             switch SeSACSearchError(rawValue: statusCode){
             case .success:
                 output.searchSuccess.accept(true)

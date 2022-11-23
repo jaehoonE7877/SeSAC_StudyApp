@@ -90,9 +90,7 @@ final class SeSACSearchViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
-    
 }
-
 extension SeSACSearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -102,11 +100,21 @@ extension SeSACSearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileImageHeaderView.reuseIdentifier) as? ProfileImageHeaderView else { return nil}
         
-        guard let items = sesacFriend else { return nil }
+        headerCell.requireButton.isHidden = false
         
+        guard let items = sesacFriend else { return nil }
         headerCell.bgImageView.image = UIImage(named: "sesac_background_\(items[section].background)")
         headerCell.sesacImageView.image = UIImage(named: "sesac_face_\(items[section].sesac)")
         
+        headerCell.requireButton.rx.tap
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                let vc = RequireViewController()
+                vc.viewModel.uid = items[section].uid
+                vc.modalPresentationStyle = .overFullScreen
+                weakSelf.present(vc, animated: false)
+            }
+            .disposed(by: disposeBag)
         
         return headerCell
     }

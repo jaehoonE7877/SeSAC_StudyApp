@@ -36,6 +36,8 @@ struct FromQueueDB: Codable {
             nick: self.nick,
             reputation: self.reputation,
             reviews: self.reviews,
-            studylist: self.studylist)
+            studylist: self.studylist,
+            uid: self.uid
+        )
     }
 }

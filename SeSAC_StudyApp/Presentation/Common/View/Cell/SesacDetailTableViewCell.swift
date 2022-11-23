@@ -34,6 +34,11 @@ final class SesacDetailTableViewCell: UITableViewCell {
         $0.layoutIfNeeded()
     }
     
+    lazy var sesacStudyListView = SesacStudyListView().then {
+        $0.layoutIfNeeded()
+        $0.isHidden = true
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.layoutIfNeeded()
@@ -50,7 +55,7 @@ final class SesacDetailTableViewCell: UITableViewCell {
     }
     
     private func configure() {
-        [nameLabel, chevornImageView, sesacTitleView, sesacReviewView].forEach { contentView.addSubview($0) }
+        [nameLabel, chevornImageView, sesacTitleView, sesacStudyListView, sesacReviewView].forEach { contentView.addSubview($0) }
     }
     
     private func setConstraint() {
@@ -91,6 +96,8 @@ final class SesacDetailTableViewCell: UITableViewCell {
             sesacReviewView.reviewLabel.textColor = .textColor
             sesacReviewView.reviewLabel.text = item.comment.first
         } else {
+            sesacReviewView.reviewImageView.isHidden = true
+            sesacReviewView.reviewLabel.textColor = .gray6
             sesacReviewView.reviewLabel.text = "첫 리뷰를 기다리는 중이에요!"
         }
     }
@@ -105,6 +112,8 @@ final class SesacDetailTableViewCell: UITableViewCell {
             sesacReviewView.reviewLabel.textColor = .textColor
             sesacReviewView.reviewLabel.text = item.reviews.last
         } else {
+            sesacReviewView.reviewImageView.isHidden = true
+            sesacReviewView.reviewLabel.textColor = .gray6
             sesacReviewView.reviewLabel.text = "첫 리뷰를 기다리는 중이에요!"
         }
     }

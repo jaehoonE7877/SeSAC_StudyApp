@@ -19,6 +19,8 @@ final class SeSACSearchViewModel: ViewModelType {
     
     var location: CLLocationCoordinate2D?
     
+    var uid: String?
+    
     struct Input {
         let viewWillAppearEvent: ControlEvent<Bool> // viewdidload는 void viewwillappear는 bool
     }
@@ -77,4 +79,31 @@ extension SeSACSearchViewModel {
         }
     }
     
+    func requireMatch(completion: @escaping (Int) -> Void){
+        guard let uid = self.uid else { return }
+        sesacAPIService.requestSeSACAPI(router: .require(otheruid: uid)) { [weak self] statusCode in
+            guard let self = self else { return }
+            switch statusCode {
+            case 201:
+                print(statusCode)
+            case 401:
+                self.refreshToken()
+                completion(statusCode)
+            default:
+                completion(statusCode)
+            }
+        }
+    }
+    
+    private func refreshToken(){
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            //guard let self = self else { return }
+            if let error = error {
+                print(error)
+            }
+            guard let token = idToken else { return }
+            UserManager.token = token
+        }
+    }
 }
