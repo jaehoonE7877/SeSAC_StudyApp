@@ -9,7 +9,6 @@ import Foundation
 import RxDataSources
 
 struct SeSACCardSectionModel {
-    //var header: Item
     var items: [Item]
 }
 

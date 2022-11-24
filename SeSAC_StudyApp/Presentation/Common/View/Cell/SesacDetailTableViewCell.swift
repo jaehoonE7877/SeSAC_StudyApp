@@ -34,11 +34,6 @@ class SesacDetailTableViewCell: UITableViewCell {
         $0.layoutIfNeeded()
     }
     
-    lazy var sesacStudyListView = SesacStudyListView().then {
-        $0.layoutIfNeeded()
-        $0.isHidden = true
-    }
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.layoutIfNeeded()
@@ -55,7 +50,7 @@ class SesacDetailTableViewCell: UITableViewCell {
     }
     
     func configure() {
-        [nameLabel, chevornImageView, sesacTitleView, sesacStudyListView, sesacReviewView].forEach { contentView.addSubview($0) }
+        [nameLabel, chevornImageView, sesacTitleView, sesacReviewView].forEach { contentView.addSubview($0) }
     }
     
     func setConstraint() {

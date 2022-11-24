@@ -28,6 +28,8 @@ final class ReviewViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setNavigationController()
         bindUI()
     }
     

@@ -117,6 +117,7 @@ final class MapViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.currentButtonTap
+            .throttle(.seconds(3), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind { weakSelf, _ in
                 guard let currentLocation = weakSelf.locationManager.location else {

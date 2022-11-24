@@ -26,19 +26,19 @@ extension SeSACAPIRouter {
     var url: URL {
         switch self {
         case .login, .signup:
-            return URL(string: "\(SeSACConfiguration.baseURL)/v1/user")!
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/user")!
         case .withdraw:
-            return URL(string: "\(SeSACConfiguration.baseURL)/v1/user/withdraw")!
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/user/withdraw")!
         case .mypage:
-            return URL(string: "\(SeSACConfiguration.baseURL)/v1/user/mypage")!
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/user/mypage")!
         case .search:
-            return URL(string: "\(SeSACConfiguration.baseURL)/v1/queue/search")!
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/search")!
         case .match:
-            return URL(string: "\(SeSACConfiguration.baseURL)/v1/queue/myQueueState")!
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/myQueueState")!
         case .queuePost:
-            return URL(string: "\(SeSACConfiguration.baseURL)/v1/queue")!
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue")!
         case .require:
-            return URL(string: "\(SeSACConfiguration.baseURL)/v1/queue/studyrequest")!
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/studyrequest")!
         }
     }
     

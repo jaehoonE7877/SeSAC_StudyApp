@@ -26,7 +26,7 @@ final class SearchCollectionViewCell: UICollectionViewCell {
     private func configure(){
         contentView.addSubview(searchButton)
         searchButton.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(contentView)
         }
     }
 }

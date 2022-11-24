@@ -80,7 +80,6 @@
 		25D193B0292E426700C47AD4 /* RequireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193AF292E426700C47AD4 /* RequireViewController.swift */; };
 		25D193B4292E431000C47AD4 /* RequireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B3292E431000C47AD4 /* RequireView.swift */; };
 		25D193B6292E48F100C47AD4 /* SeSACStudyMatchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B5292E48F100C47AD4 /* SeSACStudyMatchError.swift */; };
-		25D193B8292E58D000C47AD4 /* SesacStudyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B7292E58D000C47AD4 /* SesacStudyListView.swift */; };
 		25D193BC292E69CA00C47AD4 /* CardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193BB292E69CA00C47AD4 /* CardViewCell.swift */; };
 		25D193BF292E8BEF00C47AD4 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193BE292E8BEF00C47AD4 /* ReviewViewController.swift */; };
 		25D193C2292E947700C47AD4 /* FriendEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193C1292E947700C47AD4 /* FriendEmptyView.swift */; };
@@ -211,7 +210,6 @@
 		25D193AF292E426700C47AD4 /* RequireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequireViewController.swift; sourceTree = "<group>"; };
 		25D193B3292E431000C47AD4 /* RequireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequireView.swift; sourceTree = "<group>"; };
 		25D193B5292E48F100C47AD4 /* SeSACStudyMatchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACStudyMatchError.swift; sourceTree = "<group>"; };
-		25D193B7292E58D000C47AD4 /* SesacStudyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacStudyListView.swift; sourceTree = "<group>"; };
 		25D193BB292E69CA00C47AD4 /* CardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewCell.swift; sourceTree = "<group>"; };
 		25D193BE292E8BEF00C47AD4 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		25D193C1292E947700C47AD4 /* FriendEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendEmptyView.swift; sourceTree = "<group>"; };
@@ -682,7 +680,6 @@
 			isa = PBXGroup;
 			children = (
 				25ED4A832922BD7D00C4A6EB /* SesacTitleView.swift */,
-				25D193B7292E58D000C47AD4 /* SesacStudyListView.swift */,
 				25ED4A872922CF8400C4A6EB /* SesacReviewView.swift */,
 			);
 			path = CustomView;
@@ -1318,7 +1315,6 @@
 				25D193A0292E0A2900C47AD4 /* SeSACTabManViewController.swift in Sources */,
 				255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */,
 				25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */,
-				25D193B8292E58D000C47AD4 /* SesacStudyListView.swift in Sources */,
 				254627DE291A3C1A004D4B72 /* LoginView.swift in Sources */,
 				258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */,
 				25D1EDF129228F730015C444 /* InfoButton.swift in Sources */,

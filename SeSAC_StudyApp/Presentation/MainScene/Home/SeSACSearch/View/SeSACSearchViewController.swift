@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-
+import RxGesture
 
 final class SeSACSearchViewController: BaseViewController {
     
@@ -25,42 +25,10 @@ final class SeSACSearchViewController: BaseViewController {
     override func loadView() {
         self.view = mainView
     }
-    
-    lazy var dataSource = RxTableViewSectionedReloadDataSource<SeSACCardSectionModel>(configureCell: { [weak self] dataSource, tableView, indexPath, item in
-        guard let self = self else { return UITableViewCell()}
-        
-        guard let cell = self.mainView.tableView.dequeueReusableCell(withIdentifier: CardViewCell.reuseIdentifier, for: indexPath) as? CardViewCell else { return UITableViewCell()}
-        cell.selectionStyle = .none
-        cell.sesacStudyListView.collectionView.dataSource = self
-        cell.sesacStudyListView.collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.reuseIdentifier)
-        cell.sesacStudyListView.collectionView.collectionViewLayout = self.configureCellLayout()
-        cell.sesacStudyListView.collectionView.tag = indexPath.section
-        
-        cell.chevornImageView.image = self.foldValues[indexPath.section] ? UIImage(named: "more_arrow_down") : UIImage(named: "more_arrow_up")
-        cell.sesacTitleView.isHidden = self.foldValues[indexPath.section]
-        cell.sesacReviewView.isHidden = self.foldValues[indexPath.section]
-        cell.sesacStudyListView.isHidden = self.foldValues[indexPath.section]
-        
-        cell.sesacReviewView.reviewButton.rx.tap
-            .bind { _ in
-                let vc = ReviewViewController()
-                vc.reviews = item.reviews
-                self.transitionViewController(viewController: vc, transitionStyle: .push)
-            }
-            .disposed(by: self.disposeBag)
-        
-        cell.sesacStudyListView.collectionView.reloadData()
-        
-        cell.setDatas(item: item)
-                
-        return cell
-    })
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         bindingViewModel()
-        mainView.tableView.rx.setDelegate(self)
-            .disposed(by: disposeBag)
     }
     
     private func bindingViewModel() {
@@ -77,6 +45,8 @@ final class SeSACSearchViewController: BaseViewController {
         output.friendData
             .withUnretained(self)
             .subscribe { weakSelf, data in
+                weakSelf.mainView.tableView.delegate = nil
+                weakSelf.mainView.tableView.dataSource = nil
                 if data.count == 0 {
                     weakSelf.mainView.tableView.isHidden = true
                     weakSelf.mainView.friendEmptyView.isHidden = false
@@ -85,6 +55,14 @@ final class SeSACSearchViewController: BaseViewController {
                     weakSelf.foldValues.append(contentsOf: Array<Bool>(repeating: true, count: data.count ))
                     weakSelf.bindingTableView(sesacFriends: data)
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.tableView.rx.itemSelected
+            .withUnretained(self)
+            .bind { weakSelf, indexPath in
+                weakSelf.foldValues[indexPath.section].toggle()
+                weakSelf.mainView.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
             }
             .disposed(by: disposeBag)
     }
@@ -100,6 +78,39 @@ final class SeSACSearchViewController: BaseViewController {
     
     private func bindingTableView(sesacFriends: [SeSACCardModel]) {
         
+        mainView.tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        let dataSource = RxTableViewSectionedReloadDataSource<SeSACCardSectionModel>(configureCell: { [weak self] dataSource, tableView, indexPath, item in
+            guard let self = self else { return UITableViewCell()}
+            
+            guard let cell = self.mainView.tableView.dequeueReusableCell(withIdentifier: CardViewCell.reuseIdentifier, for: indexPath) as? CardViewCell else { return UITableViewCell()}
+            cell.selectionStyle = .none
+            cell.collectionView.dataSource = self
+            cell.collectionView.collectionViewLayout = self.configureCellLayout()
+            cell.collectionView.tag = indexPath.section
+            
+            cell.chevornImageView.image = self.foldValues[indexPath.section] ? UIImage(named: "more_arrow_down") : UIImage(named: "more_arrow_up")
+            cell.sesacTitleView.isHidden = self.foldValues[indexPath.section]
+            cell.sesacReviewView.isHidden = self.foldValues[indexPath.section]
+            cell.collectionView.isHidden = self.foldValues[indexPath.section]
+            cell.studyLabel.isHidden = self.foldValues[indexPath.section]
+            
+            cell.sesacReviewView.reviewButton.rx.tapGesture()
+                .when(.recognized)
+                .subscribe { _ in
+                    let vc = ReviewViewController()
+                    vc.reviews = item.reviews
+                    self.transitionViewController(viewController: vc, transitionStyle: .push)
+                }
+                .disposed(by: cell.cellDisposeBag)
+            
+            cell.setDatas(item: item)
+            cell.collectionView.reloadData()
+            
+            return cell
+        })
+        
         var sections: [SeSACCardSectionModel] = []
         
         for friend in sesacFriends{
@@ -110,15 +121,9 @@ final class SeSACSearchViewController: BaseViewController {
             .bind(to: mainView.tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        mainView.tableView.rx.itemSelected
-            .withUnretained(self)
-            .bind { weakSelf, indexPath in
-                weakSelf.foldValues[indexPath.section].toggle()
-                weakSelf.mainView.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
-            }
-            .disposed(by: disposeBag)
     }
 }
+
 extension SeSACSearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -152,33 +157,45 @@ extension SeSACSearchViewController: UITableViewDelegate {
     }
 }
 
-extension SeSACSearchViewController: UICollectionViewDataSource {
+extension SeSACSearchViewController: UICollectionViewDataSource{
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sesacFriend?[collectionView.tag].studylist.count ?? 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.reuseIdentifier, for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell()}
-        
+
         guard var studyList = sesacFriend?[collectionView.tag].studylist else { return UICollectionViewCell()}
         studyList.indices.filter { studyList[$0] == "anything" }.forEach { studyList[$0] = "아무거나" }
         cell.searchButton.status = .inactive
         cell.searchButton.text = studyList[indexPath.item]
-        
         return cell
     }
     
     private func configureCellLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(60), heightDimension: .estimated(32))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(96))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.interItemSpacing = .fixed(8)
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 8
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)
-        let layout = UICollectionViewCompositionalLayout(section: section)
+        
+        let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(60), heightDimension: .absolute(32))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(96))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            group.interItemSpacing = .fixed(8)
+
+            let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = 8
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+            
+            return section
+        }
+        
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
+        
         return layout
     }
 }

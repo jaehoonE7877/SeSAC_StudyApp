@@ -10,7 +10,6 @@ import RxDataSources
 
 
 struct DetailInfoSectionModel {
-    //var header: Item
     var items: [Item]
 }
 

@@ -87,13 +87,13 @@ extension ReceivedViewController: UITableViewDelegate {
         headerCell.bgImageView.image = UIImage(named: "sesac_background_\(items[section].background)")
         headerCell.sesacImageView.image = UIImage(named: "sesac_face_\(items[section].sesac)")
         
-        headerCell.requireButton.rx.tap
+        headerCell.accecptButton.rx.tap
             .withUnretained(self)
             .bind { weakSelf, _ in
-                let vc = RequireViewController()
-                vc.viewModel.uid = items[section].uid
-                vc.modalPresentationStyle = .overFullScreen
-                weakSelf.present(vc, animated: false)
+//                let vc = RequireViewController()
+//                vc.viewModel.uid = items[section].uid
+//                vc.modalPresentationStyle = .overFullScreen
+//                weakSelf.present(vc, animated: false)
             }
             .disposed(by: disposeBag)
         
