@@ -88,14 +88,20 @@ extension SeSACSearchViewModel {
 }
 
 extension SeSACSearchViewModel {
-    
+    //요청하기 버튼
     func requireMatch(completion: @escaping (Int) -> Void){
         guard let uid = self.uid else { return }
         sesacAPIService.requestSeSACAPI(router: .require(otheruid: uid)) { [weak self] statusCode in
             guard let self = self else { return }
             switch SeSACStudyRequestError(rawValue: statusCode){
             case .alreadyRequested:
-                print(statusCode)
+                self.acceptMatch { status in
+                    if SeSACStudyAcceptError(rawValue: status) == .success {
+                        completion(statusCode)
+                    } else {
+                        print(status)
+                    }
+                }
             case .firebaseTokenError:
                 self.refreshToken()
                 completion(statusCode)
@@ -104,7 +110,7 @@ extension SeSACSearchViewModel {
             }
         }
     }
-    
+    // 수락하기 버튼
     func acceptMatch(completion: @escaping (Int) -> Void) {
         guard let uid = self.uid else { return }
         sesacAPIService.requestSeSACAPI(router: .accept(otheruid: uid)) { [weak self] statusCode in
@@ -122,7 +128,6 @@ extension SeSACSearchViewModel {
     private func refreshToken(){
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-            //guard let self = self else { return }
             if let error = error {
                 print(error)
             }
@@ -130,4 +135,15 @@ extension SeSACSearchViewModel {
             UserManager.token = token
         }
     }
+    // 매칭상태 get
+//    func getMyStatus() {
+//        sesacAPIService.requestQueue(type: MatchDataDTO.self, router: .match) { result in
+//            switch result{
+//            case .success(let data):
+//                
+//            case .failure(let error):
+//                
+//            }
+//        }
+//    }
 }

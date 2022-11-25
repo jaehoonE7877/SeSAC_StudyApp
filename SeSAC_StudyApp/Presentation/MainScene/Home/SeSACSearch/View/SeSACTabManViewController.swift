@@ -49,11 +49,18 @@ final class SeSACTabManViewController: TabmanViewController {
         backButton.rx.tap
             .withUnretained(self)
             .bind { weakSelf, _ in
-                weakSelf.navigationController?.popViewController(animated: true)
+                weakSelf.navigationController?.popToRootViewController(animated: true)
             }
             .disposed(by: disposeBag)
         
     }
+
+    private func bindingViewModel() {
+        
+        
+        
+    }
+    
     
     private func setupTabMan() {
         

@@ -59,7 +59,7 @@ final class MapViewModel: ViewModelType {
 }
 
 extension MapViewModel {
-    
+    //이부분 다시
     func requestMatch(output: Output) {
         sesacAPIService.requestQueue(type: MatchDataDTO.self, router: .match) { result in
             switch result{
