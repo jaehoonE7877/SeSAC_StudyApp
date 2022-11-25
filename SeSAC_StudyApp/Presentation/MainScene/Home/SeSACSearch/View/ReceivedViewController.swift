@@ -95,7 +95,12 @@ final class ReceivedViewController: BaseViewController {
             .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe { weakSelf, _ in
-                weakSelf.viewModel.fetchFriend(output: output)
+                weakSelf.showLoading()
+                DispatchQueue.main.async {
+                    weakSelf.viewModel.fetchFriend(output: output)
+                    weakSelf.hideLoading()
+                }
+                
             }
             .disposed(by: disposeBag)
         
