@@ -11,6 +11,8 @@
 		251BC0AA2926308900246894 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251BC0A92926308900246894 /* WithdrawViewController.swift */; };
 		251BC0AC2926318000246894 /* WithdrawCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251BC0AB2926318000246894 /* WithdrawCheckView.swift */; };
 		251BC0AE29264B1500246894 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251BC0AD29264B1500246894 /* MapView.swift */; };
+		251C98812930DFC200D63ADE /* AcceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C98802930DFC100D63ADE /* AcceptViewController.swift */; };
+		251C98832930E9BB00D63ADE /* SeSACStudyAcceptError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C98822930E9BB00D63ADE /* SeSACStudyAcceptError.swift */; };
 		251F51A7292CC68300D538FC /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 251F51A6292CC68300D538FC /* RxGesture */; };
 		251F51A9292CDF3800D538FC /* Reactive+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F51A8292CDF3800D538FC /* Reactive+MKMapView.swift */; };
 		251F51AB292D20C800D538FC /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F51AA292D20C800D538FC /* CLLocationCoordinate2D+.swift */; };
@@ -78,8 +80,8 @@
 		25D193AA292E217300C47AD4 /* SeSACSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193A9292E217300C47AD4 /* SeSACSearchViewModel.swift */; };
 		25D193AD292E3F7900C47AD4 /* MatchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193AC292E3F7900C47AD4 /* MatchButton.swift */; };
 		25D193B0292E426700C47AD4 /* RequireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193AF292E426700C47AD4 /* RequireViewController.swift */; };
-		25D193B4292E431000C47AD4 /* RequireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B3292E431000C47AD4 /* RequireView.swift */; };
-		25D193B6292E48F100C47AD4 /* SeSACStudyMatchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B5292E48F100C47AD4 /* SeSACStudyMatchError.swift */; };
+		25D193B4292E431000C47AD4 /* MatchPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B3292E431000C47AD4 /* MatchPopView.swift */; };
+		25D193B6292E48F100C47AD4 /* SeSACStudyRequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193B5292E48F100C47AD4 /* SeSACStudyRequestError.swift */; };
 		25D193BC292E69CA00C47AD4 /* CardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193BB292E69CA00C47AD4 /* CardViewCell.swift */; };
 		25D193BF292E8BEF00C47AD4 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193BE292E8BEF00C47AD4 /* ReviewViewController.swift */; };
 		25D193C2292E947700C47AD4 /* FriendEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193C1292E947700C47AD4 /* FriendEmptyView.swift */; };
@@ -149,6 +151,8 @@
 		251BC0A92926308900246894 /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
 		251BC0AB2926318000246894 /* WithdrawCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawCheckView.swift; sourceTree = "<group>"; };
 		251BC0AD29264B1500246894 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		251C98802930DFC100D63ADE /* AcceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptViewController.swift; sourceTree = "<group>"; };
+		251C98822930E9BB00D63ADE /* SeSACStudyAcceptError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACStudyAcceptError.swift; sourceTree = "<group>"; };
 		251F51A8292CDF3800D538FC /* Reactive+MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+MKMapView.swift"; sourceTree = "<group>"; };
 		251F51AA292D20C800D538FC /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
 		251F51AC292D373000D538FC /* MatchDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDataDTO.swift; sourceTree = "<group>"; };
@@ -208,8 +212,8 @@
 		25D193A9292E217300C47AD4 /* SeSACSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACSearchViewModel.swift; sourceTree = "<group>"; };
 		25D193AC292E3F7900C47AD4 /* MatchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchButton.swift; sourceTree = "<group>"; };
 		25D193AF292E426700C47AD4 /* RequireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequireViewController.swift; sourceTree = "<group>"; };
-		25D193B3292E431000C47AD4 /* RequireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequireView.swift; sourceTree = "<group>"; };
-		25D193B5292E48F100C47AD4 /* SeSACStudyMatchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACStudyMatchError.swift; sourceTree = "<group>"; };
+		25D193B3292E431000C47AD4 /* MatchPopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPopView.swift; sourceTree = "<group>"; };
+		25D193B5292E48F100C47AD4 /* SeSACStudyRequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACStudyRequestError.swift; sourceTree = "<group>"; };
 		25D193BB292E69CA00C47AD4 /* CardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewCell.swift; sourceTree = "<group>"; };
 		25D193BE292E8BEF00C47AD4 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		25D193C1292E947700C47AD4 /* FriendEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendEmptyView.swift; sourceTree = "<group>"; };
@@ -415,7 +419,8 @@
 				255A3790291AB52F00737C3A /* FirebaseError.swift */,
 				255A37A4291BE27000737C3A /* SeSACError.swift */,
 				255B48F0292BA87000D33052 /* SeSACSearchError.swift */,
-				25D193B5292E48F100C47AD4 /* SeSACStudyMatchError.swift */,
+				25D193B5292E48F100C47AD4 /* SeSACStudyRequestError.swift */,
+				251C98822930E9BB00D63ADE /* SeSACStudyAcceptError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -696,26 +701,11 @@
 		25D193AE292E423400C47AD4 /* MatchPopView */ = {
 			isa = PBXGroup;
 			children = (
-				25D193B2292E429100C47AD4 /* Accecpt */,
-				25D193B1292E428900C47AD4 /* Require */,
+				251C98802930DFC100D63ADE /* AcceptViewController.swift */,
+				25D193AF292E426700C47AD4 /* RequireViewController.swift */,
+				25D193B3292E431000C47AD4 /* MatchPopView.swift */,
 			);
 			path = MatchPopView;
-			sourceTree = "<group>";
-		};
-		25D193B1292E428900C47AD4 /* Require */ = {
-			isa = PBXGroup;
-			children = (
-				25D193AF292E426700C47AD4 /* RequireViewController.swift */,
-				25D193B3292E431000C47AD4 /* RequireView.swift */,
-			);
-			path = Require;
-			sourceTree = "<group>";
-		};
-		25D193B2292E429100C47AD4 /* Accecpt */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Accecpt;
 			sourceTree = "<group>";
 		};
 		25D193BD292E8BD200C47AD4 /* ReviewView */ = {
@@ -1284,7 +1274,7 @@
 				258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */,
 				255A37B9291C28EC00737C3A /* PropertyWapper.swift in Sources */,
 				255B48E4292B49F900D33052 /* SearchCollectionViewCell.swift in Sources */,
-				25D193B4292E431000C47AD4 /* RequireView.swift in Sources */,
+				25D193B4292E431000C47AD4 /* MatchPopView.swift in Sources */,
 				255A378E291AB47300737C3A /* DefaultFirebaseAPIService.swift in Sources */,
 				251BC0AC2926318000246894 /* WithdrawCheckView.swift in Sources */,
 				25ED4A882922CF8400C4A6EB /* SesacReviewView.swift in Sources */,
@@ -1299,6 +1289,7 @@
 				25230AFC291FB0CD00525531 /* ShopViewController.swift in Sources */,
 				255A37AD291BF5BD00737C3A /* SeSACAPIRouter.swift in Sources */,
 				254627D7291A3B97004D4B72 /* AuthView.swift in Sources */,
+				251C98832930E9BB00D63ADE /* SeSACStudyAcceptError.swift in Sources */,
 				25230B02291FB17100525531 /* InfoViewController.swift in Sources */,
 				251BC0AE29264B1500246894 /* MapView.swift in Sources */,
 				25D8C394291D263E00FB52DF /* Date+Formatter.swift in Sources */,
@@ -1315,6 +1306,7 @@
 				25D193A0292E0A2900C47AD4 /* SeSACTabManViewController.swift in Sources */,
 				255A37C9291C330500737C3A /* BirthViewModel.swift in Sources */,
 				25D8C3A0291D36E100FB52DF /* GenderItemView.swift in Sources */,
+				251C98812930DFC200D63ADE /* AcceptViewController.swift in Sources */,
 				254627DE291A3C1A004D4B72 /* LoginView.swift in Sources */,
 				258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */,
 				25D1EDF129228F730015C444 /* InfoButton.swift in Sources */,
@@ -1331,7 +1323,7 @@
 				25F7FE412919566700E0C486 /* NextButtonStatus.swift in Sources */,
 				251F51AD292D373000D538FC /* MatchDataDTO.swift in Sources */,
 				25D8C39D291D2B8800FB52DF /* GenderViewModel.swift in Sources */,
-				25D193B6292E48F100C47AD4 /* SeSACStudyMatchError.swift in Sources */,
+				25D193B6292E48F100C47AD4 /* SeSACStudyRequestError.swift in Sources */,
 				255A37B4291C1B4700737C3A /* NicknameViewController.swift in Sources */,
 				255A37B6291C21CD00737C3A /* ToastMessage.swift in Sources */,
 				25D1EDEE29228ECC0015C444 /* GenderCustomView.swift in Sources */,

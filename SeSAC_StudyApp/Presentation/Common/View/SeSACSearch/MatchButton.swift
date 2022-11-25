@@ -6,7 +6,7 @@
 //
 
 enum MatchButtonStatus {
-    case accecpt
+    case accept
     case require
 }
 
@@ -33,7 +33,7 @@ final class MatchButton: UIButton {
         self.layer.cornerRadius = 8
         
         switch status {
-        case .accecpt:
+        case .accept:
             self.setTitle("수락하기", for: .normal)
             self.setTitleColor(.white, for: .normal)
             self.backgroundColor = .ssBlue

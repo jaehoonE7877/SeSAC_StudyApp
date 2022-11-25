@@ -110,7 +110,6 @@ final class MapViewController: BaseViewController {
             .withUnretained(self)
             .bind { weakSelf, _ in
                 let vc = SearchViewController()
-                //print(weakSelf.mainView.mapView.centerCoordinate)
                 vc.viewModel.location = weakSelf.mainView.mapView.centerCoordinate
                 weakSelf.transitionViewController(viewController: vc, transitionStyle: .presentFullNavigation)
             }

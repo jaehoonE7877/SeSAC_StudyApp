@@ -12,7 +12,7 @@ import RxCocoa
 
 final class RequireViewController: BaseViewController {
     
-    private let mainView = RequireView()
+    private let mainView = MatchPopView(status: .require(title: "스터디를 요청할게요!", subTitle: "상대방이 요청을 수락하면\n채팅창에서 대화를 나눌 수 있어요"))
     
     let viewModel = SeSACSearchViewModel()
     
@@ -36,7 +36,7 @@ final class RequireViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        mainView.withdrawButton.rx.tap
+        mainView.matchButton.rx.tap
             .withUnretained(self)
             .subscribe { weakSelf, _ in
                 weakSelf.viewModel.requireMatch { statusCode in

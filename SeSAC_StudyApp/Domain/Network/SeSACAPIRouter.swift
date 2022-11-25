@@ -19,6 +19,7 @@ enum SeSACAPIRouter: URLRequestConvertible {
     case match
     case queuePost(location: CLLocationCoordinate2D, studylist: [String])
     case require(otheruid: String)
+    case accept(otheruid: String)
 }
 
 extension SeSACAPIRouter {
@@ -39,12 +40,14 @@ extension SeSACAPIRouter {
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue")!
         case .require:
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/studyrequest")!
+        case .accept:
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/studyaccept")!
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .require:
+        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .require, .accept:
             return [
                 "idtoken": "\(UserManager.token)",
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -67,6 +70,8 @@ extension SeSACAPIRouter {
         case .queuePost:
             return .post
         case .require:
+            return .post
+        case .accept:
             return .post
         }
     }
@@ -107,6 +112,8 @@ extension SeSACAPIRouter {
                     ]
         case .require(let otheruid):
             return ["otheruid": otheruid]
+        case .accept(let otheruid):
+            return ["otheruid": otheruid]
         }
     }
     
@@ -119,7 +126,7 @@ extension SeSACAPIRouter {
         switch self {
         case .login, .withdraw, .match:
             return request
-        case .signup, .mypage, .search, .queuePost, .require:
+        case .signup, .mypage, .search, .queuePost, .require, .accept:
             return try URLEncoding(arrayEncoding: .noBrackets).encode(request, with: parameters)
         }
         

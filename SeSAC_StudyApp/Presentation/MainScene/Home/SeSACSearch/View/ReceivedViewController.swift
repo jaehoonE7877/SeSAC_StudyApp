@@ -32,6 +32,7 @@ final class ReceivedViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("=======")
         viewModel.change.accept(true)
     }
     
@@ -148,16 +149,19 @@ extension ReceivedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileImageHeaderView.reuseIdentifier) as? ProfileImageHeaderView else { return nil}
         
-        headerCell.accecptButton.isHidden = false
+        headerCell.acceptButton.isHidden = false
         
         guard let items = sesacReceived else { return nil }
         headerCell.bgImageView.image = UIImage(named: "sesac_background_\(items[section].background)")
         headerCell.sesacImageView.image = UIImage(named: "sesac_face_\(items[section].sesac)")
         
-        headerCell.accecptButton.rx.tap
+        headerCell.acceptButton.rx.tap
             .withUnretained(self)
             .bind { weakSelf, _ in
-                
+                let vc = AccecptViewController()
+                vc.viewModel.uid = items[section].uid
+                vc.modalPresentationStyle = .overFullScreen
+                weakSelf.present(vc, animated: false)
             }
             .disposed(by: disposeBag)
         

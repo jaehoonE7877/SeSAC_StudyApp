@@ -52,6 +52,7 @@ final class SeSACSearchViewModel: ViewModelType {
 extension SeSACSearchViewModel {
     
     func fetchFriend(output: Output) {
+        print(#function)
         guard let location = location else { return }
         sesacAPIService.requestQueue(type: SeSACUserDataDTO.self, router: .search(location: location)) { [weak self] result in
             guard let self = self else { return }
@@ -59,7 +60,6 @@ extension SeSACSearchViewModel {
             case .success(let result):
                 let data = result.fromQueueDB.map { $0.toDomain() }
                 let requested = result.fromQueueDBRequested.map { $0.toDomain() }
-
                 output.friendData.onNext(data)
                 output.requestedData.onNext(requested)
             case .failure(let error):
@@ -93,10 +93,24 @@ extension SeSACSearchViewModel {
         guard let uid = self.uid else { return }
         sesacAPIService.requestSeSACAPI(router: .require(otheruid: uid)) { [weak self] statusCode in
             guard let self = self else { return }
-            switch statusCode {
-            case 201:
+            switch SeSACStudyRequestError(rawValue: statusCode){
+            case .alreadyRequested:
                 print(statusCode)
-            case 401:
+            case .firebaseTokenError:
+                self.refreshToken()
+                completion(statusCode)
+            default:
+                completion(statusCode)
+            }
+        }
+    }
+    
+    func acceptMatch(completion: @escaping (Int) -> Void) {
+        guard let uid = self.uid else { return }
+        sesacAPIService.requestSeSACAPI(router: .accept(otheruid: uid)) { [weak self] statusCode in
+            guard let self = self else { return }
+            switch SeSACStudyAcceptError(rawValue: statusCode){
+            case .firebaseTokenError:
                 self.refreshToken()
                 completion(statusCode)
             default:

@@ -24,7 +24,7 @@ final class ProfileImageHeaderView: UITableViewHeaderFooterView {
         $0.isHidden = true
     }
     
-    lazy var accecptButton = MatchButton(status: .accecpt).then {
+    lazy var acceptButton = MatchButton(status: .accept).then {
         $0.isHidden = true
     }
     
@@ -40,7 +40,7 @@ final class ProfileImageHeaderView: UITableViewHeaderFooterView {
     }
     
     private func configure() {
-        [bgImageView, sesacImageView, requireButton, accecptButton].forEach { self.addSubview($0)}
+        [bgImageView, sesacImageView, requireButton, acceptButton].forEach { self.addSubview($0)}
     }
     
     private func setConstraints() {
@@ -62,7 +62,7 @@ final class ProfileImageHeaderView: UITableViewHeaderFooterView {
             make.top.trailing.equalTo(bgImageView).inset(12)
         }
         
-        accecptButton.snp.makeConstraints { make in
+        acceptButton.snp.makeConstraints { make in
             make.width.equalTo(80)
             make.height.equalTo(40)
             make.top.trailing.equalTo(bgImageView).inset(12)

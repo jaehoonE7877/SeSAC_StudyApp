@@ -7,7 +7,12 @@
 
 import UIKit
 
-final class RequireView: BaseView {
+enum MatchPopStatus {
+    case require(title: String, subTitle: String)
+    case accecpt(title: String, subTitle: String)
+}
+
+final class MatchPopView: BaseView {
     
     private let backgroundView = UIView().then {
         $0.backgroundColor = .systemBackground
@@ -18,7 +23,6 @@ final class RequireView: BaseView {
         $0.textColor = .textColor
         $0.font = UIFont.notoSans(size: 16, family: .Medium)
         $0.textAlignment = .center
-        $0.text = "스터디를 요청할게요!"
     }
     
     private let subTitleLabel = UILabel().then {
@@ -26,12 +30,11 @@ final class RequireView: BaseView {
         $0.textColor = .gray7
         $0.font = UIFont.notoSans(size: 14, family: .Regular)
         $0.textAlignment = .center
-        $0.text = "상대방이 요청을 수락하면\n채팅창에서 대화를 나눌 수 있어요"
     }
     
     let cancelButton = NextButton(title: "취소", status: .cancel)
     
-    let withdrawButton = NextButton(title: "확인", status: .fill)
+    let matchButton = NextButton(title: "확인", status: .fill)
     
     lazy var labelStackView = UIStackView(arrangedSubviews: [titleLabel, subTitleLabel]).then {
         $0.alignment = .fill
@@ -40,7 +43,7 @@ final class RequireView: BaseView {
         $0.spacing = 8
     }
     
-    lazy var buttonStackView = UIStackView(arrangedSubviews: [cancelButton, withdrawButton]).then {
+    lazy var buttonStackView = UIStackView(arrangedSubviews: [cancelButton, matchButton]).then {
         $0.alignment = .fill
         $0.distribution = .fillEqually
         $0.axis = .horizontal
@@ -55,6 +58,18 @@ final class RequireView: BaseView {
     override func configure() {
         self.addSubview(backgroundView)
         [labelStackView, buttonStackView].forEach{ backgroundView.addSubview($0)}
+    }
+    
+    convenience init(status: MatchPopStatus) {
+        self.init()
+        switch status {
+        case .require(let title, let subTitle):
+            titleLabel.text = title
+            subTitleLabel.text = subTitle
+        case .accecpt(let title, let subTitle):
+            titleLabel.text = title
+            subTitleLabel.text = subTitle
+        }
     }
     
     override func setConstraints() {
