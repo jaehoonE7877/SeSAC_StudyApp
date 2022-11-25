@@ -27,10 +27,12 @@ final class MapViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     
     var cameraMove: Bool = false
+    var isFirst: Bool = true
     private let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkUserDeviceLocationServiceAuthorization()
         setNavigationController()
         navigationController?.navigationBar.isHidden = true
         locationManager.delegate = self
@@ -137,17 +139,22 @@ final class MapViewController: BaseViewController {
 extension MapViewController: CLLocationManagerDelegate {
     
     private func setRegionAnnotation(_ center: CLLocationCoordinate2D, items: [SeSACSearchModel]) {
+        
         DispatchQueue.main.async {
-            let region = MKCoordinateRegion(center: center, latitudinalMeters: 700, longitudinalMeters: 700)
-
             self.mainView.mapView.removeAnnotations(self.mainView.mapView.annotations)
-            self.mainView.mapView.setRegion(region, animated: false)
-
+            
             let annotations: [CustomAnnotation] = items.map { CustomAnnotation(sesac_Image: $0.sesac, coordinate: CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.long))}
             
             self.mainView.mapView.addAnnotations(annotations)
         }
-        
+    }
+    
+    private func setMyRegion(location: CLLocationCoordinate2D) {
+        let region = MKCoordinateRegion(center: location, latitudinalMeters: 700, longitudinalMeters: 700)
+        if isFirst {
+            mainView.mapView.setRegion(region, animated: false)
+            isFirst.toggle()
+        }
     }
     
     private func checkUserDeviceLocationServiceAuthorization() {
@@ -172,6 +179,7 @@ extension MapViewController: CLLocationManagerDelegate {
         case .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
             
+            
         default:
             print("DEFAULT")
         }
@@ -179,9 +187,10 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        if let coordinate = locations.last?.coordinate {
-            viewModel.location = coordinate
-            setRegionAnnotation(coordinate, items: self.sesacSearch)
+        if let coordinate = locations.first {
+            setMyRegion(location: coordinate.coordinate)
+            viewModel.location = coordinate.coordinate
+            setRegionAnnotation(coordinate.coordinate, items: self.sesacSearch)
         }
         //⭐️ start updatingLocation을 하고나서 멈추기 필수!
         locationManager.stopUpdatingLocation()
@@ -230,6 +239,7 @@ extension MapViewController: MKMapViewDelegate {
                     self.viewModel.requestSesacUser(userCurrentLocation: location) { result in
                         switch result{
                         case .success(let result):
+                            self.sesacSearch.removeAll()
                             result.fromQueueDB.forEach { self.sesacSearch.append(SeSACSearchModel(lat: $0.lat, long: $0.long, gender: $0.gender, sesac: $0.sesac, background: $0.background))
                             }
                             result.fromQueueDBRequested.forEach { self.sesacSearch.append(SeSACSearchModel(lat: $0.lat, long: $0.long, gender: $0.gender, sesac: $0.sesac, background: $0.background))

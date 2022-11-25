@@ -15,14 +15,17 @@ import Pageboy
 final class SeSACTabManViewController: TabmanViewController {
     
     private var viewControllers = [UIViewController]()
-    
+    let viewModel = SeSACSearchViewModel()
     let firstVC = SeSACSearchViewController()
     let secondVC = ReceivedViewController()
+    
+    var timerDisposable: Disposable?
     
     private let disposeBag = DisposeBag()
     
     lazy var callOffButton = UIBarButtonItem(title: "찾기중단", style: .plain, target: self, action: nil)
     lazy var backButton = UIBarButtonItem(image: UIImage(named: "arrow"), style: .plain, target: self, action: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -53,14 +56,34 @@ final class SeSACTabManViewController: TabmanViewController {
             }
             .disposed(by: disposeBag)
         
-    }
-
-    private func bindingViewModel() {
-        
-        
+        callOffButton.rx.tap
+            .withUnretained(self)
+            .subscribe { weakSelf, _ in
+                weakSelf.viewModel.callOffSearch { statusCode in
+                    switch SeSACCallOffError(rawValue: statusCode){
+                    case .success:
+                        weakSelf.navigationController?.popToRootViewController(animated: true)
+                    case .firebaseTokenError:
+                        weakSelf.view.makeToast("토큰 갱신에 실패했습니다. 잠시 후 다시 시도해주세요", duration: 1, position: .center)
+                    default:
+                        weakSelf.view.makeToast(SeSACCallOffError(rawValue: statusCode)?.errorDescription, position: .center)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
         
     }
     
+    private func startTimer(time: Observable<Int>) {
+        timerDisposable?.dispose()
+        timerDisposable = time
+            .withUnretained(self)
+            .subscribe(onNext: { weakSelf, value in
+                
+            }, onDisposed: {
+                
+            })
+    }
     
     private func setupTabMan() {
         

@@ -19,7 +19,6 @@ final class MapViewModel: ViewModelType {
     
     var location: CLLocationCoordinate2D = .init()
         
-    //var userLocation = PublishRelay<CLLocationCoordinate2D>()
     var isTokenRefreshFailed = BehaviorRelay(value: false)
     
     struct Input {

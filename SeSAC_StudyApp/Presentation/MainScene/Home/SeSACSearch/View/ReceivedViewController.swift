@@ -81,6 +81,14 @@ final class ReceivedViewController: BaseViewController {
                 weakSelf.mainView.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
             }
             .disposed(by: disposeBag)
+        
+        mainView.friendEmptyView.refreshButton.rx.tap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
+            .withUnretained(self)
+            .subscribe { weakSelf, _ in
+                weakSelf.viewModel.fetchFriend(output: output)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func setBinding() {

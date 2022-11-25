@@ -71,6 +71,7 @@ final class SearchViewController: BaseViewController{
         navigationItem.leftBarButtonItem = backButton
         
         backButton.rx.tap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind { weakSelf, _ in
                 weakSelf.navigationController?.popViewController(animated: true)

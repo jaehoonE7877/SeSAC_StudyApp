@@ -7,6 +7,34 @@
 
 import Foundation
 
+enum SeSACCallOffError: Int, Error {
+    case success = 200
+    case matchingStatus = 201
+    case firebaseTokenError = 401
+    case unknownUser = 406
+    case serverError = 500
+    case clientError = 501
+}
+
+extension SeSACCallOffError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .success:
+            return "찾기 중단 성공"
+        case .matchingStatus:
+            return "누군가와 스터디를 함께하기로 약속하셨어요!"
+        case .firebaseTokenError:
+            return nil
+        case .unknownUser:
+            return "미등록 회원"
+        case .serverError:
+            return "서버 에러"
+        case .clientError:
+            return "클라이언트 에러"
+        }
+    }
+}
+
 enum SeSACSearchError: Int, Error {
     case success = 200
     case reported = 201

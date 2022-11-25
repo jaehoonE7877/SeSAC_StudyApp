@@ -52,7 +52,6 @@ final class SeSACSearchViewModel: ViewModelType {
 extension SeSACSearchViewModel {
     
     func fetchFriend(output: Output) {
-        print(#function)
         guard let location = location else { return }
         sesacAPIService.requestQueue(type: SeSACUserDataDTO.self, router: .search(location: location)) { [weak self] result in
             guard let self = self else { return }
@@ -135,6 +134,20 @@ extension SeSACSearchViewModel {
             UserManager.token = token
         }
     }
+    
+    func callOffSearch(completion: @escaping (Int) -> Void) {
+        sesacAPIService.requestSeSACAPI(router: .queueDelete) { [weak self] statusCode in
+            guard let self = self else { return }
+            switch SeSACCallOffError(rawValue: statusCode) {
+            case .firebaseTokenError:
+                self.refreshToken()
+                completion(statusCode)
+            default:
+                completion(statusCode)
+            }
+        }
+    }
+    
     // 매칭상태 get
 //    func getMyStatus() {
 //        sesacAPIService.requestQueue(type: MatchDataDTO.self, router: .match) { result in

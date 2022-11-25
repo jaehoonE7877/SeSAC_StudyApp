@@ -80,7 +80,9 @@ extension SplashViewController {
             tryLogin { [weak self] result in
                 guard let self = self else { return }
                 switch result {
-                case .success(_):
+                case .success(let result):
+                    UserManager.nickname = result.nick
+                    UserManager.sesacImage = result.sesac
                     // ⭐️로그인 성공! => 이미 가입한 유저 + 토큰 만료 안됨 (나중에 홈탭바 뷰컨으로 수정)
                     let vc = TabViewController()
                     sceneDelegate?.window?.rootViewController = vc

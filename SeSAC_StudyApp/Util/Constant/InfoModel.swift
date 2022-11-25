@@ -37,7 +37,7 @@ enum Info : Int {
     var image: UIImage {
         switch self {
         case .personal:
-            return UIImage(named: "profile_img")!
+            return UIImage(named: "sesac_face_\(UserManager.sesacImage)")!
         case .notice:
             return UIImage(named: "notice")!
         case .faq:

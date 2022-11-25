@@ -60,4 +60,7 @@ class UserManager {
     
     @UserDefault(key: "nickError", defaultValue: false)
     static var nickError: Bool
+    
+    @UserDefault(key: "sesacImage", defaultValue: 0)
+    static var sesacImage: Int
 }

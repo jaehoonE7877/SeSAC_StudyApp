@@ -75,10 +75,26 @@ final class SeSACSearchViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         mainView.tableView.rx.itemSelected
+            .throttle(.milliseconds(600), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind { weakSelf, indexPath in
-                weakSelf.foldValues[indexPath.section].toggle()
-                weakSelf.mainView.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
+                if weakSelf.foldValues[indexPath.section] {
+                    weakSelf.foldValues[indexPath.section].toggle()
+                    weakSelf.mainView.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
+                } else {
+                    weakSelf.foldValues[indexPath.section].toggle()
+                    weakSelf.mainView.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade )
+                    weakSelf.viewModel.fetchFriend(output: output)
+                }
+                
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.friendEmptyView.refreshButton.rx.tap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
+            .withUnretained(self)
+            .subscribe { weakSelf, _ in
+                weakSelf.viewModel.fetchFriend(output: output)
             }
             .disposed(by: disposeBag)
     }
@@ -90,6 +106,8 @@ final class SeSACSearchViewController: BaseViewController {
                 weakSelf.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
+        
+        
     }
     
     private func bindingTableView(sesacFriends: [SeSACCardModel]) {

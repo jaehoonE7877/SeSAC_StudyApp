@@ -18,6 +18,7 @@ enum SeSACAPIRouter: URLRequestConvertible {
     case search(location: CLLocationCoordinate2D)
     case match
     case queuePost(location: CLLocationCoordinate2D, studylist: [String])
+    case queueDelete
     case require(otheruid: String)
     case accept(otheruid: String)
 }
@@ -36,7 +37,7 @@ extension SeSACAPIRouter {
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/search")!
         case .match:
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/myQueueState")!
-        case .queuePost:
+        case .queuePost, .queueDelete:
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue")!
         case .require:
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/studyrequest")!
@@ -47,7 +48,7 @@ extension SeSACAPIRouter {
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .require, .accept:
+        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .queueDelete, .require, .accept:
             return [
                 "idtoken": "\(UserManager.token)",
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -69,6 +70,8 @@ extension SeSACAPIRouter {
             return .get
         case .queuePost:
             return .post
+        case .queueDelete:
+            return .delete
         case .require:
             return .post
         case .accept:
@@ -79,7 +82,7 @@ extension SeSACAPIRouter {
     var parameters: Parameters {
         
         switch self {
-        case .login, .withdraw, .match:
+        case .login, .withdraw, .match, .queueDelete:
             return ["" : ""]
         case .signup:
             guard let birth = UserManager.birth,
@@ -124,7 +127,7 @@ extension SeSACAPIRouter {
         request.headers = headers
         
         switch self {
-        case .login, .withdraw, .match:
+        case .login, .withdraw, .match, .queueDelete:
             return request
         case .signup, .mypage, .search, .queuePost, .require, .accept:
             return try URLEncoding(arrayEncoding: .noBrackets).encode(request, with: parameters)
