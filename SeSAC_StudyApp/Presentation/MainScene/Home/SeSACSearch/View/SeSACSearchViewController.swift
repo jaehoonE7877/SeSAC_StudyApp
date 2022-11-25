@@ -14,7 +14,7 @@ import RxGesture
 
 final class SeSACSearchViewController: BaseViewController {
     
-    private let mainView = SeSACSearchView()
+    private let mainView = SeSACSearchView(emptyViewTitle: "아쉽게도 주변에 새싹이 없어요ㅠ")
     private let disposeBag = DisposeBag()
     let viewModel = SeSACSearchViewModel()
     
@@ -31,9 +31,24 @@ final class SeSACSearchViewController: BaseViewController {
         bindingViewModel()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.change.accept(true)
+    }
+    
+    
     private func bindingViewModel() {
-        let input = SeSACSearchViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear)
+        let input = SeSACSearchViewModel.Input()
         let output = viewModel.transform(input: input)
+        
+        viewModel.change
+            .withUnretained(self)
+            .bind { weakSelf, valid in
+                if valid {
+                    weakSelf.viewModel.fetchFriend(output: output)
+                }
+            }
+            .disposed(by: disposeBag)
         
         output.fetchFailed
             .withUnretained(self)

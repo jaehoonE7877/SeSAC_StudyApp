@@ -324,7 +324,7 @@
 				25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */,
 				25D193A1292E1A2000C47AD4 /* SeSACSearchView.swift */,
 				25D193C1292E947700C47AD4 /* FriendEmptyView.swift */,
-				25D193AE292E423400C47AD4 /* MatchView */,
+				25D193AE292E423400C47AD4 /* MatchPopView */,
 				25D193BD292E8BD200C47AD4 /* ReviewView */,
 			);
 			path = View;
@@ -693,13 +693,13 @@
 			path = SeSACSearch;
 			sourceTree = "<group>";
 		};
-		25D193AE292E423400C47AD4 /* MatchView */ = {
+		25D193AE292E423400C47AD4 /* MatchPopView */ = {
 			isa = PBXGroup;
 			children = (
 				25D193B2292E429100C47AD4 /* Accecpt */,
 				25D193B1292E428900C47AD4 /* Require */,
 			);
-			path = MatchView;
+			path = MatchPopView;
 			sourceTree = "<group>";
 		};
 		25D193B1292E428900C47AD4 /* Require */ = {

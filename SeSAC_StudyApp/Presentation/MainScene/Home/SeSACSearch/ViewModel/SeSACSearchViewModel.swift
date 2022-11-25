@@ -21,24 +21,28 @@ final class SeSACSearchViewModel: ViewModelType {
     
     var uid: String?
     
+    var change = BehaviorRelay(value: false)
+    
     struct Input {
-        let viewWillAppearEvent: ControlEvent<Bool> // viewdidload는 void viewwillappear는 bool
+        
+        // 테이블뷰 새로고침 스크롤
+        // 빈화면 버튼들
     }
     
     struct Output {
         var friendData = PublishSubject<[SeSACCardModel]>()
+        var requestedData = PublishSubject<[SeSACCardModel]>()
         var fetchFailed = PublishRelay<String>()
     }
     
     func transform(input: Input) -> Output {
         let output = Output()
-        input.viewWillAppearEvent
-            .withUnretained(self)
-            .subscribe { weakSelf, _ in
-                guard let location = weakSelf.location else { return }
-                weakSelf.fetchFriend(location: location, output: output)
-            }
-            .disposed(by: disposeBag)
+//        input.viewWillAppearEvent
+//            .withUnretained(self)
+//            .subscribe { weakSelf, _ in
+//                weakSelf.fetchFriend(output: output)
+//            }
+//            .disposed(by: disposeBag)
         
         return output
     }
@@ -47,13 +51,17 @@ final class SeSACSearchViewModel: ViewModelType {
 
 extension SeSACSearchViewModel {
     
-    private func fetchFriend(location: CLLocationCoordinate2D, output: Output) {
+    func fetchFriend(output: Output) {
+        guard let location = location else { return }
         sesacAPIService.requestQueue(type: SeSACUserDataDTO.self, router: .search(location: location)) { [weak self] result in
             guard let self = self else { return }
             switch result{
             case .success(let result):
                 let data = result.fromQueueDB.map { $0.toDomain() }
+                let requested = result.fromQueueDBRequested.map { $0.toDomain() }
+
                 output.friendData.onNext(data)
+                output.requestedData.onNext(requested)
             case .failure(let error):
                 switch error {
                 case .firebaseTokenError:
@@ -61,7 +69,6 @@ extension SeSACSearchViewModel {
                 default:
                     output.fetchFailed.accept(error.localizedDescription)
                 }
-                
             }
         }
     }
@@ -75,11 +82,9 @@ extension SeSACSearchViewModel {
             }
             guard let token = idToken else { return }
             UserManager.token = token
-            self.fetchFriend(location: self.location ?? CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734), output: output)
+            self.fetchFriend(output: output)
         }
     }
-    
-    
 }
 
 extension SeSACSearchViewModel {
@@ -111,5 +116,4 @@ extension SeSACSearchViewModel {
             UserManager.token = token
         }
     }
-    
 }

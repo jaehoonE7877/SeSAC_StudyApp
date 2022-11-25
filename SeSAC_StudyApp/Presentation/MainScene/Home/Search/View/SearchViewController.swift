@@ -163,6 +163,7 @@ final class SearchViewController: BaseViewController{
                 if value {
                     let vc = SeSACTabManViewController()
                     vc.firstVC.viewModel.location = weakSelf.viewModel.location
+                    vc.secondVC.viewModel.location = weakSelf.viewModel.location
                     self.transitionViewController(viewController: vc, transitionStyle: .push)
                 }
             }

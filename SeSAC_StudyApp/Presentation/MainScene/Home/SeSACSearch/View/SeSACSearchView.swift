@@ -9,7 +9,7 @@ import UIKit
 
 final class SeSACSearchView: BaseView {
     
-    lazy var friendEmptyView = FriendEmptyView(title: "아쉽게도 주변에 새싹이 없어요ㅠ").then {
+    lazy var friendEmptyView = FriendEmptyView().then {
         $0.isHidden = true
     }
     
@@ -24,6 +24,11 @@ final class SeSACSearchView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    
+    convenience init(emptyViewTitle: String) {
+        self.init()
+        friendEmptyView.mainLabel.text = emptyViewTitle
     }
     
     override func configure() {
