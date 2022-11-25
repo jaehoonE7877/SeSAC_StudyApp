@@ -31,6 +31,8 @@ final class MapViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationController()
+        navigationController?.navigationBar.isHidden = true
         locationManager.delegate = self
         mainView.mapView.delegate = self
         bindViewModel()
@@ -38,7 +40,8 @@ final class MapViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.isHidden = true
         viewModel.location = locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
     }
     
@@ -107,14 +110,15 @@ final class MapViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.searchButtonTap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind { weakSelf, _ in
                 let vc = SearchViewController()
                 vc.viewModel.location = weakSelf.mainView.mapView.centerCoordinate
-                weakSelf.transitionViewController(viewController: vc, transitionStyle: .presentFullNavigation)
+                weakSelf.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
-        
+        //통신
         output.currentButtonTap
             .throttle(.seconds(3), scheduler: MainScheduler.instance)
             .withUnretained(self)
@@ -133,18 +137,17 @@ final class MapViewController: BaseViewController {
 extension MapViewController: CLLocationManagerDelegate {
     
     private func setRegionAnnotation(_ center: CLLocationCoordinate2D, items: [SeSACSearchModel]) {
+        DispatchQueue.main.async {
+            let region = MKCoordinateRegion(center: center, latitudinalMeters: 700, longitudinalMeters: 700)
 
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: 700, longitudinalMeters: 700)
-        mainView.mapView.removeAnnotations(mainView.mapView.annotations)
-        mainView.mapView.setRegion(region, animated: false)
-        
-        var annotations: [CustomAnnotation] = []
-        
-        for item in items {
-            let point = CustomAnnotation(sesac_Image: item.sesac, coordinate: CLLocationCoordinate2D(latitude: item.lat, longitude: item.long))
-            annotations.append(point)
+            self.mainView.mapView.removeAnnotations(self.mainView.mapView.annotations)
+            self.mainView.mapView.setRegion(region, animated: false)
+
+            let annotations: [CustomAnnotation] = items.map { CustomAnnotation(sesac_Image: $0.sesac, coordinate: CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.long))}
+            
+            self.mainView.mapView.addAnnotations(annotations)
         }
-        mainView.mapView.addAnnotations(annotations)
+        
     }
     
     private func checkUserDeviceLocationServiceAuthorization() {

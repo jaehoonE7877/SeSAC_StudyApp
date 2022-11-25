@@ -13,6 +13,7 @@
 		251BC0AE29264B1500246894 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251BC0AD29264B1500246894 /* MapView.swift */; };
 		251C98812930DFC200D63ADE /* AcceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C98802930DFC100D63ADE /* AcceptViewController.swift */; };
 		251C98832930E9BB00D63ADE /* SeSACStudyAcceptError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C98822930E9BB00D63ADE /* SeSACStudyAcceptError.swift */; };
+		251C98852931035600D63ADE /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C98842931035600D63ADE /* UINavigationController+.swift */; };
 		251F51A7292CC68300D538FC /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 251F51A6292CC68300D538FC /* RxGesture */; };
 		251F51A9292CDF3800D538FC /* Reactive+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F51A8292CDF3800D538FC /* Reactive+MKMapView.swift */; };
 		251F51AB292D20C800D538FC /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F51AA292D20C800D538FC /* CLLocationCoordinate2D+.swift */; };
@@ -153,6 +154,7 @@
 		251BC0AD29264B1500246894 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		251C98802930DFC100D63ADE /* AcceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptViewController.swift; sourceTree = "<group>"; };
 		251C98822930E9BB00D63ADE /* SeSACStudyAcceptError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACStudyAcceptError.swift; sourceTree = "<group>"; };
+		251C98842931035600D63ADE /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		251F51A8292CDF3800D538FC /* Reactive+MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+MKMapView.swift"; sourceTree = "<group>"; };
 		251F51AA292D20C800D538FC /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
 		251F51AC292D373000D538FC /* MatchDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDataDTO.swift; sourceTree = "<group>"; };
@@ -1072,6 +1074,7 @@
 				255B48F8292BFF9800D33052 /* Reactive+BaseViewController.swift */,
 				251F51A8292CDF3800D538FC /* Reactive+MKMapView.swift */,
 				251F51AA292D20C800D538FC /* CLLocationCoordinate2D+.swift */,
+				251C98842931035600D63ADE /* UINavigationController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1296,6 +1299,7 @@
 				25F7FE3B291946E900E0C486 /* UIColor+CustomColor.swift in Sources */,
 				255A379D291BAEF500737C3A /* SeSACAPIService.swift in Sources */,
 				25F7FE4D291974F000E0C486 /* PhoneView.swift in Sources */,
+				251C98852931035600D63ADE /* UINavigationController+.swift in Sources */,
 				255A37C1291C31E700737C3A /* EmailViewModel.swift in Sources */,
 				255B48F5292BCF8500D33052 /* MapViewModel.swift in Sources */,
 				255A37BF291C31DE00737C3A /* EmailViewController.swift in Sources */,

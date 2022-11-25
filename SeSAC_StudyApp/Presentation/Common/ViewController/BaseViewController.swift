@@ -28,9 +28,10 @@ class BaseViewController: UIViewController {
     func setNavigationController() {
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .textColor
-        
+
         let appearance = UINavigationBarAppearance()
         appearance.setBackIndicatorImage(UIImage(named: "arrow"), transitionMaskImage: UIImage(named: "arrow"))
+        appearance.backgroundColor = .systemBackground
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         

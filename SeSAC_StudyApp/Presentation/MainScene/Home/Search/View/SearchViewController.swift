@@ -33,7 +33,9 @@ final class SearchViewController: BaseViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setNavigationController()
+        
         collectionView.collectionViewLayout = configureCellLayout()
         viewModelBinding()
         configureDataSource()
@@ -58,7 +60,8 @@ final class SearchViewController: BaseViewController{
     }
     
     override func setNavigationController() {
-        
+        self.tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = false
         searchBar.placeholder = "띄어쓰기로 복수 입력이 가능해요"
         searchBar.enablesReturnKeyAutomatically = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBar)
@@ -70,7 +73,7 @@ final class SearchViewController: BaseViewController{
         backButton.rx.tap
             .withUnretained(self)
             .bind { weakSelf, _ in
-                weakSelf.dismiss(animated: true)
+                weakSelf.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
     }
