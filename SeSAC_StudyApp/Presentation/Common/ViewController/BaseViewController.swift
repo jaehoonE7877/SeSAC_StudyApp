@@ -9,8 +9,14 @@ import UIKit
 
 import SnapKit
 import Then
+import JGProgressHUD
 
 class BaseViewController: UIViewController {
+    
+    lazy var hud: JGProgressHUD = {
+        let loader = JGProgressHUD(style: .dark)
+        return loader
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +45,16 @@ class BaseViewController: UIViewController {
     
     func setBinding() { }
     
-//    private func tapGesture(){
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(tapEndEditing))
-//        view.addGestureRecognizer(tap)
-//    }
+    func showLoading() {
+        DispatchQueue.main.async {
+            self.hud.show(in: self.view, animated: true)
+        }
+    }
     
-//    @objc private func tapEndEditing(){
-//        view.endEditing(true)
-//    }
+    func hideLoading() {
+        DispatchQueue.main.async {
+            self.hud.dismiss(animated: true)
+        }
+    }
     
 }

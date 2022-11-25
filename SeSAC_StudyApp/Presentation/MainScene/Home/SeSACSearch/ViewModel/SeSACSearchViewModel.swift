@@ -22,7 +22,7 @@ final class SeSACSearchViewModel: ViewModelType {
     var uid: String?
     
     var change = BehaviorRelay(value: false)
-    
+    let refresh = PublishRelay<Bool>()
     struct Input {
         
         // 테이블뷰 새로고침 스크롤
@@ -61,6 +61,9 @@ extension SeSACSearchViewModel {
                 let requested = result.fromQueueDBRequested.map { $0.toDomain() }
                 output.friendData.onNext(data)
                 output.requestedData.onNext(requested)
+                DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2) {
+                    self.refresh.accept(false)
+                }
             case .failure(let error):
                 switch error {
                 case .firebaseTokenError:

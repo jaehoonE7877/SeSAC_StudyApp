@@ -14,6 +14,7 @@
 		251C98812930DFC200D63ADE /* AcceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C98802930DFC100D63ADE /* AcceptViewController.swift */; };
 		251C98832930E9BB00D63ADE /* SeSACStudyAcceptError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C98822930E9BB00D63ADE /* SeSACStudyAcceptError.swift */; };
 		251C98852931035600D63ADE /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C98842931035600D63ADE /* UINavigationController+.swift */; };
+		251C988829313CA000D63ADE /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 251C988729313CA000D63ADE /* JGProgressHUD */; };
 		251F51A7292CC68300D538FC /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 251F51A6292CC68300D538FC /* RxGesture */; };
 		251F51A9292CDF3800D538FC /* Reactive+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F51A8292CDF3800D538FC /* Reactive+MKMapView.swift */; };
 		251F51AB292D20C800D538FC /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F51AA292D20C800D538FC /* CLLocationCoordinate2D+.swift */; };
@@ -294,6 +295,7 @@
 				25F7FE0E29193DA900E0C486 /* Alamofire in Frameworks */,
 				254627EF291A8E47004D4B72 /* FirebaseDatabase in Frameworks */,
 				25D8C3A3291D4C6F00FB52DF /* RxDataSources in Frameworks */,
+				251C988829313CA000D63ADE /* JGProgressHUD in Frameworks */,
 				25F7FE1829193DD000E0C486 /* SnapKit in Frameworks */,
 				254627ED291A8E47004D4B72 /* FirebaseAuth in Frameworks */,
 			);
@@ -1155,6 +1157,7 @@
 				251F51A6292CC68300D538FC /* RxGesture */,
 				251F51AF292D44C200D538FC /* RxKeyboard */,
 				251F51B7292D5C8D00D538FC /* Tabman */,
+				251C988729313CA000D63ADE /* JGProgressHUD */,
 			);
 			productName = SeSAC_StudyApp;
 			productReference = 25F7FDDE291931E100E0C486 /* SeSAC_StudyApp.app */;
@@ -1196,6 +1199,7 @@
 				251F51A5292CC68300D538FC /* XCRemoteSwiftPackageReference "RxGesture" */,
 				251F51AE292D44C100D538FC /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 				251F51B6292D5C8C00D538FC /* XCRemoteSwiftPackageReference "Tabman" */,
+				251C988629313CA000D63ADE /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 25F7FDDF291931E100E0C486 /* Products */;
 			projectDirPath = "";
@@ -1574,6 +1578,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		251C988629313CA000D63ADE /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		251F51A5292CC68300D538FC /* XCRemoteSwiftPackageReference "RxGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
@@ -1665,6 +1677,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		251C988729313CA000D63ADE /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 251C988629313CA000D63ADE /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
 		251F51A6292CC68300D538FC /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 251F51A5292CC68300D538FC /* XCRemoteSwiftPackageReference "RxGesture" */;

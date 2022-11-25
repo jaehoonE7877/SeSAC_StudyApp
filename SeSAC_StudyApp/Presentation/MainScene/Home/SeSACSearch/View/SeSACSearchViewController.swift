@@ -20,6 +20,10 @@ final class SeSACSearchViewController: BaseViewController {
     
     private var sesacFriend: [SeSACCardModel]?
     
+    private let refreshControl = UIRefreshControl().then {
+        $0.tintColor = .ssGreen
+    }
+    
     var foldValues = [Bool]()
     
     override func loadView() {
@@ -33,10 +37,13 @@ final class SeSACSearchViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("======search")
         viewModel.change.accept(true)
     }
     
+    override func configure() {
+        refreshControl.endRefreshing()
+        mainView.tableView.refreshControl = refreshControl
+    }
     
     private func bindingViewModel() {
         let input = SeSACSearchViewModel.Input()
@@ -97,6 +104,17 @@ final class SeSACSearchViewController: BaseViewController {
                 weakSelf.viewModel.fetchFriend(output: output)
             }
             .disposed(by: disposeBag)
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                weakSelf.viewModel.fetchFriend(output: output)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.refresh
+            .bind(to: refreshControl.rx.isRefreshing)
+            .disposed(by: disposeBag)
     }
     
     override func setBinding() {
@@ -106,8 +124,7 @@ final class SeSACSearchViewController: BaseViewController {
                 weakSelf.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
-        
-        
+
     }
     
     private func bindingTableView(sesacFriends: [SeSACCardModel]) {

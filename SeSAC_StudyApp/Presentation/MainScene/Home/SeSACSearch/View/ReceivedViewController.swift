@@ -19,6 +19,10 @@ final class ReceivedViewController: BaseViewController {
     
     private var sesacReceived: [SeSACCardModel]?
     
+    private let refreshControl = UIRefreshControl().then {
+        $0.tintColor = .ssGreen
+    }
+    
     var foldValues = [Bool]()
     
     override func loadView() {
@@ -34,6 +38,11 @@ final class ReceivedViewController: BaseViewController {
         super.viewWillAppear(animated)
         print("=======")
         viewModel.change.accept(true)
+    }
+    
+    override func configure() {
+        refreshControl.endRefreshing()
+        mainView.tableView.refreshControl = refreshControl
     }
     
     private func bindingViewModel() {
@@ -88,6 +97,17 @@ final class ReceivedViewController: BaseViewController {
             .subscribe { weakSelf, _ in
                 weakSelf.viewModel.fetchFriend(output: output)
             }
+            .disposed(by: disposeBag)
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                weakSelf.viewModel.fetchFriend(output: output)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.refresh
+            .bind(to: refreshControl.rx.isRefreshing)
             .disposed(by: disposeBag)
     }
     
