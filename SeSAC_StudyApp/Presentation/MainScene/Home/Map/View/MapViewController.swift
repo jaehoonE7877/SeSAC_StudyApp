@@ -97,7 +97,7 @@ final class MapViewController: BaseViewController {
             .bind { weakSelf, value in
                 if value {
                     weakSelf.matchingStatus = .normal
-                    weakSelf.mainView.searchButton.setImage(UIImage(named: "map_default"), for: .normal)
+                    weakSelf.mainView.searchButton.setImage(UIImage(named: weakSelf.matchingStatus.image), for: .normal)
                 }
             }
             .disposed(by: disposeBag)
@@ -107,10 +107,10 @@ final class MapViewController: BaseViewController {
             .bind { weakSelf, result in
                 if result.matched == 0 {
                     weakSelf.matchingStatus = .matching
-                    weakSelf.mainView.searchButton.setImage(UIImage(named: "map_matching"), for: .normal)
+                    weakSelf.mainView.searchButton.setImage(UIImage(named: weakSelf.matchingStatus.image), for: .normal)
                 } else if result.matched == 1 {
                     weakSelf.matchingStatus = .matched
-                    weakSelf.mainView.searchButton.setImage(UIImage(named: "map_matched"), for: .normal)
+                    weakSelf.mainView.searchButton.setImage(UIImage(named: weakSelf.matchingStatus.image), for: .normal)
                 }
             }
             .disposed(by: disposeBag)
@@ -135,7 +135,7 @@ final class MapViewController: BaseViewController {
                 
             }
             .disposed(by: disposeBag)
-        //통신
+
         output.currentButtonTap
             .throttle(.seconds(3), scheduler: MainScheduler.instance)
             .withUnretained(self)

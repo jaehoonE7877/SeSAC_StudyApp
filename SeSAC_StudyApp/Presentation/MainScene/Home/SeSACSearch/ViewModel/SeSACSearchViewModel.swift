@@ -33,18 +33,15 @@ final class SeSACSearchViewModel: ViewModelType {
         var friendData = PublishSubject<[SeSACCardModel]>()
         var requestedData = PublishSubject<[SeSACCardModel]>()
         var fetchFailed = PublishRelay<String>()
+        let timer: Observable<Int>
     }
     
     func transform(input: Input) -> Output {
-        let output = Output()
-//        input.viewWillAppearEvent
-//            .withUnretained(self)
-//            .subscribe { weakSelf, _ in
-//                weakSelf.fetchFriend(output: output)
-//            }
-//            .disposed(by: disposeBag)
-        
-        return output
+      
+        let timer = Observable<Int>
+            .timer(.seconds(1), period: .seconds(5), scheduler: MainScheduler.instance)
+
+        return Output(timer: timer)
     }
     
 }
@@ -152,14 +149,21 @@ extension SeSACSearchViewModel {
     }
     
     // 매칭상태 get
-//    func getMyStatus() {
-//        sesacAPIService.requestQueue(type: MatchDataDTO.self, router: .match) { result in
-//            switch result{
-//            case .success(let data):
-//                
-//            case .failure(let error):
-//                
-//            }
-//        }
-//    }
+    func getMyStatus(completion: @escaping (Result<MatchDataDTO, SeSACSearchError>) -> Void) {
+        sesacAPIService.requestQueue(type: MatchDataDTO.self, router: .match) { result in
+            switch result{
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                switch error {
+                case .firebaseTokenError:
+                    self.refreshToken()
+                    completion(.failure(error))
+                default:
+                    completion(.failure(error))
+                }
+                
+            }
+        }
+    }
 }

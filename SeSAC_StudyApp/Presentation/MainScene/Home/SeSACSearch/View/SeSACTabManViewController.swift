@@ -31,7 +31,7 @@ final class SeSACTabManViewController: TabmanViewController {
         view.backgroundColor = .white
         setupTabMan()
         setNavigation()
-        bindUI()
+        bindViewModel()
     }
     
     private func setNavigation() {
@@ -50,7 +50,12 @@ final class SeSACTabManViewController: TabmanViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
-    private func bindUI() {
+    private func bindViewModel() {
+        let input = SeSACSearchViewModel.Input()
+        let output = viewModel.transform(input: input)
+        
+        startTimer(time: output.timer)
+        
         backButton.rx.tap
             .withUnretained(self)
             .bind { weakSelf, _ in
@@ -81,9 +86,18 @@ final class SeSACTabManViewController: TabmanViewController {
         timerDisposable = time
             .withUnretained(self)
             .subscribe(onNext: { weakSelf, value in
-                
-            }, onDisposed: {
-                
+                weakSelf.viewModel.getMyStatus { result in
+                    switch result{
+                    case .success(let data):
+                        if data.matched == 1{
+                            weakSelf.view.makeToast("\(String(describing: data.matchedNick))님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다", duration: 1 ,position: .center) { _ in
+                                print("채팅화면으로 이동")
+                            }
+                        }
+                    case .failure(let error):
+                        weakSelf.view.makeToast(error.errorDescription, position: .center)
+                    }
+                }
             })
     }
     

@@ -7,8 +7,21 @@
 
 import Foundation
 
-enum MatchingStatus{
+enum MatchingStatus {
     case normal
     case matching
-    case matched
+    case matched 
+}
+
+extension MatchingStatus {
+    var image: String {
+        switch self {
+        case .normal:
+            return "map_default"
+        case .matching:
+            return "map_matching"
+        case .matched:
+            return "map_matched"
+        }
+    }
 }

@@ -28,7 +28,6 @@ final class MapView: BaseView {
     }
     
     lazy var searchButton = UIButton().then {
-        $0.setImage(UIImage(named: "map_default"), for: .normal)
         $0.layer.cornerRadius = $0.layer.frame.size.width / 2
     }
     
