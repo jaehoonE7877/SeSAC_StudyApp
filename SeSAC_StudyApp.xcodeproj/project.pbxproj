@@ -74,6 +74,7 @@
 		258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0729210BEE00C78A67 /* InfoModel.swift */; };
 		258B1E0B29210CBF00C78A67 /* ReuseableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */; };
 		258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */; };
+		25C827CE2931CFAA007F3D84 /* MatchingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C827CD2931CFAA007F3D84 /* MatchingStatus.swift */; };
 		25D1939E292E09CF00C47AD4 /* ReceivedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */; };
 		25D193A0292E0A2900C47AD4 /* SeSACTabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */; };
 		25D193A2292E1A2000C47AD4 /* SeSACSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D193A1292E1A2000C47AD4 /* SeSACSearchView.swift */; };
@@ -207,6 +208,7 @@
 		258B1E0729210BEE00C78A67 /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
 		258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableViewProtocol.swift; sourceTree = "<group>"; };
 		258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		25C827CD2931CFAA007F3D84 /* MatchingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingStatus.swift; sourceTree = "<group>"; };
 		25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedViewController.swift; sourceTree = "<group>"; };
 		25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACTabManViewController.swift; sourceTree = "<group>"; };
 		25D193A1292E1A2000C47AD4 /* SeSACSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACSearchView.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				2566E11B29261F420006FBB4 /* Map */,
 				251BC0AF2926520B00246894 /* Search */,
 				251F51B1292D5BC700D538FC /* SeSACSearch */,
+				25C827CF2931D23A007F3D84 /* Chat */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				258B1E0729210BEE00C78A67 /* InfoModel.swift */,
 				25ED4A812922AA3D00C4A6EB /* DetailInfoModel.swift */,
 				25D193A7292E204500C47AD4 /* SeSACCardSectionModel.swift */,
+				25C827CD2931CFAA007F3D84 /* MatchingStatus.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -673,6 +677,13 @@
 				251F51AC292D373000D538FC /* MatchDataDTO.swift */,
 			);
 			path = DataMapping;
+			sourceTree = "<group>";
+		};
+		25C827CF2931D23A007F3D84 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		25D193A3292E1AA900C47AD4 /* Cell */ = {
@@ -1338,6 +1349,7 @@
 				25F7FE572919792000E0C486 /* UITextField+.swift in Sources */,
 				257E26402923C9E50039B0A0 /* SeSACInfo.swift in Sources */,
 				255A379B291BAE5300737C3A /* FirebaseAPIService.swift in Sources */,
+				25C827CE2931CFAA007F3D84 /* MatchingStatus.swift in Sources */,
 				258B1E0B29210CBF00C78A67 /* ReuseableViewProtocol.swift in Sources */,
 				25230AF9291FB01900525531 /* MapViewController.swift in Sources */,
 				25D1EDF92922960F0015C444 /* FriendAgeView.swift in Sources */,

@@ -41,7 +41,6 @@ final class SearchViewModel: ViewModelType {
     
     struct Output {
         let searchTap: ControlEvent<Void>
-        //let findTap: ControlEvent<Void>
         let isFailed = BehaviorRelay(value: false)
         let searchInfo = PublishSubject<SeSACUserDataDTO>()
         let searchSuccess = BehaviorRelay(value: false)

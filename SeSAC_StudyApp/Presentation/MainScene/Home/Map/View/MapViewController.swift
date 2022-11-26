@@ -18,6 +18,7 @@ final class MapViewController: BaseViewController {
     private let mainView = MapView()
     
     private var sesacSearch: [SeSACSearchModel] = []
+    private var matchingStatus: MatchingStatus = .normal
     
     override func loadView() {
         self.view = mainView
@@ -95,6 +96,7 @@ final class MapViewController: BaseViewController {
             .withUnretained(self)
             .bind { weakSelf, value in
                 if value {
+                    weakSelf.matchingStatus = .normal
                     weakSelf.mainView.searchButton.setImage(UIImage(named: "map_default"), for: .normal)
                 }
             }
@@ -104,8 +106,10 @@ final class MapViewController: BaseViewController {
             .withUnretained(self)
             .bind { weakSelf, result in
                 if result.matched == 0 {
+                    weakSelf.matchingStatus = .matching
                     weakSelf.mainView.searchButton.setImage(UIImage(named: "map_matching"), for: .normal)
                 } else if result.matched == 1 {
+                    weakSelf.matchingStatus = .matched
                     weakSelf.mainView.searchButton.setImage(UIImage(named: "map_matched"), for: .normal)
                 }
             }
@@ -115,9 +119,20 @@ final class MapViewController: BaseViewController {
             .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind { weakSelf, _ in
-                let vc = SearchViewController()
-                vc.viewModel.location = weakSelf.mainView.mapView.centerCoordinate
-                weakSelf.navigationController?.pushViewController(vc, animated: true)
+                switch weakSelf.matchingStatus {
+                case .normal:
+                    let vc = SearchViewController()
+                    vc.viewModel.location = weakSelf.mainView.mapView.centerCoordinate
+                    weakSelf.transitionViewController(viewController: vc, transitionStyle: .push)
+                case .matching:
+                    let vc = SeSACTabManViewController()
+                    vc.firstVC.viewModel.location = weakSelf.viewModel.location
+                    vc.secondVC.viewModel.location = weakSelf.viewModel.location
+                    weakSelf.transitionViewController(viewController: vc, transitionStyle: .push)
+                case .matched:
+                    print("채팅화면으로 전환")
+                }
+                
             }
             .disposed(by: disposeBag)
         //통신
