@@ -130,7 +130,11 @@ final class MapViewController: BaseViewController {
                     vc.secondVC.viewModel.location = weakSelf.viewModel.location
                     weakSelf.transitionViewController(viewController: vc, transitionStyle: .push)
                 case .matched:
-                    print("채팅화면으로 전환")
+//                    let vc = SeSACTabManViewController()
+//                    vc.firstVC.viewModel.location = weakSelf.viewModel.location
+//                    vc.secondVC.viewModel.location = weakSelf.viewModel.location
+//                    weakSelf.transitionViewController(viewController: vc, transitionStyle: .push)
+                    print("채팅화면으로 이동")
                 }
                 
             }

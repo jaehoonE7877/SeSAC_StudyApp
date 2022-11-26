@@ -128,7 +128,6 @@ final class SeSACSearchViewController: BaseViewController {
                 weakSelf.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
-
     }
     
     private func bindingTableView(sesacFriends: [SeSACCardModel]) {

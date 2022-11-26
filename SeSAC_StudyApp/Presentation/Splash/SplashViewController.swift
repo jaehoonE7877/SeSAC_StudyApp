@@ -83,6 +83,7 @@ extension SplashViewController {
                 case .success(let result):
                     UserManager.nickname = result.nick
                     UserManager.sesacImage = result.sesac
+                    print(UserManager.token)
                     // ⭐️로그인 성공! => 이미 가입한 유저 + 토큰 만료 안됨 (나중에 홈탭바 뷰컨으로 수정)
                     let vc = TabViewController()
                     sceneDelegate?.window?.rootViewController = vc

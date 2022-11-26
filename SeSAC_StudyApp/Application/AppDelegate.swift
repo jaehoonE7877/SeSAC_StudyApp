@@ -80,7 +80,7 @@ extension AppDelegate: MessagingDelegate {
         let dataDictonary: [String: String] = ["token": fcmToken ?? ""]
         guard let fcmToken = fcmToken else { return }
         UserManager.fcmToken =  fcmToken
-        print(UserManager.fcmToken)
+        //print(UserManager.fcmToken)
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDictonary)
     }
     

@@ -85,12 +85,14 @@ final class SeSACTabManViewController: TabmanViewController {
         timerDisposable?.dispose()
         timerDisposable = time
             .withUnretained(self)
-            .subscribe(onNext: { weakSelf, value in
+            .subscribe(onNext: { weakSelf, _ in
                 weakSelf.viewModel.getMyStatus { result in
                     switch result{
                     case .success(let data):
                         if data.matched == 1{
-                            weakSelf.view.makeToast("\(String(describing: data.matchedNick))님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다", duration: 1 ,position: .center) { _ in
+                            print(data.matchedUid)
+                            guard let nick = data.matchedNick else { return }
+                            weakSelf.view.makeToast("\(nick)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다", duration: 1 ,position: .center) { _ in
                                 print("채팅화면으로 이동")
                             }
                         }
