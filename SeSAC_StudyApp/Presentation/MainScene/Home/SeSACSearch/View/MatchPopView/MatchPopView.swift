@@ -76,7 +76,7 @@ final class MatchPopView: BaseView {
         backgroundView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.horizontalEdges.equalToSuperview().inset(16)
-            make.height.equalTo(backgroundView.snp.width).multipliedBy(0.45)
+            make.height.equalTo(backgroundView.snp.width).multipliedBy(0.48)
         }
         
         labelStackView.snp.makeConstraints { make in

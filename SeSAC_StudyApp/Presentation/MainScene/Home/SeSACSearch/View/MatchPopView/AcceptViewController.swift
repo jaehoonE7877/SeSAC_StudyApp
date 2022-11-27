@@ -43,10 +43,9 @@ final class AccecptViewController: BaseViewController {
                     switch SeSACStudyAcceptError(rawValue: statusCode){
                     case .success:
                         weakSelf.dismiss(animated: false) {
-                            //let vc = 채팅뷰컨
-//                            guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
-//                            vc.transitionViewController(viewController: <#T##T#>, transitionStyle: .push)
-                            print("수락성공")
+                            let chatVC = ChatViewController()
+                            guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
+                            vc.transitionViewController(viewController: chatVC, transitionStyle: .push)
                         }
                     default:
                         weakSelf.view.makeToast(SeSACStudyAcceptError(rawValue: statusCode)?.localizedDescription, position: .center)

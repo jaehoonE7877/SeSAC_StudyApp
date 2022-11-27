@@ -46,7 +46,9 @@ final class SeSACSearchViewController: BaseViewController {
     }
     
     private func bindingViewModel() {
-        let input = SeSACSearchViewModel.Input()
+        let input = SeSACSearchViewModel.Input(refreshButtonTap: mainView.friendEmptyView.refreshButton.rx.tap,
+                                               refreshControl: refreshControl.rx.controlEvent(.valueChanged),
+                                               studyChangeButtonTap: mainView.friendEmptyView.studyChangeButton.rx.tap)
         let output = viewModel.transform(input: input)
         
         viewModel.change
@@ -97,7 +99,7 @@ final class SeSACSearchViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        mainView.friendEmptyView.refreshButton.rx.tap
+        output.refreshButtonTap
             .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe { weakSelf, _ in
@@ -109,7 +111,14 @@ final class SeSACSearchViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        refreshControl.rx.controlEvent(.valueChanged)
+        output.studyChangeButtonTap
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                weakSelf.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.refreshControl
             .withUnretained(self)
             .bind { weakSelf, _ in
                 weakSelf.viewModel.fetchFriend(output: output)
@@ -118,15 +127,6 @@ final class SeSACSearchViewController: BaseViewController {
         
         viewModel.refresh
             .bind(to: refreshControl.rx.isRefreshing)
-            .disposed(by: disposeBag)
-    }
-    
-    override func setBinding() {
-        mainView.friendEmptyView.studyChangeButton.rx.tap
-            .withUnretained(self)
-            .bind { weakSelf, _ in
-                weakSelf.navigationController?.popViewController(animated: true)
-            }
             .disposed(by: disposeBag)
     }
     
@@ -145,10 +145,7 @@ final class SeSACSearchViewController: BaseViewController {
             cell.collectionView.tag = indexPath.section
             
             cell.chevornImageView.image = self.foldValues[indexPath.section] ? UIImage(named: "more_arrow_down") : UIImage(named: "more_arrow_up")
-            cell.sesacTitleView.isHidden = self.foldValues[indexPath.section]
-            cell.sesacReviewView.isHidden = self.foldValues[indexPath.section]
-            cell.collectionView.isHidden = self.foldValues[indexPath.section]
-            cell.studyLabel.isHidden = self.foldValues[indexPath.section]
+            [cell.sesacTitleView, cell.sesacReviewView, cell.collectionView, cell.studyLabel].forEach { $0.isHidden = self.foldValues[indexPath.section] }
             
             cell.sesacReviewView.reviewButton.rx.tapGesture()
                 .when(.recognized)

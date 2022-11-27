@@ -34,6 +34,12 @@ final class SeSACTabManViewController: TabmanViewController {
         bindViewModel()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print(#function)
+        timerDisposable?.dispose()
+    }
+    
     private func setNavigation() {
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = false
@@ -51,10 +57,11 @@ final class SeSACTabManViewController: TabmanViewController {
     }
     
     private func bindViewModel() {
-        let input = SeSACSearchViewModel.Input()
-        let output = viewModel.transform(input: input)
         
-        startTimer(time: output.timer)
+        let timer = Observable<Int>
+            .timer(.seconds(1), period: .seconds(5), scheduler: MainScheduler.instance)
+        
+        startTimer(time: timer)
         
         backButton.rx.tap
             .withUnretained(self)
@@ -78,8 +85,9 @@ final class SeSACTabManViewController: TabmanViewController {
                 }
             }
             .disposed(by: disposeBag)
-        
     }
+    
+    
     
     private func startTimer(time: Observable<Int>) {
         timerDisposable?.dispose()
@@ -89,11 +97,14 @@ final class SeSACTabManViewController: TabmanViewController {
                 weakSelf.viewModel.getMyStatus { result in
                     switch result{
                     case .success(let data):
+                        print(data.matched)
                         if data.matched == 1{
                             print(data.matchedUid)
                             guard let nick = data.matchedNick else { return }
                             weakSelf.view.makeToast("\(nick)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다", duration: 1 ,position: .center) { _ in
-                                print("채팅화면으로 이동")
+                                let chatVC = ChatViewController()
+                                chatVC.title = nick
+                                weakSelf.transitionViewController(viewController: chatVC, transitionStyle: .push)
                             }
                         }
                     case .failure(let error):

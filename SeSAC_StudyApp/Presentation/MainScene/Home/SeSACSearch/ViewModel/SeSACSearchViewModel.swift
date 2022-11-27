@@ -24,24 +24,23 @@ final class SeSACSearchViewModel: ViewModelType {
     var change = BehaviorRelay(value: false)
     let refresh = PublishRelay<Bool>()
     struct Input {
-        
-        // 테이블뷰 새로고침 스크롤
-        // 빈화면 버튼들
+        let refreshButtonTap: ControlEvent<Void>
+        let refreshControl: ControlEvent<Void>
+        let studyChangeButtonTap: ControlEvent<Void>
     }
     
     struct Output {
         var friendData = PublishSubject<[SeSACCardModel]>()
         var requestedData = PublishSubject<[SeSACCardModel]>()
         var fetchFailed = PublishRelay<String>()
-        let timer: Observable<Int>
+        let refreshButtonTap: ControlEvent<Void>
+        let refreshControl: ControlEvent<Void>
+        let studyChangeButtonTap: ControlEvent<Void>
     }
     
     func transform(input: Input) -> Output {
-      
-        let timer = Observable<Int>
-            .timer(.seconds(1), period: .seconds(5), scheduler: MainScheduler.instance)
 
-        return Output(timer: timer)
+        return Output(refreshButtonTap: input.refreshButtonTap, refreshControl: input.refreshControl, studyChangeButtonTap: input.studyChangeButtonTap)
     }
     
 }

@@ -47,10 +47,9 @@ final class RequireViewController: BaseViewController {
                             vc.view.makeToast(SeSACStudyRequestError(rawValue: statusCode)?.localizedDescription ?? "", duration: 1, position: .center)
                         }
                     case .alreadyRequested:
-                        //let vc = 채팅뷰컨
-//                            guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
-//                            vc.transitionViewController(viewController: <#T##T#>, transitionStyle: .push)
-                        print(statusCode)
+                        let chatVC = ChatViewController()
+                        guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
+                        vc.transitionViewController(viewController: chatVC, transitionStyle: .push)
                     default :
                         weakSelf.view.makeToast(SeSACStudyRequestError(rawValue: statusCode)?.localizedDescription ?? "", position: .center)
                     }

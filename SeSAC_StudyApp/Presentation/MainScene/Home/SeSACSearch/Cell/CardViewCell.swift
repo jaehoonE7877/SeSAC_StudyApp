@@ -54,9 +54,8 @@ final class CardViewCell: SesacDetailTableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         updateLayout()
-        self.cellDisposeBag = DisposeBag()
         collectionView.reloadData()
-        
+        self.cellDisposeBag = DisposeBag()
     }
     
     func updateLayout() {

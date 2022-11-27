@@ -125,10 +125,14 @@ final class MapViewController: BaseViewController {
                     vc.viewModel.location = weakSelf.mainView.mapView.centerCoordinate
                     weakSelf.transitionViewController(viewController: vc, transitionStyle: .push)
                 case .matching:
-                    let vc = SeSACTabManViewController()
-                    vc.firstVC.viewModel.location = weakSelf.viewModel.location
-                    vc.secondVC.viewModel.location = weakSelf.viewModel.location
-                    weakSelf.transitionViewController(viewController: vc, transitionStyle: .push)
+                    let searchVC = SearchViewController()
+                    searchVC.viewModel.location = weakSelf.viewModel.location
+                    let tabmanVC = SeSACTabManViewController()
+                    tabmanVC.firstVC.viewModel.location = weakSelf.viewModel.location
+                    tabmanVC.secondVC.viewModel.location = weakSelf.viewModel.location
+                    weakSelf.navigationController?.pushViewController(viewController: searchVC, animated: false, completion: {
+                        searchVC.navigationController?.pushViewController(tabmanVC, animated: false)
+                    })
                 case .matched:
 //                    let vc = SeSACTabManViewController()
 //                    vc.firstVC.viewModel.location = weakSelf.viewModel.location
@@ -148,6 +152,7 @@ final class MapViewController: BaseViewController {
                     weakSelf.checkUserDeviceLocationServiceAuthorization()
                     return
                 }
+                weakSelf.mainView.mapView.showsUserLocation = true
                 weakSelf.setRegionAnnotation(currentLocation.coordinate, items: weakSelf.sesacSearch)
             }
             .disposed(by: disposeBag)

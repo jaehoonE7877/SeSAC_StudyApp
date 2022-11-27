@@ -67,6 +67,7 @@
 		255B48F5292BCF8500D33052 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B48F4292BCF8500D33052 /* MapViewModel.swift */; };
 		255B48F7292BDB7000D33052 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B48F6292BDB7000D33052 /* CustomAnnotationView.swift */; };
 		255B48F9292BFF9800D33052 /* Reactive+BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B48F8292BFF9800D33052 /* Reactive+BaseViewController.swift */; };
+		2579A127293353F5001CFE39 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579A126293353F5001CFE39 /* ChattingViewController.swift */; };
 		257E263D2923AB2C0039B0A0 /* DetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263C2923AB2C0039B0A0 /* DetailInfoViewModel.swift */; };
 		257E26402923C9E50039B0A0 /* SeSACInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263F2923C9E50039B0A0 /* SeSACInfo.swift */; };
 		257E2643292401AF0039B0A0 /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 257E2642292401AF0039B0A0 /* MultiSlider */; };
@@ -202,6 +203,7 @@
 		255B48F4292BCF8500D33052 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		255B48F6292BDB7000D33052 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		255B48F8292BFF9800D33052 /* Reactive+BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+BaseViewController.swift"; sourceTree = "<group>"; };
+		2579A126293353F5001CFE39 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		257E263C2923AB2C0039B0A0 /* DetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewModel.swift; sourceTree = "<group>"; };
 		257E263F2923C9E50039B0A0 /* SeSACInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACInfo.swift; sourceTree = "<group>"; };
 		257E264429240EC00039B0A0 /* ProfileImageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageHeaderView.swift; sourceTree = "<group>"; };
@@ -635,6 +637,14 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		2579A125293353E0001CFE39 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2579A126293353F5001CFE39 /* ChattingViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		258B1E0529210B0000C78A67 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -682,6 +692,7 @@
 		25C827CF2931D23A007F3D84 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				2579A125293353E0001CFE39 /* View */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1303,6 +1314,7 @@
 				25D193C2292E947700C47AD4 /* FriendEmptyView.swift in Sources */,
 				254627DB291A3BB3004D4B72 /* AuthViewModel.swift in Sources */,
 				25D8C39B291D2B6200FB52DF /* GenderViewController.swift in Sources */,
+				2579A127293353F5001CFE39 /* ChattingViewController.swift in Sources */,
 				25D1EDFE29229BB70015C444 /* InfoDetailTableViewCell.swift in Sources */,
 				25230AFC291FB0CD00525531 /* ShopViewController.swift in Sources */,
 				255A37AD291BF5BD00737C3A /* SeSACAPIRouter.swift in Sources */,
