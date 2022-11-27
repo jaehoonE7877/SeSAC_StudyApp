@@ -32,11 +32,11 @@ final class SeSACTabManViewController: TabmanViewController {
         setupTabMan()
         setNavigation()
         bindViewModel()
+        NotificationCenter.default.addObserver(self, selector: #selector(removeTimer), name: NSNotification.Name("timer"), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print(#function)
         timerDisposable?.dispose()
     }
     
@@ -87,8 +87,6 @@ final class SeSACTabManViewController: TabmanViewController {
             .disposed(by: disposeBag)
     }
     
-    
-    
     private func startTimer(time: Observable<Int>) {
         timerDisposable?.dispose()
         timerDisposable = time
@@ -97,6 +95,7 @@ final class SeSACTabManViewController: TabmanViewController {
                 weakSelf.viewModel.getMyStatus { result in
                     switch result{
                     case .success(let data):
+                        NotificationCenter.default.post(name: NSNotification.Name("timer"), object: nil)
                         print(data.matched)
                         if data.matched == 1{
                             print(data.matchedUid)
@@ -134,6 +133,11 @@ final class SeSACTabManViewController: TabmanViewController {
         bar.indicator.weight = .custom(value: 1)
         bar.indicator.tintColor = .ssGreen
         addBar(bar, dataSource: self, at: .top)
+    }
+    
+    @objc private func removeTimer() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("timer"), object: nil)
+        timerDisposable?.dispose()
     }
 }
 

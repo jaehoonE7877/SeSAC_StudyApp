@@ -45,6 +45,7 @@ final class AccecptViewController: BaseViewController {
                         weakSelf.dismiss(animated: false) {
                             let chatVC = ChatViewController()
                             guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
+                            NotificationCenter.default.post(name: NSNotification.Name("timer"), object: nil)
                             vc.transitionViewController(viewController: chatVC, transitionStyle: .push)
                         }
                     default:
