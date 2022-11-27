@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+//   
 struct SeSACSearchModel {
     let lat, long: Double
     let gender, sesac, background: Int

@@ -54,6 +54,7 @@ enum Info : Int {
 
 struct InfoSectionModel {
     var items: [Item]
+    
 }
 
 extension InfoSectionModel: SectionModelType {

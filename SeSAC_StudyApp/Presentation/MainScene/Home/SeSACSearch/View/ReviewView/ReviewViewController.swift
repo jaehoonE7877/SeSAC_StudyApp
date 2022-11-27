@@ -16,6 +16,7 @@ final class ReviewViewController: BaseViewController {
     lazy var backButton = UIBarButtonItem(image: UIImage(named: "arrow"), style: .plain, target: self, action: nil)
         
     private lazy var tableView = UITableView(frame: .zero, style: .plain).then {
+        $0.rowHeight = UITableView.automaticDimension
         $0.delegate = self
         $0.dataSource = self
         $0.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -38,9 +39,7 @@ final class ReviewViewController: BaseViewController {
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.horizontalEdges.equalToSuperview().inset(16)
+            make.edges.equalToSuperview()
         }
     }
     
@@ -61,10 +60,6 @@ final class ReviewViewController: BaseViewController {
 }
 
 extension ReviewViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reviews?.count ?? 1

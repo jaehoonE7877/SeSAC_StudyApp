@@ -22,10 +22,12 @@ final class DefaultFirebaseAPIService: FirebaseAPIService {
                 switch errorCode {
                 case 17010:
                     completion(.failure(.tooManyRequests))
+                    return
                 default :
                     completion(.failure(.etcError))
+                    return
                 }
-                return
+                //return
             }
             guard let verificationID = verificationID else { return }
             

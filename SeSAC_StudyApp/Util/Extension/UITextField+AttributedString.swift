@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension UITextField {
+extension UITextField {
     func setPlaceholder(text:String, color: UIColor){
         attributedPlaceholder = NSAttributedString(
             string: text,

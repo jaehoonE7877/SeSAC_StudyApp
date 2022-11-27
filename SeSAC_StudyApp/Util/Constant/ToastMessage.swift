@@ -20,3 +20,9 @@ enum LoginMessage {
     static let resendMessage = "인증번호를 재전송했습니다"
     static let sentMessage = "인증번호를 보냈습니다."
 }
+
+enum StudySearchMessage {
+    static let overlapWord = "스터디를 중복해서 추가할 수 없습니다"
+    static let maxStudyRegister = "8개 이상 스터디를 등록할 수 없습니다"
+    static let searchBarTextRequire = "최소 한 자 이상, 최대 8글자까지 작성 가능합니다"
+}

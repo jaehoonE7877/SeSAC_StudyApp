@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 
 import Alamofire
-
+// 라우터 파일 자체를 분리 (user queue, chat)
 enum SeSACAPIRouter: URLRequestConvertible {
     case login
     case signup
@@ -24,7 +24,7 @@ enum SeSACAPIRouter: URLRequestConvertible {
 }
 
 extension SeSACAPIRouter {
-    
+
     var url: URL {
         switch self {
         case .login, .signup:
@@ -50,7 +50,7 @@ extension SeSACAPIRouter {
         switch self {
         case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .queueDelete, .require, .accept:
             return [
-                "idtoken": "\(UserManager.token)",
+                "idtoken": UserManager.token,
                 "Content-Type": "application/x-www-form-urlencoded",
             ]
         }
@@ -92,7 +92,7 @@ extension SeSACAPIRouter {
                 "phoneNumber" : saveNumber(phoneNumber: UserManager.phone),
                 "FCMtoken" : UserManager.fcmToken,
                 "nick" : UserManager.nickname,
-                "birth" : "\(birth.yyyyMMddTHHmmssSSZ)",
+                "birth" : birth.yyyyMMddTHHmmssSSZ,
                 "email" : email,
                 "gender" : String(gender)
             ]

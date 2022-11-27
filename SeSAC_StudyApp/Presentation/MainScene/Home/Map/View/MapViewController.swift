@@ -244,6 +244,7 @@ extension MapViewController: MKMapViewDelegate {
         let size = CGSize(width: 85, height: 85)
         UIGraphicsBeginImageContext(size)
         sesacImage?.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        //draw메서드를 직접 호출하면 안된다.
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
         annotationView?.image = resizedImage
         
