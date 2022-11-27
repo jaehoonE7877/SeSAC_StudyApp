@@ -7,6 +7,9 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 final class ChatDateCell: UITableViewCell {
     
     let dateLabel = UILabel().then {

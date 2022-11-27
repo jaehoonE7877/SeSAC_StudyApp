@@ -51,7 +51,10 @@ final class RequireViewController: BaseViewController {
                         guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
                         vc.transitionViewController(viewController: chatVC, transitionStyle: .push)
                     default :
-                        weakSelf.view.makeToast(SeSACStudyRequestError(rawValue: statusCode)?.localizedDescription ?? "", position: .center)
+                        weakSelf.dismiss(animated: false) {
+                            guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
+                            vc.view.makeToast(SeSACStudyAcceptError(rawValue: statusCode)?.localizedDescription, position: .center)
+                        }
                     }
                 }
             }

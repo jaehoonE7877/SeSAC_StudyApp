@@ -7,9 +7,16 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 final class ChatViewController: BaseViewController {
     
+    private let mainView = ChatView()
     
+    override func loadView() {
+        self.view = mainView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

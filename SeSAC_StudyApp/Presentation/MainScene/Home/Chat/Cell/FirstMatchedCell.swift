@@ -7,6 +7,9 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 final class FirstMatchedCell: UITableViewCell {
     
     let mainLabel = UILabel().then {
@@ -47,6 +50,7 @@ final class FirstMatchedCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     private func setUI() {
         contentView.addSubview(mainStackView)
         

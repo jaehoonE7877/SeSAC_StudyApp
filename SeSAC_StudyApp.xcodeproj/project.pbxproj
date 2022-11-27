@@ -71,6 +71,9 @@
 		2579A12929339F5F001CFE39 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579A12829339F5F001CFE39 /* ChatView.swift */; };
 		2579A12C2933A05F001CFE39 /* ChatDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579A12B2933A05F001CFE39 /* ChatDateCell.swift */; };
 		2579A12E2933A211001CFE39 /* FirstMatchedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579A12D2933A211001CFE39 /* FirstMatchedCell.swift */; };
+		2579A1302933A8F7001CFE39 /* MyChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579A12F2933A8F7001CFE39 /* MyChatCell.swift */; };
+		2579A1322933ACAC001CFE39 /* ChatLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579A1312933ACAC001CFE39 /* ChatLabel.swift */; };
+		2579A1342933AFD9001CFE39 /* YourChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579A1332933AFD9001CFE39 /* YourChatCell.swift */; };
 		257E263D2923AB2C0039B0A0 /* DetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263C2923AB2C0039B0A0 /* DetailInfoViewModel.swift */; };
 		257E26402923C9E50039B0A0 /* SeSACInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257E263F2923C9E50039B0A0 /* SeSACInfo.swift */; };
 		257E2643292401AF0039B0A0 /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 257E2642292401AF0039B0A0 /* MultiSlider */; };
@@ -210,6 +213,9 @@
 		2579A12829339F5F001CFE39 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		2579A12B2933A05F001CFE39 /* ChatDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDateCell.swift; sourceTree = "<group>"; };
 		2579A12D2933A211001CFE39 /* FirstMatchedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstMatchedCell.swift; sourceTree = "<group>"; };
+		2579A12F2933A8F7001CFE39 /* MyChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatCell.swift; sourceTree = "<group>"; };
+		2579A1312933ACAC001CFE39 /* ChatLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLabel.swift; sourceTree = "<group>"; };
+		2579A1332933AFD9001CFE39 /* YourChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourChatCell.swift; sourceTree = "<group>"; };
 		257E263C2923AB2C0039B0A0 /* DetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewModel.swift; sourceTree = "<group>"; };
 		257E263F2923C9E50039B0A0 /* SeSACInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACInfo.swift; sourceTree = "<group>"; };
 		257E264429240EC00039B0A0 /* ProfileImageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageHeaderView.swift; sourceTree = "<group>"; };
@@ -657,6 +663,9 @@
 			children = (
 				2579A12B2933A05F001CFE39 /* ChatDateCell.swift */,
 				2579A12D2933A211001CFE39 /* FirstMatchedCell.swift */,
+				2579A12F2933A8F7001CFE39 /* MyChatCell.swift */,
+				2579A1332933AFD9001CFE39 /* YourChatCell.swift */,
+				2579A1312933ACAC001CFE39 /* ChatLabel.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1285,6 +1294,7 @@
 				25D1EDE629227F2D0015C444 /* DetailInfoViewController.swift in Sources */,
 				25ED4A822922AA3D00C4A6EB /* DetailInfoModel.swift in Sources */,
 				25F7FE472919695E00E0C486 /* SecondViewController.swift in Sources */,
+				2579A1342933AFD9001CFE39 /* YourChatCell.swift in Sources */,
 				255B48F7292BDB7000D33052 /* CustomAnnotationView.swift in Sources */,
 				25F7FE452919682700E0C486 /* FirstViewController.swift in Sources */,
 				25D1EDF329228FB50015C444 /* InfoButtonStatus.swift in Sources */,
@@ -1295,6 +1305,7 @@
 				25F7FE5A291985DB00E0C486 /* NextButton.swift in Sources */,
 				25D193A6292E1E7E00C47AD4 /* SeSACCardModel.swift in Sources */,
 				255A37BD291C31CC00737C3A /* EmailView.swift in Sources */,
+				2579A1302933A8F7001CFE39 /* MyChatCell.swift in Sources */,
 				25D1EDEC29228D0A0015C444 /* SesacDetailTableViewCell.swift in Sources */,
 				25F7FE502919752B00E0C486 /* PhoneViewController.swift in Sources */,
 				25F7FE3D291950AD00E0C486 /* PageView.swift in Sources */,
@@ -1338,6 +1349,7 @@
 				25230AFC291FB0CD00525531 /* ShopViewController.swift in Sources */,
 				255A37AD291BF5BD00737C3A /* SeSACAPIRouter.swift in Sources */,
 				254627D7291A3B97004D4B72 /* AuthView.swift in Sources */,
+				2579A1322933ACAC001CFE39 /* ChatLabel.swift in Sources */,
 				251C98832930E9BB00D63ADE /* SeSACStudyAcceptError.swift in Sources */,
 				25230B02291FB17100525531 /* InfoViewController.swift in Sources */,
 				251BC0AE29264B1500246894 /* MapView.swift in Sources */,
