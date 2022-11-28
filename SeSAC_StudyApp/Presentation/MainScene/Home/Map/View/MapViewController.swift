@@ -19,6 +19,7 @@ final class MapViewController: BaseViewController {
     
     private var sesacSearch: [SeSACSearchModel] = []
     private var matchingStatus: MatchingStatus = .normal
+    private var matchingData: MatchDataDTO?
     
     override func loadView() {
         self.view = mainView
@@ -109,6 +110,7 @@ final class MapViewController: BaseViewController {
                     weakSelf.matchingStatus = .matching
                     weakSelf.mainView.searchButton.setImage(UIImage(named: weakSelf.matchingStatus.image), for: .normal)
                 } else if result.matched == 1 {
+                    weakSelf.matchingData = result
                     weakSelf.matchingStatus = .matched
                     weakSelf.mainView.searchButton.setImage(UIImage(named: weakSelf.matchingStatus.image), for: .normal)
                 }
@@ -134,10 +136,9 @@ final class MapViewController: BaseViewController {
                         searchVC.navigationController?.pushViewController(tabmanVC, animated: false)
                     })
                 case .matched:
-//                    let vc = SeSACTabManViewController()
-//                    vc.firstVC.viewModel.location = weakSelf.viewModel.location
-//                    vc.secondVC.viewModel.location = weakSelf.viewModel.location
-//                    weakSelf.transitionViewController(viewController: vc, transitionStyle: .push)
+                    let chatVC = ChatViewController()
+                    chatVC.viewModel.chatData = weakSelf.matchingData
+                    weakSelf.transitionViewController(viewController: chatVC, transitionStyle: .push)
                     print("채팅화면으로 이동")
                 }
                 

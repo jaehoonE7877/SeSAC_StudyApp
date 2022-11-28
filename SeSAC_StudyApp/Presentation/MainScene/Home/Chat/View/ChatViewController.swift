@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import RxGesture
 
 final class ChatViewController: BaseViewController {
     
@@ -22,9 +23,6 @@ final class ChatViewController: BaseViewController {
     override func loadView() {
         self.view = mainView
     }
-    
-    lazy var viewMoreButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: nil)
-    lazy var backButton = UIBarButtonItem(image: UIImage(named: "arrow"), style: .plain, target: self, action: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,22 +38,15 @@ final class ChatViewController: BaseViewController {
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .textColor
         
-        navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = viewMoreButton
+        navigationItem.leftBarButtonItem = mainView.backButton
+        navigationItem.rightBarButtonItem = mainView.viewMoreButton
         
-        backButton.rx.tap
+        mainView.backButton.rx.tap
             .withUnretained(self)
             .bind { weakSelf, _ in
                 weakSelf.navigationController?.popToRootViewController(animated: true)
             }
             .disposed(by: disposeBag)
-        
-        viewMoreButton.rx.tap
-            .withUnretained(self)
-            .bind { weakSelf, _ in
-                <#code#>
-            }
-        
     }
     
     private func bindingTableView() {
