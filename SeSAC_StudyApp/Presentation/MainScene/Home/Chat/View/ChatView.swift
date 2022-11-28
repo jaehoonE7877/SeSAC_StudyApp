@@ -83,7 +83,7 @@ final class ChatView: BaseView {
     
     private func setBinding() {
         
-        subView.rx.tapGesture()
+        subView.backgroundView.rx.tapGesture()
             .when(.recognized)
             .withUnretained(self)
             .bind { weakSelf, _ in

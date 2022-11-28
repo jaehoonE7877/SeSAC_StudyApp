@@ -28,6 +28,7 @@ final class ChatViewController: BaseViewController {
         super.viewDidLoad()
         
         setNavigationController()
+        bindingViewModel()
     }
     
     override func setNavigationController() {
@@ -47,6 +48,19 @@ final class ChatViewController: BaseViewController {
                 weakSelf.navigationController?.popToRootViewController(animated: true)
             }
             .disposed(by: disposeBag)
+    }
+    
+    private func bindingViewModel() {
+        mainView.subView.cancelMatchButton.rx.tap
+            .withUnretained(self)
+            .subscribe { weakSelf, _ in
+                let vc = MatchingCancelViewController()
+                vc.modalPresentationStyle = .overFullScreen
+                weakSelf.present(vc, animated: false)
+            }
+            .disposed(by: disposeBag)
+        
+        
     }
     
     private func bindingTableView() {

@@ -23,6 +23,7 @@ final class SeSACSearchViewModel: ViewModelType {
     
     var change = BehaviorRelay(value: false)
     let refresh = PublishRelay<Bool>()
+    
     struct Input {
         let refreshButtonTap: ControlEvent<Void>
         let refreshControl: ControlEvent<Void>
