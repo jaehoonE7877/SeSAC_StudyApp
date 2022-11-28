@@ -42,11 +42,20 @@ final class AccecptViewController: BaseViewController {
                 weakSelf.viewModel.acceptMatch { statusCode in
                     switch SeSACStudyAcceptError(rawValue: statusCode){
                     case .success:
-                        weakSelf.dismiss(animated: false) {
-                            let chatVC = ChatViewController()
-                            guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
-                            NotificationCenter.default.post(name: NSNotification.Name("timer"), object: nil)
-                            vc.transitionViewController(viewController: chatVC, transitionStyle: .push)
+                        weakSelf.viewModel.getMyStatus { result in
+                            switch result{
+                            case .success(let matchedUser):
+                                weakSelf.dismiss(animated: false) {
+                                    let chatVC = ChatViewController()
+                                    chatVC.title = matchedUser.matchedNick
+                                    chatVC.viewModel.chatData = matchedUser
+                                    guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
+                                    NotificationCenter.default.post(name: NSNotification.Name("timer"), object: nil)
+                                    vc.transitionViewController(viewController: chatVC, transitionStyle: .push)
+                                }
+                            case .failure(let error):
+                                weakSelf.view.makeToast(error.errorDescription, position: .center)
+                            }
                         }
                     default:
                         weakSelf.dismiss(animated: false) {

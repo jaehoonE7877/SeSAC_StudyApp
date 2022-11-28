@@ -17,6 +17,8 @@ final class ChatViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
     
+    let viewModel = ChatViewModel()
+    
     override func loadView() {
         self.view = mainView
     }
@@ -33,7 +35,8 @@ final class ChatViewController: BaseViewController {
     override func setNavigationController() {
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = false
-        title = "새싹 찾기"
+        guard let nick = viewModel.chatData?.matchedNick else { return }
+        title = "\(nick)"
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .textColor
         
@@ -47,6 +50,12 @@ final class ChatViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        viewMoreButton.rx.tap
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                <#code#>
+            }
+        
     }
     
     private func bindingTableView() {
@@ -54,19 +63,19 @@ final class ChatViewController: BaseViewController {
 //        mainView.tableView.rx.setDelegate(self)
 //            .disposed(by: disposeBag)
         
-        let dataSource = RxTableViewSectionedReloadDataSource<ChatSectionModel>(configureCell: { [weak self] dataSource, tableView, indexPath, item in
-            guard let self = self else { return UITableViewCell()}
-            
-        
-            
-            return cell
-        })
+//        let dataSource = RxTableViewSectionedReloadDataSource<ChatSectionModel>(configureCell: { [weak self] dataSource, tableView, indexPath, item in
+//            guard let self = self else { return UITableViewCell()}
+//
+//
+//
+//            return cell
+//        })
         
         var sections: [SeSACCardSectionModel] = []
         
-        Observable.just(sections)
-            .bind(to: mainView.tableView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
+//        Observable.just(sections)
+//            .bind(to: mainView.tableView.rx.items(dataSource: dataSource))
+//            .disposed(by: disposeBag)
         
     }
     

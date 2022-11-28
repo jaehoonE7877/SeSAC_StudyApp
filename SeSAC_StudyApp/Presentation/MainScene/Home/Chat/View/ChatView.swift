@@ -13,7 +13,6 @@ final class ChatView: BaseView {
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .systemBackground
         $0.register(ChatDateCell.self, forHeaderFooterViewReuseIdentifier: ChatDateCell.reuseIdentifier)
-        $0.register(FirstMatchedCell.self, forHeaderFooterViewReuseIdentifier: FirstMatchedCell.reuseIdentifier)
         $0.register(MyChatCell.self, forHeaderFooterViewReuseIdentifier: MyChatCell.reuseIdentifier)
         $0.register(YourChatCell.self, forHeaderFooterViewReuseIdentifier: YourChatCell.reuseIdentifier)
         $0.separatorStyle = .none

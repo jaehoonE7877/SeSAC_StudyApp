@@ -102,6 +102,7 @@ final class SeSACTabManViewController: TabmanViewController {
                             guard let nick = data.matchedNick else { return }
                             weakSelf.view.makeToast("\(nick)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다", duration: 1 ,position: .center) { _ in
                                 let chatVC = ChatViewController()
+                                chatVC.viewModel.chatData = data
                                 chatVC.title = nick
                                 weakSelf.transitionViewController(viewController: chatVC, transitionStyle: .push)
                             }
