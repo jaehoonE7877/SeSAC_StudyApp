@@ -21,6 +21,7 @@ enum SeSACAPIRouter: URLRequestConvertible {
     case queueDelete
     case require(otheruid: String)
     case accept(otheruid: String)
+    case dodge(otheruid: String)
 }
 
 extension SeSACAPIRouter {
@@ -43,12 +44,14 @@ extension SeSACAPIRouter {
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/studyrequest")!
         case .accept:
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/studyaccept")!
+        case .dodge:
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/dodge")!
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .queueDelete, .require, .accept:
+        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .queueDelete, .require, .accept, .dodge:
             return [
                 "idtoken": UserManager.token,
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -75,6 +78,8 @@ extension SeSACAPIRouter {
         case .require:
             return .post
         case .accept:
+            return .post
+        case .dodge:
             return .post
         }
     }
@@ -117,6 +122,8 @@ extension SeSACAPIRouter {
             return ["otheruid": otheruid]
         case .accept(let otheruid):
             return ["otheruid": otheruid]
+        case .dodge(let otheruid):
+            return ["otheruid": otheruid]
         }
     }
     
@@ -129,7 +136,7 @@ extension SeSACAPIRouter {
         switch self {
         case .login, .withdraw, .match, .queueDelete:
             return request
-        case .signup, .mypage, .search, .queuePost, .require, .accept:
+        case .signup, .mypage, .search, .queuePost, .require, .accept, .dodge:
             return try URLEncoding(arrayEncoding: .noBrackets).encode(request, with: parameters)
         }
         

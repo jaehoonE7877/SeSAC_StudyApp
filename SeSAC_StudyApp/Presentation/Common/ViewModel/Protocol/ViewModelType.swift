@@ -20,7 +20,13 @@ extension ViewModelType {
         return emailTest.evaluate(with: text)
     }
     
-    func refreshToken() {
-        
-    }
+    func refreshToken(){
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            if let error = error {
+                print(error)
+            }
+            guard let token = idToken else { return }
+            UserManager.token = token
+        }
 }

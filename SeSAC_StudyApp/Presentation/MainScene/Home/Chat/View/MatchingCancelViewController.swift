@@ -32,6 +32,23 @@ final class MatchingCancelViewController: BaseViewController {
                 weakSelf.dismiss(animated: false)
             }
             .disposed(by: disposeBag)
+        
+        mainView.matchButton.rx.tap
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                weakSelf.viewModel.cancelMatch { statusCode in
+                    switch SeSACDodgeError(rawValue: statusCode){
+                    case .success:
+                        weakSelf.dismiss(animated: false) {
+                            guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
+                            vc.navigationController?.popToRootViewController(animated: false)
+                        }
+                    default:
+                        weakSelf.view.makeToast(SeSACDodgeError(rawValue: statusCode)?.errorDescription, position: .center)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
 }

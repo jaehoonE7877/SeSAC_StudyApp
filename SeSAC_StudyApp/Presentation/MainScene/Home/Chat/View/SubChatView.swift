@@ -27,7 +27,6 @@ final class SubChatView: BaseView {
     }
     
     lazy var subStackView = UIStackView(arrangedSubviews: [reportButton, cancelMatchButton, reviewButton]).then {
-        //$0.isHidden = true
         $0.alignment = .fill
         $0.distribution = .fillEqually
         $0.axis = .horizontal
