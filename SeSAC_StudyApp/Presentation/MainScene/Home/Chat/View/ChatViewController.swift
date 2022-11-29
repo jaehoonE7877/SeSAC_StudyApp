@@ -20,6 +20,20 @@ final class ChatViewController: BaseViewController {
     
     let viewModel = ChatViewModel()
     
+    lazy var dataSource = RxTableViewSectionedReloadDataSource<ChatSectionModel>(configureCell: { [weak self] dataSource, tableView, indexPath, item in
+        guard let self = self else { return UITableViewCell()}
+        
+        if item.payload[indexPath.row].from == UserManager.myUid  {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatCell.reuseIdentifier, for: indexPath) as? MyChatCell else { return UITableViewCell()}
+            cell.setData(data: item.payload[indexPath.row])
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: YourChatCell.reuseIdentifier, for: indexPath) as? YourChatCell else { return UITableViewCell()}
+            cell.setData(data: item.payload[indexPath.row])
+            return cell
+        }
+    })
+    
     override func loadView() {
         self.view = mainView
     }
@@ -29,12 +43,13 @@ final class ChatViewController: BaseViewController {
         
         setNavigationController()
         bindingViewModel()
+        bindingTableView()
     }
     
     override func setNavigationController() {
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = false
-        guard let nick = viewModel.chatData?.matchedNick else { return }
+        guard let nick = viewModel.matchedUserData?.matchedNick else { return }
         title = "\(nick)"
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .textColor
@@ -55,35 +70,39 @@ final class ChatViewController: BaseViewController {
             .withUnretained(self)
             .subscribe { weakSelf, _ in
                 let vc = MatchingCancelViewController()
+                vc.viewModel.matchedUserData = weakSelf.viewModel.matchedUserData
                 vc.modalPresentationStyle = .overFullScreen
                 weakSelf.present(vc, animated: false)
             }
             .disposed(by: disposeBag)
         
+        let input = ChatViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear)
+        let output = viewModel.transform(input: input)
         
+        output.fetchFail
+            .asDriver(onErrorJustReturn: "")
+            .drive { [weak self] error in
+                guard let self = self else { return }
+                self.view.makeToast(error, duration: 1, position: .center)
+            }
+            .disposed(by: disposeBag)
+        
+        output.chat
+            .bind(to: mainView.tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
     }
     
     private func bindingTableView() {
         
+        
+            
 //        mainView.tableView.rx.setDelegate(self)
 //            .disposed(by: disposeBag)
-        
-//        let dataSource = RxTableViewSectionedReloadDataSource<ChatSectionModel>(configureCell: { [weak self] dataSource, tableView, indexPath, item in
-//            guard let self = self else { return UITableViewCell()}
-//
-//
-//
-//            return cell
-//        })
-        
-        var sections: [SeSACCardSectionModel] = []
-        
-//        Observable.just(sections)
-//            .bind(to: mainView.tableView.rx.items(dataSource: dataSource))
-//            .disposed(by: disposeBag)
-        
+
     }
-    
 }
+
+
+
 
 

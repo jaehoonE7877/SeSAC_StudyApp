@@ -137,7 +137,7 @@ final class MapViewController: BaseViewController {
                     })
                 case .matched:
                     let chatVC = ChatViewController()
-                    chatVC.viewModel.chatData = weakSelf.matchingData
+                    chatVC.viewModel.matchedUserData = weakSelf.matchingData
                     weakSelf.transitionViewController(viewController: chatVC, transitionStyle: .push)
                     print("채팅화면으로 이동")
                 }

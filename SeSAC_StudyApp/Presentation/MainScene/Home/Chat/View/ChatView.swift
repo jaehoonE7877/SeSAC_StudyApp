@@ -17,6 +17,8 @@ final class ChatView: BaseView {
     
     private var foldValue: Bool = false
     
+    let viewModel = ChatViewModel()
+    
     let viewMoreButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: ChatViewController.self, action: nil)
     let backButton = UIBarButtonItem(image: UIImage(named: "arrow"), style: .plain, target: ChatViewController.self, action: nil)
     
@@ -25,11 +27,12 @@ final class ChatView: BaseView {
     }
     
     lazy var tableView = UITableView(frame: .zero, style: .plain).then {
+        $0.rowHeight = UITableView.automaticDimension
+        $0.register(ChatDateCell.self, forCellReuseIdentifier: ChatDateCell.reuseIdentifier)
+        $0.register(MyChatCell.self, forCellReuseIdentifier: MyChatCell.reuseIdentifier)
+        $0.register(YourChatCell.self, forCellReuseIdentifier: YourChatCell.reuseIdentifier)
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .systemBackground
-//        $0.register(ChatDateCell.self, forHeaderFooterViewReuseIdentifier: ChatDateCell.reuseIdentifier)
-//        $0.register(MyChatCell.self, forHeaderFooterViewReuseIdentifier: MyChatCell.reuseIdentifier)
-//        $0.register(YourChatCell.self, forHeaderFooterViewReuseIdentifier: YourChatCell.reuseIdentifier)
         $0.separatorStyle = .none
     }
         
@@ -52,6 +55,7 @@ final class ChatView: BaseView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setBinding()
+        
     }
     
     override func configure() {
@@ -60,7 +64,9 @@ final class ChatView: BaseView {
     
     override func setConstraints() {
         subView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(0)
         }
         
         tableView.snp.makeConstraints { make in
@@ -88,16 +94,7 @@ final class ChatView: BaseView {
             .withUnretained(self)
             .bind { weakSelf, _ in
                 weakSelf.foldValue = false
-                [weakSelf.subView.cancelMatchButton, weakSelf.subView.reportButton, weakSelf.subView.reviewButton ].forEach { $0.isHidden = true}
-                weakSelf.subView.subStackView.snp.remakeConstraints { make in
-                    make.height.equalTo(0)
-                    make.top.leading.trailing.equalToSuperview()
-                }
-                weakSelf.subView.backgroundView.snp.remakeConstraints { make in
-                    make.top.equalToSuperview()
-                    make.horizontalEdges.equalToSuperview()
-                    make.height.equalTo(0)
-                }
+                weakSelf.foldSubView()
             }
             .disposed(by: disposeBag)
         
@@ -106,45 +103,78 @@ final class ChatView: BaseView {
             .bind { weakSelf, _ in
                 if weakSelf.foldValue {
                     weakSelf.foldValue.toggle()
-                    weakSelf.subView.subStackView.snp.remakeConstraints { make in
-                        make.height.equalTo(0)
-                        make.top.leading.trailing.equalToSuperview()
-                    }
-                    UIView.animate(withDuration: 0.3) {
-                        weakSelf.subView.layoutIfNeeded()
-
-                        weakSelf.subView.backgroundView.snp.remakeConstraints { make in
-                            make.top.equalToSuperview()
-                            make.horizontalEdges.equalToSuperview()
-                            make.height.equalTo(0)
-                        }
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25){
-                        [weakSelf.subView.cancelMatchButton, weakSelf.subView.reportButton, weakSelf.subView.reviewButton ].forEach { $0.isHidden = true}
-                    }
+                    weakSelf.foldSubView()
                 } else {
-                    weakSelf.foldValue.toggle()
-                    weakSelf.subView.subStackView.snp.remakeConstraints { make in
-                        make.height.equalTo(72)
-                        make.top.equalToSuperview()
-                        make.horizontalEdges.equalToSuperview()
-                    }
-                    UIView.animate(withDuration: 0.3) {
-                        weakSelf.subView.layoutIfNeeded()
-                        
-                        weakSelf.subView.backgroundView.snp.remakeConstraints { make in
-                            make.top.equalTo(weakSelf.safeAreaLayoutGuide)
-                            make.horizontalEdges.equalToSuperview()
-                            make.bottom.equalToSuperview()
+                    weakSelf.viewModel.getMyStatus { result in
+                        switch result {
+                        case .success(let matchData):
+                            weakSelf.foldValue.toggle()
+                            weakSelf.unfoldSubView()
+                            if matchData.matched == 1 {
+                                weakSelf.subView.cancelMatchButton.itemLabel.text = "스터디 취소"
+                            } else if matchData.dodged == 1 || matchData.reviewed == 1 {
+                                weakSelf.subView.cancelMatchButton.itemLabel.text = "스터디 종료"
+                            }
+                        case .failure(_):
+                            break
                         }
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25){
-                        [weakSelf.subView.cancelMatchButton, weakSelf.subView.reportButton, weakSelf.subView.reviewButton ].forEach { $0.isHidden = false}
                     }
                 }
             }
             .disposed(by: disposeBag)
-        
-        
+    }
+}
+
+extension ChatView {
+    
+    private func foldSubView() {
+        subView.snp.remakeConstraints { make in
+            make.top.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(0)
+        }
+        subView.subStackView.snp.remakeConstraints { make in
+            make.height.equalTo(0)
+            make.top.leading.trailing.equalToSuperview()
+        }
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self else { return }
+            self.subView.layoutIfNeeded()
+
+            self.subView.backgroundView.snp.remakeConstraints { make in
+                make.top.equalToSuperview()
+                make.horizontalEdges.equalToSuperview()
+                make.height.equalTo(0)
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25){ [weak self] in
+            guard let self else { return }
+            [self.subView.cancelMatchButton, self.subView.reportButton, self.subView.reviewButton ].forEach { $0.isHidden = true}
+        }
+    }
+    
+    private func unfoldSubView() {
+        subView.snp.remakeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        subView.subStackView.snp.remakeConstraints { make in
+            make.height.equalTo(72)
+            make.top.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+        }
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self else { return }
+            self.subView.layoutIfNeeded()
+            
+            self.subView.backgroundView.snp.remakeConstraints { make in
+                make.top.equalTo(self.safeAreaLayoutGuide)
+                make.horizontalEdges.equalToSuperview()
+                make.bottom.equalToSuperview()
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25){ [weak self] in
+            guard let self else { return }
+            [self.subView.cancelMatchButton, self.subView.reportButton, self.subView.reviewButton ].forEach { $0.isHidden = false}
+        }
     }
 }

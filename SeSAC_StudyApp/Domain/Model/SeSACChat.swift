@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct SeSACChat {
-    let id, to, from, chat: String
-    let createdAt: String
-}
+//struct SeSACChat {
+//    var cell: Payload
+//}
+//
+//struct Payload {
+//    let id, to, from, chat: String
+//    let createdAt: String
+//}

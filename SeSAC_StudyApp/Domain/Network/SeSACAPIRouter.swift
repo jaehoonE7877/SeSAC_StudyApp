@@ -22,6 +22,7 @@ enum SeSACAPIRouter: URLRequestConvertible {
     case require(otheruid: String)
     case accept(otheruid: String)
     case dodge(otheruid: String)
+    case fetchChat(from: String, lastchatDate: String)
 }
 
 extension SeSACAPIRouter {
@@ -46,12 +47,14 @@ extension SeSACAPIRouter {
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/studyaccept")!
         case .dodge:
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/dodge")!
+        case .fetchChat(let from, _):
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/chat/\(from)")!
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .queueDelete, .require, .accept, .dodge:
+        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .queueDelete, .require, .accept, .dodge, .fetchChat:
             return [
                 "idtoken": UserManager.token,
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -81,6 +84,8 @@ extension SeSACAPIRouter {
             return .post
         case .dodge:
             return .post
+        case .fetchChat:
+            return .get
         }
     }
     
@@ -124,6 +129,8 @@ extension SeSACAPIRouter {
             return ["otheruid": otheruid]
         case .dodge(let otheruid):
             return ["otheruid": otheruid]
+        case .fetchChat(_ , let lastchatDate):
+            return ["lastchatDate" : lastchatDate]
         }
     }
     
@@ -136,7 +143,7 @@ extension SeSACAPIRouter {
         switch self {
         case .login, .withdraw, .match, .queueDelete:
             return request
-        case .signup, .mypage, .search, .queuePost, .require, .accept, .dodge:
+        case .signup, .mypage, .search, .queuePost, .require, .accept, .dodge, .fetchChat:
             return try URLEncoding(arrayEncoding: .noBrackets).encode(request, with: parameters)
         }
         

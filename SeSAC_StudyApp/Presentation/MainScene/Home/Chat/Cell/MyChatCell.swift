@@ -25,9 +25,10 @@ final class MyChatCell: UITableViewCell {
         $0.distribution = .fillProportionally
         $0.spacing = 8
     }
-        
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         setUI()
     }
     
@@ -42,5 +43,10 @@ final class MyChatCell: UITableViewCell {
             make.leading.equalToSuperview()
             make.verticalEdges.equalToSuperview().inset(12)
         }
+    }
+    
+    func setData(data: Payload){
+        chatLabel.text = data.chat
+        timeLabel.text = data.createdAt
     }
 }

@@ -13,7 +13,7 @@ import RxCocoa
 final class MatchingCancelViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
-    private let viewModel = ChatViewModel()
+    let viewModel = ChatViewModel()
     
     private let mainView = PopView(title: "스터디를 취소하겠습니까?", subtitle: "스터디를 취소하시면 패널티가 부과됩니다")
     
@@ -37,13 +37,16 @@ final class MatchingCancelViewController: BaseViewController {
             .withUnretained(self)
             .bind { weakSelf, _ in
                 weakSelf.viewModel.cancelMatch { statusCode in
+                    print("--=-=-=-=-=-=")
                     switch SeSACDodgeError(rawValue: statusCode){
                     case .success:
                         weakSelf.dismiss(animated: false) {
+                            print("===============")
                             guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
                             vc.navigationController?.popToRootViewController(animated: false)
                         }
                     default:
+                        print("===============잘못됨")
                         weakSelf.view.makeToast(SeSACDodgeError(rawValue: statusCode)?.errorDescription, position: .center)
                     }
                 }

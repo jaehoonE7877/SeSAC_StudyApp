@@ -63,4 +63,7 @@ class UserManager {
     
     @UserDefault(key: "sesacImage", defaultValue: 0)
     static var sesacImage: Int
+    
+    @UserDefault(key: "myUid", defaultValue: "")
+    static var myUid: String
 }

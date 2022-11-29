@@ -44,4 +44,9 @@ final class YourChatCell: UITableViewCell {
             make.verticalEdges.equalToSuperview().inset(12)
         }
     }
+    
+    func setData(data: Payload){
+        chatLabel.text = data.chat
+        timeLabel.text = data.createdAt
+    }
 }

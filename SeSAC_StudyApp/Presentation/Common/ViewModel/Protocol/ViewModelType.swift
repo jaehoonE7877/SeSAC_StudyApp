@@ -7,6 +7,8 @@
 
 import Foundation
 
+import FirebaseAuth
+
 protocol ViewModelType: AnyObject {
     associatedtype Input
     associatedtype Output
@@ -29,4 +31,18 @@ extension ViewModelType {
             guard let token = idToken else { return }
             UserManager.token = token
         }
+    }
+    
+    func refreshToken(completion : @escaping () -> Void){
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            if let error = error {
+                print(error)
+            }
+            guard let token = idToken else { return }
+            UserManager.token = token
+            completion()
+        }
+    }
 }
+

@@ -28,10 +28,8 @@ extension Date {
     }
     
     func dateTimeString() -> String {
-        
         Date.formatter.dateFormat = "yyyy.MM.dd"
         Date.formatter.locale = Locale(identifier: "ko_KR")
-        
         return Date.formatter.string(from: self)
     }
     
@@ -43,6 +41,16 @@ extension Date {
     
     var yyyyMMddTHHmmssSSZ: String {
         Date.formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        return Date.formatter.string(from: self)
+    }
+    
+    var aHHmm: String {
+        Date.formatter.dateFormat = "a HH:mm"
+        return Date.formatter.string(from: self)
+    }
+    
+    var MMddaHHmm: String {
+        Date.formatter.dateFormat = "MM/dd a HH:mm"
         return Date.formatter.string(from: self)
     }
 }

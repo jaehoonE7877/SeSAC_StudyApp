@@ -216,6 +216,7 @@ extension SeSACSearchViewController: UICollectionViewDataSource{
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sesacFriend?[collectionView.tag].studylist.count ?? 0
+
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
