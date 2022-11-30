@@ -19,16 +19,9 @@ final class YourChatCell: UITableViewCell {
         $0.textColor = . gray6
     }
     
-    lazy var chatStackView = UIStackView(arrangedSubviews: [timeLabel, chatLabel]).then {
-        $0.alignment = .bottom
-        $0.axis = .horizontal
-        $0.distribution = .fillProportionally
-        $0.spacing = 8
-        
-    }
-        
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         setUI()
     }
     
@@ -37,15 +30,20 @@ final class YourChatCell: UITableViewCell {
     }
     
     private func setUI() {
-        contentView.addSubview(chatStackView)
+        [chatLabel, timeLabel].forEach { contentView.addSubview($0)}
         
-        chatStackView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
+        chatLabel.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(12)
+            make.leading.equalToSuperview()
+        }
+        
+        timeLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(chatLabel.snp.bottom)
+            make.leading.equalTo(chatLabel.snp.trailing).offset(8)
         }
     }
     
-    func setData(data: Payload){
+    func setData(data: ChatData){
         chatLabel.text = data.chat
         timeLabel.text = data.createdAt
     }

@@ -14,7 +14,7 @@ struct ChatSectionModel {
 
 extension ChatSectionModel: SectionModelType {
     
-    typealias Item = SeSACChat
+    typealias Item = ChatData
     
     init(original: ChatSectionModel, items: [Item]) {
         self = original

@@ -17,7 +17,9 @@ final class ChatViewModel: ViewModelType {
     
     var matchedUserData: MatchDataDTO?
 
-    var sections = [ChatSectionModel]()
+    var sections: [ChatSectionModel] = []
+    
+    var chat = PublishSubject<[ChatSectionModel]>()
     
     struct Input {
         let viewWillAppearEvent: ControlEvent<Bool>
@@ -25,7 +27,7 @@ final class ChatViewModel: ViewModelType {
     
     struct Output {
         var fetchFail = PublishRelay<String>()
-        var chat = PublishSubject<[ChatSectionModel]>()
+        
     }
     
     func transform(input: Input) -> Output {
@@ -50,16 +52,15 @@ extension ChatViewModel {
             guard let self = self else { return }
             switch result {
             case .success(let result):
+                
                 result.payload.forEach { payload in
-                    print(payload)
-
-                    let createdAtDate =  payload.createdAt.stringToDate()
-//                    print(createdAtDate.MMddaHHmm)
-                    let chatItem = SeSACChat(payload: [Payload(id: payload.id, to: payload.to, from: payload.from, chat: payload.chat, createdAt: payload.createdAt)])
-                    print(chatItem)
-                    self.sections[0].items.append(chatItem)
-                    output.chat.onNext(self.sections)
+                    //let chatItem = Payload(id: payload.id, to: payload.to, from: payload.from, chat: payload.chat, createdAt: payload.createdAt)
+                    //self.sesacChat.payload.append(chatItem)
+                    self.sections.append(ChatSectionModel(items: [ChatData(id: payload.id, to: payload.to, from: payload.from, chat: payload.chat, createdAt: payload.createdAt)]))
                 }
+                
+                self.chat.onNext(self.sections)
+                
                 
             case .failure(let error):
                 if error == .firebaseTokenError {

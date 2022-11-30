@@ -20,20 +20,6 @@ final class ChatViewController: BaseViewController {
     
     let viewModel = ChatViewModel()
     
-    lazy var dataSource = RxTableViewSectionedReloadDataSource<ChatSectionModel>(configureCell: { [weak self] dataSource, tableView, indexPath, item in
-        guard let self = self else { return UITableViewCell()}
-        
-        if item.payload[indexPath.row].from == UserManager.myUid  {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatCell.reuseIdentifier, for: indexPath) as? MyChatCell else { return UITableViewCell()}
-            cell.setData(data: item.payload[indexPath.row])
-            return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: YourChatCell.reuseIdentifier, for: indexPath) as? YourChatCell else { return UITableViewCell()}
-            cell.setData(data: item.payload[indexPath.row])
-            return cell
-        }
-    })
-    
     override func loadView() {
         self.view = mainView
     }
@@ -43,7 +29,6 @@ final class ChatViewController: BaseViewController {
         
         setNavigationController()
         bindingViewModel()
-        bindingTableView()
     }
     
     override func setNavigationController() {
@@ -76,6 +61,34 @@ final class ChatViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        let dataSource = RxTableViewSectionedReloadDataSource<ChatSectionModel>(configureCell: { dataSource, tableView, indexPath, item in
+            
+            
+            
+            if item.from == UserManager.myUid {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatCell.reuseIdentifier, for: indexPath) as? MyChatCell else { return UITableViewCell()}
+                cell.setData(data: item)
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: YourChatCell.reuseIdentifier, for: indexPath) as? YourChatCell else { return UITableViewCell()}
+                cell.setData(data: item)
+                return cell
+            }
+            
+//            if item.payload[indexPath.row].from == UserManager.myUid {
+//                print(indexPath.section)
+//                print(indexPath.row)
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatCell.reuseIdentifier, for: indexPath) as? MyChatCell else { return UITableViewCell()}
+//                cell.setData(data: item.payload, indexPath: indexPath)
+//                return cell
+//            } else {
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: YourChatCell.reuseIdentifier, for: indexPath) as? YourChatCell else { return UITableViewCell()}
+//                cell.chatLabel.text = item.payload[4].chat
+//                cell.timeLabel.text = item.payload[4].createdAt
+//                return cell
+//            }
+        })
+        
         let input = ChatViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear)
         let output = viewModel.transform(input: input)
         
@@ -87,22 +100,25 @@ final class ChatViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output.chat
+        viewModel.chat
             .bind(to: mainView.tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
-    
-    private func bindingTableView() {
-        
-        
-            
-//        mainView.tableView.rx.setDelegate(self)
-//            .disposed(by: disposeBag)
 
-    }
 }
 
-
+/*
+ if item.payload[indexPath.row].from == UserManager.myUid  {
+     guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatCell.reuseIdentifier, for: indexPath) as? MyChatCell else { return UITableViewCell()}
+     cell.setData(data: item.payload[indexPath.row])
+     return cell
+ } else {
+     guard let cell = tableView.dequeueReusableCell(withIdentifier: YourChatCell.reuseIdentifier, for: indexPath) as? YourChatCell else { return UITableViewCell()}
+     print(item.payload[indexPath.row])
+     cell.setData(data: item.payload[indexPath.row])
+     return cell
+ }
+ */
 
 
 

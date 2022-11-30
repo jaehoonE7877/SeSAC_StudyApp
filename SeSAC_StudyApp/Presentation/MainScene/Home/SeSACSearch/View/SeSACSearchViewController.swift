@@ -139,6 +139,7 @@ final class SeSACSearchViewController: BaseViewController {
             guard let self = self else { return UITableViewCell()}
             
             guard let cell = self.mainView.tableView.dequeueReusableCell(withIdentifier: CardViewCell.reuseIdentifier, for: indexPath) as? CardViewCell else { return UITableViewCell()}
+            cell.collectionView.reloadData()
             cell.selectionStyle = .none
             cell.collectionView.dataSource = self
             cell.collectionView.collectionViewLayout = self.configureCellLayout()
@@ -157,8 +158,7 @@ final class SeSACSearchViewController: BaseViewController {
                 .disposed(by: cell.cellDisposeBag)
             
             cell.setDatas(item: item)
-            cell.collectionView.reloadData()
-            
+
             return cell
         })
         

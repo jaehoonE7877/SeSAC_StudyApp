@@ -40,17 +40,18 @@ final class RequireViewController: BaseViewController {
             .withUnretained(self)
             .subscribe { weakSelf, _ in
                 weakSelf.viewModel.requireMatch { statusCode in
-                    switch SeSACStudyRequestError(rawValue: statusCode){
-                    case .success:
+                    if SeSACStudyRequestError(rawValue: statusCode) == .success {
                         weakSelf.dismiss(animated: false) {
                             guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
                             vc.view.makeToast(SeSACStudyRequestError(rawValue: statusCode)?.localizedDescription ?? "", duration: 1, position: .center)
                         }
-                    case .alreadyRequested:
-                        let chatVC = ChatViewController()
-                        guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
-                        vc.transitionViewController(viewController: chatVC, transitionStyle: .push)
-                    default :
+                    } else if SeSACStudyRequestError(rawValue: statusCode) == .alreadyRequested {
+                        weakSelf.dismiss(animated: false) {
+                            let chatVC = ChatViewController()
+                            guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
+                            vc.transitionViewController(viewController: chatVC, transitionStyle: .push)
+                        }
+                    } else {
                         weakSelf.dismiss(animated: false) {
                             guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
                             vc.view.makeToast(SeSACStudyAcceptError(rawValue: statusCode)?.localizedDescription, position: .center)

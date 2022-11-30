@@ -57,13 +57,11 @@ final class Chatlabel: UILabel {
         
         switch style {
         case .my:
+            self.backgroundColor = .ssWhiteGreen
+        case .your:
             self.layer.borderWidth = 1
-            self.layer.cornerRadius = 8
             self.layer.borderColor = UIColor.gray4.cgColor
             self.backgroundColor = .systemBackground
-        case .your:
-            self.layer.cornerRadius = 8
-            self.backgroundColor = .ssWhiteGreen
         }
     }
     
@@ -71,11 +69,11 @@ final class Chatlabel: UILabel {
         didSet {
             switch status {
             case .my:
+                self.backgroundColor = .ssWhiteGreen
+            case .your:
                 self.layer.borderWidth = 1
                 self.layer.borderColor = UIColor.gray4.cgColor
                 self.backgroundColor = .systemBackground
-            case .your:
-                self.backgroundColor = .ssWhiteGreen
             }
         }
     }

@@ -45,7 +45,7 @@ final class MyChatCell: UITableViewCell {
         }
     }
     
-    func setData(data: Payload){
+    func setData(data: ChatData){
         chatLabel.text = data.chat
         timeLabel.text = data.createdAt
     }

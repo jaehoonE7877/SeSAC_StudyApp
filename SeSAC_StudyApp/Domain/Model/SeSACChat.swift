@@ -7,11 +7,15 @@
 
 import Foundation
 
-//struct SeSACChat {
-//    var cell: Payload
-//}
-//
-//struct Payload {
-//    let id, to, from, chat: String
-//    let createdAt: String
-//}
+struct ChatData {
+    let id, to, from, chat: String
+    let createdAt: String
+    
+    init(id: String = "" , to: String = "", from: String = "", chat: String = "", createdAt: String = "") {
+        self.id = id
+        self.to = to
+        self.from = from
+        self.chat = chat
+        self.createdAt = createdAt
+    }
+}

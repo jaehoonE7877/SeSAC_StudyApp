@@ -8,7 +8,8 @@
 import Foundation
 
 struct SeSACChat: Codable {
-    let payload: [Payload]
+    var payload: [Payload]
+    
 }
 
 // MARK: - Payload

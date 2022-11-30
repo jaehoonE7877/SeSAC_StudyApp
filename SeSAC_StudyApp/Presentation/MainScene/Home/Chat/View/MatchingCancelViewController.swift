@@ -37,16 +37,13 @@ final class MatchingCancelViewController: BaseViewController {
             .withUnretained(self)
             .bind { weakSelf, _ in
                 weakSelf.viewModel.cancelMatch { statusCode in
-                    print("--=-=-=-=-=-=")
                     switch SeSACDodgeError(rawValue: statusCode){
                     case .success:
                         weakSelf.dismiss(animated: false) {
-                            print("===============")
                             guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
                             vc.navigationController?.popToRootViewController(animated: false)
                         }
                     default:
-                        print("===============잘못됨")
                         weakSelf.view.makeToast(SeSACDodgeError(rawValue: statusCode)?.errorDescription, position: .center)
                     }
                 }

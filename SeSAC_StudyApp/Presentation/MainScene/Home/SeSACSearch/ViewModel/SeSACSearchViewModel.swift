@@ -93,6 +93,8 @@ extension SeSACSearchViewModel {
         sesacAPIService.requestSeSACAPI(router: .require(otheruid: uid)) { [weak self] statusCode in
             guard let self = self else { return }
             switch SeSACStudyRequestError(rawValue: statusCode){
+            case .success:
+                completion(statusCode)
             case .alreadyRequested:
                 self.acceptMatch { status in
                     if SeSACStudyAcceptError(rawValue: status) == .success {
