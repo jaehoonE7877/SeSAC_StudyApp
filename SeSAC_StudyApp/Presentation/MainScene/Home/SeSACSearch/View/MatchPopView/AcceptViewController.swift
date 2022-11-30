@@ -14,6 +14,8 @@ final class AccecptViewController: BaseViewController {
     
     private let mainView = MatchPopView(status: .accecpt(title: "스터디를 수락할까요?", subTitle: "요청을 수락하면 채팅창에서 대화를 나눌 수 있어요"))
     
+    var otherUid: String?
+    
     let viewModel = SeSACSearchViewModel()
     
     private let disposeBag = DisposeBag()
@@ -39,7 +41,8 @@ final class AccecptViewController: BaseViewController {
         mainView.matchButton.rx.tap
             .withUnretained(self)
             .subscribe { weakSelf, _ in
-                weakSelf.viewModel.acceptMatch { statusCode in
+                guard let otherUid = weakSelf.otherUid else { return }
+                weakSelf.viewModel.acceptMatch(otherUid: otherUid) { statusCode in
                     switch SeSACStudyAcceptError(rawValue: statusCode){
                     case .success:
                         weakSelf.viewModel.getMyStatus { result in

@@ -100,7 +100,7 @@ final class SeSACTabManViewController: TabmanViewController {
                             print(data.matchedUid)
                             NotificationCenter.default.post(name: NSNotification.Name("timer"), object: nil)
                             guard let nick = data.matchedNick else { return }
-                            weakSelf.view.makeToast("\(nick)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다", duration: 1 ,position: .center) { _ in
+                            weakSelf.view.makeToast("\(nick)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다", duration: 2 ,position: .center) { _ in
                                 let chatVC = ChatViewController()
                                 chatVC.viewModel.matchedUserData = data
                                 chatVC.title = nick

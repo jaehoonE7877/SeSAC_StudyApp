@@ -63,8 +63,6 @@ final class ChatViewController: BaseViewController {
         
         let dataSource = RxTableViewSectionedReloadDataSource<ChatSectionModel>(configureCell: { dataSource, tableView, indexPath, item in
             
-            
-            
             if item.from == UserManager.myUid {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatCell.reuseIdentifier, for: indexPath) as? MyChatCell else { return UITableViewCell()}
                 cell.setData(data: item)
@@ -75,18 +73,6 @@ final class ChatViewController: BaseViewController {
                 return cell
             }
             
-//            if item.payload[indexPath.row].from == UserManager.myUid {
-//                print(indexPath.section)
-//                print(indexPath.row)
-//                guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatCell.reuseIdentifier, for: indexPath) as? MyChatCell else { return UITableViewCell()}
-//                cell.setData(data: item.payload, indexPath: indexPath)
-//                return cell
-//            } else {
-//                guard let cell = tableView.dequeueReusableCell(withIdentifier: YourChatCell.reuseIdentifier, for: indexPath) as? YourChatCell else { return UITableViewCell()}
-//                cell.chatLabel.text = item.payload[4].chat
-//                cell.timeLabel.text = item.payload[4].createdAt
-//                return cell
-//            }
         })
         
         let input = ChatViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear)

@@ -20,7 +20,7 @@ final class SeSACSearchViewModel: ViewModelType {
     var location: CLLocationCoordinate2D?
     
     var uid: String?
-    
+
     var change = BehaviorRelay(value: false)
     let refresh = PublishRelay<Bool>()
     
@@ -88,15 +88,15 @@ extension SeSACSearchViewModel {
 
 extension SeSACSearchViewModel {
     //요청하기 버튼
-    func requireMatch(completion: @escaping (Int) -> Void){
-        guard let uid = self.uid else { return }
-        sesacAPIService.requestSeSACAPI(router: .require(otheruid: uid)) { [weak self] statusCode in
+    func requireMatch(otherUid: String, completion: @escaping (Int) -> Void){
+        //guard let uid = self.uid else { return }
+        sesacAPIService.requestSeSACAPI(router: .require(otheruid: otherUid)) { [weak self] statusCode in
             guard let self = self else { return }
             switch SeSACStudyRequestError(rawValue: statusCode){
             case .success:
                 completion(statusCode)
             case .alreadyRequested:
-                self.acceptMatch { status in
+                self.acceptMatch(otherUid: otherUid) { status in
                     if SeSACStudyAcceptError(rawValue: status) == .success {
                         completion(statusCode)
                     } else {
@@ -112,9 +112,8 @@ extension SeSACSearchViewModel {
         }
     }
     // 수락하기 버튼
-    func acceptMatch(completion: @escaping (Int) -> Void) {
-        guard let uid = self.uid else { return }
-        sesacAPIService.requestSeSACAPI(router: .accept(otheruid: uid)) { [weak self] statusCode in
+    func acceptMatch(otherUid: String, completion: @escaping (Int) -> Void) {
+        sesacAPIService.requestSeSACAPI(router: .accept(otheruid: otherUid)) { [weak self] statusCode in
             guard let self = self else { return }
             switch SeSACStudyAcceptError(rawValue: statusCode){
             case .firebaseTokenError:

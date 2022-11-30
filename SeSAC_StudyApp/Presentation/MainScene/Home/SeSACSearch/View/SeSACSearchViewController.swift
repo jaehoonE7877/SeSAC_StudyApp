@@ -189,16 +189,16 @@ extension SeSACSearchViewController: UITableViewDelegate {
         guard let items = sesacFriend else { return nil }
         headerCell.bgImageView.image = UIImage(named: "sesac_background_\(items[section].background)")
         headerCell.sesacImageView.image = UIImage(named: "sesac_face_\(items[section].sesac)")
-        
-        headerCell.requireButton.rx.tap
-            .withUnretained(self)
-            .bind { weakSelf, _ in
+        headerCell.requireButton.rx.tapGesture()
+            .when(.recognized)
+            .bind { [weak self] _ in
+                guard let self = self else { return }
                 let vc = RequireViewController()
-                vc.viewModel.uid = items[section].uid
+                vc.otherUid = items[section].uid
                 vc.modalPresentationStyle = .overFullScreen
-                weakSelf.present(vc, animated: false)
+                self.present(vc, animated: false)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: headerCell.cellDisposeBag)
         
         return headerCell
     }

@@ -7,7 +7,13 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+import RxGesture
+
 final class ProfileImageHeaderView: UITableViewHeaderFooterView {
+    
+    var cellDisposeBag = DisposeBag()
     
     lazy var bgImageView = UIImageView().then {
         $0.isHidden = false
@@ -32,6 +38,12 @@ final class ProfileImageHeaderView: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
         configure()
         setConstraints()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        cellDisposeBag = DisposeBag()
     }
     
     //@available(*, unavailable)

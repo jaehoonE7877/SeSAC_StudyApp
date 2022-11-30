@@ -36,18 +36,21 @@ final class ChatView: BaseView {
         $0.separatorStyle = .none
     }
         
-    let textView = UITextView().then {
-        $0.sizeToFit()
-        $0.isScrollEnabled = false
+    let textBackgroundView = UIView().then {
         $0.backgroundColor = .gray1
         $0.layer.cornerRadius = 8
-        $0.contentInset = .init(top: 14, left: 12, bottom: 14, right: 44)
+    }
+    
+    let textView = UITextView().then {
+        $0.isScrollEnabled = false
+        $0.backgroundColor = .clear
         $0.textColor = .gray7
         $0.text = "메세지를 입력하세요"
         $0.font = .notoSans(size: 14, family: .Regular)
     }
     
     let sendButton = UIButton().then {
+        $0.isEnabled = false
         $0.contentMode = .scaleAspectFill
         $0.setImage(UIImage(named: "willsend"), for: .normal)
     }
@@ -59,7 +62,8 @@ final class ChatView: BaseView {
     }
     
     override func configure() {
-        [tableView, textView, sendButton, subView].forEach { self.addSubview($0)}
+        [tableView, subView, textBackgroundView].forEach { self.addSubview($0)}
+        [textView, sendButton].forEach{ textBackgroundView.addSubview($0)}
     }
     
     override func setConstraints() {
@@ -74,17 +78,26 @@ final class ChatView: BaseView {
             make.horizontalEdges.equalToSuperview().inset(16)
         }
         
-        textView.snp.makeConstraints { make in
+        textBackgroundView.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-50)
             make.horizontalEdges.equalToSuperview().inset(16)
-            make.height.equalTo(52)
+            make.height.greaterThanOrEqualTo(52)
         }
         
         sendButton.snp.makeConstraints { make in
-            make.centerY.equalTo(textView.snp.centerY)
+            make.centerY.equalTo(textBackgroundView.snp.centerY)
             make.size.equalTo(24)
-            make.trailing.equalTo(textView.snp.trailing).inset(12)
+            make.trailing.equalTo(textBackgroundView.snp.trailing).inset(12)
         }
+
+        textView.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview().inset(14)
+            make.height.lessThanOrEqualTo(72)
+            make.leading.equalToSuperview().inset(12)
+            make.trailing.equalTo(sendButton.snp.leading).offset(-8)
+        }
+        
+        
     }
     
     private func setBinding() {
@@ -122,6 +135,44 @@ final class ChatView: BaseView {
                 }
             }
             .disposed(by: disposeBag)
+        
+        textView.rx.didBeginEditing
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                if weakSelf.textView.text == "메세지를 입력하세요"  {
+                    weakSelf.textView.text = nil
+                    weakSelf.sendButton.setImage(UIImage(named: "send"), for: .normal)
+                    weakSelf.sendButton.isEnabled = true
+                }
+                weakSelf.textView.textColor = .textColor
+            }
+            .disposed(by: disposeBag)
+        
+        textView.rx.didEndEditing
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                if weakSelf.textView.text.count == 0 {
+                    weakSelf.textView.text = "메세지를 입력하세요"
+                    weakSelf.textView.textColor = .gray7
+                    weakSelf.sendButton.setImage(UIImage(named: "willsend"), for: .normal)
+                    weakSelf.sendButton.isEnabled = false
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        textView.rx.didChange
+              .subscribe(onNext: { [weak self] in
+                  guard let self = self else { return }
+                let size = CGSize(width: self.textView.frame.width, height: .infinity)
+                let estimatedSize = self.textView.sizeThatFits(size)
+                let isMaxHeight = estimatedSize.height >= 72
+                
+                //guard let isMaxHeight != self.textView.isScrollEnabled else { return }
+                self.textView.isScrollEnabled = isMaxHeight
+                //self.textView.reloadInputViews()
+                self.setNeedsUpdateConstraints()
+              })
+              .disposed(by: disposeBag)
     }
 }
 

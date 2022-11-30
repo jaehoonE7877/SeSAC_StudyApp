@@ -15,6 +15,7 @@ final class RequireViewController: BaseViewController {
     private let mainView = MatchPopView(status: .require(title: "스터디를 요청할게요!", subTitle: "상대방이 요청을 수락하면\n채팅창에서 대화를 나눌 수 있어요"))
     
     let viewModel = SeSACSearchViewModel()
+    var otherUid: String?
     
     private let disposeBag = DisposeBag()
 
@@ -39,7 +40,8 @@ final class RequireViewController: BaseViewController {
         mainView.matchButton.rx.tap
             .withUnretained(self)
             .subscribe { weakSelf, _ in
-                weakSelf.viewModel.requireMatch { statusCode in
+                guard let otherUid = weakSelf.otherUid else { return }
+                weakSelf.viewModel.requireMatch(otherUid: otherUid) { statusCode in
                     if SeSACStudyRequestError(rawValue: statusCode) == .success {
                         weakSelf.dismiss(animated: false) {
                             guard let vc = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
