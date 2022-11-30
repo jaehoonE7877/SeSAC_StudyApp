@@ -37,16 +37,29 @@ final class MyChatCell: UITableViewCell {
     }
     
     private func setUI() {
-        contentView.addSubview(chatStackView)
+        [chatLabel, timeLabel].forEach { contentView.addSubview($0)}
         
-        chatStackView.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
+        chatLabel.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(12)
+            make.trailing.equalToSuperview()
+            make.width.lessThanOrEqualTo(254)
+        }
+        
+        timeLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(chatLabel.snp.bottom)
+            make.trailing.equalTo(chatLabel.snp.leading).offset(-8)
         }
     }
     
     func setData(data: ChatData){
+        let calendar = Calendar.current
         chatLabel.text = data.chat
-        timeLabel.text = data.createdAt
+        guard let date = data.createdAt.fetchDate() else { return }
+        if calendar.isDateInToday(date) {
+            timeLabel.text = date.aHHmm
+        } else {
+            timeLabel.text = date.MMddaHHmm
+        }
+        
     }
 }

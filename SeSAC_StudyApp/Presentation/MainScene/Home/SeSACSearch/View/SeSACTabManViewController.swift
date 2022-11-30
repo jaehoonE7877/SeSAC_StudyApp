@@ -97,7 +97,6 @@ final class SeSACTabManViewController: TabmanViewController {
                     case .success(let data):
                         print(data.matched)
                         if data.matched == 1{
-                            print(data.matchedUid)
                             NotificationCenter.default.post(name: NSNotification.Name("timer"), object: nil)
                             guard let nick = data.matchedNick else { return }
                             weakSelf.view.makeToast("\(nick)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다", duration: 2 ,position: .center) { _ in

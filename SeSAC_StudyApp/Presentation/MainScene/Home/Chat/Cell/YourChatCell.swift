@@ -35,6 +35,7 @@ final class YourChatCell: UITableViewCell {
         chatLabel.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(12)
             make.leading.equalToSuperview()
+            make.width.lessThanOrEqualTo(256)
         }
         
         timeLabel.snp.makeConstraints { make in
@@ -44,7 +45,13 @@ final class YourChatCell: UITableViewCell {
     }
     
     func setData(data: ChatData){
+        let calendar = Calendar.current
         chatLabel.text = data.chat
-        timeLabel.text = data.createdAt
+        guard let date = data.createdAt.fetchDate() else { return }
+        if calendar.isDateInToday(date) {
+            timeLabel.text = date.aHHmm
+        } else {
+            timeLabel.text = date.MMddaHHmm
+        }
     }
 }

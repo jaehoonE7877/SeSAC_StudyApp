@@ -26,9 +26,32 @@ final class ChatViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(getMessage(notification:)), name: NSNotification.Name("getMessage"), object: nil)
         setNavigationController()
         bindingViewModel()
+        
+        
+    }
+    
+    @objc func getMessage(notification: NSNotification) {
+            
+        let id = notification.userInfo!["_id"] as! String
+        let chat = notification.userInfo!["chat"] as! String
+        let createdAt = notification.userInfo!["createdAt"] as! String
+        let from = notification.userInfo!["from"] as! String
+        let to = notification.userInfo!["to"] as! String
+        
+        let value = ChatData(id: id, to: to, from: from, chat: chat, createdAt: createdAt)
+        
+        self.viewModel.sections.append(ChatSectionModel(items: [value]))
+        self.viewModel.chat.onNext(viewModel.sections)
+        self.mainView.tableView.reloadData()
+        self.mainView.tableView.scrollToRow(at: IndexPath(row: self.viewModel.sections.count - 1, section: 0), at: .bottom, animated: false)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SocketIOManager.shared.closeConnection()
     }
     
     override func setNavigationController() {
@@ -51,6 +74,7 @@ final class ChatViewController: BaseViewController {
     }
     
     private func bindingViewModel() {
+        
         mainView.subView.cancelMatchButton.rx.tap
             .withUnretained(self)
             .subscribe { weakSelf, _ in
@@ -75,7 +99,8 @@ final class ChatViewController: BaseViewController {
             
         })
         
-        let input = ChatViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear)
+        let input = ChatViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear,
+                                        sendButtonTap: mainView.sendButton.rx.tap)
         let output = viewModel.transform(input: input)
         
         output.fetchFail
@@ -92,19 +117,3 @@ final class ChatViewController: BaseViewController {
     }
 
 }
-
-/*
- if item.payload[indexPath.row].from == UserManager.myUid  {
-     guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatCell.reuseIdentifier, for: indexPath) as? MyChatCell else { return UITableViewCell()}
-     cell.setData(data: item.payload[indexPath.row])
-     return cell
- } else {
-     guard let cell = tableView.dequeueReusableCell(withIdentifier: YourChatCell.reuseIdentifier, for: indexPath) as? YourChatCell else { return UITableViewCell()}
-     print(item.payload[indexPath.row])
-     cell.setData(data: item.payload[indexPath.row])
-     return cell
- }
- */
-
-
-

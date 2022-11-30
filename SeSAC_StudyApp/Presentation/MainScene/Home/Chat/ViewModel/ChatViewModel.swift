@@ -23,11 +23,11 @@ final class ChatViewModel: ViewModelType {
     
     struct Input {
         let viewWillAppearEvent: ControlEvent<Bool>
+        let sendButtonTap: ControlEvent<Void>
     }
     
     struct Output {
         var fetchFail = PublishRelay<String>()
-        
     }
     
     func transform(input: Input) -> Output {
@@ -52,16 +52,13 @@ extension ChatViewModel {
             guard let self = self else { return }
             switch result {
             case .success(let result):
-                
                 result.payload.forEach { payload in
                     //let chatItem = Payload(id: payload.id, to: payload.to, from: payload.from, chat: payload.chat, createdAt: payload.createdAt)
                     //self.sesacChat.payload.append(chatItem)
                     self.sections.append(ChatSectionModel(items: [ChatData(id: payload.id, to: payload.to, from: payload.from, chat: payload.chat, createdAt: payload.createdAt)]))
                 }
-                
                 self.chat.onNext(self.sections)
-                
-                
+                SocketIOManager.shared.establishConnection()
             case .failure(let error):
                 if error == .firebaseTokenError {
                     self.refreshToken {
@@ -105,14 +102,3 @@ extension ChatViewModel {
         }
     }
 }
-
-//                    if payload.createdAt.stringToDate()?.day == Date().day {
-//                        guard let createdAt = payload.createdAt.stringToDate()?.aHHmm else { return }
-//                        let chatItem = SeSACChat(payload: [Payload(id: payload.id, to: payload.to, from: payload.from, chat: payload.chat, createdAt: createdAt)])
-//                        self.sections[0].items.append(chatItem)
-//                        print(chatItem)
-//                    } else {
-//                        guard let createdAt =  payload.createdAt.stringToDate()?.MMddaHHmm else { return }
-//                        let chatItem = SeSACChat(payload: [Payload(id: payload.id, to: payload.to, from: payload.from, chat: payload.chat, createdAt: createdAt)])
-//                        self.sections[0].items.append(chatItem)
-//                    }

@@ -48,12 +48,14 @@ extension Date {
     var aHHmm: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "a HH:mm"
+        formatter.locale = Locale(identifier: "ko_KR")
         return formatter.string(from: self)
     }
     
     var MMddaHHmm: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd a HH:mm"
+        formatter.locale = Locale(identifier: "ko_KR")
         return formatter.string(from: self)
     }
 }
@@ -73,6 +75,19 @@ extension String {
         formatter.locale = Locale(identifier: "ko_KR")
         guard let date = formatter.date(from: self) else { return ""}
         return formatter.string(from: date)
+    }
+    
+    func fetchDate() -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        
+        if let date = formatter.date(from: self) {
+            return date
+        } else {
+            return nil
+        }
+            
     }
 }
 

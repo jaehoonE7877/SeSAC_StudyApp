@@ -51,7 +51,7 @@ final class Chatlabel: UILabel {
         
         self.font = .notoSans(size: 14, family: .Regular)
         self.textColor = .textColor
-        self.textAlignment = .center
+        self.textAlignment = .left
         self.numberOfLines = 0
         self.layer.cornerRadius = 8
         
