@@ -18,8 +18,8 @@ final class SocketIOManager {
     
     private init() {
         //어디와 통신할 지
-        manager = SocketManager(socketURL: URL(string: "http://api.sesac.co.kr:1210/")!, config: [
-           // .log(true),
+        manager = SocketManager(socketURL: URL(string: "http://api.sesac.co.kr:1210")!, config: [
+            .log(true),
             .forceWebsockets(true)
         ])
         // socket이 중요한 이유
@@ -31,8 +31,7 @@ final class SocketIOManager {
         // 소켓 연결 메서드
         socket.on(clientEvent: .connect) { data, ack in
             print("Socket is connected", data, ack)
-            print("=================\(data)====================")
-            self.socket.emit("changesocketid", "myUID")
+            self.socket.emit("changesocketid", UserManager.myUid)
         }
         
         // 연결 해제

@@ -21,4 +21,13 @@ struct Payload: Codable {
         case id = "_id"
         case to, from, chat, createdAt
     }
+    
+    func toDomain() -> ChatData {
+        return ChatData(
+            id: self.id,
+            to: self.to,
+            from: self.from,
+            chat: self.chat,
+            createdAt: self.createdAt)
+    }
 }

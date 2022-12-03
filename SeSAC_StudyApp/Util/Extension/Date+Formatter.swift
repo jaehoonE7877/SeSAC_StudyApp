@@ -54,7 +54,7 @@ extension Date {
     
     var MMddaHHmm: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd a HH:mm"
+        formatter.dateFormat = "M/d a HH:mm"
         formatter.locale = Locale(identifier: "ko_KR")
         return formatter.string(from: self)
     }

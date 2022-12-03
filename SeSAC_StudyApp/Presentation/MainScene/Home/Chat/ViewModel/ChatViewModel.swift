@@ -23,11 +23,12 @@ final class ChatViewModel: ViewModelType {
     
     struct Input {
         let viewWillAppearEvent: ControlEvent<Bool>
-        let sendButtonTap: ControlEvent<Void>
     }
     
     struct Output {
         var fetchFail = PublishRelay<String>()
+        var sendChatFail = PublishRelay<String>()
+        var sendChat = PublishSubject<ChatData>()
     }
     
     func transform(input: Input) -> Output {
@@ -45,6 +46,26 @@ final class ChatViewModel: ViewModelType {
 }
 
 extension ChatViewModel {
+    
+    func sendChat(chat: String, output: Output) {
+        guard let otheruid = matchedUserData?.matchedUid else { return }
+        sesacAPIService.postChat(type: Payload.self, router: .sendChat(chat: chat, to: otheruid)) {[weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let data):
+                output.sendChat.onNext(data.toDomain())
+            case .failure(let error):
+                switch error {
+                case .firebaseTokenError:
+                    self.refreshToken {
+                        output.sendChatFail.accept(error.localizedDescription)
+                    }
+                default:
+                    output.sendChatFail.accept(error.localizedDescription)
+                }
+            }
+        }
+    }
     
     func fetchChatData(output: Output) {
         guard let uid = matchedUserData?.matchedUid else { return }

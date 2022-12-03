@@ -23,6 +23,7 @@ enum SeSACAPIRouter: URLRequestConvertible {
     case accept(otheruid: String)
     case dodge(otheruid: String)
     case fetchChat(from: String, lastchatDate: String)
+    case sendChat(chat: String, to: String)
 }
 
 extension SeSACAPIRouter {
@@ -49,12 +50,14 @@ extension SeSACAPIRouter {
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/dodge")!
         case .fetchChat(let from, _):
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/chat/\(from)")!
+        case .sendChat(_ ,let to):
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/chat/\(to)")!
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .queueDelete, .require, .accept, .dodge, .fetchChat:
+        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .queueDelete, .require, .accept, .dodge, .fetchChat, .sendChat:
             return [
                 "idtoken": UserManager.token,
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -86,6 +89,8 @@ extension SeSACAPIRouter {
             return .post
         case .fetchChat:
             return .get
+        case .sendChat:
+            return .post
         }
     }
     
@@ -131,6 +136,8 @@ extension SeSACAPIRouter {
             return ["otheruid": otheruid]
         case .fetchChat(_ , let lastchatDate):
             return ["lastchatDate" : lastchatDate]
+        case .sendChat(let chat, _):
+            return ["chat" : chat]
         }
     }
     
@@ -143,7 +150,7 @@ extension SeSACAPIRouter {
         switch self {
         case .login, .withdraw, .match, .queueDelete:
             return request
-        case .signup, .mypage, .search, .queuePost, .require, .accept, .dodge, .fetchChat:
+        case .signup, .mypage, .search, .queuePost, .require, .accept, .dodge, .fetchChat, .sendChat:
             return try URLEncoding(arrayEncoding: .noBrackets).encode(request, with: parameters)
         }
         

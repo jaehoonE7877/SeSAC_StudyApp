@@ -58,15 +58,19 @@ final class DefaultSeSACAPIService {
         }
     }
     
-    func postChat(chat: String) {
-        let header: HTTPHeaders = [
-            "idtoken": UserManager.token,
-            "Content-Type": "application/x-www-form-urlencoded",
-        ]
-        
-        AF.request(URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/")!, method: .post, parameters: ["chat" : chat], encoder: JSONParameterEncoder.default, headers: header).responseString { data in
-            print("post 성공!\(data)")
+    func postChat<T: Decodable>(type: T.Type = T.self, router: SeSACAPIRouter, completion: @escaping (Result<T, SeSACChatError>) -> Void) {
+        AF.request(router).responseDecodable(of: type) { response in
+            switch response.result {
+                
+            case .success(let data):
+                completion(.success(data)) 
+            case .failure(_):
+                
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let error = SeSACChatError(rawValue: statusCode) else { return }
+                
+                completion(.failure(error))
+            }
         }
     }
-    
 }

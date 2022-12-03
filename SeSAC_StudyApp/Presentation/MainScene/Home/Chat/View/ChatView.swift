@@ -62,7 +62,7 @@ final class ChatView: BaseView {
     }
     
     override func configure() {
-        [tableView, subView, textBackgroundView].forEach { self.addSubview($0)}
+        [tableView, textBackgroundView, subView ].forEach { self.addSubview($0)}
         [textView, sendButton].forEach{ textBackgroundView.addSubview($0)}
     }
     
@@ -72,12 +72,6 @@ final class ChatView: BaseView {
             make.horizontalEdges.equalToSuperview()
             make.height.equalTo(0)
         }
-        
-        tableView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview()
-            make.horizontalEdges.equalToSuperview().inset(16)
-        }
-        
         textBackgroundView.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-50)
             make.horizontalEdges.equalToSuperview().inset(16)
@@ -97,7 +91,11 @@ final class ChatView: BaseView {
             make.trailing.equalTo(sendButton.snp.leading).offset(-8)
         }
         
-        
+        tableView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.horizontalEdges.equalToSuperview().inset(16)
+            make.bottom.equalTo(textBackgroundView.snp.top)
+        }
     }
     
     private func setBinding() {

@@ -29,10 +29,9 @@ final class ChatViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(getMessage(notification:)), name: NSNotification.Name("getMessage"), object: nil)
         setNavigationController()
         bindingViewModel()
-        
-        
-    }
     
+    }
+
     @objc func getMessage(notification: NSNotification) {
             
         let id = notification.userInfo!["_id"] as! String
@@ -46,7 +45,10 @@ final class ChatViewController: BaseViewController {
         self.viewModel.sections.append(ChatSectionModel(items: [value]))
         self.viewModel.chat.onNext(viewModel.sections)
         self.mainView.tableView.reloadData()
-        self.mainView.tableView.scrollToRow(at: IndexPath(row: self.viewModel.sections.count - 1, section: 0), at: .bottom, animated: false)
+        if viewModel.sections[0].items.count > 0 {
+            self.mainView.tableView.scrollToRow(at: IndexPath(row: self.viewModel.sections[0].items.count - 1, section: 0), at: .bottom, animated: false)
+        }
+       
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -99,8 +101,7 @@ final class ChatViewController: BaseViewController {
             
         })
         
-        let input = ChatViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear,
-                                        sendButtonTap: mainView.sendButton.rx.tap)
+        let input = ChatViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear)
         let output = viewModel.transform(input: input)
         
         output.fetchFail
@@ -114,6 +115,41 @@ final class ChatViewController: BaseViewController {
         viewModel.chat
             .bind(to: mainView.tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        mainView.sendButton.rx.tap
+            .withUnretained(self)
+            .subscribe { weakSelf, _ in
+                guard let chat = weakSelf.mainView.textView.text else { return }
+                weakSelf.viewModel.sendChat(chat: chat, output: output)
+            }
+            .disposed(by: disposeBag)
+        
+        output.sendChatFail
+            .asDriver(onErrorJustReturn: "")
+            .drive { [weak self] error in
+                guard let self = self else { return }
+                self.view.makeToast(error, duration: 1, position: .center)
+            }
+            .disposed(by: disposeBag)
+        
+        output.sendChat
+            .withUnretained(self)
+            .bind { weakSelf, data in
+                weakSelf.viewModel.sections.append(ChatSectionModel(items: [data]))
+                weakSelf.viewModel.chat.onNext(weakSelf.viewModel.sections)
+                weakSelf.mainView.tableView.reloadData()
+                weakSelf.mainView.textView.text = nil
+            }
+            .disposed(by: disposeBag)
+        
     }
+    
+//    private func scrollToBottom(){
+//        DispatchQueue.main.async {
+//            let indexPath = IndexPath(row: self.viewModel.sections[0].items.count - 1, section: 0)
+//            self.mainView.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+//        }
+//    }
+
 
 }
