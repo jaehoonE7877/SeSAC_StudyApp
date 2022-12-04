@@ -24,6 +24,7 @@ enum SeSACAPIRouter: URLRequestConvertible {
     case dodge(otheruid: String)
     case fetchChat(from: String, lastchatDate: String)
     case sendChat(chat: String, to: String)
+    case updateFCM(fcmToken: String)
 }
 
 extension SeSACAPIRouter {
@@ -52,12 +53,14 @@ extension SeSACAPIRouter {
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/chat/\(from)")!
         case .sendChat(_ ,let to):
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/chat/\(to)")!
+        case .updateFCM:
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/user/update_fcm_token")!
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .queueDelete, .require, .accept, .dodge, .fetchChat, .sendChat:
+        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .queueDelete, .require, .accept, .dodge, .fetchChat, .sendChat, .updateFCM:
             return [
                 "idtoken": UserManager.token,
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -91,6 +94,8 @@ extension SeSACAPIRouter {
             return .get
         case .sendChat:
             return .post
+        case .updateFCM:
+            return .put
         }
     }
     
@@ -138,6 +143,8 @@ extension SeSACAPIRouter {
             return ["lastchatDate" : lastchatDate]
         case .sendChat(let chat, _):
             return ["chat" : chat]
+        case .updateFCM(let fcmToken):
+            return ["FCMtoken" : fcmToken]
         }
     }
     
@@ -150,7 +157,7 @@ extension SeSACAPIRouter {
         switch self {
         case .login, .withdraw, .match, .queueDelete:
             return request
-        case .signup, .mypage, .search, .queuePost, .require, .accept, .dodge, .fetchChat, .sendChat:
+        case .signup, .mypage, .search, .queuePost, .require, .accept, .dodge, .fetchChat, .sendChat, .updateFCM:
             return try URLEncoding(arrayEncoding: .noBrackets).encode(request, with: parameters)
         }
         

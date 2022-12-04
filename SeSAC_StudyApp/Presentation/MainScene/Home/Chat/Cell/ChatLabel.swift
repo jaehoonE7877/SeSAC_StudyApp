@@ -58,6 +58,7 @@ final class Chatlabel: UILabel {
         switch style {
         case .my:
             self.backgroundColor = .ssWhiteGreen
+            self.layer.masksToBounds = true
         case .your:
             self.layer.borderWidth = 1
             self.layer.borderColor = UIColor.gray4.cgColor

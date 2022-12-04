@@ -30,7 +30,7 @@ final class SocketIOManager {
         // 연결
         // 소켓 연결 메서드
         socket.on(clientEvent: .connect) { data, ack in
-            print("Socket is connected", data, ack)
+            //print("Socket is connected", data, ack)
             self.socket.emit("changesocketid", UserManager.myUid)
         }
         

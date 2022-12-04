@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+import RxKeyboard
 
 final class ChatView: BaseView {
     
@@ -171,6 +172,37 @@ final class ChatView: BaseView {
                 self.setNeedsUpdateConstraints()
               })
               .disposed(by: disposeBag)
+        
+        RxKeyboard.instance.visibleHeight
+            .skip(1)
+            .drive { [weak self] keyboardHeight in
+                guard let self = self else { return }
+                
+                UIView.animate(withDuration: 0) {
+                    if keyboardHeight == 0 {
+                        self.textBackgroundView.snp.updateConstraints { make in
+                            make.bottom.equalToSuperview().offset(-50)
+                        }
+                    } else {
+                        let totalHeight = keyboardHeight - self.safeAreaInsets.bottom
+                        self.textBackgroundView.snp.updateConstraints { make in
+                            //make.horizontalEdges.equalToSuperview()
+                            make.bottom.equalToSuperview().offset(-totalHeight - 50)
+                        }
+                    }
+                    self.layoutIfNeeded()
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        tableView.rx.gesture(.tap())
+            .when(.recognized)
+            .skip(1)
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                weakSelf.textView.endEditing(true)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

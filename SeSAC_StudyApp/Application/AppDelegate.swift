@@ -12,7 +12,9 @@ import FirebaseMessaging
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    
+    private let sesacAPIService = DefaultSeSACAPIService.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -72,6 +74,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
     }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print(response.notification.request.content.userInfo)
+    }
+    
 }
 
 extension AppDelegate: MessagingDelegate {
@@ -79,10 +86,31 @@ extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         let dataDictonary: [String: String] = ["token": fcmToken ?? ""]
         guard let fcmToken = fcmToken else { return }
-        UserManager.fcmToken =  fcmToken
-        //print(UserManager.fcmToken)
+        
+        updateFCM(fcmToken: fcmToken) { statusCode in
+            switch SeSACError(rawValue: statusCode) {
+            case .success:
+                UserManager.fcmToken =  fcmToken
+            default:
+                print(statusCode)
+            }
+        }
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDictonary)
     }
     
+}
+
+extension AppDelegate {
+    
+    private func updateFCM(fcmToken: String, completion: @escaping (Int) -> Void) {
+        sesacAPIService.requestSeSACAPI(router: .updateFCM(fcmToken: fcmToken)) { statusCode in
+            switch SeSACError(rawValue: statusCode) {
+            case .success:
+                completion(statusCode)
+            default:
+                completion(statusCode)
+            }
+        }
+    }
 }
 
