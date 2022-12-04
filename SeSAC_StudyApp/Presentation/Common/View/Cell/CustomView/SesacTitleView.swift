@@ -10,13 +10,13 @@ import UIKit
 final class SesacTitleView: BaseView {
     
     //MARK: Porperty
-    lazy var titleLabel = UILabel().then {
+    let titleLabel = UILabel().then {
         $0.font = UIFont.notoSans(size: 12, family: .Regular)
         $0.textColor = .textColor
         $0.text = "새싹 타이틀"
     }
     
-    let mannerButton = InfoButton(title: "좋은 매너", status: .active).then {
+    let mannerButton = InfoButton(title: "좋은 매너", status: .inactive).then {
         $0.tag = 0
     }
     
@@ -28,15 +28,15 @@ final class SesacTitleView: BaseView {
         $0.tag = 2
     }
     
-    let kindButton = InfoButton(title: "친절한 성격", status: .active).then {
+    let kindButton = InfoButton(title: "친절한 성격", status: .inactive).then {
         $0.tag = 3
     }
     
-    let skillfullButton = InfoButton(title: "능숙한 실력", status: .active).then {
+    let skillfullButton = InfoButton(title: "능숙한 실력", status: .inactive).then {
         $0.tag = 4
     }
     
-    let beneficialButton = InfoButton(title: "유익한 시간", status: .active).then {
+    let beneficialButton = InfoButton(title: "유익한 시간", status: .inactive).then {
         $0.tag = 5
     }
     

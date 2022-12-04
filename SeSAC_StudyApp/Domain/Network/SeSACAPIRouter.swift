@@ -25,6 +25,7 @@ enum SeSACAPIRouter: URLRequestConvertible {
     case fetchChat(from: String, lastchatDate: String)
     case sendChat(chat: String, to: String)
     case updateFCM(fcmToken: String)
+    case writeReview(otheruid: String, reputation: String, comment: String)
 }
 
 extension SeSACAPIRouter {
@@ -55,12 +56,14 @@ extension SeSACAPIRouter {
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/chat/\(to)")!
         case .updateFCM:
             return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/user/update_fcm_token")!
+        case .writeReview(let otheruid, _ , _):
+            return URL(string: "\(SeSACConfiguration.baseURL)/\(Version.ver)/queue/rate/\(otheruid)")!
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .queueDelete, .require, .accept, .dodge, .fetchChat, .sendChat, .updateFCM:
+        case .login, .signup, .mypage, .withdraw, .search, .match, .queuePost, .queueDelete, .require, .accept, .dodge, .fetchChat, .sendChat, .updateFCM, .writeReview:
             return [
                 "idtoken": UserManager.token,
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -96,6 +99,8 @@ extension SeSACAPIRouter {
             return .post
         case .updateFCM:
             return .put
+        case .writeReview:
+            return .post
         }
     }
     
@@ -145,6 +150,12 @@ extension SeSACAPIRouter {
             return ["chat" : chat]
         case .updateFCM(let fcmToken):
             return ["FCMtoken" : fcmToken]
+        case .writeReview(let otheruid, let reputation, let comment):
+            return [
+                "otheruid" : otheruid,
+                "reputation" : reputation,
+                "comment" : comment
+                ]
         }
     }
     
@@ -157,7 +168,7 @@ extension SeSACAPIRouter {
         switch self {
         case .login, .withdraw, .match, .queueDelete:
             return request
-        case .signup, .mypage, .search, .queuePost, .require, .accept, .dodge, .fetchChat, .sendChat, .updateFCM:
+        case .signup, .mypage, .search, .queuePost, .require, .accept, .dodge, .fetchChat, .sendChat, .updateFCM, .writeReview:
             return try URLEncoding(arrayEncoding: .noBrackets).encode(request, with: parameters)
         }
         

@@ -10,7 +10,6 @@ import UIKit
 final class SubChatView: BaseView {
     
     let backgroundView = UIView().then {
-       // $0.isHidden = true
         $0.backgroundColor = UIColor(white: 0.2, alpha: 0.5)
     }
     

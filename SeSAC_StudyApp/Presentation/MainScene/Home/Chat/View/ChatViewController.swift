@@ -79,8 +79,18 @@ final class ChatViewController: BaseViewController {
         
         mainView.subView.cancelMatchButton.rx.tap
             .withUnretained(self)
-            .subscribe { weakSelf, _ in
+            .bind { weakSelf, _ in
                 let vc = MatchingCancelViewController()
+                vc.viewModel.matchedUserData = weakSelf.viewModel.matchedUserData
+                vc.modalPresentationStyle = .overFullScreen
+                weakSelf.present(vc, animated: false)
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.subView.reviewButton.rx.tap
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                let vc = ReviewWriteViewController()
                 vc.viewModel.matchedUserData = weakSelf.viewModel.matchedUserData
                 vc.modalPresentationStyle = .overFullScreen
                 weakSelf.present(vc, animated: false)

@@ -37,7 +37,12 @@ final class ReviewWriteView: BaseView {
         $0.textAlignment = .center
     }
     
-    let reviewView = SesacTitleView()
+    lazy var reviewView = SesacTitleView().then {
+        $0.titleLabel.isHidden = true
+        $0.horizontalStackView.snp.remakeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
     
     let textView = UITextView().then {
         $0.textColor = .gray7
@@ -76,12 +81,12 @@ final class ReviewWriteView: BaseView {
         
         cancelButton.snp.makeConstraints { make in
             make.size.equalTo(24)
-            make.top.equalTo(titleLabel.snp.top)
+            make.trailing.equalToSuperview().inset(16)
             make.centerY.equalTo(titleLabel.snp.centerY)
         }
         
         subTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
+            make.top.equalTo(titleLabel.snp.bottom).offset(17)
             make.centerX.equalToSuperview()
         }
         
@@ -128,5 +133,29 @@ final class ReviewWriteView: BaseView {
             }
             .disposed(by: disposeBag)
         
+        textView.rx.text.orEmpty
+            .map { $0.count <= 500}
+            .observe(on: MainScheduler.instance)
+            .withUnretained(self)
+            .bind { weakSelf, isEditable in
+                if !isEditable {
+                    weakSelf.textView.text = String(weakSelf.textView.text.dropLast())
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        if writeButton.status == .fill {
+            writeButton.isEnabled = true
+        } else {
+            writeButton.isEnabled = false
+        }
+        
+        backgroundView.rx.tapGesture()
+            .when(.recognized)
+            .withUnretained(self)
+            .bind { weakSelf, _ in
+                weakSelf.textView.endEditing(true)
+            }
+            .disposed(by: disposeBag)
     }
 }

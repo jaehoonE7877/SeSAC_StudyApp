@@ -122,4 +122,24 @@ extension ChatViewModel {
             }
         }
     }
+    
+    func writeReview(reputation: String, comment: String, completion: @escaping (Int) -> Void){
+        guard let otheruid = matchedUserData?.matchedUid else { return }
+        sesacAPIService.requestSeSACAPI(router: .writeReview(otheruid: otheruid, reputation: reputation, comment: comment)) { [weak self] statusCode in
+            guard let self = self else { return }
+            switch SeSACError(rawValue: statusCode) {
+            case .firebaseTokenError:
+                self.refreshToken {
+                    completion(statusCode)
+                }
+            default:
+                completion(statusCode)
+            }
+        }
+    }
+    
+//    private func arrayToString(list: [Bool]) -> String {
+//        let intList = list.map { Int($0) }
+//        let itemString = list
+//    }
 }
