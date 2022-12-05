@@ -29,9 +29,10 @@ final class TabViewController: UITabBarController {
         let friendVC = setTabBar(FriendViewController(), title: "새싹친구", image: "friend")
         let infoVC = setTabBar(InfoViewController(), title: "내정보", image: "info")
         let home = UINavigationController(rootViewController: homeVC)
+        let shop = UINavigationController(rootViewController: shopVC)
         let info = UINavigationController(rootViewController: infoVC)
         
-        setViewControllers([home, shopVC, friendVC, info], animated: true)
+        setViewControllers([home, shop, friendVC, info], animated: true)
     }
     
     private func setTabbarAppearence() {

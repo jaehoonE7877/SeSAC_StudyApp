@@ -66,7 +66,7 @@ final class WithdrawViewController: BaseViewController {
 extension WithdrawViewController {
     
     private func removeUserManager() {
-        let keyForUserDefaults = ["onboarding", "authVerificationID", "phone", "token", "nickname", "authDone", "birth", "email", "gender", "nickError"]
+        let keyForUserDefaults = ["onboarding", "authVerificationID", "phone", "token", "nickname", "authDone", "birth", "email", "gender", "nickError", "sesacImage", "sesacBackgroundImage", "myUid"]
         keyForUserDefaults.forEach { UserDefaults.standard.removeObject(forKey: $0)}
 
     }

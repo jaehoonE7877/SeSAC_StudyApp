@@ -83,6 +83,7 @@ extension SplashViewController {
                 case .success(let result):
                     UserManager.nickname = result.nick
                     UserManager.sesacImage = result.sesac
+                    UserManager.sesacBackgroundImage = result.background
                     UserManager.myUid = result.uid
                     
                     // ⭐️로그인 성공! => 이미 가입한 유저 + 토큰 만료 안됨 (나중에 홈탭바 뷰컨으로 수정)
@@ -135,7 +136,12 @@ extension SplashViewController {
             UserManager.token = token
             self.tryLogin { result in
                 switch result {
-                case .success(_):
+                case .success(let result):
+                    UserManager.nickname = result.nick
+                    UserManager.sesacImage = result.sesac
+                    UserManager.sesacBackgroundImage = result.background
+                    UserManager.myUid = result.uid
+                    
                     let vc = TabViewController()
                     sceneDelegate?.window?.rootViewController = vc
                 case .failure(let error):

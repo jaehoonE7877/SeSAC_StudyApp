@@ -94,6 +94,12 @@
 		258B1E0829210BEE00C78A67 /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0729210BEE00C78A67 /* InfoModel.swift */; };
 		258B1E0B29210CBF00C78A67 /* ReuseableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */; };
 		258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */; };
+		25928D87293D8FCA00E33436 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D86293D8FCA00E33436 /* ShopView.swift */; };
+		25928D89293D916600E33436 /* ShopTabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D88293D916600E33436 /* ShopTabManViewController.swift */; };
+		25928D8E293D92A500E33436 /* SeSACImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D8D293D92A500E33436 /* SeSACImageViewController.swift */; };
+		25928D90293D92FF00E33436 /* SeSACBackgroundImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D8F293D92FF00E33436 /* SeSACBackgroundImageViewController.swift */; };
+		25928D92293DAC6100E33436 /* SeSACImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D91293DAC6100E33436 /* SeSACImageCollectionViewCell.swift */; };
+		25928D94293DADCB00E33436 /* BuyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D93293DADCB00E33436 /* BuyButton.swift */; };
 		25C827CE2931CFAA007F3D84 /* MatchingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C827CD2931CFAA007F3D84 /* MatchingStatus.swift */; };
 		25D1939E292E09CF00C47AD4 /* ReceivedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */; };
 		25D193A0292E0A2900C47AD4 /* SeSACTabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */; };
@@ -247,6 +253,12 @@
 		258B1E0729210BEE00C78A67 /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
 		258B1E0A29210CBF00C78A67 /* ReuseableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableViewProtocol.swift; sourceTree = "<group>"; };
 		258B1E0C29210CF800C78A67 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		25928D86293D8FCA00E33436 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		25928D88293D916600E33436 /* ShopTabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopTabManViewController.swift; sourceTree = "<group>"; };
+		25928D8D293D92A500E33436 /* SeSACImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACImageViewController.swift; sourceTree = "<group>"; };
+		25928D8F293D92FF00E33436 /* SeSACBackgroundImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACBackgroundImageViewController.swift; sourceTree = "<group>"; };
+		25928D91293DAC6100E33436 /* SeSACImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		25928D93293DADCB00E33436 /* BuyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyButton.swift; sourceTree = "<group>"; };
 		25C827CD2931CFAA007F3D84 /* MatchingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingStatus.swift; sourceTree = "<group>"; };
 		25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedViewController.swift; sourceTree = "<group>"; };
 		25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACTabManViewController.swift; sourceTree = "<group>"; };
@@ -411,6 +423,8 @@
 			isa = PBXGroup;
 			children = (
 				25928D85293D8F1900E33436 /* View */,
+				25928D8A293D920400E33436 /* ViewModel */,
+				25928D8B293D920E00E33436 /* Cell */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -768,9 +782,37 @@
 		25928D85293D8F1900E33436 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25928D86293D8FCA00E33436 /* ShopView.swift */,
 				25230AFB291FB0CD00525531 /* ShopViewController.swift */,
+				25928D88293D916600E33436 /* ShopTabManViewController.swift */,
+				25928D8C293D921D00E33436 /* SubView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		25928D8A293D920400E33436 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		25928D8B293D920E00E33436 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				25928D91293DAC6100E33436 /* SeSACImageCollectionViewCell.swift */,
+				25928D93293DADCB00E33436 /* BuyButton.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		25928D8C293D921D00E33436 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				25928D8D293D92A500E33436 /* SeSACImageViewController.swift */,
+				25928D8F293D92FF00E33436 /* SeSACBackgroundImageViewController.swift */,
+			);
+			path = SubView;
 			sourceTree = "<group>";
 		};
 		25C827CF2931D23A007F3D84 /* Chat */ = {
@@ -1350,6 +1392,7 @@
 				25F11E92291E43A6004AC54A /* TabViewController.swift in Sources */,
 				254627D2291A2EFF004D4B72 /* String+PhoneNumber.swift in Sources */,
 				2579A12C2933A05F001CFE39 /* ChatDateCell.swift in Sources */,
+				25928D87293D8FCA00E33436 /* ShopView.swift in Sources */,
 				255B48F1292BA87000D33052 /* SeSACSearchError.swift in Sources */,
 				251BC0AA2926308900246894 /* WithdrawViewController.swift in Sources */,
 				25D1EDFB2922983C0015C444 /* WithdrawView.swift in Sources */,
@@ -1399,10 +1442,13 @@
 				25F7FE55291976CA00E0C486 /* UITextField+AttributedString.swift in Sources */,
 				2506F75729348FAB00DA63E4 /* SubChatView.swift in Sources */,
 				258B1E0D29210CF800C78A67 /* InfoTableViewCell.swift in Sources */,
+				25928D89293D916600E33436 /* ShopTabManViewController.swift in Sources */,
 				255A37B9291C28EC00737C3A /* PropertyWapper.swift in Sources */,
 				255B48E4292B49F900D33052 /* SearchCollectionViewCell.swift in Sources */,
 				25D193B4292E431000C47AD4 /* MatchPopView.swift in Sources */,
 				255A378E291AB47300737C3A /* DefaultFirebaseAPIService.swift in Sources */,
+				25928D94293DADCB00E33436 /* BuyButton.swift in Sources */,
+				25928D90293D92FF00E33436 /* SeSACBackgroundImageViewController.swift in Sources */,
 				251BC0AC2926318000246894 /* WithdrawCheckView.swift in Sources */,
 				25ED4A882922CF8400C4A6EB /* SesacReviewView.swift in Sources */,
 				257E264529240EC00039B0A0 /* ProfileImageHeaderView.swift in Sources */,
@@ -1431,6 +1477,7 @@
 				25F7FE4D291974F000E0C486 /* PhoneView.swift in Sources */,
 				251C98852931035600D63ADE /* UINavigationController+.swift in Sources */,
 				255A37C1291C31E700737C3A /* EmailViewModel.swift in Sources */,
+				25928D92293DAC6100E33436 /* SeSACImageCollectionViewCell.swift in Sources */,
 				255B48F5292BCF8500D33052 /* MapViewModel.swift in Sources */,
 				255A37BF291C31DE00737C3A /* EmailViewController.swift in Sources */,
 				25F7FE43291957FB00E0C486 /* UILabel+AttributedString.swift in Sources */,
@@ -1462,6 +1509,7 @@
 				251F51AD292D373000D538FC /* MatchDataDTO.swift in Sources */,
 				25D8C39D291D2B8800FB52DF /* GenderViewModel.swift in Sources */,
 				25D193B6292E48F100C47AD4 /* SeSACStudyRequestError.swift in Sources */,
+				25928D8E293D92A500E33436 /* SeSACImageViewController.swift in Sources */,
 				255A37B4291C1B4700737C3A /* NicknameViewController.swift in Sources */,
 				255A37B6291C21CD00737C3A /* ToastMessage.swift in Sources */,
 				25D1EDEE29228ECC0015C444 /* GenderCustomView.swift in Sources */,
