@@ -8,7 +8,7 @@
 import UIKit
 
 enum BuyButtonStatus {
-    case yet(title: String = "고유")
+    case bought(title: String = "보유")
     case lowCost(cost: String = "1,200")
     case hightCost(cost: String = "2,500")
 }
@@ -31,40 +31,40 @@ final class BuyButton: UIButton {
         self.init()
         
         self.titleLabel?.font = .notoSans(size: 12, family: .Medium)
-        self.layer.cornerRadius = 30
+        self.layer.cornerRadius = 10
         
         switch status {
-        case .yet(let title):
+        case .bought(let title):
             self.setTitle(title, for: .normal)
-            self.setTitleColor(.white, for: .normal)
-            self.backgroundColor = .ssGreen
+            self.backgroundColor = .gray2
+            self.setTitleColor(.gray7, for: .normal)
         case .lowCost(let cost):
             self.setTitle(cost, for: .normal)
-            self.backgroundColor = .gray2
-            self.setTitleColor(.gray7, for: .normal)
+            self.setTitleColor(.white, for: .normal)
+            self.backgroundColor = .ssGreen
         case .hightCost(let cost):
             self.setTitle(cost, for: .normal)
-            self.backgroundColor = .gray2
-            self.setTitleColor(.gray7, for: .normal)
+            self.setTitleColor(.white, for: .normal)
+            self.backgroundColor = .ssGreen
         }
         
     }
     
-    var status: BuyButtonStatus = .yet() {
+    var status: BuyButtonStatus = .bought() {
         didSet {
             switch status {
-            case .yet(let title):
+            case .bought(let title):
                 self.setTitle(title, for: .normal)
-                self.setTitleColor(.white, for: .normal)
-                self.backgroundColor = .ssGreen
+                self.backgroundColor = .gray2
+                self.setTitleColor(.gray7, for: .normal)
             case .lowCost(let cost):
                 self.setTitle(cost, for: .normal)
-                self.backgroundColor = .gray2
-                self.setTitleColor(.gray7, for: .normal)
+                self.setTitleColor(.white, for: .normal)
+                self.backgroundColor = .ssGreen
             case .hightCost(let cost):
                 self.setTitle(cost, for: .normal)
-                self.backgroundColor = .gray2
-                self.setTitleColor(.gray7, for: .normal)
+                self.setTitleColor(.white, for: .normal)
+                self.backgroundColor = .ssGreen
             }
         }
     }

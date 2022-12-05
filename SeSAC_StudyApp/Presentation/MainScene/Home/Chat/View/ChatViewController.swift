@@ -88,6 +88,7 @@ final class ChatViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         mainView.subView.reviewButton.rx.tap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind { weakSelf, _ in
                 let vc = ReviewWriteViewController()
@@ -127,6 +128,7 @@ final class ChatViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         mainView.sendButton.rx.tap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe { weakSelf, _ in
                 guard let chat = weakSelf.mainView.textView.text else { return }

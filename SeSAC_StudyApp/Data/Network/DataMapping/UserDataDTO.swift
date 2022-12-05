@@ -50,4 +50,12 @@ struct UserDataDTO: Codable {
             ageMin: self.ageMin,
             ageMax: self.ageMax)
     }
+    
+    func toDomain() -> SeSACImage {
+        return SeSACImage(
+            sesac: self.sesac,
+            sesacCollection: self.sesacCollection,
+            background: self.background,
+            backgroundCollection: self.backgroundCollection)
+    }
 }
