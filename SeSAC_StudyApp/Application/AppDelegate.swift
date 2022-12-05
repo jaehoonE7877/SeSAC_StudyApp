@@ -86,15 +86,15 @@ extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         let dataDictonary: [String: String] = ["token": fcmToken ?? ""]
         guard let fcmToken = fcmToken else { return }
-        
-        updateFCM(fcmToken: fcmToken) { statusCode in
-            switch SeSACError(rawValue: statusCode) {
-            case .success:
-                UserManager.fcmToken =  fcmToken
-            default:
-                print(statusCode)
-            }
-        }
+        UserManager.fcmToken =  fcmToken
+//        updateFCM(fcmToken: fcmToken) { statusCode in
+//            switch SeSACError(rawValue: statusCode) {
+//            case .success:
+//                UserManager.fcmToken =  fcmToken
+//            default:
+//                print(statusCode)
+//            }
+//        }
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDictonary)
     }
     

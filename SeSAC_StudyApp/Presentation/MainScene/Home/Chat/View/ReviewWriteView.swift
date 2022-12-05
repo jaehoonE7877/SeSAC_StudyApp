@@ -144,12 +144,6 @@ final class ReviewWriteView: BaseView {
             }
             .disposed(by: disposeBag)
         
-        if writeButton.status == .fill {
-            writeButton.isEnabled = true
-        } else {
-            writeButton.isEnabled = false
-        }
-        
         backgroundView.rx.tapGesture()
             .when(.recognized)
             .withUnretained(self)

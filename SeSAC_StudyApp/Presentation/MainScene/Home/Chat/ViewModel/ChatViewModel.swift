@@ -123,9 +123,10 @@ extension ChatViewModel {
         }
     }
     
-    func writeReview(reputation: String, comment: String, completion: @escaping (Int) -> Void){
+    func writeReview(reputation: [Bool], comment: String, completion: @escaping (Int) -> Void){
         guard let otheruid = matchedUserData?.matchedUid else { return }
-        sesacAPIService.requestSeSACAPI(router: .writeReview(otheruid: otheruid, reputation: reputation, comment: comment)) { [weak self] statusCode in
+        let repu = arrayToString(items: reputation)
+        sesacAPIService.requestSeSACAPI(router: .writeReview(otheruid: otheruid, reputation: repu, comment: comment)) { [weak self] statusCode in
             guard let self = self else { return }
             switch SeSACError(rawValue: statusCode) {
             case .firebaseTokenError:
@@ -138,8 +139,16 @@ extension ChatViewModel {
         }
     }
     
-//    private func arrayToString(list: [Bool]) -> String {
-//        let intList = list.map { Int($0) }
-//        let itemString = list
-//    }
+    private func arrayToString(items: [Bool]) -> String {
+        var stringArray = [String]()
+        for item in items {
+            if item {
+                stringArray.append("1")
+            } else {
+                stringArray.append("0")
+            }
+        }
+        let itemString = stringArray.joined(separator: ", ")
+        return "[" + itemString + "]"
+    }
 }

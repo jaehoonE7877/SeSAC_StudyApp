@@ -410,7 +410,7 @@
 		25230AFA291FB0A400525531 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
-				25230AFB291FB0CD00525531 /* ShopViewController.swift */,
+				25928D85293D8F1900E33436 /* View */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -763,6 +763,14 @@
 				2579A1392933CD01001CFE39 /* SeSACChatVO.swift */,
 			);
 			path = DataMapping;
+			sourceTree = "<group>";
+		};
+		25928D85293D8F1900E33436 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25230AFB291FB0CD00525531 /* ShopViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		25C827CF2931D23A007F3D84 /* Chat */ = {
