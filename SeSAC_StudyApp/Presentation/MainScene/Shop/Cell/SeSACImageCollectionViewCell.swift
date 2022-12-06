@@ -76,9 +76,10 @@ final class SeSACImageCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setData(indexPath: IndexPath){
+    func setData(collection: [Int], indexPath: IndexPath){
         sesacImageView.image = UIImage(named: "sesac_face_\(indexPath.item)")
         titleLabel.text = SeSACImageDescription.sesac.name[indexPath.item]
         subLabel.text = SeSACImageDescription.sesac.description[indexPath.item]
+        
     }
 }

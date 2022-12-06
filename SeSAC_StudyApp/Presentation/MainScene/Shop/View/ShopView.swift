@@ -10,14 +10,12 @@ import UIKit
 final class ShopView: BaseView {
     
     let bgImageView = UIImageView().then {
-        $0.image = UIImage(named: "sesac_background_\(UserManager.sesacBackgroundImage)")
         $0.layer.cornerRadius = 8
         $0.layer.masksToBounds = true
         $0.contentMode = .scaleAspectFill
     }
     
     let sesacImageView = UIImageView().then {
-        $0.image = UIImage(named: "sesac_face_\(UserManager.sesacImage)")
         $0.contentMode = .scaleAspectFill
     }
     
@@ -25,6 +23,7 @@ final class ShopView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .systemBackground
     }
     
     override func configure() {

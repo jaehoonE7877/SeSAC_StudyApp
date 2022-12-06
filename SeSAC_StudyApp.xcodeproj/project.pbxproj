@@ -103,6 +103,7 @@
 		25928D99293E19B000E33436 /* SeSACImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D98293E19B000E33436 /* SeSACImage.swift */; };
 		25928D9B293E1D7500E33436 /* SeSACImageDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D9A293E1D7500E33436 /* SeSACImageDescription.swift */; };
 		25928D9D293E39DC00E33436 /* SeSACBackgroundImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D9C293E39DC00E33436 /* SeSACBackgroundImageCollectionViewCell.swift */; };
+		25928D9F293E59AC00E33436 /* ShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D9E293E59AC00E33436 /* ShopViewModel.swift */; };
 		25C827CE2931CFAA007F3D84 /* MatchingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C827CD2931CFAA007F3D84 /* MatchingStatus.swift */; };
 		25D1939E292E09CF00C47AD4 /* ReceivedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */; };
 		25D193A0292E0A2900C47AD4 /* SeSACTabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */; };
@@ -265,6 +266,7 @@
 		25928D98293E19B000E33436 /* SeSACImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACImage.swift; sourceTree = "<group>"; };
 		25928D9A293E1D7500E33436 /* SeSACImageDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACImageDescription.swift; sourceTree = "<group>"; };
 		25928D9C293E39DC00E33436 /* SeSACBackgroundImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACBackgroundImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		25928D9E293E59AC00E33436 /* ShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewModel.swift; sourceTree = "<group>"; };
 		25C827CD2931CFAA007F3D84 /* MatchingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingStatus.swift; sourceTree = "<group>"; };
 		25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedViewController.swift; sourceTree = "<group>"; };
 		25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACTabManViewController.swift; sourceTree = "<group>"; };
@@ -801,6 +803,7 @@
 		25928D8A293D920400E33436 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				25928D9E293E59AC00E33436 /* ShopViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1424,6 +1427,7 @@
 				255A37BD291C31CC00737C3A /* EmailView.swift in Sources */,
 				2579A1302933A8F7001CFE39 /* MyChatCell.swift in Sources */,
 				25D1EDEC29228D0A0015C444 /* SesacDetailTableViewCell.swift in Sources */,
+				25928D9F293E59AC00E33436 /* ShopViewModel.swift in Sources */,
 				25F7FE502919752B00E0C486 /* PhoneViewController.swift in Sources */,
 				25F7FE3D291950AD00E0C486 /* PageView.swift in Sources */,
 				254627D9291A3BA7004D4B72 /* AuthViewController.swift in Sources */,

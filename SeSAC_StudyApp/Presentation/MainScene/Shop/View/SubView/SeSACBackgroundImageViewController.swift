@@ -11,6 +11,8 @@ import RxCocoa
 
 final class SeSACBackgroundImageViewController: BaseViewController {
     
+    var backgroundArray: [Int]?
+    
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.configureCellLayout()).then {
         $0.dataSource = self
         $0.delegate = self

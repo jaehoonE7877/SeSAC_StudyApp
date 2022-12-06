@@ -45,7 +45,7 @@ final class ChatViewController: BaseViewController {
         self.viewModel.sections.append(ChatSectionModel(items: [value]))
         self.viewModel.chat.onNext(viewModel.sections)
         self.mainView.tableView.reloadData()
-        if viewModel.sections[0].items.count > 0 {
+        if self.viewModel.sections[0].items.count > 0 {
             self.mainView.tableView.scrollToRow(at: IndexPath(row: self.viewModel.sections[0].items.count - 1, section: 0), at: .bottom, animated: false)
         }
        

@@ -9,11 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-import RxDataSources
-
 final class SeSACImageViewController: BaseViewController {
     
-    //collectionView
+    var sesacArray: [Int]?
+    
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.configureCellLayout()).then {
         $0.dataSource = self
         $0.delegate = self
@@ -69,8 +68,8 @@ extension SeSACImageViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SeSACImageCollectionViewCell.reuseIdentifier, for: indexPath) as? SeSACImageCollectionViewCell else { return UICollectionViewCell()}
-        
-        cell.setData(indexPath: indexPath)
+        guard let sesacCollection = sesacArray else { return UICollectionViewCell() }
+        cell.setData(collection: sesacCollection, indexPath: indexPath)
 
         return cell
     }
