@@ -21,7 +21,7 @@ extension UINavigationController { //navigation controller completion 추가
         }
     }
     
-    func pushViewController(viewController: UIViewController, animated: Bool, completion: @escaping (() ->     Void)) {
+    func pushViewController(viewController: UIViewController, animated: Bool, completion: @escaping (() -> Void)) {
         pushViewController(viewController, animated: animated)
         doAfterAnimatingTransition(animated: animated, completion: completion)
     }

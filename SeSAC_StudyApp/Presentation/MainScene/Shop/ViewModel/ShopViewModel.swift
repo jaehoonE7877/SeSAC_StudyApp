@@ -53,4 +53,46 @@ extension ShopViewModel {
         }
     }
     
+    func checkShopMyInfo(completion: @escaping (Result<SeSACImage, SeSACError>) -> Void) {
+        sesacAPIService.request(type: UserDataDTO.self, router: .shopMyinfo) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let result):
+                completion(.success(result.toDomain()))
+            case .failure(let error):
+                switch error {
+                case .firebaseTokenError:
+                    self.refreshToken {
+                        self.checkShopMyInfo { result in
+                            switch result {
+                            case .success(let result):
+                                completion(.success(result))
+                            case .failure(let error):
+                                completion(.failure(error))
+                            }
+                        }
+                    }
+                default:
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+    
+    func checkReceipt(product: String, receipt: String, completion: @escaping (Int) -> Void) {
+        sesacAPIService.requestSeSACAPI(router: .ios(product: product, receipt: receipt)) { [weak self] statusCode in
+            guard let self = self else { return }
+            switch SeSACPurchaseError(rawValue: statusCode) {
+            case .firebaseTokenError:
+                self.refreshToken {
+                    self.checkReceipt(product: product, receipt: receipt) { statusCode in
+                        completion(statusCode)
+                    }
+                }
+            default:
+                completion(statusCode)
+            }
+        }
+    }
+    
 }

@@ -14,6 +14,8 @@ import RxSwift
 
 final class SeSACBackgroundImageCollectionViewCell: UICollectionViewCell {
     
+    var cellDisposeBag = DisposeBag()
+    
     let backgroundImageView = UIImageView().then {
         $0.layer.borderColor = UIColor.gray2.cgColor
         $0.layer.masksToBounds = true
@@ -43,6 +45,12 @@ final class SeSACBackgroundImageCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        cellDisposeBag = DisposeBag()
     }
     
     private func configureUI() {
@@ -76,9 +84,16 @@ final class SeSACBackgroundImageCollectionViewCell: UICollectionViewCell {
 
     }
     
-    func setData(indexPath: IndexPath){
+    func setData(collection: [Int], indexPath: IndexPath, sesacImage: [SeSACImageModel]){
         backgroundImageView.image = UIImage(named: "sesac_background_\(indexPath.item)")
-        titleLabel.text = SeSACImageDescription.background.name[indexPath.item]
-        subLabel.text = SeSACImageDescription.background.description[indexPath.item]
+        titleLabel.text = sesacImage[indexPath.item].title
+        subLabel.text = sesacImage[indexPath.item].description
+        for item in collection {
+            if item == indexPath.item {
+                buyButton.status = .bought()
+            } else {
+                buyButton.status = .cost(cost: sesacImage[indexPath.item].price)
+            }
+        }
     }
 }

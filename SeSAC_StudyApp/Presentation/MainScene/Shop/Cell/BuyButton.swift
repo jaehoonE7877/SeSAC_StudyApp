@@ -9,8 +9,7 @@ import UIKit
 
 enum BuyButtonStatus {
     case bought(title: String = "보유")
-    case lowCost(cost: String = "1,200")
-    case hightCost(cost: String = "2,500")
+    case cost(cost: String = "1,200")
 }
 
 final class BuyButton: UIButton {
@@ -38,18 +37,12 @@ final class BuyButton: UIButton {
             self.setTitle(title, for: .normal)
             self.backgroundColor = .gray2
             self.setTitleColor(.gray7, for: .normal)
-        case .lowCost(let cost):
-            self.setTitle(cost, for: .normal)
-            self.setTitleColor(.white, for: .normal)
-            self.backgroundColor = .ssGreen
-        case .hightCost(let cost):
+        case .cost(let cost):
             self.setTitle(cost, for: .normal)
             self.setTitleColor(.white, for: .normal)
             self.backgroundColor = .ssGreen
         }
-        
     }
-    
     var status: BuyButtonStatus = .bought() {
         didSet {
             switch status {
@@ -57,14 +50,11 @@ final class BuyButton: UIButton {
                 self.setTitle(title, for: .normal)
                 self.backgroundColor = .gray2
                 self.setTitleColor(.gray7, for: .normal)
-            case .lowCost(let cost):
+            case .cost(let cost):
                 self.setTitle(cost, for: .normal)
                 self.setTitleColor(.white, for: .normal)
                 self.backgroundColor = .ssGreen
-            case .hightCost(let cost):
-                self.setTitle(cost, for: .normal)
-                self.setTitleColor(.white, for: .normal)
-                self.backgroundColor = .ssGreen
+                
             }
         }
     }

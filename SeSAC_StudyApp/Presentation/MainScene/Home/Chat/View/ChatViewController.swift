@@ -128,11 +128,10 @@ final class ChatViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         mainView.sendButton.rx.tap
-            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .throttle(.milliseconds(100), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe { weakSelf, _ in
-                guard let chat = weakSelf.mainView.textView.text else { return }
-                weakSelf.viewModel.sendChat(chat: chat, output: output)
+                weakSelf.viewModel.sendChat(chat: weakSelf.mainView.textView.text, output: output)
             }
             .disposed(by: disposeBag)
         

@@ -15,6 +15,8 @@ import RxSwift
 
 final class SeSACImageCollectionViewCell: UICollectionViewCell {
     
+    var cellDisposeBag = DisposeBag()
+    
     let sesacImageView = UIImageView().then {
         $0.layer.borderColor = UIColor.gray2.cgColor
         $0.layer.masksToBounds = true
@@ -44,6 +46,12 @@ final class SeSACImageCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        cellDisposeBag = DisposeBag()
     }
     
     private func configureUI() {
@@ -76,10 +84,16 @@ final class SeSACImageCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setData(collection: [Int], indexPath: IndexPath){
+    func setData(collection: [Int], indexPath: IndexPath, sesacImage: [SeSACImageModel]){
         sesacImageView.image = UIImage(named: "sesac_face_\(indexPath.item)")
-        titleLabel.text = SeSACImageDescription.sesac.name[indexPath.item]
-        subLabel.text = SeSACImageDescription.sesac.description[indexPath.item]
-        
+        titleLabel.text = sesacImage[indexPath.item].title
+        subLabel.text = sesacImage[indexPath.item].description
+        for item in collection {
+            if item == indexPath.item {
+                buyButton.status = .bought()
+            } else {
+                buyButton.status = .cost(cost: sesacImage[indexPath.item].price)
+            }
+        }
     }
 }

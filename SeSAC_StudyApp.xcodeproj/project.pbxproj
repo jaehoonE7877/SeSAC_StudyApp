@@ -104,6 +104,7 @@
 		25928D9B293E1D7500E33436 /* SeSACImageDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D9A293E1D7500E33436 /* SeSACImageDescription.swift */; };
 		25928D9D293E39DC00E33436 /* SeSACBackgroundImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D9C293E39DC00E33436 /* SeSACBackgroundImageCollectionViewCell.swift */; };
 		25928D9F293E59AC00E33436 /* ShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25928D9E293E59AC00E33436 /* ShopViewModel.swift */; };
+		25B28E3929406F51001DC391 /* SeSACPurchaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B28E3829406F51001DC391 /* SeSACPurchaseError.swift */; };
 		25C827CE2931CFAA007F3D84 /* MatchingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C827CD2931CFAA007F3D84 /* MatchingStatus.swift */; };
 		25D1939E292E09CF00C47AD4 /* ReceivedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */; };
 		25D193A0292E0A2900C47AD4 /* SeSACTabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */; };
@@ -267,6 +268,7 @@
 		25928D9A293E1D7500E33436 /* SeSACImageDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACImageDescription.swift; sourceTree = "<group>"; };
 		25928D9C293E39DC00E33436 /* SeSACBackgroundImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACBackgroundImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		25928D9E293E59AC00E33436 /* ShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewModel.swift; sourceTree = "<group>"; };
+		25B28E3829406F51001DC391 /* SeSACPurchaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACPurchaseError.swift; sourceTree = "<group>"; };
 		25C827CD2931CFAA007F3D84 /* MatchingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingStatus.swift; sourceTree = "<group>"; };
 		25D1939D292E09CF00C47AD4 /* ReceivedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedViewController.swift; sourceTree = "<group>"; };
 		25D1939F292E0A2900C47AD4 /* SeSACTabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACTabManViewController.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 				251C98822930E9BB00D63ADE /* SeSACStudyAcceptError.swift */,
 				2506F75E2934C6DD00DA63E4 /* SeSACDodgeError.swift */,
 				250D60C6293B516F00ED7F90 /* SeSACChatError.swift */,
+				25B28E3829406F51001DC391 /* SeSACPurchaseError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -792,8 +795,8 @@
 		25928D85293D8F1900E33436 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				25928D86293D8FCA00E33436 /* ShopView.swift */,
 				25230AFB291FB0CD00525531 /* ShopViewController.swift */,
+				25928D86293D8FCA00E33436 /* ShopView.swift */,
 				25928D88293D916600E33436 /* ShopTabManViewController.swift */,
 				25928D8C293D921D00E33436 /* SubView */,
 			);
@@ -1463,6 +1466,7 @@
 				25928D94293DADCB00E33436 /* BuyButton.swift in Sources */,
 				25928D90293D92FF00E33436 /* SeSACBackgroundImageViewController.swift in Sources */,
 				251BC0AC2926318000246894 /* WithdrawCheckView.swift in Sources */,
+				25B28E3929406F51001DC391 /* SeSACPurchaseError.swift in Sources */,
 				25ED4A882922CF8400C4A6EB /* SesacReviewView.swift in Sources */,
 				257E264529240EC00039B0A0 /* ProfileImageHeaderView.swift in Sources */,
 				25F7FE0129193B3400E0C486 /* OnboardingViewController.swift in Sources */,
